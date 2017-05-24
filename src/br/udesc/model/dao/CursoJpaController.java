@@ -29,7 +29,7 @@ public class CursoJpaController implements Serializable {
         emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
-    
+
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
@@ -206,16 +206,14 @@ public class CursoJpaController implements Serializable {
     }
 
     public List<Curso> validaCurso(String curso) {
-        String jpql = "select u from Curso u where u.nomeCurso =:nomecurso";
+        String jpql = "select u from Curso u where u.nome =:nome_curso";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
-        List<Curso> curs = em.createQuery(jpql, Curso.class).setParameter("nomecurso", curso).getResultList();
+        List<Curso> curs = em.createQuery(jpql, Curso.class).setParameter("nome_curso", curso).getResultList();
         if (curs == null || curs.isEmpty()) {
             return null;
         }
         return curs;
     }
-    
-
 
 }

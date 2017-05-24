@@ -26,7 +26,7 @@ import javax.persistence.Persistence;
 public class ProfessorJpaController implements Serializable {
 
     public ProfessorJpaController() {
-       emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
 
@@ -204,7 +204,7 @@ public class ProfessorJpaController implements Serializable {
             em.close();
         }
     }
-    
+
     public List<Professor> validaProfessor(String professor) {
         String jpql = "select u from Professor u where u.nomeProfessor =:nomeprofessor";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
@@ -215,5 +215,5 @@ public class ProfessorJpaController implements Serializable {
         }
         return prof;
     }
-    
+
 }

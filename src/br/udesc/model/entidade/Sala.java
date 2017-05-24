@@ -6,11 +6,14 @@
 package br.udesc.model.entidade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -28,9 +31,22 @@ public class Sala implements Serializable {
     @Column(name = "limite_sala")
     private int limite;
 
+    @OneToMany(mappedBy = "sala")
+    private List<SalaHorario> listSalaHorario;
+
     private boolean tipo;
 
+    
     public Sala() {
+        listSalaHorario = new ArrayList<>();
+    }
+
+    public List<SalaHorario> getListSalaHorario() {
+        return listSalaHorario;
+    }
+
+    public void setListSalaHorario(List<SalaHorario> listSalaHorario) {
+        this.listSalaHorario = listSalaHorario;
     }
 
     public boolean isTipo() {

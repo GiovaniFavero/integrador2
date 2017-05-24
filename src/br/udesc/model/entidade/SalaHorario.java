@@ -22,10 +22,28 @@ public class SalaHorario implements Serializable {
     @JoinColumn(name = "id_disciplina")
     private Disciplina disciplina;
 
+    @ManyToOne
+    @JoinColumn(name = "id_sala")
+    private Sala sala;
+
     private int preferencia;
 
     public SalaHorario() {
 
+    }
+
+    public SalaHorario(Disciplina disciplina, Sala sala, int preferencia) {
+        this.disciplina = disciplina;
+        this.sala = sala;
+        this.preferencia = preferencia;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
 
     public int getPreferencia() {

@@ -27,7 +27,7 @@ import javax.persistence.Persistence;
 public class DisciplinaJpaController implements Serializable {
 
     public DisciplinaJpaController() {
-       emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
 
@@ -243,6 +243,17 @@ public class DisciplinaJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+
+    public List<Disciplina> validaDisciplina(String disciplina) {
+        String jpql = "select u from Disciplina u where u.nome =:nome_disciplina";
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        List<Disciplina> disc = em.createQuery(jpql, Disciplina.class).setParameter("nome_disciplina", disciplina).getResultList();
+        if (disc == null || disc.isEmpty()) {
+            return null;
+        }
+        return disc;
     }
 
 }

@@ -39,8 +39,8 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         fieldTipo = new javax.swing.JTextField();
         qtdAlunoLabel = new javax.swing.JLabel();
         fieldQuantidadeAlunos = new javax.swing.JTextField();
-        limparBotao = new javax.swing.JButton();
-        salvarBotao = new javax.swing.JButton();
+        botaoLimpar = new javax.swing.JButton();
+        botaoSalvar = new javax.swing.JButton();
         comboBoxCurso = new javax.swing.JComboBox<>();
         labelCurso = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -114,9 +114,14 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
             }
         });
 
-        limparBotao.setText("Limpar");
+        botaoLimpar.setText("Limpar");
+        botaoLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLimparActionPerformed(evt);
+            }
+        });
 
-        salvarBotao.setText("Salvar");
+        botaoSalvar.setText("Salvar");
 
         comboBoxCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboBoxCurso.addActionListener(new java.awt.event.ActionListener() {
@@ -164,9 +169,9 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(conteudoPanelLayout.createSequentialGroup()
-                                .addComponent(salvarBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(limparBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(conteudoPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
@@ -214,8 +219,8 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                     .addComponent(labelProfessor))
                 .addGap(19, 19, 19)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salvarBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(limparBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -344,6 +349,10 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxCursoActionPerformed
 
+    private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoLimparActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -353,10 +362,12 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botaoDisciplina;
     public javax.swing.JButton botaoInicio;
+    public javax.swing.JButton botaoLimpar;
     public javax.swing.JButton botaoProfessor;
     public javax.swing.JButton botaoSala;
+    public javax.swing.JButton botaoSalvar;
     public javax.swing.JComboBox<String> comboBoxCurso;
-    private javax.swing.JComboBox<String> comboBoxProfessor;
+    public javax.swing.JComboBox<String> comboBoxProfessor;
     public javax.swing.JPanel conteudoPanel;
     public javax.swing.JLabel creditosLabel;
     public javax.swing.JLabel faseLabel;
@@ -368,11 +379,9 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelCurso;
     private javax.swing.JLabel labelProfessor;
-    public javax.swing.JButton limparBotao;
     public javax.swing.JLabel menuLabel;
     public javax.swing.JPanel menuRapidoPanel;
     public javax.swing.JLabel qtdAlunoLabel;
-    public javax.swing.JButton salvarBotao;
     public javax.swing.JLabel tituloLabel;
     public javax.swing.JPanel tituloPanel;
     public javax.swing.JLabel tpioLabel;
