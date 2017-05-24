@@ -34,6 +34,9 @@ public class Professor implements Serializable {
 
     @OneToMany(mappedBy = "professor")
     private List<PessoaHorarioPreferencia> listaHorario;
+    
+    @OneToMany(mappedBy = "professor")
+    private List<Disciplina> listaProfessor;
 
     public Professor() {
         listaHorario = new ArrayList<>();

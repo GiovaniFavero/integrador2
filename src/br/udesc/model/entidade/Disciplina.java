@@ -48,12 +48,35 @@ public class Disciplina implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_curso")
     private Curso curso;
-    
+
     @OneToMany(mappedBy = "disciplina")
     private List<SalaHorario> listaSalaHorario;
 
+    @ManyToOne
+    @JoinColumn(name = "id_professor")
+    private Professor professor;
+
     public Disciplina() {
         listaSalaHorario = new ArrayList<>();
+    }
+
+    public Disciplina(String nome, int creditos, String fase, int tipo, int qtdAlunos, Curso curso, Professor professor) {
+        this.nome = nome;
+        this.creditos = creditos;
+        this.fase = fase;
+        this.tipo = tipo;
+        this.qtdAlunos = qtdAlunos;
+        this.curso = curso;
+        this.professor = professor;
+        listaSalaHorario = new ArrayList<>();
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     public List<SalaHorario> getListaSalaHorario() {
@@ -63,7 +86,7 @@ public class Disciplina implements Serializable {
     public void setListaSalaHorario(List<SalaHorario> listaSalaHorario) {
         this.listaSalaHorario = listaSalaHorario;
     }
-    
+
     public Curso getCurso() {
         return curso;
     }
@@ -142,7 +165,12 @@ public class Disciplina implements Serializable {
 
     @Override
     public String toString() {
-        return "br.model.udesc.Disciplina[ id=" + id + " ]";
+        return "Disciplina: " + nome
+                + "\nCurso: " + curso.getNome()
+                + "\nCreditos: " + creditos
+                + "\nFase:" + fase
+                + "\nPreferência por sala: " + tipo
+                + "\nQuantidade Máxima de Alunos: " + qtdAlunos
+                + "\nLista de Horários: " + listaSalaHorario.size();
     }
-
 }
