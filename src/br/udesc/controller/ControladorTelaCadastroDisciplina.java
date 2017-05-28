@@ -4,6 +4,7 @@ import br.udesc.model.dao.CursoJpaController;
 import br.udesc.model.dao.DisciplinaJpaController;
 import br.udesc.model.dao.ProfessorJpaController;
 import br.udesc.model.entidade.Curso;
+import br.udesc.model.entidade.Disciplina;
 import br.udesc.model.entidade.Professor;
 import br.udesc.view.TelaCadastroDisciplina;
 import java.awt.event.ActionEvent;
@@ -25,31 +26,31 @@ public class ControladorTelaCadastroDisciplina {
         int a = cjc.getCursoCount();
 
         if (a == 0) {
-            JOptionPane.showMessageDialog(null, "Favor cadastrar um curso", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Favor cadastrar um curso", "Erro", JOptionPane.WARNING_MESSAGE);
         }
 
         if (tcd.fieldNome.getText().isEmpty()) {
             tcd.fieldNome.requestFocus();
-            JOptionPane.showMessageDialog(null, "Favor preencher o nome da disciplina", "Erro", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        if (tcd.fieldFase.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Favor preencher a fase da disciplina", "Erro", JOptionPane.ERROR_MESSAGE);
-            tcd.fieldFase.requestFocus();
+            JOptionPane.showMessageDialog(null, "Favor preencher o nome da disciplina", "Erro", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (tcd.fieldCreditos.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Favor preencher os créditos da dsiciplina", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Favor preencher os créditos da dsiciplina", "Erro", JOptionPane.WARNING_MESSAGE);
             tcd.fieldCreditos.requestFocus();
             return false;
         }
+        if (tcd.fieldFase.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Favor preencher a fase da disciplina", "Erro", JOptionPane.WARNING_MESSAGE);
+            tcd.fieldFase.requestFocus();
+            return false;
+        }
         if (tcd.fieldTipo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Favor preencher o tipo da disciplina", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Favor preencher o tipo da disciplina", "Erro", JOptionPane.WARNING_MESSAGE);
             tcd.fieldTipo.requestFocus();
             return false;
         }
         if (tcd.fieldQuantidadeAlunos.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Favor preencher a quantidade de alunos", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Favor preencher a quantidade de alunos", "Erro", JOptionPane.WARNING_MESSAGE);
             tcd.fieldQuantidadeAlunos.requestFocus();
             return false;
         }
@@ -67,33 +68,100 @@ public class ControladorTelaCadastroDisciplina {
 
     }
 
-    public void carregarProfessores() {
-        ProfessorJpaController pjc = new ProfessorJpaController();
-        tcd.comboBoxProfessor.removeAllItems();
-        List<Professor> listaProfessor = pjc.listarProfessor();
-        for (Professor professor : listaProfessor) {
-            tcd.comboBoxCurso.addItem(professor.getNome());
-        }
-
-    }
-
     public void iniciar() {
         carregarCursos();
-        carregarProfessores();
 
         tcd.botaoSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 DisciplinaJpaController djc = new DisciplinaJpaController();
-           
-                if (validarCampos() == true) {
-                    if(djc.validaDisciplina(tcd.fieldNome.getText()) == null){
-                        System.out.println("olá");
-                    } else{
-                        JOptionPane.showMessageDialog(null, "Disciplina já cadastrada", "Erro", JOptionPane.ERROR_MESSAGE);
-                    }
+                CursoJpaController cjc = new CursoJpaController();
+                ProfessorJpaController pjc = new ProfessorJpaController();
 
+                //Localizar o curso
+                String nomeCurso = (String) tcd.comboBoxCurso.getSelectedItem();
+                List<Curso> curso = cjc.validaCurso(nomeCurso);
+
+                try {
+                    if (validarCampos() == true) {
+                        if (djc.validaDisciplina(tcd.fieldCodigo.getText()) == null) {
+
+                            //Converter os campos
+                            int creditos = Integer.parseInt(tcd.fieldCreditos.getText());
+                            int tipo = Integer.parseInt(tcd.fieldTipo.getText());
+                            int quantidade = Integer.parseInt(tcd.fieldQuantidadeAlunos.getText());
+
+                            //Para quando NÃO houver professor
+                            //Cria a disciplina
+                            Disciplina disciplina = new Disciplina(tcd.fieldNome.getText(), creditos, tcd.fieldFase.getText(), tipo, quantidade, tcd.fieldCodigo.getText(), curso.get(0), null);
+                            djc.create(disciplina);
+
+                            curso.get(0).addListaDisciplina(disciplina);
+                            cjc.edit(curso.get(0));
+                            System.out.println(curso.get(0).getListaDisciplina().size() + "Size arraydisciplina em curso");
+                            System.out.println(disciplina.toString());
+                            JOptionPane.showMessageDialog(null, "Disciplina criado com sucesso");
+                            tcd.fieldTipo.setText("");
+                            tcd.fieldFase.setText("");
+                            tcd.fieldNome.setText("");
+                            tcd.fieldQuantidadeAlunos.setText("");
+                            tcd.fieldCreditos.setText("");
+                            tcd.fieldCodigo.setText("");
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Matéria já existente", "Erro", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            }
+        });
+
+        tcd.botaoLimpar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                tcd.fieldCreditos.setText("");
+                tcd.fieldFase.setText("");
+                tcd.fieldNome.setText("");
+                tcd.fieldQuantidadeAlunos.setText("");
+                tcd.fieldTipo.setText("");
+                tcd.fieldCodigo.setText("");
+            }
+        });
+
+        //Botões do menu lateral
+        tcd.botaoInicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                tcd.setVisible(false);
+            }
+        });
+
+        tcd.botaoSala.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaCadastroSala ctcs = new ControladorTelaCadastroSala();
+                ctcs.executar();
+                tcd.setVisible(false);
+            }
+        });
+
+        tcd.botaoProfessor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaCadastroProfessor ctcp = new ControladorTelaCadastroProfessor();
+                ctcp.executar();
+                tcd.setVisible(false);
+            }
+        });
+        
+         tcd.botaoVincular.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaVinculo ctv = new ControladorTelaVinculo();
+                ctv.executar();
+                tcd.setVisible(false);
             }
         });
 

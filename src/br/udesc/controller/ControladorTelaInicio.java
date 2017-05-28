@@ -1,8 +1,10 @@
 package br.udesc.controller;
 
+import br.udesc.model.dao.CursoJpaController;
 import br.udesc.view.TelaInicio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class ControladorTelaInicio {
 
@@ -15,12 +17,27 @@ public class ControladorTelaInicio {
 
     public void iniciar() {
 
+        //Para acessar a tela de cadastro de Curso
+        ti.botaoCurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaCadastroCurso ctcc = new ControladorTelaCadastroCurso();
+                ctcc.executar();
+            }
+        });
+
         //Para acessar a tela de cadastro de disciplina
         ti.botaoDisciplina.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroDisciplina ctcd = new ControladorTelaCadastroDisciplina();
-                ctcd.executar();
+                CursoJpaController cjc = new CursoJpaController();
+                if (cjc.getCursoCount() != 0) {
+                    ControladorTelaCadastroDisciplina ctcd = new ControladorTelaCadastroDisciplina();
+                    ctcd.executar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
+                }
+
             }
         });
 
@@ -33,6 +50,15 @@ public class ControladorTelaInicio {
             }
         });
 
+        //Para acessar a tela de cadastro de professores
+        ti.botaoEditar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaEditar cte = new ControladorTelaEditar();
+                cte.executar();
+            }
+        });
+
         //Para acessar a tela de cadastro de Sala
         ti.botaoSala.addActionListener(new ActionListener() {
             @Override
@@ -41,16 +67,14 @@ public class ControladorTelaInicio {
                 ctcs.executar();
             }
         });
-
-        //Para acessar a tela de cadastro de Sala
-        ti.botaoCurso.addActionListener(new ActionListener() {
+        
+        ti.botaoVincular.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {
-               ControladorTelaCadastroCurso ctcc = new ControladorTelaCadastroCurso();
-               ctcc.executar();
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaVinculo ctv = new ControladorTelaVinculo();
+                ctv.executar();
             }
         });
-
     }
 
     public void executar() {

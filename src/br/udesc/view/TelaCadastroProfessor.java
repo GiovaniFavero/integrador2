@@ -28,44 +28,43 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
     private void initComponents() {
 
         conteudoPanel = new javax.swing.JPanel();
-        cpfField = new javax.swing.JTextField();
+        fieldCpf = new javax.swing.JTextField();
         cpfLabel = new javax.swing.JLabel();
-        nomeField = new javax.swing.JTextField();
+        fieldNome = new javax.swing.JTextField();
         nomeLabel = new javax.swing.JLabel();
-        limparBotao = new javax.swing.JButton();
-        salvarBotao = new javax.swing.JButton();
+        botaoLimpar = new javax.swing.JButton();
+        botaoSalvar = new javax.swing.JButton();
         tituloPanel = new javax.swing.JPanel();
         tituloLabel = new javax.swing.JLabel();
         menuRapidoPanel = new javax.swing.JPanel();
         menuLabel = new javax.swing.JLabel();
-        inicioBotao = new javax.swing.JButton();
-        salaBotao = new javax.swing.JButton();
-        professorBotao = new javax.swing.JButton();
-        disciplinaBotao = new javax.swing.JButton();
+        botaoInicio = new javax.swing.JButton();
+        botaoSala = new javax.swing.JButton();
+        botaoDisciplina = new javax.swing.JButton();
+        botaoVincular = new javax.swing.JButton();
 
         setTitle("Cadastro de Professor");
-        setMaximumSize(new java.awt.Dimension(440, 390));
         setMinimumSize(new java.awt.Dimension(440, 390));
 
-        cpfField.addActionListener(new java.awt.event.ActionListener() {
+        fieldCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpfFieldActionPerformed(evt);
+                fieldCpfActionPerformed(evt);
             }
         });
 
         cpfLabel.setText("CPF");
 
-        nomeField.addActionListener(new java.awt.event.ActionListener() {
+        fieldNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeFieldActionPerformed(evt);
+                fieldNomeActionPerformed(evt);
             }
         });
 
         nomeLabel.setText("Nome");
 
-        limparBotao.setText("Limpar");
+        botaoLimpar.setText("Limpar");
 
-        salvarBotao.setText("Salvar");
+        botaoSalvar.setText("Salvar");
 
         javax.swing.GroupLayout conteudoPanelLayout = new javax.swing.GroupLayout(conteudoPanel);
         conteudoPanel.setLayout(conteudoPanelLayout);
@@ -78,12 +77,12 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
                     .addComponent(cpfLabel))
                 .addGap(18, 18, 18)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cpfField, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conteudoPanelLayout.createSequentialGroup()
-                        .addComponent(salvarBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(limparBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         conteudoPanelLayout.setVerticalGroup(
@@ -92,15 +91,15 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomeLabel)
-                    .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cpfLabel)
-                    .addComponent(cpfField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(limparBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(salvarBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -127,28 +126,28 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         menuLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         menuLabel.setText("Menu");
 
-        inicioBotao.setText("Início");
-        inicioBotao.addActionListener(new java.awt.event.ActionListener() {
+        botaoInicio.setText("Início");
+        botaoInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inicioBotaoActionPerformed(evt);
+                botaoInicioActionPerformed(evt);
             }
         });
 
-        salaBotao.setText("Sala");
-        salaBotao.addActionListener(new java.awt.event.ActionListener() {
+        botaoSala.setText("Sala");
+        botaoSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salaBotaoActionPerformed(evt);
+                botaoSalaActionPerformed(evt);
             }
         });
 
-        professorBotao.setText("Professor");
-
-        disciplinaBotao.setText("Disciplina");
-        disciplinaBotao.addActionListener(new java.awt.event.ActionListener() {
+        botaoDisciplina.setText("Disciplina");
+        botaoDisciplina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                disciplinaBotaoActionPerformed(evt);
+                botaoDisciplinaActionPerformed(evt);
             }
         });
+
+        botaoVincular.setText("Vincular");
 
         javax.swing.GroupLayout menuRapidoPanelLayout = new javax.swing.GroupLayout(menuRapidoPanel);
         menuRapidoPanel.setLayout(menuRapidoPanelLayout);
@@ -157,18 +156,21 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
             .addGroup(menuRapidoPanelLayout.createSequentialGroup()
                 .addGroup(menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(menuRapidoPanelLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(menuLabel))
-                    .addGroup(menuRapidoPanelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addGroup(menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(disciplinaBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(professorBotao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(salaBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(inicioBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                            .addGroup(menuRapidoPanelLayout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(menuLabel))
+                            .addGroup(menuRapidoPanelLayout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botaoSala, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botaoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botaoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuRapidoPanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(botaoVincular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         menuRapidoPanelLayout.setVerticalGroup(
             menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,14 +178,14 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(menuLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(inicioBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(salaBotao)
+                .addComponent(botaoSala)
                 .addGap(18, 18, 18)
-                .addComponent(professorBotao)
-                .addGap(18, 18, 18)
-                .addComponent(disciplinaBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(botaoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(botaoVincular)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,44 +214,44 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cpfFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfFieldActionPerformed
+    private void fieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldCpfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cpfFieldActionPerformed
+    }//GEN-LAST:event_fieldCpfActionPerformed
 
-    private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
+    private void fieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nomeFieldActionPerformed
+    }//GEN-LAST:event_fieldNomeActionPerformed
 
-    private void inicioBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioBotaoActionPerformed
+    private void botaoInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inicioBotaoActionPerformed
+    }//GEN-LAST:event_botaoInicioActionPerformed
 
-    private void salaBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaBotaoActionPerformed
+    private void botaoSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_salaBotaoActionPerformed
+    }//GEN-LAST:event_botaoSalaActionPerformed
 
-    private void disciplinaBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disciplinaBotaoActionPerformed
+    private void botaoDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDisciplinaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_disciplinaBotaoActionPerformed
+    }//GEN-LAST:event_botaoDisciplinaActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton botaoDisciplina;
+    public javax.swing.JButton botaoInicio;
+    public javax.swing.JButton botaoLimpar;
+    public javax.swing.JButton botaoSala;
+    public javax.swing.JButton botaoSalvar;
+    public javax.swing.JButton botaoVincular;
     public javax.swing.JPanel conteudoPanel;
-    public javax.swing.JTextField cpfField;
     public javax.swing.JLabel cpfLabel;
-    public javax.swing.JButton disciplinaBotao;
-    public javax.swing.JButton inicioBotao;
-    public javax.swing.JButton limparBotao;
+    public javax.swing.JTextField fieldCpf;
+    public javax.swing.JTextField fieldNome;
     public javax.swing.JLabel menuLabel;
     public javax.swing.JPanel menuRapidoPanel;
-    public javax.swing.JTextField nomeField;
     public javax.swing.JLabel nomeLabel;
-    public javax.swing.JButton professorBotao;
-    public javax.swing.JButton salaBotao;
-    public javax.swing.JButton salvarBotao;
     public javax.swing.JLabel tituloLabel;
     public javax.swing.JPanel tituloPanel;
     // End of variables declaration//GEN-END:variables

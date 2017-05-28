@@ -21,7 +21,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author 5105011505
+ * @author phzpe
  */
 public class SalaJpaController implements Serializable {
 
@@ -187,5 +187,33 @@ public class SalaJpaController implements Serializable {
             em.close();
         }
     }
+
+    public List<Sala> validaSala(String sala) {
+        String jpql = "select u from Sala u where u.numero =:numero_sala";
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        List<Sala> curs = em.createQuery(jpql, Sala.class).setParameter("numero_sala", sala).getResultList();
+        if (curs == null || curs.isEmpty()) {
+            return null;
+        }
+        return curs;
+    }
     
+     public List<Sala> listarSala() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT e FROM Sala e");
+            List<Sala> sala = query.getResultList();
+            return sala;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
 }

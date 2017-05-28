@@ -28,6 +28,9 @@ public class Sala implements Serializable {
     @Column(name = "id_sala")
     private Long id;
 
+    @Column(name = "numero_sala")
+    private String numero;
+
     @Column(name = "limite_sala")
     private int limite;
 
@@ -36,8 +39,14 @@ public class Sala implements Serializable {
 
     private boolean tipo;
 
-    
     public Sala() {
+        listSalaHorario = new ArrayList<>();
+    }
+
+    public Sala(String numero, int limite, boolean tipo) {
+        this.numero = numero;
+        this.limite = limite;
+        this.tipo = tipo;
         listSalaHorario = new ArrayList<>();
     }
 
@@ -47,6 +56,18 @@ public class Sala implements Serializable {
 
     public void setListSalaHorario(List<SalaHorario> listSalaHorario) {
         this.listSalaHorario = listSalaHorario;
+    }
+
+    public boolean getTipo(){
+        return tipo;
+    }
+    
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public boolean isTipo() {

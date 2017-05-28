@@ -3,8 +3,10 @@ package br.udesc.model.principal;
 import br.udesc.controller.ControladorTelaInicio;
 import br.udesc.model.dao.CursoJpaController;
 import br.udesc.model.dao.DisciplinaJpaController;
+import br.udesc.model.dao.ProfessorJpaController;
 import br.udesc.model.entidade.Curso;
 import br.udesc.model.entidade.Disciplina;
+import br.udesc.model.entidade.Professor;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,44 +22,17 @@ public class Teste {
         ControladorTelaInicio cti = new ControladorTelaInicio();
         cti.executar();
 
-        //Singleton para criar o curso
-//        CriarCurso cc = CriarCurso.getInstance();
-
-//        CursoJpaController cjc = new CursoJpaController();
+        ProfessorJpaController pjc = new ProfessorJpaController();
+        List<Professor> listaProfessor = pjc.validaProfessor("Pedro");
+//        System.out.println(listaProfessor.get(0).getListaDisciplinaProfessor().size() + " Tamanho do array do prof");
+//
 //        DisciplinaJpaController djc = new DisciplinaJpaController();
-
-//            List<Curso> curso = cjc.listarCurso();
-//            List<Disciplina> disciplina = djc.listarDisciplinaPorFase("1");
-//            System.out.println(disciplina.size());
-        //Para Criação de Disciplinas (0 = Obrigatóriamente em Sala, 1 = Obrigatóriamente em Lab, 2 = Misto, 3 = Tanto Faz)
-//            Disciplina primeiraFaseArquiteura = new Disciplina("Arquitetura de Computadores", 4, "1", 3, 40, eso);
-//            djc.create(primeiraFaseArquiteura);
-//            eso.addListaDisciplina(primeiraFaseArquiteura);
-//            
-//            Disciplina primeiraFaseComunicacao = new Disciplina ("Comunicação e Expressão", 2, "1", 0, 40, eso);
-//            djc.create(primeiraFaseComunicacao);
-//            eso.addListaDisciplina(primeiraFaseComunicacao);
-//            
-//            Disciplina primeiraFaseFundamentos = new Disciplina ("Fundamentos da Engenharia de Software", 2, "1", 3, 40, eso); 
-//            djc.create(primeiraFaseFundamentos);
-//            eso.addListaDisciplina(primeiraFaseFundamentos);
-//            
-//            Disciplina primeiraFaseAdm = new Disciplina ("Fundamentos de Administração", 2, "1", 0, 40, eso); 
-//            djc.create(primeiraFaseAdm);
-//            eso.addListaDisciplina(primeiraFaseAdm);
-//            
-//            Disciplina primeiraFaseIntro = new Disciplina ("Introdução à Programação", 6, "1", 2, 40, eso); 
-//            djc.create(primeiraFaseIntro);
-//            eso.addListaDisciplina(primeiraFaseIntro);
-//            
-//            Disciplina primeiraFaseMat = new Disciplina ("Matemática Discreta", 4, "2", 0, 40, eso);
-//            djc.create(primeiraFaseMat);
-//            eso.addListaDisciplina(primeiraFaseMat);
-//            
-//            cjc.edit(eso);
-//                    
-        em.close();
-        emf.close();
+//        List<Disciplina> listaDisciplina = djc.validaDisciplinaNome("Discreta");
+//        System.out.println(listaDisciplina.get(0).getProfessor() + " Professor dessa");
+//
+//        CursoJpaController cjc = new CursoJpaController();
+//        List<Curso> listaCurso = cjc.validaCurso("Software");
+//        System.out.println(listaCurso.get(0).getListaDisciplina().get(0).toString() + " toString da disciplina dentro do Array de curso");
 
     }
 }

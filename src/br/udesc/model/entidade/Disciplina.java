@@ -33,6 +33,9 @@ public class Disciplina implements Serializable {
     @Column(name = "nome_disciplina")
     private String nome;
 
+    @Column(name = "codigo_disciplina")
+    private String codigo;
+
     @Column(name = "creditos_disciplina")
     private int creditos;
 
@@ -45,6 +48,9 @@ public class Disciplina implements Serializable {
     @Column(name = "qtdAlunos_disciplina")
     private int qtdAlunos;
 
+    @OneToMany(mappedBy = "disciplina")
+    private List<RestricaoDisciplina> listaRestricaoDisciplina;
+
     @ManyToOne
     @JoinColumn(name = "id_curso")
     private Curso curso;
@@ -53,22 +59,33 @@ public class Disciplina implements Serializable {
     private List<SalaHorario> listaSalaHorario;
 
     @ManyToOne
-    @JoinColumn(name = "id_professor")
+    @JoinColumn(name = "id_professor", nullable = true)
     private Professor professor;
 
     public Disciplina() {
+        listaRestricaoDisciplina = new ArrayList<>();
         listaSalaHorario = new ArrayList<>();
     }
 
-    public Disciplina(String nome, int creditos, String fase, int tipo, int qtdAlunos, Curso curso, Professor professor) {
+    public Disciplina(String nome, int creditos, String fase, int tipo, int qtdAlunos, String codigo, Curso curso, Professor professor) {
         this.nome = nome;
         this.creditos = creditos;
         this.fase = fase;
         this.tipo = tipo;
         this.qtdAlunos = qtdAlunos;
         this.curso = curso;
+        this.codigo = codigo;
         this.professor = professor;
         listaSalaHorario = new ArrayList<>();
+        listaRestricaoDisciplina = new ArrayList<>();
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public Professor getProfessor() {
@@ -167,6 +184,8 @@ public class Disciplina implements Serializable {
     public String toString() {
         return "Disciplina: " + nome
                 + "\nCurso: " + curso.getNome()
+                + "\nCódigo: " + codigo
+                + "\nProfessor: " + professor
                 + "\nCreditos: " + creditos
                 + "\nFase:" + fase
                 + "\nPreferência por sala: " + tipo

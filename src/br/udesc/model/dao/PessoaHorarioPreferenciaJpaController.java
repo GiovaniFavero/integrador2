@@ -20,7 +20,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author 5105011505
+ * @author phzpe
  */
 public class PessoaHorarioPreferenciaJpaController implements Serializable {
 

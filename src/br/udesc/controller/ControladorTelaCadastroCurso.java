@@ -20,12 +20,12 @@ public class ControladorTelaCadastroCurso {
     public boolean validarCampos() {
         if (tcc.fieldNome.getText().isEmpty()) {
             tcc.fieldNome.requestFocus();
-            JOptionPane.showMessageDialog(null, "Favor preencher o Nome do curso", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Favor preencher o Nome do curso", "Erro", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (tcc.fieldDuracao.getText().isEmpty()) {
             tcc.fieldDuracao.requestFocus();
-            JOptionPane.showMessageDialog(null, "Favor preencher todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Favor preencher a duração do curso", "Erro", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
@@ -62,9 +62,16 @@ public class ControladorTelaCadastroCurso {
         tcc.botaoDisciplina.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroDisciplina ctcd = new ControladorTelaCadastroDisciplina();
-                tcc.setVisible(false);
-                ctcd.executar();
+
+                CursoJpaController cjc = new CursoJpaController();
+                if (cjc.getCursoCount() != 0) {
+                    ControladorTelaCadastroDisciplina ctcd = new ControladorTelaCadastroDisciplina();
+                    tcc.setVisible(false);
+                    ctcd.executar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
+                }
+
             }
         });
 
@@ -83,12 +90,14 @@ public class ControladorTelaCadastroCurso {
 
                 if (validarCampos() == true) {
                     if (cjc.validaCurso(tcc.fieldNome.getText()) == null) {
-                        
+
                         int a = Integer.parseInt(tcc.fieldDuracao.getText());
                         Curso curso = new Curso(tcc.fieldNome.getText(), a);
                         cjc.create(curso);
                         JOptionPane.showMessageDialog(null, "Curso criado com sucesso");
-                    } else{
+                        tcc.fieldNome.setText("");
+                        tcc.fieldDuracao.setText("");
+                    } else {
                         JOptionPane.showMessageDialog(null, "Esse curso já está cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                 }

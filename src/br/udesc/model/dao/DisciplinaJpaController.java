@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import br.udesc.model.entidade.Professor;
 import br.udesc.model.entidade.Curso;
 import br.udesc.model.entidade.Disciplina;
 import br.udesc.model.entidade.SalaHorario;
@@ -22,7 +23,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author 5105011505
+ * @author phzpe
  */
 public class DisciplinaJpaController implements Serializable {
 
@@ -43,6 +44,11 @@ public class DisciplinaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Professor professor = disciplina.getProfessor();
+            if (professor != null) {
+                professor = em.getReference(professor.getClass(), professor.getId());
+                disciplina.setProfessor(professor);
+            }
             Curso curso = disciplina.getCurso();
             if (curso != null) {
                 curso = em.getReference(curso.getClass(), curso.getId());
@@ -55,6 +61,10 @@ public class DisciplinaJpaController implements Serializable {
             }
             disciplina.setListaSalaHorario(attachedListaSalaHorario);
             em.persist(disciplina);
+            if (professor != null) {
+                professor.getListaDisciplinaProfessor().add(disciplina);
+                professor = em.merge(professor);
+            }
             if (curso != null) {
                 curso.getListaDisciplina().add(disciplina);
                 curso = em.merge(curso);
@@ -82,10 +92,16 @@ public class DisciplinaJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Disciplina persistentDisciplina = em.find(Disciplina.class, disciplina.getId());
+            Professor professorOld = persistentDisciplina.getProfessor();
+            Professor professorNew = disciplina.getProfessor();
             Curso cursoOld = persistentDisciplina.getCurso();
             Curso cursoNew = disciplina.getCurso();
             List<SalaHorario> listaSalaHorarioOld = persistentDisciplina.getListaSalaHorario();
             List<SalaHorario> listaSalaHorarioNew = disciplina.getListaSalaHorario();
+            if (professorNew != null) {
+                professorNew = em.getReference(professorNew.getClass(), professorNew.getId());
+                disciplina.setProfessor(professorNew);
+            }
             if (cursoNew != null) {
                 cursoNew = em.getReference(cursoNew.getClass(), cursoNew.getId());
                 disciplina.setCurso(cursoNew);
@@ -98,6 +114,14 @@ public class DisciplinaJpaController implements Serializable {
             listaSalaHorarioNew = attachedListaSalaHorarioNew;
             disciplina.setListaSalaHorario(listaSalaHorarioNew);
             disciplina = em.merge(disciplina);
+            if (professorOld != null && !professorOld.equals(professorNew)) {
+                professorOld.getListaDisciplinaProfessor().remove(disciplina);
+                professorOld = em.merge(professorOld);
+            }
+            if (professorNew != null && !professorNew.equals(professorOld)) {
+                professorNew.getListaDisciplinaProfessor().add(disciplina);
+                professorNew = em.merge(professorNew);
+            }
             if (cursoOld != null && !cursoOld.equals(cursoNew)) {
                 cursoOld.getListaDisciplina().remove(disciplina);
                 cursoOld = em.merge(cursoOld);
@@ -151,6 +175,11 @@ public class DisciplinaJpaController implements Serializable {
                 disciplina.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The disciplina with id " + id + " no longer exists.", enfe);
+            }
+            Professor professor = disciplina.getProfessor();
+            if (professor != null) {
+                professor.getListaDisciplinaProfessor().remove(disciplina);
+                professor = em.merge(professor);
             }
             Curso curso = disciplina.getCurso();
             if (curso != null) {
@@ -228,6 +257,17 @@ public class DisciplinaJpaController implements Serializable {
         return resultado;
     }
 
+    public List<Disciplina> listarDisciplinaPorCurso(Long curso) {
+        String jpql = "select u from Disciplina u where u.curso =:id_curso";
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        List<Disciplina> resultado = em.createQuery(jpql, Disciplina.class).setParameter("id_curso", curso).getResultList();
+        if (resultado == null || resultado.isEmpty()) {
+            return null;
+        }
+        return resultado;
+    }
+
     public List<Disciplina> listarDisciplina() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -246,10 +286,21 @@ public class DisciplinaJpaController implements Serializable {
     }
 
     public List<Disciplina> validaDisciplina(String disciplina) {
+        String jpql = "select u from Disciplina u where u.codigo =:codigo_disciplina";
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        List<Disciplina> disc = em.createQuery(jpql, Disciplina.class).setParameter("codigo_disciplina", disciplina).getResultList();
+        if (disc == null || disc.isEmpty()) {
+            return null;
+        }
+        return disc;
+    }
+    
+     public List<Disciplina> validaDisciplinaNome(String nome) {
         String jpql = "select u from Disciplina u where u.nome =:nome_disciplina";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
-        List<Disciplina> disc = em.createQuery(jpql, Disciplina.class).setParameter("nome_disciplina", disciplina).getResultList();
+        List<Disciplina> disc = em.createQuery(jpql, Disciplina.class).setParameter("nome_disciplina", nome).getResultList();
         if (disc == null || disc.isEmpty()) {
             return null;
         }

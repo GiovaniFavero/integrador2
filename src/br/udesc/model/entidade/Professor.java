@@ -34,12 +34,32 @@ public class Professor implements Serializable {
 
     @OneToMany(mappedBy = "professor")
     private List<PessoaHorarioPreferencia> listaHorario;
-    
+
     @OneToMany(mappedBy = "professor")
-    private List<Disciplina> listaProfessor;
+    private List<Disciplina> listaDisciplinaProfessor;
 
     public Professor() {
         listaHorario = new ArrayList<>();
+        listaDisciplinaProfessor = new ArrayList<>();
+    }
+
+    public Professor(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+        listaHorario = new ArrayList<>();
+        listaDisciplinaProfessor = new ArrayList<>();
+    }
+
+    public void addDisciplina(Disciplina d){
+        listaDisciplinaProfessor.add(d);
+    }
+    
+    public List<Disciplina> getListaDisciplinaProfessor() {
+        return listaDisciplinaProfessor;
+    }
+
+    public void setListaDisciplinaProfessor(List<Disciplina> listaDisciplinaProfessor) {
+        this.listaDisciplinaProfessor = listaDisciplinaProfessor;
     }
 
     public List<PessoaHorarioPreferencia> getListaHorario() {
