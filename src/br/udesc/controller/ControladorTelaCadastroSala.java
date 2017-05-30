@@ -6,6 +6,9 @@ import br.udesc.model.entidade.Sala;
 import br.udesc.view.TelaCadastroSala;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ControladorTelaCadastroSala {
@@ -91,11 +94,15 @@ public class ControladorTelaCadastroSala {
 
                         int a = Integer.parseInt(tcs.fieldLimite.getText());
                         Sala sala = new Sala(tcs.fieldNumero.getText(), a, verdade);
+
+                        List<Sala> listaSala = sjc.listarSala();
+                        
+                        
                         sjc.create(sala);
+
                         JOptionPane.showMessageDialog(null, "Sala cadastrada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         tcs.fieldLimite.setText("");
                         tcs.fieldNumero.setText("");
-                       
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Sala já cadastrada", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -105,6 +112,11 @@ public class ControladorTelaCadastroSala {
             }
         });
 
+    }
+
+    public void editar(Sala s) {
+        tcs.fieldNumero.setText(s.getNumero());
+        tcs.fieldLimite.setText(String.valueOf(s.getLimite()));
     }
 
     public void executar() {

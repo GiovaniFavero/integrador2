@@ -63,8 +63,8 @@ public class ControladorTelaInicio {
         ti.botaoSala.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroSala ctcs = new ControladorTelaCadastroSala();
-                ctcs.executar();
+                ControladorTelaTableSala cts = new ControladorTelaTableSala();
+                cts.executar();
             }
         });
         
