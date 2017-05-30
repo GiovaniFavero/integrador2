@@ -62,6 +62,7 @@ public class ControladorTelaTableSala {
             public void actionPerformed(ActionEvent ae) {
                 ControladorTelaCadastroSala cts = new ControladorTelaCadastroSala();
                 sa = sm.getLinha(tts.tabelaSalas.getSelectedRow());
+                
                 cts.executar();
                 cts.editar(sa);
                 tts.dispose();
