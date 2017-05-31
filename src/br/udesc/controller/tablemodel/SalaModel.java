@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
 public class SalaModel extends AbstractTableModel {
 
     private ArrayList<Sala> linhas = null;
-    private String[] colunas = new String[]{"Numero_Sala", "Limite", "Tipo"};
+    private String[] colunas = new String[]{"id","Numero_Sala", "Limite", "Tipo"};
 
     public SalaModel() {
         linhas = new ArrayList<Sala>();
@@ -45,10 +45,12 @@ public class SalaModel extends AbstractTableModel {
         Sala linha = linhas.get(numLin);
         switch (numCol) {
             case 0:
-                return linha.getNumero();
+                return linha.getId();
             case 1:
-                return linha.getLimite();
+                return linha.getNumero();
             case 2:
+                return linha.getLimite();
+            case 3:
                 if (linha.getTipo()) {
                     return "Laboratorio";
                 } else {

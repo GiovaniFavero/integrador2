@@ -7,12 +7,15 @@ package br.udesc.controller;
 
 import br.udesc.controller.tablemodel.SalaModel;
 import br.udesc.model.dao.SalaJpaController;
+import br.udesc.model.dao.exceptions.NonexistentEntityException;
 import br.udesc.model.entidade.Sala;
 import br.udesc.view.TelaCadastroSala;
 import br.udesc.view.TelaTableSala;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,6 +50,18 @@ public class ControladorTelaTableSala {
         }
     }
 
+    public void pegarLinha(int linha) {
+        sa.setId((long) tts.tabelaSalas.getValueAt(linha, 0));
+        sa.setNumero((String) tts.tabelaSalas.getValueAt(linha, 1));
+        sa.setLimite((int) tts.tabelaSalas.getValueAt(linha, 2));
+        String comparar = ((String) tts.tabelaSalas.getValueAt(linha, 3));
+        if (comparar.equalsIgnoreCase("Laboratorio")) {
+            sa.setTipo(true);
+        } else {
+            sa.setTipo(false);
+        }
+    }
+
     public void iniciar() {
         tts.botaoAdicionar.addActionListener(new ActionListener() {
             @Override
@@ -61,11 +76,25 @@ public class ControladorTelaTableSala {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 ControladorTelaCadastroSala cts = new ControladorTelaCadastroSala();
-                sa = sm.getLinha(tts.tabelaSalas.getSelectedRow());
-                
+                int linha = tts.tabelaSalas.getSelectedRow();
+                pegarLinha(linha);
                 cts.executar();
                 cts.editar(sa);
                 tts.dispose();
+            }
+        });
+
+        tts.boataoExcluir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int linha = tts.tabelaSalas.getSelectedRow();
+                pegarLinha(linha);
+                try {
+                    slc.destroy(sa.getId());
+                } catch (NonexistentEntityException ex) {
+                    Logger.getLogger(ControladorTelaTableSala.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                carregarSala();
             }
         });
     }

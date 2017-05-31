@@ -14,9 +14,12 @@ import javax.swing.JOptionPane;
 public class ControladorTelaCadastroSala {
 
     private TelaCadastroSala tcs;
+    private int edit = 0;
+    private Sala sala;
 
     public ControladorTelaCadastroSala() {
         tcs = new TelaCadastroSala();
+        sala = new Sala();
         iniciar();
     }
 
@@ -91,18 +94,35 @@ public class ControladorTelaCadastroSala {
                         if (tcs.radioSala.isSelected()) {
                             verdade = false;
                         }
-
                         int a = Integer.parseInt(tcs.fieldLimite.getText());
-                        Sala sala = new Sala(tcs.fieldNumero.getText(), a, verdade);
-
+                        String numero = tcs.fieldNumero.getText();
                         List<Sala> listaSala = sjc.listarSala();
-                        
-                        
-                        sjc.create(sala);
+                        //--------------------se edit = 0 logo criar um novo---------------
+                        if (edit == 0) {
 
-                        JOptionPane.showMessageDialog(null, "Sala cadastrada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                        tcs.fieldLimite.setText("");
-                        tcs.fieldNumero.setText("");
+                            sala.setNumero(numero);
+                            sala.setLimite(a);
+                            sala.setTipo(verdade);
+                            sjc.create(sala);
+
+                            JOptionPane.showMessageDialog(null, "Sala cadastrada com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                            tcs.fieldLimite.setText("");
+                            tcs.fieldNumero.setText("");
+                        } else {
+                            //----------------- senão editar um existente -----------------------
+                                    sala.setNumero(numero);
+                                    sala.setLimite(a);
+                                    sala.setTipo(verdade);
+                                    try {
+                                        sjc.edit(sala);
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(ControladorTelaCadastroSala.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+
+                                    JOptionPane.showMessageDialog(null, "Sala editda com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                                    tcs.fieldLimite.setText("");
+                                    tcs.fieldNumero.setText("");
+                        }
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Sala já cadastrada", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -115,6 +135,8 @@ public class ControladorTelaCadastroSala {
     }
 
     public void editar(Sala s) {
+        sala = s;
+        edit = 1;
         tcs.fieldNumero.setText(s.getNumero());
         tcs.fieldLimite.setText(String.valueOf(s.getLimite()));
     }
