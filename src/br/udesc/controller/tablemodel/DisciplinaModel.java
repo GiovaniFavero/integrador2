@@ -1,0 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.udesc.controller.tablemodel;
+
+import br.udesc.model.entidade.Disciplina;
+import java.util.ArrayList;
+import javax.swing.table.AbstractTableModel;
+
+/**
+ *
+ * @author 5105011523
+ */
+public class DisciplinaModel extends AbstractTableModel{
+    private ArrayList<Disciplina> linhas = null;
+    private String[] colunas = new String[]{"Id","Nome", "Codigo", "Creditos", "Fase"};
+
+    public DisciplinaModel() {
+        linhas = new ArrayList<Disciplina>();
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        return colunas[column];
+    }
+
+    public Disciplina getLinha(int x) {
+        return linhas.get(x);
+    }
+
+    @Override
+    public int getRowCount() {
+        return linhas.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return colunas.length;
+    }
+
+    public Object getValueAt(int numLin, int numCol) {
+        Disciplina linha = linhas.get(numLin);
+        switch (numCol) {
+            case 0:
+                return linha.getId();
+            case 1:
+                return linha.getNome();
+            case 2:
+                return linha.getCodigo();
+            case 3:
+                return linha.getCreditos();
+            case 4:
+                return linha.getFase();
+        }
+        return null;
+    }
+
+    public void limpar() {
+        linhas.clear();
+        fireTableDataChanged();
+    }
+
+    public void anuncioAdd(Disciplina a) {
+        linhas.add(a);
+        fireTableDataChanged();
+    }
+
+    public ArrayList<Disciplina> getLinhas() {
+        return linhas;
+    }
+    
+}

@@ -35,7 +35,7 @@ public class TelaTableCurso extends javax.swing.JFrame {
         botaoEditar = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tabelaCurso.setAutoCreateRowSorter(true);
         tabelaCurso.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,6 +110,7 @@ public class TelaTableCurso extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

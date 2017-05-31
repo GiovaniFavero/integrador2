@@ -99,6 +99,7 @@ public class ControladorTelaCadastroCurso {
                         int a = Integer.parseInt(tcc.fieldDuracao.getText());
                         String nome = tcc.fieldNome.getText();
                         if (edit == 0) {
+                            curso = new Curso();
                             curso.setNome(nome);
                             curso.setDuracao(a);
                             cjc.create(curso);

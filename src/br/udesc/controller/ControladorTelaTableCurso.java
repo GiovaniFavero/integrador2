@@ -42,8 +42,8 @@ public class ControladorTelaTableCurso {
     public void carregarCurso() {
         cm.limpar();
         listaCurso = cjc.listarCurso();
-        for (Curso listaProfessores : listaCurso) {
-            cm.anuncioAdd(listaProfessores);
+        for (Curso listaCursos : listaCurso) {
+            cm.anuncioAdd(listaCursos);
         }
     }
     

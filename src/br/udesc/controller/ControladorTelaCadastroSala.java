@@ -99,7 +99,7 @@ public class ControladorTelaCadastroSala {
                         List<Sala> listaSala = sjc.listarSala();
                         //--------------------se edit = 0 logo criar um novo---------------
                         if (edit == 0) {
-
+                            sala = new Sala();
                             sala.setNumero(numero);
                             sala.setLimite(a);
                             sala.setTipo(verdade);

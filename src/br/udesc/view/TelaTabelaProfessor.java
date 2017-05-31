@@ -35,7 +35,7 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
         botaoEditar = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tabelaProfessores.setAutoCreateRowSorter(true);
         tabelaProfessores.setModel(new javax.swing.table.DefaultTableModel(

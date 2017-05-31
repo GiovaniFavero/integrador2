@@ -32,8 +32,8 @@ public class ControladorTelaInicio {
             public void actionPerformed(ActionEvent ae) {
                 CursoJpaController cjc = new CursoJpaController();
                 if (cjc.getCursoCount() != 0) {
-                    ControladorTelaCadastroDisciplina ctcd = new ControladorTelaCadastroDisciplina();
-                    ctcd.executar();
+                    ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
+                    cttd.executar();
                 } else {
                     JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
                 }

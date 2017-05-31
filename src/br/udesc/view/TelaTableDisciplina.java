@@ -35,7 +35,7 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
         botaoEditar = new javax.swing.JButton();
         boataoExcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tabelaDisciplina.setAutoCreateRowSorter(true);
         tabelaDisciplina.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,6 +110,7 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

@@ -22,16 +22,17 @@ public class Teste {
         ControladorTelaInicio cti = new ControladorTelaInicio();
         cti.executar();
 
-        ProfessorJpaController pjc = new ProfessorJpaController();
-        List<Professor> listaProfessor = pjc.validaProfessor("Pedro");
+//        ProfessorJpaController pjc = new ProfessorJpaController();
+//        List<Professor> listaProfessor = pjc.validaProfessor("Pedro");
 //        System.out.println(listaProfessor.get(0).getListaDisciplinaProfessor().size() + " Tamanho do array do prof");
 //
 //        DisciplinaJpaController djc = new DisciplinaJpaController();
 //        List<Disciplina> listaDisciplina = djc.validaDisciplinaNome("Discreta");
 //        System.out.println(listaDisciplina.get(0).getProfessor() + " Professor dessa");
-//
+
 //        CursoJpaController cjc = new CursoJpaController();
 //        List<Curso> listaCurso = cjc.validaCurso("Software");
+//        System.out.println(listaCurso.get(0).getListaDisciplina().size());
 //        System.out.println(listaCurso.get(0).getListaDisciplina().get(0).toString() + " toString da disciplina dentro do Array de curso");
 
     }

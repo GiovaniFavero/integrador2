@@ -57,6 +57,7 @@ public class ControladorTelaCadastroProfessor {
                         String nome = tcp.fieldNome.getText();
                         String cpf = tcp.fieldCpf.getText();
                         if (edit == 0) {
+                            professor = new Professor();
                             professor.setNome(nome);
                             professor.setCpf(cpf);
                             pjc.create(professor);
