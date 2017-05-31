@@ -6,14 +6,19 @@ import br.udesc.view.TelaCadastroCurso;
 import br.udesc.view.TelaInicio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ControladorTelaCadastroCurso {
 
     private TelaCadastroCurso tcc;
+    private Curso curso;
+    private int edit = 0;
 
     public ControladorTelaCadastroCurso() {
         tcc = new TelaCadastroCurso();
+        curso = new Curso();
         iniciar();
     }
 
@@ -92,11 +97,27 @@ public class ControladorTelaCadastroCurso {
                     if (cjc.validaCurso(tcc.fieldNome.getText()) == null) {
 
                         int a = Integer.parseInt(tcc.fieldDuracao.getText());
-                        Curso curso = new Curso(tcc.fieldNome.getText(), a);
-                        cjc.create(curso);
-                        JOptionPane.showMessageDialog(null, "Curso criado com sucesso");
-                        tcc.fieldNome.setText("");
-                        tcc.fieldDuracao.setText("");
+                        String nome = tcc.fieldNome.getText();
+                        if (edit == 0) {
+                            curso.setNome(nome);
+                            curso.setDuracao(a);
+                            cjc.create(curso);
+                            JOptionPane.showMessageDialog(null, "Curso criado com sucesso");
+                            tcc.fieldNome.setText("");
+                            tcc.fieldDuracao.setText("");
+                        } else {
+                            curso.setNome(nome);
+                            curso.setDuracao(a);
+                            try {
+                                cjc.edit(curso);
+                            } catch (Exception ex) {
+                                Logger.getLogger(ControladorTelaCadastroCurso.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            
+                            JOptionPane.showMessageDialog(null, "Curso Editado com sucesso");
+                            tcc.fieldNome.setText("");
+                            tcc.fieldDuracao.setText("");
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Esse curso já está cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
@@ -104,6 +125,13 @@ public class ControladorTelaCadastroCurso {
             }
         });
 
+    }
+
+    public void editar(Curso c) {
+        curso = c;
+        edit = 1;
+        tcc.fieldNome.setText(curso.getNome());
+        tcc.fieldDuracao.setText(String.valueOf(curso.getDuracao()));
     }
 
     public void executar() {

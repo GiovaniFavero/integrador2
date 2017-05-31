@@ -7,14 +7,14 @@ package br.udesc.view;
 
 /**
  *
- * @author 5105011523
+ * @author Usuario
  */
-public class TelaTabelaProfessor extends javax.swing.JFrame {
+public class TelaTableCurso extends javax.swing.JFrame {
 
     /**
-     * Creates new form TelaTabelaProfessor
+     * Creates new form TelaTableCuro
      */
-    public TelaTabelaProfessor() {
+    public TelaTableCurso() {
         initComponents();
     }
 
@@ -29,7 +29,7 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaProfessores = new javax.swing.JTable();
+        tabelaCurso = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         botaoAdicionar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
@@ -37,8 +37,8 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tabelaProfessores.setAutoCreateRowSorter(true);
-        tabelaProfessores.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaCurso.setAutoCreateRowSorter(true);
+        tabelaCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -49,10 +49,10 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tabelaProfessores);
+        jScrollPane1.setViewportView(tabelaCurso);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Professor");
+        jLabel1.setText("Curso");
 
         botaoAdicionar.setText("Adicionar");
 
@@ -101,33 +101,28 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 19, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
      * @param args the command line arguments
      */
     
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botaoAdicionar;
     public javax.swing.JButton botaoEditar;
     public javax.swing.JButton botaoExcluir;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable tabelaProfessores;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable tabelaCurso;
     // End of variables declaration//GEN-END:variables
 }

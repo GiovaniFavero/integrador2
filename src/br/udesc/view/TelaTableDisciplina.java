@@ -7,14 +7,14 @@ package br.udesc.view;
 
 /**
  *
- * @author 5105011523
+ * @author Usuario
  */
-public class TelaTabelaProfessor extends javax.swing.JFrame {
+public class TelaTableDisciplina extends javax.swing.JFrame {
 
     /**
-     * Creates new form TelaTabelaProfessor
+     * Creates new form TelaTableDisciplina
      */
-    public TelaTabelaProfessor() {
+    public TelaTableDisciplina() {
         initComponents();
     }
 
@@ -29,16 +29,16 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaProfessores = new javax.swing.JTable();
+        tabelaDisciplina = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         botaoAdicionar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
-        botaoExcluir = new javax.swing.JButton();
+        boataoExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tabelaProfessores.setAutoCreateRowSorter(true);
-        tabelaProfessores.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDisciplina.setAutoCreateRowSorter(true);
+        tabelaDisciplina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -49,16 +49,16 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tabelaProfessores);
+        jScrollPane1.setViewportView(tabelaDisciplina);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Professor");
+        jLabel1.setText("Disciplina");
 
         botaoAdicionar.setText("Adicionar");
 
         botaoEditar.setText("Editar");
 
-        botaoExcluir.setText("Excluir");
+        boataoExcluir.setText("Excluir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,7 +78,7 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
                         .addGap(86, 86, 86)
                         .addComponent(botaoEditar)
                         .addGap(78, 78, 78)
-                        .addComponent(botaoExcluir)))
+                        .addComponent(boataoExcluir)))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -92,7 +92,7 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAdicionar)
                     .addComponent(botaoEditar)
-                    .addComponent(botaoExcluir))
+                    .addComponent(boataoExcluir))
                 .addGap(16, 16, 16))
         );
 
@@ -101,33 +101,59 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 19, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
      * @param args the command line arguments
      */
-    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaTableDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaTableDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaTableDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaTableDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaTableDisciplina().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton boataoExcluir;
     public javax.swing.JButton botaoAdicionar;
     public javax.swing.JButton botaoEditar;
-    public javax.swing.JButton botaoExcluir;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable tabelaProfessores;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable tabelaDisciplina;
     // End of variables declaration//GEN-END:variables
 }

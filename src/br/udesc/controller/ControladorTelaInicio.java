@@ -21,8 +21,8 @@ public class ControladorTelaInicio {
         ti.botaoCurso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroCurso ctcc = new ControladorTelaCadastroCurso();
-                ctcc.executar();
+                ControladorTelaTableCurso cttc = new ControladorTelaTableCurso();
+                cttc.executar();
             }
         });
 

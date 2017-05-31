@@ -128,7 +128,7 @@ public class ControladorTelaCadastroProfessor {
         professor = p;
         edit = 1;
         tcp.fieldNome.setText(professor.getNome());
-        tcp.fieldCpf.setText(String.valueOf(professor.getCpf()));
+        tcp.fieldCpf.setText(professor.getCpf());
     }
 
     public void executar() {
