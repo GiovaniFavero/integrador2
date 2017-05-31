@@ -45,8 +45,8 @@ public class ControladorTelaInicio {
         ti.botaoProfessor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroProfessor ctcp = new ControladorTelaCadastroProfessor();
-                ctcp.executar();
+                ControladorTelaTableProfessor cttp = new ControladorTelaTableProfessor();
+                cttp.executar();
             }
         });
 

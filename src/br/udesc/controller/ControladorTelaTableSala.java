@@ -26,7 +26,6 @@ public class ControladorTelaTableSala {
     private TelaTableSala tts;
     private Sala sa;
     private SalaModel sm;
-    private TelaCadastroSala tcs;
     private List<Sala> listaSala;
     private SalaJpaController slc;
 
@@ -34,7 +33,6 @@ public class ControladorTelaTableSala {
         tts = new TelaTableSala();
         sa = new Sala();
         sm = new SalaModel();
-        tcs = new TelaCadastroSala();
         slc = new SalaJpaController();
         tts.tabelaSalas.setModel(sm);
 
@@ -89,6 +87,7 @@ public class ControladorTelaTableSala {
             public void actionPerformed(ActionEvent e) {
                 int linha = tts.tabelaSalas.getSelectedRow();
                 pegarLinha(linha);
+                
                 try {
                     slc.destroy(sa.getId());
                 } catch (NonexistentEntityException ex) {

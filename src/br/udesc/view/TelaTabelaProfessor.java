@@ -29,15 +29,16 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaSalas = new javax.swing.JTable();
+        tabelaProfessores = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         botaoAdicionar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botaoExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tabelaSalas.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaProfessores.setAutoCreateRowSorter(true);
+        tabelaProfessores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -48,7 +49,7 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tabelaSalas);
+        jScrollPane1.setViewportView(tabelaProfessores);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Professor");
@@ -57,7 +58,7 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
 
         botaoEditar.setText("Editar");
 
-        jButton3.setText("Excluir");
+        botaoExcluir.setText("Excluir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,7 +78,7 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
                         .addGap(86, 86, 86)
                         .addComponent(botaoEditar)
                         .addGap(78, 78, 78)
-                        .addComponent(jButton3)))
+                        .addComponent(botaoExcluir)))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,7 +92,7 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAdicionar)
                     .addComponent(botaoEditar)
-                    .addComponent(jButton3))
+                    .addComponent(botaoExcluir))
                 .addGap(16, 16, 16))
         );
 
@@ -154,10 +155,10 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botaoAdicionar;
     public javax.swing.JButton botaoEditar;
-    public javax.swing.JButton jButton3;
+    public javax.swing.JButton botaoExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabelaSalas;
+    public javax.swing.JTable tabelaProfessores;
     // End of variables declaration//GEN-END:variables
 }
