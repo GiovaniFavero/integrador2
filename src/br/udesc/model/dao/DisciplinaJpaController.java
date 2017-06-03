@@ -232,6 +232,7 @@ public class DisciplinaJpaController implements Serializable {
             em.close();
         }
     }
+    
 
     public int getDisciplinaCount() {
         EntityManager em = getEntityManager();

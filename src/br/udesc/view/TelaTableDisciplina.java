@@ -32,8 +32,9 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
         tabelaDisciplina = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         botaoAdicionar = new javax.swing.JButton();
-        botaoEditar = new javax.swing.JButton();
+        botaoRestricoes = new javax.swing.JButton();
         boataoExcluir = new javax.swing.JButton();
+        botaoEditar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -56,9 +57,11 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
 
         botaoAdicionar.setText("Adicionar");
 
-        botaoEditar.setText("Editar");
+        botaoRestricoes.setText("Restrições de Horários");
 
         boataoExcluir.setText("Excluir");
+
+        botaoEditar1.setText("Editar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -67,31 +70,35 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(225, 225, 225)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(botaoAdicionar)
-                        .addGap(86, 86, 86)
-                        .addComponent(botaoEditar)
-                        .addGap(78, 78, 78)
-                        .addComponent(boataoExcluir)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(botaoAdicionar)
+                                .addGap(40, 40, 40)
+                                .addComponent(botaoEditar1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botaoRestricoes)
+                                .addGap(29, 29, 29)
+                                .addComponent(boataoExcluir))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoRestricoes)
+                    .addComponent(botaoEditar1)
                     .addComponent(botaoAdicionar)
-                    .addComponent(botaoEditar)
                     .addComponent(boataoExcluir))
                 .addGap(16, 16, 16))
         );
@@ -151,7 +158,8 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton boataoExcluir;
     public javax.swing.JButton botaoAdicionar;
-    public javax.swing.JButton botaoEditar;
+    public javax.swing.JButton botaoEditar1;
+    public javax.swing.JButton botaoRestricoes;
     public javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JScrollPane jScrollPane1;

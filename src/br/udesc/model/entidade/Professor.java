@@ -118,5 +118,13 @@ public class Professor implements Serializable {
     public String toString() {
         return "br.udesc.model.entidade.Professor[ id=" + id + " ]";
     }
+    
+    public int getTotalCreditos(){
+        int total = 0;
+        for(Disciplina d : this.listaDisciplinaProfessor){
+            total = d.getCreditos();
+        }
+        return total;
+    }
 
 }

@@ -17,6 +17,7 @@ import java.util.AbstractList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.event.AncestorListener;
 
 /**
@@ -90,6 +91,22 @@ public class ControladorTelaTableProfessor {
                     Logger.getLogger(ControladorTelaTableProfessor.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 carregarProfessor();
+            }
+        });
+        
+        ttp.botaoRestricoes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int linha = ttp.tabelaProfessores.getSelectedRow();
+                pegarLinha(linha);
+                ControladorTelaRestricoesProfessor ctr = new ControladorTelaRestricoesProfessor(pro.getId());
+                if(ctr.validarQtdRestricoes(1)){
+                    ttp.dispose();
+                    ctr.executar();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Não existem créditos suficientes para este professor", "Erro", JOptionPane.WARNING_MESSAGE);
+                }
+                
             }
         });
     }

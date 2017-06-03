@@ -1,6 +1,7 @@
 package br.udesc.model.principal;
 
 import br.udesc.controller.ControladorTelaInicio;
+import br.udesc.controller.ControladorTelaRestricoesProfessor;
 import br.udesc.model.dao.CursoJpaController;
 import br.udesc.model.dao.DisciplinaJpaController;
 import br.udesc.model.dao.ProfessorJpaController;
@@ -15,12 +16,14 @@ import javax.persistence.Persistence;
 public class Teste {
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
-        EntityManager em = emf.createEntityManager();
+      //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+      //  EntityManager em = emf.createEntityManager();
 
         //Acessa a primeira tela
         ControladorTelaInicio cti = new ControladorTelaInicio();
         cti.executar();
+        //  ControladorTelaRestricoesProfessor cb = new ControladorTelaRestricoesProfessor();
+        //  cb.executar();
 
 //        ProfessorJpaController pjc = new ProfessorJpaController();
 //        List<Professor> listaProfessor = pjc.validaProfessor("Pedro");

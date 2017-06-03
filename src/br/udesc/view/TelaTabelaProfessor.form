@@ -58,9 +58,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                           <Component id="botaoAdicionar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="botaoEditar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="botaoRestricoes" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           <Component id="botaoExcluir" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -80,6 +82,7 @@
                       <Component id="botaoAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botaoEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botaoExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoRestricoes" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
@@ -139,6 +142,14 @@
         <Component class="javax.swing.JButton" name="botaoExcluir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="botaoRestricoes">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Restri&#xe7;&#xf5;es de Hor&#xe1;rios"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

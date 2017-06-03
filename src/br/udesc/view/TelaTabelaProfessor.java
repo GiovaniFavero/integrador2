@@ -34,6 +34,7 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
         botaoAdicionar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
+        botaoRestricoes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,6 +61,8 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
 
         botaoExcluir.setText("Excluir");
 
+        botaoRestricoes.setText("Restrições de Horários");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -75,9 +78,11 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(botaoAdicionar)
-                        .addGap(86, 86, 86)
+                        .addGap(26, 26, 26)
                         .addComponent(botaoEditar)
-                        .addGap(78, 78, 78)
+                        .addGap(34, 34, 34)
+                        .addComponent(botaoRestricoes)
+                        .addGap(43, 43, 43)
                         .addComponent(botaoExcluir)))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
@@ -92,7 +97,8 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAdicionar)
                     .addComponent(botaoEditar)
-                    .addComponent(botaoExcluir))
+                    .addComponent(botaoExcluir)
+                    .addComponent(botaoRestricoes))
                 .addGap(16, 16, 16))
         );
 
@@ -125,6 +131,7 @@ public class TelaTabelaProfessor extends javax.swing.JFrame {
     public javax.swing.JButton botaoAdicionar;
     public javax.swing.JButton botaoEditar;
     public javax.swing.JButton botaoExcluir;
+    public javax.swing.JButton botaoRestricoes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

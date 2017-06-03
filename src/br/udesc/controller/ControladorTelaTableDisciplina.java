@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,7 +65,7 @@ public class ControladorTelaTableDisciplina {
             }
         });
         
-        ttd.botaoEditar.addActionListener(new ActionListener() {
+        ttd.botaoEditar1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 ControladorTelaCadastroDisciplina ctcd = new ControladorTelaCadastroDisciplina();
@@ -88,6 +89,17 @@ public class ControladorTelaTableDisciplina {
                     Logger.getLogger(ControladorTelaTableProfessor.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 carregarDisciplina();
+            }
+        });
+        
+        ttd.botaoRestricoes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int linha = ttd.tabelaDisciplina.getSelectedRow();
+                pegarLinha(linha);
+                ControladorTelaRestricoesDisciplina ctr = new ControladorTelaRestricoesDisciplina(dis.getId());
+                ttd.dispose();
+                ctr.executar();
             }
         });
     }
