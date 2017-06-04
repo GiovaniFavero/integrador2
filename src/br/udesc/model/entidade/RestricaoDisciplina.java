@@ -15,6 +15,7 @@ public class RestricaoDisciplina implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_restricaoDisciplina")
     private Long id;
 
     public Long getId() {
@@ -83,5 +84,16 @@ public class RestricaoDisciplina implements Serializable {
     public String toString() {
         return "br.udesc.model.entidade.RestricaoDisciplina[ id=" + id + " ]";
     }
+
+    public RestricaoDisciplina(Disciplina disciplina, int horario, int condicao) {
+        this.disciplina = disciplina;
+        this.horario = horario;
+        this.condicao = condicao;
+    }
+
+    public RestricaoDisciplina() {
+    }
+    
+    
 
 }

@@ -8,6 +8,7 @@ package br.udesc.controller;
 import br.udesc.model.dao.DisciplinaJpaController;
 import br.udesc.model.dao.RestricaoDisciplinaJpaController;
 import br.udesc.model.entidade.Disciplina;
+import br.udesc.model.entidade.PessoaHorarioPreferencia;
 import br.udesc.model.entidade.RestricaoDisciplina;
 import br.udesc.view.TelaRestricoesDisciplina;
 import java.awt.event.ActionEvent;
@@ -35,23 +36,18 @@ public class ControladorTelaRestricoesDisciplina {
     private JComboBox[][] restricoes;
     private List<RestricaoDisciplina> restricoesAntigas;
     private List<RestricaoDisciplina> restricoesNovas;
+    private int qtTotalRestricoes;
 
     public ControladorTelaRestricoesDisciplina(long id) {
         trd = new TelaRestricoesDisciplina();
         dis = new Disciplina();
         djc = new DisciplinaJpaController();
         rdjc = new RestricaoDisciplinaJpaController();
-        /* Localiza disciplina com a "id" no banco e salva na variável "dis" */
         this.buscaDisciplina(id);
-        /* Salva as restrições atuais desta disciplina na lista "restricoesAntigas" */
-        restricoesAntigas = dis.getListaRestricaoDisciplina();
-        /* Carrega opções padrões nos ComboBox de cada dia/período da semana */
+        //restricoesAntigas = dis.getListaRestricaoDisciplina();
         carregaListaCbxRestricoes();
-        /* Carrega os valores das restrições atuais da disciplina nos ComboBox. */
         carregaListaCbxRestricoesDisciplina();
-        /* Carrega o nome da disciplina no cabeçalho da tela */
         carregaLabel();
-        /* Inicializa os componentes do JFrame */
         iniciar();
     }
 
@@ -62,13 +58,18 @@ public class ControladorTelaRestricoesDisciplina {
             public void actionPerformed(ActionEvent ae) {
                 /* Salva as restrições definidas na tela no array "restricoesNovas" */
                 salvarRestricoes();
-                /* Remove-se do banco as restrições antigas para a disciplina em questão */
-                removerRestricoesAntigas();
-                /* Insere-se no banco as novas restrições para esta disciplina */
-                persistirRestricoes();
-                JOptionPane.showMessageDialog(null, "Restrições salvas com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                trd.dispose();
-                
+                /* Verifica-se se a quantidade de restrições definidas pelo usuário é permitida */
+                if(!validarQtdRestricoes(2)){
+                    carregaListaCbxRestricoesDisciplina();
+                    JOptionPane.showMessageDialog(null, "Somente permitido(s) " + qtTotalRestricoes + " restrições devido a quantidade de crétidos", "Erro", JOptionPane.WARNING_MESSAGE);
+                } else { 
+                    /* Remove-se do banco as restrições antigas para a disciplina em questão */
+                    removerRestricoesAntigas();
+                    /* Insere-se no banco as novas restrições para esta disciplina */
+                    persistirRestricoes();
+                    JOptionPane.showMessageDialog(null, "Restrições salvas com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    trd.dispose();
+                }
             }
         });
         /* Define as ações que serão realizadas a partir do clique no botão "Cancelar" */
@@ -156,6 +157,32 @@ public class ControladorTelaRestricoesDisciplina {
         }
     }
     
+        /* Método responsável por realizar as seguintes validações:
+    *Caso o parâmetro opção for igual a 1, verifica-se se já existem disciplinas 
+    cadastradas para o professor (para ser utilizado no momento de abrir o este módulo)
+    *Caso o parâmetro opção for igual a 2, verifica-se se a quantidade de restrições
+    definidas pelo usuário está de acordo com a quantidade de créditos das disciplinas 
+    para o professor em questão (Utilizado no momento de salvar as restrições). */
+    public boolean validarQtdRestricoes(int opcao) {
+        List<RestricaoDisciplina> lista;
+        if (opcao == 1) {
+            lista = restricoesAntigas;
+        } else {
+            lista = restricoesNovas;
+        }
+        /* Verifica-se a quantidade de restrições disponíveis para o professor */
+        qtTotalRestricoes = (int) Math.floor(dis.getCreditos());
+        if (lista.size() == 0 && qtTotalRestricoes == 0) {
+            return false;
+        /* Caso a quantidade de restrições disponíveis for menor que a quantidade permitida
+            o método retorna false.*/
+        } else if (lista.size() > (qtTotalRestricoes)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
     /* Método responsável por salvar as novas restrições no banco */
     public void persistirRestricoes() {
         for (RestricaoDisciplina p : restricoesNovas) {
@@ -187,6 +214,7 @@ public class ControladorTelaRestricoesDisciplina {
     construtor desta classe, e salvar na variável aqui instanciada. */
     public void buscaDisciplina(long id) {
         this.dis = djc.findDisciplina(id);
+        this.restricoesAntigas = rdjc.buscarRestricoes(id);
     }
 
     /* Método responsável por carregar o nome da disciplina em questão no cabeçalho da tela. */

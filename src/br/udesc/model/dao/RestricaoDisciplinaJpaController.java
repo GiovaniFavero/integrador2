@@ -6,6 +6,7 @@
 package br.udesc.model.dao;
 
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
+import br.udesc.model.entidade.Disciplina;
 import br.udesc.model.entidade.RestricaoDisciplina;
 import java.io.Serializable;
 import java.util.List;
@@ -134,6 +135,19 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    
+      public List<RestricaoDisciplina> buscarRestricoes(long id){
+        EntityManager em = getEntityManager();
+        try{
+            Disciplina d = em.find(Disciplina.class, id);
+            Query q = em.createQuery("select a from RestricaoDisciplina a where a.disciplina = :d");
+            q.setParameter("d", d);
+            return (List<RestricaoDisciplina>) q.getResultList();
+        }catch(Exception e){
+            return null;
+        }
+        
     }
     
 }

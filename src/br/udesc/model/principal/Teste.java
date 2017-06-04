@@ -8,6 +8,8 @@ import br.udesc.model.dao.ProfessorJpaController;
 import br.udesc.model.entidade.Curso;
 import br.udesc.model.entidade.Disciplina;
 import br.udesc.model.entidade.Professor;
+import br.udesc.model.entidade.RestricaoDisciplina;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,9 +18,9 @@ import javax.persistence.Persistence;
 public class Teste {
 
     public static void main(String[] args) {
-      //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
-      //  EntityManager em = emf.createEntityManager();
-
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+   
         //Acessa a primeira tela
         ControladorTelaInicio cti = new ControladorTelaInicio();
         cti.executar();

@@ -98,8 +98,13 @@ public class ControladorTelaTableDisciplina {
                 int linha = ttd.tabelaDisciplina.getSelectedRow();
                 pegarLinha(linha);
                 ControladorTelaRestricoesDisciplina ctr = new ControladorTelaRestricoesDisciplina(dis.getId());
-                ttd.dispose();
-                ctr.executar();
+                if(ctr.validarQtdRestricoes(1)){
+                    ttd.dispose();
+                    ctr.executar();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Não existem créditos suficientes", "Erro", JOptionPane.WARNING_MESSAGE);
+                }
+                
             }
         });
     }

@@ -45,17 +45,11 @@ public class ControladorTelaRestricoesProfessor {
         pro = new Professor();
         psc = new ProfessorJpaController();
         phj = new PessoaHorarioPreferenciaJpaController();
-        /* Localiza professor com a "id" no banco e salva na variável "pro" */
         this.buscaProfessor(id);
-        /* Salva as restrições atuais deste professor na lista "restricoesAntigas" */
         restricoesAntigas = pro.getListaHorario();
-        /* Carrega opções padrões nos ComboBox de cada dia/período da semana */
         carregaListaCbxRestricoes();
-        /* Carrega os valores das restrições atuais do professor nos ComboBox. */
         carregaListaCbxRestricoesProfessor();
-        /* Carrega o nome do professor no cabeçalho da tela */
         carregaLabel();
-        /* Inicializa os componentes do JFrame */
         iniciar();
     }
 
