@@ -40,11 +40,13 @@ public class ControladorTelaTableDisciplina {
     }
     
     public void pegarLinha(int linha) {
-        dis.setId((long) ttd.tabelaDisciplina.getValueAt(linha, 0));
-        dis.setNome((String) ttd.tabelaDisciplina.getValueAt(linha, 1));
-        dis.setCodigo((String) ttd.tabelaDisciplina.getValueAt(linha, 2));
-        dis.setCreditos((int) ttd.tabelaDisciplina.getValueAt(linha, 3));
-        dis.setFase((String) ttd.tabelaDisciplina.getValueAt(linha, 4));
+        dis = djc.findDisciplina((long) ttd.tabelaDisciplina.getValueAt(linha, 0));
+//        dis.setId((long) ttd.tabelaDisciplina.getValueAt(linha, 0));
+//        dis.setNome((String) ttd.tabelaDisciplina.getValueAt(linha, 1));
+//        dis.setCodigo((String) ttd.tabelaDisciplina.getValueAt(linha, 2));
+//        dis.setCreditos((int) ttd.tabelaDisciplina.getValueAt(linha, 3));
+//        dis.setFase((String) ttd.tabelaDisciplina.getValueAt(linha, 4));
+        
     }
     
     public void carregarDisciplina(){

@@ -58,8 +58,8 @@ public class ControladorTelaCadastroSala {
             public void actionPerformed(ActionEvent ae) {
                 CursoJpaController cjc = new CursoJpaController();
                 if (cjc.getCursoCount() != 0) {
-                    ControladorTelaCadastroDisciplina ctcd = new ControladorTelaCadastroDisciplina();
-                    ctcd.executar();
+                    ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
+                    cttd.executar();
                     tcs.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
@@ -70,8 +70,8 @@ public class ControladorTelaCadastroSala {
         tcs.botaoProfessor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroProfessor ctcp = new ControladorTelaCadastroProfessor();
-                ctcp.executar();
+                ControladorTelaTableProfessor cttp = new ControladorTelaTableProfessor();
+                cttp.executar();
                 tcs.setVisible(false);
             }
         });
@@ -129,6 +129,15 @@ public class ControladorTelaCadastroSala {
                     }
 
                 }
+            }
+        });
+        
+        tcs.botaoVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaTableSala ctt = new ControladorTelaTableSala();
+                ctt.executar();
+                tcs.dispose();
             }
         });
 

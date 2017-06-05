@@ -46,6 +46,7 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         fieldCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        botaoVoltar = new javax.swing.JButton();
         menuRapidoPanel = new javax.swing.JPanel();
         menuLabel = new javax.swing.JLabel();
         botaoInicio = new javax.swing.JButton();
@@ -136,6 +137,8 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
 
         jLabel2.setText("Código Disciplina");
 
+        botaoVoltar.setText("Voltar");
+
         javax.swing.GroupLayout conteudoPanelLayout = new javax.swing.GroupLayout(conteudoPanel);
         conteudoPanel.setLayout(conteudoPanelLayout);
         conteudoPanelLayout.setHorizontalGroup(
@@ -167,16 +170,18 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conteudoPanelLayout.createSequentialGroup()
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(qtdAlunoLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(conteudoPanelLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fieldQuantidadeAlunos)
+                        .addGap(31, 31, 31))
                     .addGroup(conteudoPanelLayout.createSequentialGroup()
-                        .addComponent(qtdAlunoLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(fieldQuantidadeAlunos)))
-                .addGap(31, 31, 31))
+                        .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conteudoPanelLayout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,10 +227,12 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(qtdAlunoLabel)
                     .addComponent(fieldQuantidadeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
         );
 
         menuLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -364,6 +371,7 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
     public javax.swing.JButton botaoSala;
     public javax.swing.JButton botaoSalvar;
     public javax.swing.JButton botaoVincular;
+    public javax.swing.JButton botaoVoltar;
     public javax.swing.JComboBox<String> comboBoxCurso;
     public javax.swing.JPanel conteudoPanel;
     public javax.swing.JLabel creditosLabel;

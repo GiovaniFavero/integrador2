@@ -49,18 +49,18 @@ public class ControladorTelaCadastroCurso {
         tcc.botaoProfessor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroProfessor ctcp = new ControladorTelaCadastroProfessor();
+                ControladorTelaTableProfessor cttp = new ControladorTelaTableProfessor();
+                cttp.executar();
                 tcc.setVisible(false);
-                ctcp.executar();
             }
         });
 
         tcc.botaoSala.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroSala ctcs = new ControladorTelaCadastroSala();
+                ControladorTelaTableSala cts = new ControladorTelaTableSala();
+                cts.executar();
                 tcc.setVisible(false);
-                ctcs.executar();
             }
         });
 
@@ -70,9 +70,9 @@ public class ControladorTelaCadastroCurso {
 
                 CursoJpaController cjc = new CursoJpaController();
                 if (cjc.getCursoCount() != 0) {
-                    ControladorTelaCadastroDisciplina ctcd = new ControladorTelaCadastroDisciplina();
+                    ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
+                    cttd.executar();
                     tcc.setVisible(false);
-                    ctcd.executar();
                 } else {
                     JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -123,6 +123,15 @@ public class ControladorTelaCadastroCurso {
                         JOptionPane.showMessageDialog(null, "Esse curso já está cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                 }
+            }
+        });
+        
+        tcc.botaoVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaTableCurso ctt = new ControladorTelaTableCurso();
+                ctt.executar();
+                tcc.dispose();
             }
         });
 

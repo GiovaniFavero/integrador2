@@ -43,6 +43,7 @@ public class TelaCadastroSala extends javax.swing.JFrame {
         fieldNumero = new javax.swing.JTextField();
         radioSala = new javax.swing.JRadioButton();
         radioLaboratorio = new javax.swing.JRadioButton();
+        botaoVoltar = new javax.swing.JButton();
         menuRapidoPanel = new javax.swing.JPanel();
         menuLabel = new javax.swing.JLabel();
         botaoInicio = new javax.swing.JButton();
@@ -92,30 +93,36 @@ public class TelaCadastroSala extends javax.swing.JFrame {
 
         radioLaboratorio.setText("Laboratorio");
 
+        botaoVoltar.setText("Voltar");
+
         javax.swing.GroupLayout conteudoPanelLayout = new javax.swing.GroupLayout(conteudoPanel);
         conteudoPanel.setLayout(conteudoPanelLayout);
         conteudoPanelLayout.setHorizontalGroup(
             conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(conteudoPanelLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(limiteLabel)
-                        .addComponent(tipoLabel)))
-                .addGap(18, 18, 18)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(fieldNumero, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(fieldLimite, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(limiteLabel)
+                                .addComponent(tipoLabel)))
+                        .addGap(18, 18, 18)
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(fieldNumero, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(fieldLimite, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
+                            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                                .addComponent(radioSala)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioLaboratorio))))
                     .addGroup(conteudoPanelLayout.createSequentialGroup()
                         .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(conteudoPanelLayout.createSequentialGroup()
-                        .addComponent(radioSala)
-                        .addGap(18, 18, 18)
-                        .addComponent(radioLaboratorio)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         conteudoPanelLayout.setVerticalGroup(
@@ -137,7 +144,8 @@ public class TelaCadastroSala extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(87, 87, 87))
         );
 
@@ -210,7 +218,7 @@ public class TelaCadastroSala extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(conteudoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 27, Short.MAX_VALUE))
                     .addComponent(menuRapidoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -242,6 +250,7 @@ public class TelaCadastroSala extends javax.swing.JFrame {
     public javax.swing.JButton botaoLimpar;
     public javax.swing.JButton botaoProfessor;
     public javax.swing.JButton botaoSalvar;
+    public javax.swing.JButton botaoVoltar;
     public javax.swing.ButtonGroup buttonGroup2;
     public javax.swing.JPanel conteudoPanel;
     public javax.swing.JTextField fieldLimite;

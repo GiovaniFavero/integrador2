@@ -89,19 +89,19 @@ public class ControladorTelaCadastroDisciplina {
 
                 try {
                     if (validarCampos() == true) {
-                        if (djc.validaDisciplina(tcd.fieldCodigo.getText()) == null) {
 
-                            //Converter os campos
-                            String nome = tcd.fieldNome.getText();
-                            int creditos = Integer.parseInt(tcd.fieldCreditos.getText());
-                            int tipo = Integer.parseInt(tcd.fieldTipo.getText());
-                            int quantidade = Integer.parseInt(tcd.fieldQuantidadeAlunos.getText());
-                            String fase = tcd.fieldFase.getText();
-                            String codigo = tcd.fieldCodigo.getText();
+                        //Converter os campos
+                        String nome = tcd.fieldNome.getText();
+                        int creditos = Integer.parseInt(tcd.fieldCreditos.getText());
+                        int tipo = Integer.parseInt(tcd.fieldTipo.getText());
+                        int quantidade = Integer.parseInt(tcd.fieldQuantidadeAlunos.getText());
+                        String fase = tcd.fieldFase.getText();
+                        String codigo = tcd.fieldCodigo.getText();
 
-                            //Para quando NÃO houver professor
-                            //Cria a disciplina
-                            if (edit == 0) {
+                        //Para quando NÃO houver professor
+                        //Cria a disciplina
+                        if (edit == 0) {
+                            if (djc.validaDisciplina(tcd.fieldCodigo.getText()) == null) {
                                 disciplina = new Disciplina();
                                 disciplina = new Disciplina();
                                 disciplina.setNome(nome);
@@ -126,44 +126,48 @@ public class ControladorTelaCadastroDisciplina {
                                 tcd.fieldCreditos.setText("");
                                 tcd.fieldCodigo.setText("");
                             } else {
-                                disciplina.setNome(nome);
-                                disciplina.setCreditos(creditos);
-                                disciplina.setTipo(tipo);
-                                disciplina.setQtdAlunos(quantidade);
-                                disciplina.setFase(fase);
-                                disciplina.setCodigo(codigo);
-                                disciplina.setCurso(curso.get(0));
-                                disciplina.setProfessor(null);
+                                JOptionPane.showMessageDialog(null, "Matéria já existente", "Erro", JOptionPane.WARNING_MESSAGE);
+                            }
+                        } else {
+                            System.out.println(disciplina.getId());
+                            disciplina.setNome(nome);
+                            disciplina.setCreditos(creditos);
+                            disciplina.setTipo(tipo);
+                            disciplina.setQtdAlunos(quantidade);
+                            disciplina.setFase(fase);
+                            disciplina.setCodigo(codigo);
+                            disciplina.setCurso(curso.get(0));
+                            disciplina.setProfessor(null);
 
-                                try {
-                                    djc.edit(disciplina);
-                                } catch (Exception ex) {
-                                    Logger.getLogger(ControladorTelaCadastroCurso.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                                
-                                JOptionPane.showMessageDialog(null, "Disciplina Editado com sucesso");
-                                tcd.fieldTipo.setText("");
-                                tcd.fieldFase.setText("");
-                                tcd.fieldNome.setText("");
-                                tcd.fieldQuantidadeAlunos.setText("");
-                                tcd.fieldCreditos.setText("");
-                                tcd.fieldCodigo.setText("");
-
+                            try {
+                                djc.edit(disciplina);
+                            } catch (Exception ex) {
+                                Logger.getLogger(ControladorTelaCadastroCurso.class.getName()).log(Level.SEVERE, null, ex);
                             }
 
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Matéria já existente", "Erro", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Disciplina Editado com sucesso");
+                            tcd.fieldTipo.setText("");
+                            tcd.fieldFase.setText("");
+                            tcd.fieldNome.setText("");
+                            tcd.fieldQuantidadeAlunos.setText("");
+                            tcd.fieldCreditos.setText("");
+                            tcd.fieldCodigo.setText("");
+
                         }
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-        });
+        }
+        );
 
-        tcd.botaoLimpar.addActionListener(new ActionListener() {
+        tcd.botaoLimpar.addActionListener(
+                new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {
+            public void actionPerformed(ActionEvent ae
+            ) {
                 tcd.fieldCreditos.setText("");
                 tcd.fieldFase.setText("");
                 tcd.fieldNome.setText("");
@@ -171,40 +175,62 @@ public class ControladorTelaCadastroDisciplina {
                 tcd.fieldTipo.setText("");
                 tcd.fieldCodigo.setText("");
             }
-        });
+        }
+        );
 
         //Botões do menu lateral
-        tcd.botaoInicio.addActionListener(new ActionListener() {
+        tcd.botaoInicio.addActionListener(
+                new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {
+            public void actionPerformed(ActionEvent ae
+            ) {
                 tcd.setVisible(false);
             }
-        });
+        }
+        );
 
-        tcd.botaoSala.addActionListener(new ActionListener() {
+        tcd.botaoSala.addActionListener(
+                new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroSala ctcs = new ControladorTelaCadastroSala();
-                ctcs.executar();
+            public void actionPerformed(ActionEvent ae
+            ) {
+                ControladorTelaTableSala cts = new ControladorTelaTableSala();
+                cts.executar();
                 tcd.setVisible(false);
             }
-        });
+        }
+        );
 
-        tcd.botaoProfessor.addActionListener(new ActionListener() {
+        tcd.botaoProfessor.addActionListener(
+                new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroProfessor ctcp = new ControladorTelaCadastroProfessor();
-                ctcp.executar();
+            public void actionPerformed(ActionEvent ae
+            ) {
+                ControladorTelaTableProfessor cttp = new ControladorTelaTableProfessor();
+                cttp.executar();
                 tcd.setVisible(false);
             }
-        });
+        }
+        );
 
-        tcd.botaoVincular.addActionListener(new ActionListener() {
+        tcd.botaoVincular.addActionListener(
+                new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 ControladorTelaVinculo ctv = new ControladorTelaVinculo();
                 ctv.executar();
                 tcd.setVisible(false);
+            }
+        }
+        );
+        
+        tcd.botaoVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaTableDisciplina ctt = new ControladorTelaTableDisciplina();
+                ctt.executar();
+                tcd.dispose();
             }
         });
 
@@ -214,6 +240,11 @@ public class ControladorTelaCadastroDisciplina {
         disciplina = d;
         edit = 1;
         tcd.fieldNome.setText(disciplina.getNome());
+        tcd.fieldCodigo.setText(disciplina.getCodigo());
+        tcd.fieldCreditos.setText(String.valueOf(disciplina.getCreditos()));
+        tcd.fieldFase.setText(disciplina.getFase());
+        tcd.fieldQuantidadeAlunos.setText(String.valueOf(disciplina.getQtdAlunos()));
+        tcd.fieldTipo.setText(String.valueOf(disciplina.getTipo()));
 
     }
 
