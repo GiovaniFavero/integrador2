@@ -14,17 +14,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
  * @author 5105011505
  */
 @Entity
+@SequenceGenerator(name = "professor_id", initialValue = 1, allocationSize = 1)
 public class Professor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "professor_id")
     @Column(name = "id_professor")
     private Long id;
 

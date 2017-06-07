@@ -8,13 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name = "sala_horario_id", initialValue = 1, allocationSize = 1)
 public class SalaHorario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sala_horario_id")
     @Column(name = "id_salahorario")
     private Long id;
 

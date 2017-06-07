@@ -16,17 +16,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
  * @author phzpe
  */
 @Entity
+@SequenceGenerator(name = "disciplina_id", initialValue = 1, allocationSize = 1)
 public class Disciplina implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "disciplina_id")
     @Column(name = "id_disciplina")
     private Long id;
 
@@ -83,8 +85,6 @@ public class Disciplina implements Serializable {
     public List<RestricaoDisciplina> getListaRestricaoDisciplina() {
         return listaRestricaoDisciplina;
     }
-    
-    
 
     public String getCodigo() {
         return codigo;

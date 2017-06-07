@@ -14,17 +14,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
  * @author phzpe
  */
 @Entity
+@SequenceGenerator(name = "sala_id", initialValue = 1, allocationSize = 1)
 public class Sala implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sala_id")
     @Column(name = "id_sala")
     private Long id;
 
@@ -58,10 +60,10 @@ public class Sala implements Serializable {
         this.listSalaHorario = listSalaHorario;
     }
 
-    public boolean getTipo(){
+    public boolean getTipo() {
         return tipo;
     }
-    
+
     public String getNumero() {
         return numero;
     }

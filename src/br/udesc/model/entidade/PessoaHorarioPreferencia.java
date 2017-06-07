@@ -13,17 +13,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
  * @author 5105011505
  */
 @Entity
+@SequenceGenerator(name = "pes_hor_pre_id", initialValue = 1, allocationSize = 1)
 public class PessoaHorarioPreferencia implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pes_hor_pre_id")
     @Column(name = "id_pessoaHorarioPreferencia")
     private Long id;
 

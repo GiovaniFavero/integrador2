@@ -9,14 +9,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name = "curso_id", initialValue = 1, allocationSize = 1)
 public class Curso implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_curso")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "curso_id")
     private Long id;
 
     @Column(name = "nome_curso", nullable = false, unique = true)

@@ -8,13 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name = "restricao_disciplina_id", initialValue = 1, allocationSize = 1)
 public class RestricaoDisciplina implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "restricao_disciplina_id")
     @Column(name = "id_restricaoDisciplina")
     private Long id;
 
@@ -93,7 +95,5 @@ public class RestricaoDisciplina implements Serializable {
 
     public RestricaoDisciplina() {
     }
-    
-    
 
 }
