@@ -12,7 +12,11 @@ import br.udesc.controller.ControladorTelaInicio;
     import br.udesc.model.entidade.RestricaoDisciplina;
     import java.util.ArrayList;
     import java.util.List;
-*/
+ */
+import br.udesc.model.dao.ControladorGLPK;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,7 +24,17 @@ import javax.persistence.Persistence;
 public class Teste {
 
     public static void main(String[] args) {
+
+        ControladorGLPK c = new ControladorGLPK();
+
+        try {
+            c.escreveProblema();
+        } catch (IOException ex) {
+            Logger.getLogger(Teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+
         EntityManager em = emf.createEntityManager();
 
         //Acessa a primeira tela
