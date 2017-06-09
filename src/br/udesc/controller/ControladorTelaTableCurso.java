@@ -45,6 +45,7 @@ public class ControladorTelaTableCurso {
         for (Curso listaCursos : listaCurso) {
             cm.anuncioAdd(listaCursos);
         }
+        ttc.tabelaCurso.getSelectionModel().addSelectionInterval(0, 0);
     }
     
     public void pegarLinha(int linha) {

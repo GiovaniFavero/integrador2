@@ -49,6 +49,7 @@ public class ControladorTelaTableProfessor {
         for (Professor listaProfessores : listaProfessor) {
             pm.anuncioAdd(listaProfessores);
         }
+        ttp.tabelaProfessores.getSelectionModel().addSelectionInterval(0, 0);
     }
 
     public void pegarLinha(int linha) {

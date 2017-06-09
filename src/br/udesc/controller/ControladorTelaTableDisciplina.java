@@ -55,6 +55,7 @@ public class ControladorTelaTableDisciplina {
         for (Disciplina listaDisciplinas : listaDisciplina) {
             dm.anuncioAdd(listaDisciplinas);
         }
+        ttd.tabelaDisciplina.getSelectionModel().addSelectionInterval(0, 0);
     }
     
     public void Iniciar(){

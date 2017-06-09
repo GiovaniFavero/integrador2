@@ -36,7 +36,6 @@ public class TelaInicio extends javax.swing.JFrame {
         botaoVincular = new javax.swing.JButton();
         botaoProblema = new javax.swing.JButton();
         botaoHorario = new javax.swing.JButton();
-        botaoEditar = new javax.swing.JButton();
         tituloPanel = new javax.swing.JPanel();
         tituloLabel3 = new javax.swing.JLabel();
 
@@ -91,8 +90,6 @@ public class TelaInicio extends javax.swing.JFrame {
             }
         });
 
-        botaoEditar.setText("Editar");
-
         javax.swing.GroupLayout conteudoPanelLayout = new javax.swing.GroupLayout(conteudoPanel);
         conteudoPanel.setLayout(conteudoPanelLayout);
         conteudoPanelLayout.setHorizontalGroup(
@@ -109,14 +106,15 @@ public class TelaInicio extends javax.swing.JFrame {
                             .addGap(56, 56, 56)))
                     .addGroup(conteudoPanelLayout.createSequentialGroup()
                         .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(botaoVincular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(botaoSala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                             .addComponent(botaoCurso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
                         .addGap(40, 40, 40)
                         .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botaoProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                            .addComponent(botaoDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(botaoDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addComponent(botaoVincular, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         conteudoPanelLayout.setVerticalGroup(
             conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +130,7 @@ public class TelaInicio extends javax.swing.JFrame {
                     .addComponent(botaoProfessor)
                     .addComponent(botaoSala))
                 .addGap(18, 18, 18)
-                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoVincular, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoEditar))
+                .addComponent(botaoVincular, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
@@ -213,7 +209,6 @@ public class TelaInicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botaoCurso;
     public javax.swing.JButton botaoDisciplina;
-    public javax.swing.JButton botaoEditar;
     public javax.swing.JButton botaoHorario;
     public javax.swing.JButton botaoProblema;
     public javax.swing.JButton botaoProfessor;

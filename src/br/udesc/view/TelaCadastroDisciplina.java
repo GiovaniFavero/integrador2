@@ -16,6 +16,7 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
      */
     public TelaCadastroDisciplina() {
         initComponents();
+        fazerUmBotao();
     }
 
     /**
@@ -27,6 +28,7 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         tituloPanel = new javax.swing.JPanel();
         tituloLabel = new javax.swing.JLabel();
         conteudoPanel = new javax.swing.JPanel();
@@ -36,7 +38,6 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         faseLabel = new javax.swing.JLabel();
         fieldFase = new javax.swing.JTextField();
         tpioLabel = new javax.swing.JLabel();
-        fieldTipo = new javax.swing.JTextField();
         qtdAlunoLabel = new javax.swing.JLabel();
         fieldQuantidadeAlunos = new javax.swing.JTextField();
         botaoLimpar = new javax.swing.JButton();
@@ -47,6 +48,8 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         fieldCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         botaoVoltar = new javax.swing.JButton();
+        radioSala = new javax.swing.JRadioButton();
+        radioLaboratorio = new javax.swing.JRadioButton();
         menuRapidoPanel = new javax.swing.JPanel();
         menuLabel = new javax.swing.JLabel();
         botaoInicio = new javax.swing.JButton();
@@ -101,12 +104,6 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
 
         tpioLabel.setText("Tipo");
 
-        fieldTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldTipoActionPerformed(evt);
-            }
-        });
-
         qtdAlunoLabel.setText("Quantidade de Alunos");
 
         fieldQuantidadeAlunos.addActionListener(new java.awt.event.ActionListener() {
@@ -139,16 +136,16 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
 
         botaoVoltar.setText("Voltar");
 
+        radioSala.setText("Sala");
+
+        radioLaboratorio.setText("Laboratorio");
+
         javax.swing.GroupLayout conteudoPanelLayout = new javax.swing.GroupLayout(conteudoPanel);
         conteudoPanel.setLayout(conteudoPanelLayout);
         conteudoPanelLayout.setHorizontalGroup(
             conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conteudoPanelLayout.createSequentialGroup()
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, conteudoPanelLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(tpioLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, conteudoPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,17 +181,20 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conteudoPanelLayout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conteudoPanelLayout.createSequentialGroup()
-                        .addComponent(fieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conteudoPanelLayout.createSequentialGroup()
-                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(faseLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fieldFase, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(faseLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fieldFase, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(tpioLabel)
+                .addGap(54, 54, 54)
+                .addComponent(radioSala)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(radioLaboratorio)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         conteudoPanelLayout.setVerticalGroup(
             conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,8 +221,9 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                     .addComponent(faseLabel))
                 .addGap(18, 18, 18)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tpioLabel))
+                    .addComponent(tpioLabel)
+                    .addComponent(radioSala)
+                    .addComponent(radioLaboratorio))
                 .addGap(18, 18, 18)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(qtdAlunoLabel)
@@ -334,10 +335,6 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldFaseActionPerformed
 
-    private void fieldTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldTipoActionPerformed
-
     private void fieldQuantidadeAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldQuantidadeAlunosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldQuantidadeAlunosActionPerformed
@@ -361,8 +358,11 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    private void fazerUmBotao() {
+        buttonGroup1.add(radioSala);
+        buttonGroup1.add(radioLaboratorio);
+    }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botaoInicio;
@@ -372,6 +372,7 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
     public javax.swing.JButton botaoSalvar;
     public javax.swing.JButton botaoVincular;
     public javax.swing.JButton botaoVoltar;
+    private javax.swing.ButtonGroup buttonGroup1;
     public javax.swing.JComboBox<String> comboBoxCurso;
     public javax.swing.JPanel conteudoPanel;
     public javax.swing.JLabel creditosLabel;
@@ -381,13 +382,14 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
     public javax.swing.JTextField fieldFase;
     public javax.swing.JTextField fieldNome;
     public javax.swing.JTextField fieldQuantidadeAlunos;
-    public javax.swing.JTextField fieldTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelCurso;
     public javax.swing.JLabel menuLabel;
     public javax.swing.JPanel menuRapidoPanel;
     public javax.swing.JLabel qtdAlunoLabel;
+    public javax.swing.JRadioButton radioLaboratorio;
+    public javax.swing.JRadioButton radioSala;
     public javax.swing.JLabel tituloLabel;
     public javax.swing.JPanel tituloPanel;
     public javax.swing.JLabel tpioLabel;

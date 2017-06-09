@@ -50,15 +50,6 @@ public class ControladorTelaInicio {
             }
         });
 
-        //Para acessar a tela de cadastro de professores
-        ti.botaoEditar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                ControladorTelaEditar cte = new ControladorTelaEditar();
-                cte.executar();
-            }
-        });
-
         //Para acessar a tela de cadastro de Sala
         ti.botaoSala.addActionListener(new ActionListener() {
             @Override
@@ -67,7 +58,7 @@ public class ControladorTelaInicio {
                 cts.executar();
             }
         });
-        
+
         ti.botaoVincular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

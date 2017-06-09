@@ -21,8 +21,8 @@ public class ControladorTelaVinculo {
     public ControladorTelaVinculo() {
         tv = new TelaVinculo();
         iniciar();
-        validarComponenteFase(false);
-        validarComponenteDisciplina(false);
+        validarComponenteFase(true);
+        validarComponenteDisciplina(true);
     }
 
     public void carregarCurso() {
@@ -32,6 +32,12 @@ public class ControladorTelaVinculo {
         List<Curso> listaCurso = cjc.listarCurso();
         for (Curso curso : listaCurso) {
             tv.comboBoxCurso.addItem(curso.getNome());
+        }
+        if (cjc.getCursoCount() != 0) {
+            String a = (String) tv.comboBoxCurso.getSelectedItem();
+            List<Curso> listCurso = cjc.validaCurso(a);
+            carregarFase(listCurso.get(0).getListaDisciplina());
+            carregarDisciplina(listCurso.get(0).getListaDisciplina());
         }
 
     }
@@ -64,7 +70,6 @@ public class ControladorTelaVinculo {
             for (int i = 0; i < aux.size(); i++) {
                 tv.comboBoxFase.addItem(String.valueOf(aux.get(i)));
             }
-
         }
 
     }
@@ -117,7 +122,7 @@ public class ControladorTelaVinculo {
                     String a = (String) tv.comboBoxCurso.getSelectedItem();
                     List<Curso> listCurso = cjc.validaCurso(a);
                     carregarFase(listCurso.get(0).getListaDisciplina());
-
+                    carregarDisciplina(listCurso.get(0).getListaDisciplina());
                     validarComponenteFase(true);
                 }
             }

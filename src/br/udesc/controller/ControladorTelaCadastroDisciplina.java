@@ -49,11 +49,11 @@ public class ControladorTelaCadastroDisciplina {
             tcd.fieldFase.requestFocus();
             return false;
         }
-        if (tcd.fieldTipo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Favor preencher o tipo da disciplina", "Erro", JOptionPane.WARNING_MESSAGE);
-            tcd.fieldTipo.requestFocus();
+        if ((!(tcd.radioLaboratorio.isSelected())) && (!(tcd.radioSala.isSelected()))) {
+            JOptionPane.showMessageDialog(null, "Favor escolha entre Lab ou Sala", "Erro", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+
         if (tcd.fieldQuantidadeAlunos.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Favor preencher a quantidade de alunos", "Erro", JOptionPane.WARNING_MESSAGE);
             tcd.fieldQuantidadeAlunos.requestFocus();
@@ -70,7 +70,6 @@ public class ControladorTelaCadastroDisciplina {
         for (Curso curso : listaCurso) {
             tcd.comboBoxCurso.addItem(curso.getNome());
         }
-
     }
 
     public void iniciar() {
@@ -93,12 +92,17 @@ public class ControladorTelaCadastroDisciplina {
                         //Converter os campos
                         String nome = tcd.fieldNome.getText();
                         int creditos = Integer.parseInt(tcd.fieldCreditos.getText());
-                        int tipo = Integer.parseInt(tcd.fieldTipo.getText());
+                        int tipo;
+                        if (tcd.radioSala.isSelected()) {
+                            tipo = 0;
+                        } else {
+                            tipo = 1;
+                        }
+
                         int quantidade = Integer.parseInt(tcd.fieldQuantidadeAlunos.getText());
                         String fase = tcd.fieldFase.getText();
                         String codigo = tcd.fieldCodigo.getText();
 
-                        //Para quando NÃO houver professor
                         //Cria a disciplina
                         if (edit == 0) {
                             if (djc.validaDisciplina(tcd.fieldCodigo.getText()) == null) {
@@ -119,7 +123,6 @@ public class ControladorTelaCadastroDisciplina {
                                 System.out.println(curso.get(0).getListaDisciplina().size() + "Size arraydisciplina em curso");
                                 System.out.println(disciplina.toString());
                                 JOptionPane.showMessageDialog(null, "Disciplina criado com sucesso");
-                                tcd.fieldTipo.setText("");
                                 tcd.fieldFase.setText("");
                                 tcd.fieldNome.setText("");
                                 tcd.fieldQuantidadeAlunos.setText("");
@@ -146,7 +149,6 @@ public class ControladorTelaCadastroDisciplina {
                             }
 
                             JOptionPane.showMessageDialog(null, "Disciplina Editado com sucesso");
-                            tcd.fieldTipo.setText("");
                             tcd.fieldFase.setText("");
                             tcd.fieldNome.setText("");
                             tcd.fieldQuantidadeAlunos.setText("");
@@ -172,7 +174,6 @@ public class ControladorTelaCadastroDisciplina {
                 tcd.fieldFase.setText("");
                 tcd.fieldNome.setText("");
                 tcd.fieldQuantidadeAlunos.setText("");
-                tcd.fieldTipo.setText("");
                 tcd.fieldCodigo.setText("");
             }
         }
@@ -224,7 +225,7 @@ public class ControladorTelaCadastroDisciplina {
             }
         }
         );
-        
+
         tcd.botaoVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -244,7 +245,6 @@ public class ControladorTelaCadastroDisciplina {
         tcd.fieldCreditos.setText(String.valueOf(disciplina.getCreditos()));
         tcd.fieldFase.setText(disciplina.getFase());
         tcd.fieldQuantidadeAlunos.setText(String.valueOf(disciplina.getQtdAlunos()));
-        tcd.fieldTipo.setText(String.valueOf(disciplina.getTipo()));
 
     }
 

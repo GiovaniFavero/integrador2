@@ -33,10 +33,10 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
         fieldNome = new javax.swing.JTextField();
         nomeLabel = new javax.swing.JLabel();
         duracaoLabel = new javax.swing.JLabel();
-        fieldDuracao = new javax.swing.JTextField();
         botaoLimpar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         botaoVoltar = new javax.swing.JButton();
+        spinnerDuracao = new javax.swing.JSpinner();
         menuRapidoPanel = new javax.swing.JPanel();
         menuLabel = new javax.swing.JLabel();
         botaoInicio = new javax.swing.JButton();
@@ -75,19 +75,15 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
 
         nomeLabel.setText("Nome");
 
-        duracaoLabel.setText("Duração");
-
-        fieldDuracao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldDuracaoActionPerformed(evt);
-            }
-        });
+        duracaoLabel.setText("Duração (Semestres)");
 
         botaoLimpar.setText("Limpar");
 
         botaoSalvar.setText("Salvar");
 
         botaoVoltar.setText("Voltar");
+
+        spinnerDuracao.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
 
         javax.swing.GroupLayout conteudoPanelLayout = new javax.swing.GroupLayout(conteudoPanel);
         conteudoPanel.setLayout(conteudoPanelLayout);
@@ -102,8 +98,8 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
                             .addComponent(duracaoLabel))
                         .addGap(18, 18, 18)
                         .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spinnerDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(conteudoPanelLayout.createSequentialGroup()
                         .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,10 +116,10 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
                     .addComponent(nomeLabel)
                     .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(duracaoLabel)
-                    .addComponent(fieldDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(spinnerDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,10 +216,6 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNomeActionPerformed
 
-    private void fieldDuracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldDuracaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldDuracaoActionPerformed
-
     private void botaoInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoInicioActionPerformed
@@ -250,11 +242,11 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
     public javax.swing.JButton botaoVoltar;
     public javax.swing.JPanel conteudoPanel;
     public javax.swing.JLabel duracaoLabel;
-    public javax.swing.JTextField fieldDuracao;
     public javax.swing.JTextField fieldNome;
     public javax.swing.JLabel menuLabel;
     public javax.swing.JPanel menuRapidoPanel;
     public javax.swing.JLabel nomeLabel;
+    public javax.swing.JSpinner spinnerDuracao;
     public javax.swing.JLabel tituloLabel;
     public javax.swing.JPanel tituloPanel;
     // End of variables declaration//GEN-END:variables

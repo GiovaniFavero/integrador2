@@ -9,9 +9,11 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner.DefaultEditor;
 
 public class ControladorTelaCadastroCurso {
 
+    
     private TelaCadastroCurso tcc;
     private Curso curso;
     private int edit = 0;
@@ -28,16 +30,14 @@ public class ControladorTelaCadastroCurso {
             JOptionPane.showMessageDialog(null, "Favor preencher o Nome do curso", "Erro", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        if (tcc.fieldDuracao.getText().isEmpty()) {
-            tcc.fieldDuracao.requestFocus();
-            JOptionPane.showMessageDialog(null, "Favor preencher a duração do curso", "Erro", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-
         return true;
     }
+    
 
+    
+    
     public void iniciar() {
+        ((DefaultEditor) tcc.spinnerDuracao.getEditor()).getTextField().setEditable(false);
 
         tcc.botaoInicio.addActionListener(new ActionListener() {
             @Override
@@ -84,7 +84,6 @@ public class ControladorTelaCadastroCurso {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tcc.fieldNome.setText("");
-                tcc.fieldDuracao.setText("");
             }
         });
 
@@ -96,7 +95,7 @@ public class ControladorTelaCadastroCurso {
                 if (validarCampos() == true) {
                     if (cjc.validaCurso(tcc.fieldNome.getText()) == null) {
 
-                        int a = Integer.parseInt(tcc.fieldDuracao.getText());
+                        int a = (int) tcc.spinnerDuracao.getValue();
                         String nome = tcc.fieldNome.getText();
                         if (edit == 0) {
                             curso = new Curso();
@@ -105,7 +104,6 @@ public class ControladorTelaCadastroCurso {
                             cjc.create(curso);
                             JOptionPane.showMessageDialog(null, "Curso criado com sucesso");
                             tcc.fieldNome.setText("");
-                            tcc.fieldDuracao.setText("");
                         } else {
                             curso.setNome(nome);
                             curso.setDuracao(a);
@@ -117,7 +115,7 @@ public class ControladorTelaCadastroCurso {
                             
                             JOptionPane.showMessageDialog(null, "Curso Editado com sucesso");
                             tcc.fieldNome.setText("");
-                            tcc.fieldDuracao.setText("");
+
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Esse curso já está cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -141,7 +139,7 @@ public class ControladorTelaCadastroCurso {
         curso = c;
         edit = 1;
         tcc.fieldNome.setText(curso.getNome());
-        tcc.fieldDuracao.setText(String.valueOf(curso.getDuracao()));
+        tcc.spinnerDuracao.setValue(curso.getDuracao());
     }
 
     public void executar() {

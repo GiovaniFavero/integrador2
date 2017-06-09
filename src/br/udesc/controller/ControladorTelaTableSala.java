@@ -46,6 +46,7 @@ public class ControladorTelaTableSala {
         for (Sala listaSalas : listaSala) {
             sm.anuncioAdd(listaSalas);
         }
+        tts.tabelaSalas.getSelectionModel().addSelectionInterval(0, 0);
     }
 
     public void pegarLinha(int linha) {
