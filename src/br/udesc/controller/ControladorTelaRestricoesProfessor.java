@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 
 /**
  *
@@ -33,7 +34,7 @@ public class ControladorTelaRestricoesProfessor {
     private ProfessorJpaController psc;
     private PessoaHorarioPreferenciaJpaController phj;
     private JComboBox[][] restricoes;
-    private JComboBox[][] restricoesNotas;
+    private JSpinner[][] restricoesNotas;
     private List<PessoaHorarioPreferencia> restricoesAntigas;
     private List<PessoaHorarioPreferencia> restricoesNovas;
     
@@ -82,10 +83,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxSegunda1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxSegundaNota1.enable();
+                    disableEnableSpinner(tr.cbxSegundaNota1, true);
                 }else{
-                    tr.cbxSegundaNota1.setSelectedIndex(0);
-                    tr.cbxSegundaNota1.disable();
+                    tr.cbxSegundaNota1.setValue(0);
+                    disableEnableSpinner(tr.cbxSegundaNota1, false);
                 }
             }
         });
@@ -93,10 +94,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxSegunda2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxSegundaNota2.enable();
+                    disableEnableSpinner(tr.cbxSegundaNota2, true);
                 }else{
-                    tr.cbxSegundaNota2.setSelectedIndex(0);
-                    tr.cbxSegundaNota2.disable();
+                    tr.cbxSegundaNota2.setValue(0);
+                    disableEnableSpinner(tr.cbxSegundaNota2, false);
                 }
             }
         });
@@ -104,10 +105,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxTerca1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxTercaNota1.enable();
+                    disableEnableSpinner(tr.cbxTercaNota1, true);
                 }else{
-                    tr.cbxTercaNota1.setSelectedIndex(0);
-                    tr.cbxTercaNota1.disable();
+                    tr.cbxTercaNota1.setValue(0);
+                    disableEnableSpinner(tr.cbxTercaNota1, false);
                 }
             }
         });
@@ -115,10 +116,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxTerca2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxTercaNota2.enable();
+                    disableEnableSpinner(tr.cbxTercaNota2, true);
                 }else{
-                    tr.cbxTercaNota2.setSelectedIndex(0);
-                    tr.cbxTercaNota2.disable();
+                    tr.cbxTercaNota2.setValue(0);
+                    disableEnableSpinner(tr.cbxTercaNota2, false);
                 }
             }
         });
@@ -126,10 +127,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxQuarta1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxQuartaNota1.enable();
+                    disableEnableSpinner(tr.cbxQuartaNota1, true);
                 }else{
-                    tr.cbxQuartaNota1.setSelectedIndex(0);
-                    tr.cbxQuartaNota1.disable();
+                    tr.cbxQuartaNota1.setValue(0);
+                    disableEnableSpinner(tr.cbxQuartaNota1, false);
                 }
             }
         });
@@ -137,10 +138,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxQuarta2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxQuartaNota2.enable();
+                    disableEnableSpinner(tr.cbxQuartaNota2, true);
                 }else{
-                    tr.cbxQuartaNota2.setSelectedIndex(0);
-                    tr.cbxQuartaNota2.disable();
+                    tr.cbxQuartaNota2.setValue(0);
+                    disableEnableSpinner(tr.cbxQuartaNota2, false);
                 }
             }
         });
@@ -148,10 +149,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxQuinta1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxQuintaNota1.enable();
+                    disableEnableSpinner(tr.cbxQuintaNota1, true);
                 }else{
-                    tr.cbxQuintaNota1.setSelectedIndex(0);
-                    tr.cbxQuintaNota1.disable();
+                    tr.cbxQuintaNota1.setValue(0);
+                    disableEnableSpinner(tr.cbxQuintaNota1, false);
                 }
             }
         });
@@ -159,10 +160,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxQuinta2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxQuintaNota2.enable();
+                    disableEnableSpinner(tr.cbxQuintaNota2, true);
                 }else{
-                    tr.cbxQuintaNota2.setSelectedIndex(0);
-                    tr.cbxQuintaNota2.disable();
+                    tr.cbxQuintaNota2.setValue(0);
+                    disableEnableSpinner(tr.cbxQuintaNota2, false);
                 }
             }
         });
@@ -170,10 +171,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxSexta1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxSextaNota1.enable();
+                    disableEnableSpinner(tr.cbxSextaNota1, true);
                 }else{
-                    tr.cbxSextaNota1.setSelectedIndex(0);
-                    tr.cbxSextaNota1.disable();
+                    tr.cbxSextaNota1.setValue(0);
+                    disableEnableSpinner(tr.cbxSextaNota1, false);
                 }
             }
         });
@@ -181,10 +182,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxSexta2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxSextaNota2.enable();
+                    disableEnableSpinner(tr.cbxSextaNota2, true);
                 }else{
-                    tr.cbxSextaNota2.setSelectedIndex(0);
-                    tr.cbxSextaNota2.disable();
+                    tr.cbxSextaNota2.setValue(0);
+                    disableEnableSpinner(tr.cbxSextaNota2, false);
                 }
             }
         });
@@ -192,10 +193,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxSabado1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxSabadoNota1.enable();
+                    disableEnableSpinner(tr.cbxSabadoNota1, true);
                 }else{
-                    tr.cbxSabadoNota1.setSelectedIndex(0);
-                    tr.cbxSabadoNota1.disable();
+                    tr.cbxSabadoNota1.setValue(0);
+                    disableEnableSpinner(tr.cbxSabadoNota1, false);
                 }
             }
         });
@@ -203,10 +204,10 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(tr.cbxSabado2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    tr.cbxSabadoNota2.enable();
+                    disableEnableSpinner(tr.cbxSabadoNota2, true);
                 }else{
-                    tr.cbxSabadoNota2.setSelectedIndex(0);
-                    tr.cbxSabadoNota2.disable();
+                    tr.cbxSabadoNota2.setValue(0);
+                    disableEnableSpinner(tr.cbxSabadoNota2, false);
                 }
             }
         });
@@ -248,7 +249,7 @@ public class ControladorTelaRestricoesProfessor {
                 restricoes[i][j].addItem("Preferencial (0 a 10)");
             }
         }
-        restricoesNotas = new JComboBox[6][2];
+        restricoesNotas = new JSpinner[6][2];
         restricoesNotas[0][0] = tr.cbxSegundaNota1;
         restricoesNotas[0][1] = tr.cbxSegundaNota2;
         restricoesNotas[1][0] = tr.cbxTercaNota1;
@@ -261,13 +262,6 @@ public class ControladorTelaRestricoesProfessor {
         restricoesNotas[4][1] = tr.cbxSextaNota2;
         restricoesNotas[5][0] = tr.cbxSabadoNota1;
         restricoesNotas[5][1] = tr.cbxSabadoNota2;
-        for (int i = 0; i < restricoes.length; i++) {
-            for (int j = 0; j < 2; j++) {
-                for (int k = 0; k < 11; k++) {
-                    restricoesNotas[i][j].addItem(k);
-                }
-            }
-        }
     }
 
     /* Método responsável por carregar as restrições já existentes para o professor na tela. */
@@ -285,7 +279,7 @@ public class ControladorTelaRestricoesProfessor {
             /* Define o valor atual para o ComboBox referente ao dia/período em questão */
             if(p.getValor() <= 10){
                 restricoes[dia - 1][horario - 1].setSelectedIndex(3);
-                restricoesNotas[dia - 1][horario - 1].setSelectedIndex(p.getValor());
+                restricoesNotas[dia - 1][horario - 1].setValue(p.getValor());
             }else if(p.getValor() == 11){
                 restricoes[dia - 1][horario - 1].setSelectedIndex(1);
             }else{
@@ -324,7 +318,7 @@ public class ControladorTelaRestricoesProfessor {
                     String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
                     ph.setSequencia(Integer.parseInt(seq));
                     /* Preferencial recebe valor 2 */
-                    String temp = String.valueOf(restricoesNotas[i][j].getSelectedItem());
+                    String temp = String.valueOf(restricoesNotas[i][j].getValue());
                     ph.setValor(Integer.parseInt(temp));
                     ph.setProfessor(this.pro);
                     restricoesNovas.add(ph);
@@ -371,10 +365,16 @@ public class ControladorTelaRestricoesProfessor {
         for (int i = 0; i < restricoesNotas.length; i++) {
             for (int j = 0; j < 2; j++) {
                 if(!restricoes[i][j].getSelectedItem().equals("Preferencial (0 a 10)")){
-                    restricoesNotas[i][j].disable();
+                    disableEnableSpinner(restricoesNotas[i][j], false);
                 }
             }
         }
+    }
+    
+    public void disableEnableSpinner(JSpinner s, boolean value){
+        JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) s.getEditor();
+        editor.getTextField().setEnabled(value);
+        editor.getTextField().setEditable(value);
     }
     
     /* Método responsável por inicializar a tela controlada por esta classe. */

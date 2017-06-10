@@ -33,29 +33,17 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         cbxSegunda1 = new javax.swing.JComboBox<>();
-        cbxSegundaNota1 = new javax.swing.JComboBox<>();
         cbxSegunda2 = new javax.swing.JComboBox<>();
-        cbxSegundaNota2 = new javax.swing.JComboBox<>();
         cbxTerca1 = new javax.swing.JComboBox<>();
-        cbxTercaNota1 = new javax.swing.JComboBox<>();
         cbxTerca2 = new javax.swing.JComboBox<>();
-        cbxTercaNota2 = new javax.swing.JComboBox<>();
         cbxQuarta1 = new javax.swing.JComboBox<>();
-        cbxQuartaNota1 = new javax.swing.JComboBox<>();
         cbxQuarta2 = new javax.swing.JComboBox<>();
-        cbxQuartaNota2 = new javax.swing.JComboBox<>();
         cbxQuinta1 = new javax.swing.JComboBox<>();
-        cbxQuintaNota1 = new javax.swing.JComboBox<>();
         cbxQuinta2 = new javax.swing.JComboBox<>();
-        cbxQuintaNota2 = new javax.swing.JComboBox<>();
         cbxSexta1 = new javax.swing.JComboBox<>();
-        cbxSextaNota1 = new javax.swing.JComboBox<>();
         cbxSexta2 = new javax.swing.JComboBox<>();
-        cbxSextaNota2 = new javax.swing.JComboBox<>();
         cbxSabado1 = new javax.swing.JComboBox<>();
-        cbxSabadoNota1 = new javax.swing.JComboBox<>();
         cbxSabado2 = new javax.swing.JComboBox<>();
-        cbxSabadoNota2 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -74,6 +62,18 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        cbxSegundaNota2 = new javax.swing.JSpinner();
+        cbxQuartaNota1 = new javax.swing.JSpinner();
+        cbxQuartaNota2 = new javax.swing.JSpinner();
+        cbxSextaNota1 = new javax.swing.JSpinner();
+        cbxSextaNota2 = new javax.swing.JSpinner();
+        cbxTercaNota1 = new javax.swing.JSpinner();
+        cbxTercaNota2 = new javax.swing.JSpinner();
+        cbxQuintaNota1 = new javax.swing.JSpinner();
+        cbxQuintaNota2 = new javax.swing.JSpinner();
+        cbxSabadoNota1 = new javax.swing.JSpinner();
+        cbxSabadoNota2 = new javax.swing.JSpinner();
+        cbxSegundaNota1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -126,21 +126,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxSegunda1, gridBagConstraints);
 
-        cbxSegundaNota1.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxSegundaNota1.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxSegundaNota1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxSegundaNota1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSegundaNota1, gridBagConstraints);
-
         cbxSegunda2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSegunda2.setPreferredSize(new java.awt.Dimension(50, 20));
         cbxSegunda2.addActionListener(new java.awt.event.ActionListener() {
@@ -156,21 +141,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxSegunda2, gridBagConstraints);
 
-        cbxSegundaNota2.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxSegundaNota2.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxSegundaNota2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxSegundaNota2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSegundaNota2, gridBagConstraints);
-
         cbxTerca1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxTerca1.setPreferredSize(new java.awt.Dimension(50, 20));
         cbxTerca1.addActionListener(new java.awt.event.ActionListener() {
@@ -185,21 +155,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxTerca1, gridBagConstraints);
-
-        cbxTercaNota1.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxTercaNota1.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxTercaNota1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxTercaNota1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxTercaNota1, gridBagConstraints);
 
         cbxTerca2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxTerca2.setName(""); // NOI18N
@@ -217,21 +172,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxTerca2, gridBagConstraints);
 
-        cbxTercaNota2.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxTercaNota2.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxTercaNota2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxTercaNota2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxTercaNota2, gridBagConstraints);
-
         cbxQuarta1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxQuarta1.setPreferredSize(new java.awt.Dimension(50, 20));
         cbxQuarta1.addActionListener(new java.awt.event.ActionListener() {
@@ -246,21 +186,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxQuarta1, gridBagConstraints);
-
-        cbxQuartaNota1.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxQuartaNota1.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxQuartaNota1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxQuartaNota1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxQuartaNota1, gridBagConstraints);
 
         cbxQuarta2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxQuarta2.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -277,21 +202,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxQuarta2, gridBagConstraints);
 
-        cbxQuartaNota2.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxQuartaNota2.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxQuartaNota2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxQuartaNota2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxQuartaNota2, gridBagConstraints);
-
         cbxQuinta1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxQuinta1.setPreferredSize(new java.awt.Dimension(50, 20));
         cbxQuinta1.addActionListener(new java.awt.event.ActionListener() {
@@ -306,21 +216,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxQuinta1, gridBagConstraints);
-
-        cbxQuintaNota1.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxQuintaNota1.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxQuintaNota1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxQuintaNota1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxQuintaNota1, gridBagConstraints);
 
         cbxQuinta2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxQuinta2.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -337,21 +232,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxQuinta2, gridBagConstraints);
 
-        cbxQuintaNota2.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxQuintaNota2.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxQuintaNota2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxQuintaNota2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxQuintaNota2, gridBagConstraints);
-
         cbxSexta1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSexta1.setPreferredSize(new java.awt.Dimension(50, 20));
         cbxSexta1.addActionListener(new java.awt.event.ActionListener() {
@@ -366,21 +246,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxSexta1, gridBagConstraints);
-
-        cbxSextaNota1.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxSextaNota1.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxSextaNota1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxSextaNota1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSextaNota1, gridBagConstraints);
 
         cbxSexta2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSexta2.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -397,21 +262,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxSexta2, gridBagConstraints);
 
-        cbxSextaNota2.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxSextaNota2.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxSextaNota2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxSextaNota2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSextaNota2, gridBagConstraints);
-
         cbxSabado1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSabado1.setPreferredSize(new java.awt.Dimension(50, 20));
         cbxSabado1.addActionListener(new java.awt.event.ActionListener() {
@@ -427,21 +277,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxSabado1, gridBagConstraints);
 
-        cbxSabadoNota1.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxSabadoNota1.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxSabadoNota1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxSabadoNota1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSabadoNota1, gridBagConstraints);
-
         cbxSabado2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSabado2.setPreferredSize(new java.awt.Dimension(50, 20));
         cbxSabado2.addActionListener(new java.awt.event.ActionListener() {
@@ -456,21 +291,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
         jPanel1.add(cbxSabado2, gridBagConstraints);
-
-        cbxSabadoNota2.setMinimumSize(new java.awt.Dimension(1, 20));
-        cbxSabadoNota2.setPreferredSize(new java.awt.Dimension(1, 20));
-        cbxSabadoNota2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxSabadoNota2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSabadoNota2, gridBagConstraints);
 
         jLabel2.setText("Segunda-feira");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -620,6 +440,78 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
         jPanel1.add(jLabel19, gridBagConstraints);
 
+        cbxSegundaNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        jPanel1.add(cbxSegundaNota2, gridBagConstraints);
+
+        cbxQuartaNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        jPanel1.add(cbxQuartaNota1, gridBagConstraints);
+
+        cbxQuartaNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        jPanel1.add(cbxQuartaNota2, gridBagConstraints);
+
+        cbxSextaNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        jPanel1.add(cbxSextaNota1, gridBagConstraints);
+
+        cbxSextaNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        jPanel1.add(cbxSextaNota2, gridBagConstraints);
+
+        cbxTercaNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 1;
+        jPanel1.add(cbxTercaNota1, gridBagConstraints);
+
+        cbxTercaNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 2;
+        jPanel1.add(cbxTercaNota2, gridBagConstraints);
+
+        cbxQuintaNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 3;
+        jPanel1.add(cbxQuintaNota1, gridBagConstraints);
+
+        cbxQuintaNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 4;
+        jPanel1.add(cbxQuintaNota2, gridBagConstraints);
+
+        cbxSabadoNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 5;
+        jPanel1.add(cbxSabadoNota1, gridBagConstraints);
+
+        cbxSabadoNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 6;
+        jPanel1.add(cbxSabadoNota2, gridBagConstraints);
+
+        cbxSegundaNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        jPanel1.add(cbxSegundaNota1, gridBagConstraints);
+
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -629,10 +521,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoCancelarActionPerformed
-
-    private void cbxSabadoNota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSabadoNota2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxSabadoNota2ActionPerformed
 
     private void cbxSegunda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSegunda2ActionPerformed
         // TODO add your handling code here:
@@ -682,50 +570,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxSegunda1ActionPerformed
 
-    private void cbxSegundaNota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSegundaNota1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxSegundaNota1ActionPerformed
-
-    private void cbxQuartaNota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxQuartaNota2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxQuartaNota2ActionPerformed
-
-    private void cbxSextaNota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSextaNota1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxSextaNota1ActionPerformed
-
-    private void cbxSextaNota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSextaNota2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxSextaNota2ActionPerformed
-
-    private void cbxTercaNota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTercaNota1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxTercaNota1ActionPerformed
-
-    private void cbxTercaNota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTercaNota2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxTercaNota2ActionPerformed
-
-    private void cbxQuintaNota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxQuintaNota1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxQuintaNota1ActionPerformed
-
-    private void cbxQuintaNota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxQuintaNota2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxQuintaNota2ActionPerformed
-
-    private void cbxSabadoNota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSabadoNota1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxSabadoNota1ActionPerformed
-
-    private void cbxSegundaNota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSegundaNota2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxSegundaNota2ActionPerformed
-
-    private void cbxQuartaNota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxQuartaNota1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxQuartaNota1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -736,28 +580,28 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
     public javax.swing.JButton botaoSalvar;
     public javax.swing.JComboBox<String> cbxQuarta1;
     public javax.swing.JComboBox<String> cbxQuarta2;
-    public javax.swing.JComboBox<String> cbxQuartaNota1;
-    public javax.swing.JComboBox<String> cbxQuartaNota2;
+    public javax.swing.JSpinner cbxQuartaNota1;
+    public javax.swing.JSpinner cbxQuartaNota2;
     public javax.swing.JComboBox<String> cbxQuinta1;
     public javax.swing.JComboBox<String> cbxQuinta2;
-    public javax.swing.JComboBox<String> cbxQuintaNota1;
-    public javax.swing.JComboBox<String> cbxQuintaNota2;
+    public javax.swing.JSpinner cbxQuintaNota1;
+    public javax.swing.JSpinner cbxQuintaNota2;
     public javax.swing.JComboBox<String> cbxSabado1;
     public javax.swing.JComboBox<String> cbxSabado2;
-    public javax.swing.JComboBox<String> cbxSabadoNota1;
-    public javax.swing.JComboBox<String> cbxSabadoNota2;
+    public javax.swing.JSpinner cbxSabadoNota1;
+    public javax.swing.JSpinner cbxSabadoNota2;
     public javax.swing.JComboBox<String> cbxSegunda1;
     public javax.swing.JComboBox<String> cbxSegunda2;
-    public javax.swing.JComboBox<String> cbxSegundaNota1;
-    public javax.swing.JComboBox<String> cbxSegundaNota2;
+    public javax.swing.JSpinner cbxSegundaNota1;
+    public javax.swing.JSpinner cbxSegundaNota2;
     public javax.swing.JComboBox<String> cbxSexta1;
     public javax.swing.JComboBox<String> cbxSexta2;
-    public javax.swing.JComboBox<String> cbxSextaNota1;
-    public javax.swing.JComboBox<String> cbxSextaNota2;
+    public javax.swing.JSpinner cbxSextaNota1;
+    public javax.swing.JSpinner cbxSextaNota2;
     public javax.swing.JComboBox<String> cbxTerca1;
     public javax.swing.JComboBox<String> cbxTerca2;
-    public javax.swing.JComboBox<String> cbxTercaNota1;
-    public javax.swing.JComboBox<String> cbxTercaNota2;
+    public javax.swing.JSpinner cbxTercaNota1;
+    public javax.swing.JSpinner cbxTercaNota2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
