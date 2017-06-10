@@ -24,11 +24,8 @@ import javax.swing.JOptionPane;
 
 /* Classe resposável por realizar o controle da tela "TelaRestricoesProfessor.java".
 Este módulo permite o usuário definir restrições para cada professor. Estas restrições 
-se baseiam na preferencia ou na obrigação de o professor lecionar em dias específicos 
-da semana. Cada dia da semana é divido em primeiro e segundo horário. A quantidade de 
-restrições que é permitida para cada professor, é calculada com base na quantidade total
-de créditos de todas as disciplinas atreladas ao professor (A metade da quantidade total
-de créditos é o total de restrições que o professor tem direito a incluir). */
+se baseiam na preferencia, na obrigação ou na proibição de o professor lecionar em dias 
+específicos da semana. Cada dia da semana é divido em primeiro e segundo horário. */
 public class ControladorTelaRestricoesProfessor {
 
     private TelaRestricoesProfessor tr;
@@ -36,9 +33,10 @@ public class ControladorTelaRestricoesProfessor {
     private ProfessorJpaController psc;
     private PessoaHorarioPreferenciaJpaController phj;
     private JComboBox[][] restricoes;
+    private JComboBox[][] restricoesNotas;
     private List<PessoaHorarioPreferencia> restricoesAntigas;
     private List<PessoaHorarioPreferencia> restricoesNovas;
-    private int qtTotalRestricoes;
+    
 
     public ControladorTelaRestricoesProfessor(long id) {
         tr = new TelaRestricoesProfessor();
@@ -50,6 +48,7 @@ public class ControladorTelaRestricoesProfessor {
         carregaListaCbxRestricoes();
         carregaListaCbxRestricoesProfessor();
         carregaLabel();
+        desabilitarCbxNotas();
         iniciar();
     }
 
@@ -60,19 +59,14 @@ public class ControladorTelaRestricoesProfessor {
             public void actionPerformed(ActionEvent ae) {
                 /* Salva as restrições definidas na tela no array "restricoesNovas" */
                 salvarRestricoes();
-                /* Verifica-se se a quantidade de restrições definidas pelo usuário é permitida */
-                if (!validarQtdRestricoes(2)) {
-                    carregaListaCbxRestricoesProfessor();
-                    JOptionPane.showMessageDialog(null, "Somente permitido(s) " + qtTotalRestricoes + " restrições devido a quantidade de crétidos", "Erro", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    /* Caso a quantidade de restrições for permitida: */
-                    /* Remove-se do banco as restrições antigas para o professor em questão */
-                    removerRestricoesAntigas();
-                    /* Insere-se no banco as novas restrições para este professor */
-                    persistirRestricoes();
-                    JOptionPane.showMessageDialog(null, "Restrições salvas com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    tr.dispose();
-                }
+                carregaListaCbxRestricoesProfessor();
+                /* Remove-se do banco as restrições antigas para o professor em questão */
+                removerRestricoesAntigas();
+                /* Insere-se no banco as novas restrições para este professor */
+                persistirRestricoes();
+                JOptionPane.showMessageDialog(null, "Restrições salvas com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                tr.dispose();
+                
             }
         });
         /* Define as ações que serão realizadas a partir do clique no botão "Cancelar" */
@@ -83,7 +77,139 @@ public class ControladorTelaRestricoesProfessor {
                 tr.dispose();
             }
         });
-
+        
+        tr.cbxSegunda1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxSegunda1.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxSegundaNota1.enable();
+                }else{
+                    tr.cbxSegundaNota1.setSelectedIndex(0);
+                    tr.cbxSegundaNota1.disable();
+                }
+            }
+        });
+        tr.cbxSegunda2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxSegunda2.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxSegundaNota2.enable();
+                }else{
+                    tr.cbxSegundaNota2.setSelectedIndex(0);
+                    tr.cbxSegundaNota2.disable();
+                }
+            }
+        });
+        tr.cbxTerca1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxTerca1.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxTercaNota1.enable();
+                }else{
+                    tr.cbxTercaNota1.setSelectedIndex(0);
+                    tr.cbxTercaNota1.disable();
+                }
+            }
+        });
+        tr.cbxTerca2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxTerca2.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxTercaNota2.enable();
+                }else{
+                    tr.cbxTercaNota2.setSelectedIndex(0);
+                    tr.cbxTercaNota2.disable();
+                }
+            }
+        });
+        tr.cbxQuarta1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxQuarta1.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxQuartaNota1.enable();
+                }else{
+                    tr.cbxQuartaNota1.setSelectedIndex(0);
+                    tr.cbxQuartaNota1.disable();
+                }
+            }
+        });
+        tr.cbxQuarta2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxQuarta2.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxQuartaNota2.enable();
+                }else{
+                    tr.cbxQuartaNota2.setSelectedIndex(0);
+                    tr.cbxQuartaNota2.disable();
+                }
+            }
+        });
+        tr.cbxQuinta1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxQuinta1.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxQuintaNota1.enable();
+                }else{
+                    tr.cbxQuintaNota1.setSelectedIndex(0);
+                    tr.cbxQuintaNota1.disable();
+                }
+            }
+        });
+        tr.cbxQuinta2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxQuinta2.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxQuintaNota2.enable();
+                }else{
+                    tr.cbxQuintaNota2.setSelectedIndex(0);
+                    tr.cbxQuintaNota2.disable();
+                }
+            }
+        });
+        tr.cbxSexta1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxSexta1.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxSextaNota1.enable();
+                }else{
+                    tr.cbxSextaNota1.setSelectedIndex(0);
+                    tr.cbxSextaNota1.disable();
+                }
+            }
+        });
+        tr.cbxSexta2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxSexta2.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxSextaNota2.enable();
+                }else{
+                    tr.cbxSextaNota2.setSelectedIndex(0);
+                    tr.cbxSextaNota2.disable();
+                }
+            }
+        });
+        tr.cbxSabado1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxSabado1.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxSabadoNota1.enable();
+                }else{
+                    tr.cbxSabadoNota1.setSelectedIndex(0);
+                    tr.cbxSabadoNota1.disable();
+                }
+            }
+        });
+        tr.cbxSabado2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(tr.cbxSabado2.getSelectedItem().equals("Preferencial (0 a 10)")){
+                    tr.cbxSabadoNota2.enable();
+                }else{
+                    tr.cbxSabadoNota2.setSelectedIndex(0);
+                    tr.cbxSabadoNota2.disable();
+                }
+            }
+        });
     }
 
     /* Método resposável por as opções disponíveis de cada ComboBox de restrição, 
@@ -118,7 +244,28 @@ public class ControladorTelaRestricoesProfessor {
             for (int j = 0; j < 2; j++) {
                 restricoes[i][j].addItem(" ");
                 restricoes[i][j].addItem("Obrigatório");
-                restricoes[i][j].addItem("Preferencial");
+                restricoes[i][j].addItem("Proibido");
+                restricoes[i][j].addItem("Preferencial (0 a 10)");
+            }
+        }
+        restricoesNotas = new JComboBox[6][2];
+        restricoesNotas[0][0] = tr.cbxSegundaNota1;
+        restricoesNotas[0][1] = tr.cbxSegundaNota2;
+        restricoesNotas[1][0] = tr.cbxTercaNota1;
+        restricoesNotas[1][1] = tr.cbxTercaNota2;
+        restricoesNotas[2][0] = tr.cbxQuartaNota1;
+        restricoesNotas[2][1] = tr.cbxQuartaNota2;
+        restricoesNotas[3][0] = tr.cbxQuintaNota1;
+        restricoesNotas[3][1] = tr.cbxQuintaNota2;
+        restricoesNotas[4][0] = tr.cbxSextaNota1;
+        restricoesNotas[4][1] = tr.cbxSextaNota2;
+        restricoesNotas[5][0] = tr.cbxSabadoNota1;
+        restricoesNotas[5][1] = tr.cbxSabadoNota2;
+        for (int i = 0; i < restricoes.length; i++) {
+            for (int j = 0; j < 2; j++) {
+                for (int k = 0; k < 11; k++) {
+                    restricoesNotas[i][j].addItem(k);
+                }
             }
         }
     }
@@ -136,7 +283,15 @@ public class ControladorTelaRestricoesProfessor {
             String horarioAux = String.valueOf(seq.charAt(1));
             int horario = Integer.parseInt(horarioAux);
             /* Define o valor atual para o ComboBox referente ao dia/período em questão */
-            restricoes[dia - 1][horario - 1].setSelectedIndex(p.getValor());
+            if(p.getValor() <= 10){
+                restricoes[dia - 1][horario - 1].setSelectedIndex(3);
+                restricoesNotas[dia - 1][horario - 1].setSelectedIndex(p.getValor());
+            }else if(p.getValor() == 11){
+                restricoes[dia - 1][horario - 1].setSelectedIndex(1);
+            }else{
+                restricoes[dia - 1][horario - 1].setSelectedIndex(2);
+            }
+            
         }
     }
 
@@ -153,55 +308,27 @@ public class ControladorTelaRestricoesProfessor {
                     String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
                     ph.setSequencia(Integer.parseInt(seq));
                     /* Obrigatório recebe valor 1 */
-                    ph.setValor(1);
+                    ph.setValor(11);
                     ph.setProfessor(this.pro);
                     restricoesNovas.add(ph);
-                } else if (restricoes[i][j].getSelectedItem().equals("Preferencial")) {
+                } else if (restricoes[i][j].getSelectedItem().equals("Proibido")) {
                     ph = new PessoaHorarioPreferencia();
                     String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
                     ph.setSequencia(Integer.parseInt(seq));
                     /* Preferencial recebe valor 2 */
-                    ph.setValor(2);
+                    ph.setValor(12);
+                    ph.setProfessor(this.pro);
+                    restricoesNovas.add(ph);
+                } else if (restricoes[i][j].getSelectedItem().equals("Preferencial (0 a 10)")) {
+                    ph = new PessoaHorarioPreferencia();
+                    String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
+                    ph.setSequencia(Integer.parseInt(seq));
+                    /* Preferencial recebe valor 2 */
+                    String temp = String.valueOf(restricoesNotas[i][j].getSelectedItem());
+                    ph.setValor(Integer.parseInt(temp));
                     ph.setProfessor(this.pro);
                     restricoesNovas.add(ph);
                 }
-            }
-        }
-    }
-    
-    /* Método responsável por realizar as seguintes validações:
-    *Caso o parâmetro opção for igual a 1, verifica-se se já existem disciplinas 
-    cadastradas para o professor (para ser utilizado no momento de abrir o este módulo)
-    *Caso o parâmetro opção for igual a 2, verifica-se se a quantidade de restrições
-    definidas pelo usuário está de acordo com a quantidade de créditos das disciplinas 
-    para o professor em questão (Utilizado no momento de salvar as restrições). */
-    public boolean validarQtdRestricoes(int opcao) {
-        List<PessoaHorarioPreferencia> lista;
-        if (opcao == 1) {
-            lista = restricoesAntigas;
-        } else {
-            lista = restricoesNovas;
-        }
-        /* Verifica-se a quantidade de restrições disponíveis para o professor */
-        qtTotalRestricoes = (int) Math.floor(pro.getTotalCreditos() / 2);
-        if (lista.size() == 0 && qtTotalRestricoes == 0) {
-            return false;
-        /* Caso a quantidade de restrições disponíveis for menor que a quantidade permitida
-            o método retorna false.*/
-        } else if (lista.size() > (qtTotalRestricoes)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
-    /* Método responsável por salvar as novas restrições no banco */
-    public void persistirRestricoes() {
-        for (PessoaHorarioPreferencia p : restricoesNovas) {
-            try {
-                phj.create(p);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }
@@ -216,10 +343,16 @@ public class ControladorTelaRestricoesProfessor {
             }
         }
     }
-
-    /* Método responsável por inicializar a tela controlada por esta classe. */
-    public void executar() {
-        tr.setVisible(true);
+    
+    /* Método responsável por salvar as novas restrições no banco */
+    public void persistirRestricoes() {
+        for (PessoaHorarioPreferencia p : restricoesNovas) {
+            try {
+                phj.create(p);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /* Método responsável por buscar o professor com "id" definida no parâmetro do 
@@ -231,6 +364,22 @@ public class ControladorTelaRestricoesProfessor {
     /* Método responsável por carregar o nome do professor em questão no cabeçalho da tela. */
     public void carregaLabel() {
         tr.labelTitulo.setText("Restrições para " + this.pro.getNome());
+    }
+    
+    /* Desabilita todos os campos de notas de restrições no início do programa */
+    public void desabilitarCbxNotas(){
+        for (int i = 0; i < restricoesNotas.length; i++) {
+            for (int j = 0; j < 2; j++) {
+                if(!restricoes[i][j].getSelectedItem().equals("Preferencial (0 a 10)")){
+                    restricoesNotas[i][j].disable();
+                }
+            }
+        }
+    }
+    
+    /* Método responsável por inicializar a tela controlada por esta classe. */
+    public void executar() {
+        tr.setVisible(true);
     }
 
 }

@@ -101,12 +101,9 @@ public class ControladorTelaTableProfessor {
                 int linha = ttp.tabelaProfessores.getSelectedRow();
                 pegarLinha(linha);
                 ControladorTelaRestricoesProfessor ctr = new ControladorTelaRestricoesProfessor(pro.getId());
-                if(ctr.validarQtdRestricoes(1)){
-                    ttp.dispose();
-                    ctr.executar();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Não existem créditos suficientes para este professor", "Erro", JOptionPane.WARNING_MESSAGE);
-                }
+                ttp.dispose();
+                ctr.executar();
+                
                 
             }
         });

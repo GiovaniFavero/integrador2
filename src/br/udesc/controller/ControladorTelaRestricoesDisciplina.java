@@ -58,18 +58,12 @@ public class ControladorTelaRestricoesDisciplina {
             public void actionPerformed(ActionEvent ae) {
                 /* Salva as restrições definidas na tela no array "restricoesNovas" */
                 salvarRestricoes();
-                /* Verifica-se se a quantidade de restrições definidas pelo usuário é permitida */
-                if(!validarQtdRestricoes(2)){
-                    carregaListaCbxRestricoesDisciplina();
-                    JOptionPane.showMessageDialog(null, "Somente permitido(s) " + qtTotalRestricoes + " restrições devido a quantidade de crétidos", "Erro", JOptionPane.WARNING_MESSAGE);
-                } else { 
-                    /* Remove-se do banco as restrições antigas para a disciplina em questão */
-                    removerRestricoesAntigas();
-                    /* Insere-se no banco as novas restrições para esta disciplina */
-                    persistirRestricoes();
-                    JOptionPane.showMessageDialog(null, "Restrições salvas com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    trd.dispose();
-                }
+                /* Remove-se do banco as restrições antigas para a disciplina em questão */
+                removerRestricoesAntigas();
+                /* Insere-se no banco as novas restrições para esta disciplina */
+                persistirRestricoes();
+                JOptionPane.showMessageDialog(null, "Restrições salvas com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                trd.dispose();
             }
         });
         /* Define as ações que serão realizadas a partir do clique no botão "Cancelar" */
@@ -115,6 +109,8 @@ public class ControladorTelaRestricoesDisciplina {
             for (int j = 0; j < 2; j++) {
                 restricoes[i][j].addItem(" ");
                 restricoes[i][j].addItem("Obrigatório");
+                restricoes[i][j].addItem("Preferivel");
+                restricoes[i][j].addItem("Proibido");
             }
         }
     }
@@ -152,34 +148,24 @@ public class ControladorTelaRestricoesDisciplina {
                     ph.setCondicao(1);
                     ph.setDisciplina(this.dis);
                     restricoesNovas.add(ph);
-                } 
+                } else if(restricoes[i][j].getSelectedItem().equals("Preferivel")) {
+                    ph = new RestricaoDisciplina();
+                    String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
+                    ph.setHorario(Integer.parseInt(seq));
+                    /* Obrigatório recebe valor 1 */
+                    ph.setCondicao(2);
+                    ph.setDisciplina(this.dis);
+                    restricoesNovas.add(ph);
+                }else if(restricoes[i][j].getSelectedItem().equals("Proibido")){
+                    ph = new RestricaoDisciplina();
+                    String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
+                    ph.setHorario(Integer.parseInt(seq));
+                    /* Obrigatório recebe valor 1 */
+                    ph.setCondicao(3);
+                    ph.setDisciplina(this.dis);
+                    restricoesNovas.add(ph);
+                }
             }
-        }
-    }
-    
-        /* Método responsável por realizar as seguintes validações:
-    *Caso o parâmetro opção for igual a 1, verifica-se se já existem disciplinas 
-    cadastradas para o professor (para ser utilizado no momento de abrir o este módulo)
-    *Caso o parâmetro opção for igual a 2, verifica-se se a quantidade de restrições
-    definidas pelo usuário está de acordo com a quantidade de créditos das disciplinas 
-    para o professor em questão (Utilizado no momento de salvar as restrições). */
-    public boolean validarQtdRestricoes(int opcao) {
-        List<RestricaoDisciplina> lista;
-        if (opcao == 1) {
-            lista = restricoesAntigas;
-        } else {
-            lista = restricoesNovas;
-        }
-        /* Verifica-se a quantidade de restrições disponíveis para o professor */
-        qtTotalRestricoes = (int) Math.floor(dis.getCreditos());
-        if (lista.size() == 0 && qtTotalRestricoes == 0) {
-            return false;
-        /* Caso a quantidade de restrições disponíveis for menor que a quantidade permitida
-            o método retorna false.*/
-        } else if (lista.size() > (qtTotalRestricoes)) {
-            return false;
-        } else {
-            return true;
         }
     }
     
