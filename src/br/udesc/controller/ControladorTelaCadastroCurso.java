@@ -13,7 +13,6 @@ import javax.swing.JSpinner.DefaultEditor;
 
 public class ControladorTelaCadastroCurso {
 
-    
     private TelaCadastroCurso tcc;
     private Curso curso;
     private int edit = 0;
@@ -32,10 +31,7 @@ public class ControladorTelaCadastroCurso {
         }
         return true;
     }
-    
 
-    
-    
     public void iniciar() {
         ((DefaultEditor) tcc.spinnerDuracao.getEditor()).getTextField().setEditable(false);
 
@@ -93,11 +89,11 @@ public class ControladorTelaCadastroCurso {
                 CursoJpaController cjc = new CursoJpaController();
 
                 if (validarCampos() == true) {
-                    if (cjc.validaCurso(tcc.fieldNome.getText()) == null) {
 
-                        int a = (int) tcc.spinnerDuracao.getValue();
-                        String nome = tcc.fieldNome.getText();
-                        if (edit == 0) {
+                    int a = (int) tcc.spinnerDuracao.getValue();
+                    String nome = tcc.fieldNome.getText();
+                    if (edit == 0) {
+                        if (cjc.validaCurso(tcc.fieldNome.getText()) == null) {
                             curso = new Curso();
                             curso.setNome(nome);
                             curso.setDuracao(a);
@@ -105,25 +101,28 @@ public class ControladorTelaCadastroCurso {
                             JOptionPane.showMessageDialog(null, "Curso criado com sucesso");
                             tcc.fieldNome.setText("");
                         } else {
-                            curso.setNome(nome);
-                            curso.setDuracao(a);
-                            try {
-                                cjc.edit(curso);
-                            } catch (Exception ex) {
-                                Logger.getLogger(ControladorTelaCadastroCurso.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            
-                            JOptionPane.showMessageDialog(null, "Curso Editado com sucesso");
-                            tcc.fieldNome.setText("");
-
+                            JOptionPane.showMessageDialog(null, "Esse curso já está cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Esse curso já está cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
+                        curso.setNome(nome);
+                        curso.setDuracao(a);
+                        try {
+                            cjc.edit(curso);
+                        } catch (Exception ex) {
+                            Logger.getLogger(ControladorTelaCadastroCurso.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        JOptionPane.showMessageDialog(null, "Curso Editado com sucesso");
+                        tcc.fieldNome.setText("");
+                        ControladorTelaTableCurso ctt = new ControladorTelaTableCurso();
+                        tcc.setVisible(false);
+                        ctt.executar();
                     }
+
                 }
             }
         });
-        
+
         tcc.botaoVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -75,6 +75,9 @@ public class ControladorTelaCadastroProfessor {
                             tcp.fieldNome.setText("");
                             tcp.fieldCpf.setText("");
                             JOptionPane.showMessageDialog(null, "Professor editado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                            ControladorTelaTableProfessor ctt = new ControladorTelaTableProfessor();
+                            tcp.setVisible(false);
+                            ctt.executar();
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Professor já cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -122,7 +125,7 @@ public class ControladorTelaCadastroProfessor {
                 tcp.setVisible(false);
             }
         });
-        
+
         tcp.botaoVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

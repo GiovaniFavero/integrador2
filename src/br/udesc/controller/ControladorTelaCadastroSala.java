@@ -110,18 +110,21 @@ public class ControladorTelaCadastroSala {
                             tcs.fieldNumero.setText("");
                         } else {
                             //----------------- senão editar um existente -----------------------
-                                    sala.setNumero(numero);
-                                    sala.setLimite(a);
-                                    sala.setTipo(verdade);
-                                    try {
-                                        sjc.edit(sala);
-                                    } catch (Exception ex) {
-                                        Logger.getLogger(ControladorTelaCadastroSala.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
+                            sala.setNumero(numero);
+                            sala.setLimite(a);
+                            sala.setTipo(verdade);
+                            try {
+                                sjc.edit(sala);
+                            } catch (Exception ex) {
+                                Logger.getLogger(ControladorTelaCadastroSala.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 
-                                    JOptionPane.showMessageDialog(null, "Sala editda com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                                    tcs.fieldLimite.setText("");
-                                    tcs.fieldNumero.setText("");
+                            JOptionPane.showMessageDialog(null, "Sala editda com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                            tcs.fieldLimite.setText("");
+                            tcs.fieldNumero.setText("");
+                            ControladorTelaTableSala ctt = new ControladorTelaTableSala();
+                            tcs.setVisible(false);
+                            ctt.executar();
                         }
 
                     } else {
@@ -131,7 +134,7 @@ public class ControladorTelaCadastroSala {
                 }
             }
         });
-        
+
         tcs.botaoVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

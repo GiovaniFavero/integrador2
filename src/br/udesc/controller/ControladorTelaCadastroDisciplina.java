@@ -154,6 +154,9 @@ public class ControladorTelaCadastroDisciplina {
                             tcd.fieldQuantidadeAlunos.setText("");
                             tcd.fieldCreditos.setText("");
                             tcd.fieldCodigo.setText("");
+                            ControladorTelaTableDisciplina ctt = new ControladorTelaTableDisciplina();
+                            tcd.setVisible(false);
+                            ctt.executar();
 
                         }
 
