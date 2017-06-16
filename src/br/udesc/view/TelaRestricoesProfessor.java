@@ -62,18 +62,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        cbxSegundaNota2 = new javax.swing.JSpinner();
-        cbxQuartaNota1 = new javax.swing.JSpinner();
-        cbxQuartaNota2 = new javax.swing.JSpinner();
-        cbxSextaNota1 = new javax.swing.JSpinner();
-        cbxSextaNota2 = new javax.swing.JSpinner();
-        cbxTercaNota1 = new javax.swing.JSpinner();
-        cbxTercaNota2 = new javax.swing.JSpinner();
-        cbxQuintaNota1 = new javax.swing.JSpinner();
-        cbxQuintaNota2 = new javax.swing.JSpinner();
-        cbxSabadoNota1 = new javax.swing.JSpinner();
-        cbxSabadoNota2 = new javax.swing.JSpinner();
-        cbxSegundaNota1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -440,78 +428,6 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
         jPanel1.add(jLabel19, gridBagConstraints);
 
-        cbxSegundaNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        jPanel1.add(cbxSegundaNota2, gridBagConstraints);
-
-        cbxQuartaNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        jPanel1.add(cbxQuartaNota1, gridBagConstraints);
-
-        cbxQuartaNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        jPanel1.add(cbxQuartaNota2, gridBagConstraints);
-
-        cbxSextaNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
-        jPanel1.add(cbxSextaNota1, gridBagConstraints);
-
-        cbxSextaNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
-        jPanel1.add(cbxSextaNota2, gridBagConstraints);
-
-        cbxTercaNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 1;
-        jPanel1.add(cbxTercaNota1, gridBagConstraints);
-
-        cbxTercaNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 2;
-        jPanel1.add(cbxTercaNota2, gridBagConstraints);
-
-        cbxQuintaNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 3;
-        jPanel1.add(cbxQuintaNota1, gridBagConstraints);
-
-        cbxQuintaNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 4;
-        jPanel1.add(cbxQuintaNota2, gridBagConstraints);
-
-        cbxSabadoNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 5;
-        jPanel1.add(cbxSabadoNota1, gridBagConstraints);
-
-        cbxSabadoNota2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 6;
-        jPanel1.add(cbxSabadoNota2, gridBagConstraints);
-
-        cbxSegundaNota1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        jPanel1.add(cbxSegundaNota1, gridBagConstraints);
-
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -580,28 +496,16 @@ public class TelaRestricoesProfessor extends javax.swing.JFrame {
     public javax.swing.JButton botaoSalvar;
     public javax.swing.JComboBox<String> cbxQuarta1;
     public javax.swing.JComboBox<String> cbxQuarta2;
-    public javax.swing.JSpinner cbxQuartaNota1;
-    public javax.swing.JSpinner cbxQuartaNota2;
     public javax.swing.JComboBox<String> cbxQuinta1;
     public javax.swing.JComboBox<String> cbxQuinta2;
-    public javax.swing.JSpinner cbxQuintaNota1;
-    public javax.swing.JSpinner cbxQuintaNota2;
     public javax.swing.JComboBox<String> cbxSabado1;
     public javax.swing.JComboBox<String> cbxSabado2;
-    public javax.swing.JSpinner cbxSabadoNota1;
-    public javax.swing.JSpinner cbxSabadoNota2;
     public javax.swing.JComboBox<String> cbxSegunda1;
     public javax.swing.JComboBox<String> cbxSegunda2;
-    public javax.swing.JSpinner cbxSegundaNota1;
-    public javax.swing.JSpinner cbxSegundaNota2;
     public javax.swing.JComboBox<String> cbxSexta1;
     public javax.swing.JComboBox<String> cbxSexta2;
-    public javax.swing.JSpinner cbxSextaNota1;
-    public javax.swing.JSpinner cbxSextaNota2;
     public javax.swing.JComboBox<String> cbxTerca1;
     public javax.swing.JComboBox<String> cbxTerca2;
-    public javax.swing.JSpinner cbxTercaNota1;
-    public javax.swing.JSpinner cbxTercaNota2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

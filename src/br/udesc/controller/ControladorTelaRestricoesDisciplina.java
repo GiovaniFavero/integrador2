@@ -109,7 +109,6 @@ public class ControladorTelaRestricoesDisciplina {
             for (int j = 0; j < 2; j++) {
                 restricoes[i][j].addItem(" ");
                 restricoes[i][j].addItem("Obrigatório");
-                restricoes[i][j].addItem("Preferivel");
                 restricoes[i][j].addItem("Proibido");
             }
         }

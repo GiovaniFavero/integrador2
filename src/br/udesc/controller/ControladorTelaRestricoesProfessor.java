@@ -34,7 +34,6 @@ public class ControladorTelaRestricoesProfessor {
     private ProfessorJpaController psc;
     private PessoaHorarioPreferenciaJpaController phj;
     private JComboBox[][] restricoes;
-    private JSpinner[][] restricoesNotas;
     private List<PessoaHorarioPreferencia> restricoesAntigas;
     private List<PessoaHorarioPreferencia> restricoesNovas;
     
@@ -49,7 +48,6 @@ public class ControladorTelaRestricoesProfessor {
         carregaListaCbxRestricoes();
         carregaListaCbxRestricoesProfessor();
         carregaLabel();
-        desabilitarCbxNotas();
         iniciar();
     }
 
@@ -79,138 +77,7 @@ public class ControladorTelaRestricoesProfessor {
             }
         });
         
-        tr.cbxSegunda1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxSegunda1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxSegundaNota1, true);
-                }else{
-                    tr.cbxSegundaNota1.setValue(0);
-                    disableEnableSpinner(tr.cbxSegundaNota1, false);
-                }
-            }
-        });
-        tr.cbxSegunda2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxSegunda2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxSegundaNota2, true);
-                }else{
-                    tr.cbxSegundaNota2.setValue(0);
-                    disableEnableSpinner(tr.cbxSegundaNota2, false);
-                }
-            }
-        });
-        tr.cbxTerca1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxTerca1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxTercaNota1, true);
-                }else{
-                    tr.cbxTercaNota1.setValue(0);
-                    disableEnableSpinner(tr.cbxTercaNota1, false);
-                }
-            }
-        });
-        tr.cbxTerca2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxTerca2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxTercaNota2, true);
-                }else{
-                    tr.cbxTercaNota2.setValue(0);
-                    disableEnableSpinner(tr.cbxTercaNota2, false);
-                }
-            }
-        });
-        tr.cbxQuarta1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxQuarta1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxQuartaNota1, true);
-                }else{
-                    tr.cbxQuartaNota1.setValue(0);
-                    disableEnableSpinner(tr.cbxQuartaNota1, false);
-                }
-            }
-        });
-        tr.cbxQuarta2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxQuarta2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxQuartaNota2, true);
-                }else{
-                    tr.cbxQuartaNota2.setValue(0);
-                    disableEnableSpinner(tr.cbxQuartaNota2, false);
-                }
-            }
-        });
-        tr.cbxQuinta1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxQuinta1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxQuintaNota1, true);
-                }else{
-                    tr.cbxQuintaNota1.setValue(0);
-                    disableEnableSpinner(tr.cbxQuintaNota1, false);
-                }
-            }
-        });
-        tr.cbxQuinta2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxQuinta2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxQuintaNota2, true);
-                }else{
-                    tr.cbxQuintaNota2.setValue(0);
-                    disableEnableSpinner(tr.cbxQuintaNota2, false);
-                }
-            }
-        });
-        tr.cbxSexta1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxSexta1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxSextaNota1, true);
-                }else{
-                    tr.cbxSextaNota1.setValue(0);
-                    disableEnableSpinner(tr.cbxSextaNota1, false);
-                }
-            }
-        });
-        tr.cbxSexta2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxSexta2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxSextaNota2, true);
-                }else{
-                    tr.cbxSextaNota2.setValue(0);
-                    disableEnableSpinner(tr.cbxSextaNota2, false);
-                }
-            }
-        });
-        tr.cbxSabado1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxSabado1.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxSabadoNota1, true);
-                }else{
-                    tr.cbxSabadoNota1.setValue(0);
-                    disableEnableSpinner(tr.cbxSabadoNota1, false);
-                }
-            }
-        });
-        tr.cbxSabado2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(tr.cbxSabado2.getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(tr.cbxSabadoNota2, true);
-                }else{
-                    tr.cbxSabadoNota2.setValue(0);
-                    disableEnableSpinner(tr.cbxSabadoNota2, false);
-                }
-            }
-        });
+        
     }
 
     /* Método resposável por as opções disponíveis de cada ComboBox de restrição, 
@@ -246,22 +113,18 @@ public class ControladorTelaRestricoesProfessor {
                 restricoes[i][j].addItem(" ");
                 restricoes[i][j].addItem("Obrigatório");
                 restricoes[i][j].addItem("Proibido");
-                restricoes[i][j].addItem("Preferencial (0 a 10)");
+                restricoes[i][j].addItem("Preferencial (1)");
+                restricoes[i][j].addItem("Preferencial (2)");
+                restricoes[i][j].addItem("Preferencial (3)");
+                restricoes[i][j].addItem("Preferencial (4)");
+                restricoes[i][j].addItem("Preferencial (5)");
+                restricoes[i][j].addItem("Preferencial (6)");
+                restricoes[i][j].addItem("Preferencial (7)");
+                restricoes[i][j].addItem("Preferencial (8)");
+                restricoes[i][j].addItem("Preferencial (9)");
+                restricoes[i][j].addItem("Preferencial (10)");
             }
         }
-        restricoesNotas = new JSpinner[6][2];
-        restricoesNotas[0][0] = tr.cbxSegundaNota1;
-        restricoesNotas[0][1] = tr.cbxSegundaNota2;
-        restricoesNotas[1][0] = tr.cbxTercaNota1;
-        restricoesNotas[1][1] = tr.cbxTercaNota2;
-        restricoesNotas[2][0] = tr.cbxQuartaNota1;
-        restricoesNotas[2][1] = tr.cbxQuartaNota2;
-        restricoesNotas[3][0] = tr.cbxQuintaNota1;
-        restricoesNotas[3][1] = tr.cbxQuintaNota2;
-        restricoesNotas[4][0] = tr.cbxSextaNota1;
-        restricoesNotas[4][1] = tr.cbxSextaNota2;
-        restricoesNotas[5][0] = tr.cbxSabadoNota1;
-        restricoesNotas[5][1] = tr.cbxSabadoNota2;
     }
 
     /* Método responsável por carregar as restrições já existentes para o professor na tela. */
@@ -278,8 +141,7 @@ public class ControladorTelaRestricoesProfessor {
             int horario = Integer.parseInt(horarioAux);
             /* Define o valor atual para o ComboBox referente ao dia/período em questão */
             if(p.getValor() <= 10){
-                restricoes[dia - 1][horario - 1].setSelectedIndex(3);
-                restricoesNotas[dia - 1][horario - 1].setValue(p.getValor());
+                restricoes[dia - 1][horario - 1].setSelectedIndex(p.getValor()+2);
             }else if(p.getValor() == 11){
                 restricoes[dia - 1][horario - 1].setSelectedIndex(1);
             }else{
@@ -313,12 +175,11 @@ public class ControladorTelaRestricoesProfessor {
                     ph.setValor(12);
                     ph.setProfessor(this.pro);
                     restricoesNovas.add(ph);
-                } else if (restricoes[i][j].getSelectedItem().equals("Preferencial (0 a 10)")) {
+                } else if (String.valueOf(restricoes[i][j].getSelectedItem()).contains("Preferencial")) {
                     ph = new PessoaHorarioPreferencia();
                     String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
                     ph.setSequencia(Integer.parseInt(seq));
-                    /* Preferencial recebe valor 2 */
-                    String temp = String.valueOf(restricoesNotas[i][j].getValue());
+                    String temp = String.valueOf((restricoes[i][j]).getSelectedIndex() - 2);
                     ph.setValor(Integer.parseInt(temp));
                     ph.setProfessor(this.pro);
                     restricoesNovas.add(ph);
@@ -360,16 +221,6 @@ public class ControladorTelaRestricoesProfessor {
         tr.labelTitulo.setText("Restrições para " + this.pro.getNome());
     }
     
-    /* Desabilita todos os campos de notas de restrições no início do programa */
-    public void desabilitarCbxNotas(){
-        for (int i = 0; i < restricoesNotas.length; i++) {
-            for (int j = 0; j < 2; j++) {
-                if(!restricoes[i][j].getSelectedItem().equals("Preferencial (0 a 10)")){
-                    disableEnableSpinner(restricoesNotas[i][j], false);
-                }
-            }
-        }
-    }
     
     public void disableEnableSpinner(JSpinner s, boolean value){
         JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) s.getEditor();
