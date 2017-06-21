@@ -21,7 +21,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author phzpe
+ * @author 5105011505
  */
 public class SalaHorarioJpaController implements Serializable {
 

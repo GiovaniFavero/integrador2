@@ -11,19 +11,21 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import br.udesc.model.entidade.Sala;
 import br.udesc.model.entidade.Professor;
 import br.udesc.model.entidade.Curso;
 import br.udesc.model.entidade.Disciplina;
-import br.udesc.model.entidade.SalaHorario;
+import br.udesc.model.entidade.RestricaoDisciplina;
 import java.util.ArrayList;
 import java.util.List;
+import br.udesc.model.entidade.SalaHorario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
  *
- * @author phzpe
+ * @author 5105011505
  */
 public class DisciplinaJpaController implements Serializable {
 
@@ -37,6 +39,9 @@ public class DisciplinaJpaController implements Serializable {
     }
 
     public void create(Disciplina disciplina) {
+        if (disciplina.getListaRestricaoDisciplina() == null) {
+            disciplina.setListaRestricaoDisciplina(new ArrayList<RestricaoDisciplina>());
+        }
         if (disciplina.getListaSalaHorario() == null) {
             disciplina.setListaSalaHorario(new ArrayList<SalaHorario>());
         }
@@ -44,6 +49,11 @@ public class DisciplinaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Sala sala = disciplina.getSala();
+            if (sala != null) {
+                sala = em.getReference(sala.getClass(), sala.getId());
+                disciplina.setSala(sala);
+            }
             Professor professor = disciplina.getProfessor();
             if (professor != null) {
                 professor = em.getReference(professor.getClass(), professor.getId());
@@ -54,6 +64,12 @@ public class DisciplinaJpaController implements Serializable {
                 curso = em.getReference(curso.getClass(), curso.getId());
                 disciplina.setCurso(curso);
             }
+            List<RestricaoDisciplina> attachedListaRestricaoDisciplina = new ArrayList<RestricaoDisciplina>();
+            for (RestricaoDisciplina listaRestricaoDisciplinaRestricaoDisciplinaToAttach : disciplina.getListaRestricaoDisciplina()) {
+                listaRestricaoDisciplinaRestricaoDisciplinaToAttach = em.getReference(listaRestricaoDisciplinaRestricaoDisciplinaToAttach.getClass(), listaRestricaoDisciplinaRestricaoDisciplinaToAttach.getId());
+                attachedListaRestricaoDisciplina.add(listaRestricaoDisciplinaRestricaoDisciplinaToAttach);
+            }
+            disciplina.setListaRestricaoDisciplina(attachedListaRestricaoDisciplina);
             List<SalaHorario> attachedListaSalaHorario = new ArrayList<SalaHorario>();
             for (SalaHorario listaSalaHorarioSalaHorarioToAttach : disciplina.getListaSalaHorario()) {
                 listaSalaHorarioSalaHorarioToAttach = em.getReference(listaSalaHorarioSalaHorarioToAttach.getClass(), listaSalaHorarioSalaHorarioToAttach.getId());
@@ -61,6 +77,10 @@ public class DisciplinaJpaController implements Serializable {
             }
             disciplina.setListaSalaHorario(attachedListaSalaHorario);
             em.persist(disciplina);
+            if (sala != null) {
+                sala.getListaDisciplina().add(disciplina);
+                sala = em.merge(sala);
+            }
             if (professor != null) {
                 professor.getListaDisciplinaProfessor().add(disciplina);
                 professor = em.merge(professor);
@@ -68,6 +88,15 @@ public class DisciplinaJpaController implements Serializable {
             if (curso != null) {
                 curso.getListaDisciplina().add(disciplina);
                 curso = em.merge(curso);
+            }
+            for (RestricaoDisciplina listaRestricaoDisciplinaRestricaoDisciplina : disciplina.getListaRestricaoDisciplina()) {
+                Disciplina oldDisciplinaOfListaRestricaoDisciplinaRestricaoDisciplina = listaRestricaoDisciplinaRestricaoDisciplina.getDisciplina();
+                listaRestricaoDisciplinaRestricaoDisciplina.setDisciplina(disciplina);
+                listaRestricaoDisciplinaRestricaoDisciplina = em.merge(listaRestricaoDisciplinaRestricaoDisciplina);
+                if (oldDisciplinaOfListaRestricaoDisciplinaRestricaoDisciplina != null) {
+                    oldDisciplinaOfListaRestricaoDisciplinaRestricaoDisciplina.getListaRestricaoDisciplina().remove(listaRestricaoDisciplinaRestricaoDisciplina);
+                    oldDisciplinaOfListaRestricaoDisciplinaRestricaoDisciplina = em.merge(oldDisciplinaOfListaRestricaoDisciplinaRestricaoDisciplina);
+                }
             }
             for (SalaHorario listaSalaHorarioSalaHorario : disciplina.getListaSalaHorario()) {
                 Disciplina oldDisciplinaOfListaSalaHorarioSalaHorario = listaSalaHorarioSalaHorario.getDisciplina();
@@ -92,12 +121,20 @@ public class DisciplinaJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Disciplina persistentDisciplina = em.find(Disciplina.class, disciplina.getId());
+            Sala salaOld = persistentDisciplina.getSala();
+            Sala salaNew = disciplina.getSala();
             Professor professorOld = persistentDisciplina.getProfessor();
             Professor professorNew = disciplina.getProfessor();
             Curso cursoOld = persistentDisciplina.getCurso();
             Curso cursoNew = disciplina.getCurso();
+            List<RestricaoDisciplina> listaRestricaoDisciplinaOld = persistentDisciplina.getListaRestricaoDisciplina();
+            List<RestricaoDisciplina> listaRestricaoDisciplinaNew = disciplina.getListaRestricaoDisciplina();
             List<SalaHorario> listaSalaHorarioOld = persistentDisciplina.getListaSalaHorario();
             List<SalaHorario> listaSalaHorarioNew = disciplina.getListaSalaHorario();
+            if (salaNew != null) {
+                salaNew = em.getReference(salaNew.getClass(), salaNew.getId());
+                disciplina.setSala(salaNew);
+            }
             if (professorNew != null) {
                 professorNew = em.getReference(professorNew.getClass(), professorNew.getId());
                 disciplina.setProfessor(professorNew);
@@ -106,6 +143,13 @@ public class DisciplinaJpaController implements Serializable {
                 cursoNew = em.getReference(cursoNew.getClass(), cursoNew.getId());
                 disciplina.setCurso(cursoNew);
             }
+            List<RestricaoDisciplina> attachedListaRestricaoDisciplinaNew = new ArrayList<RestricaoDisciplina>();
+            for (RestricaoDisciplina listaRestricaoDisciplinaNewRestricaoDisciplinaToAttach : listaRestricaoDisciplinaNew) {
+                listaRestricaoDisciplinaNewRestricaoDisciplinaToAttach = em.getReference(listaRestricaoDisciplinaNewRestricaoDisciplinaToAttach.getClass(), listaRestricaoDisciplinaNewRestricaoDisciplinaToAttach.getId());
+                attachedListaRestricaoDisciplinaNew.add(listaRestricaoDisciplinaNewRestricaoDisciplinaToAttach);
+            }
+            listaRestricaoDisciplinaNew = attachedListaRestricaoDisciplinaNew;
+            disciplina.setListaRestricaoDisciplina(listaRestricaoDisciplinaNew);
             List<SalaHorario> attachedListaSalaHorarioNew = new ArrayList<SalaHorario>();
             for (SalaHorario listaSalaHorarioNewSalaHorarioToAttach : listaSalaHorarioNew) {
                 listaSalaHorarioNewSalaHorarioToAttach = em.getReference(listaSalaHorarioNewSalaHorarioToAttach.getClass(), listaSalaHorarioNewSalaHorarioToAttach.getId());
@@ -114,6 +158,14 @@ public class DisciplinaJpaController implements Serializable {
             listaSalaHorarioNew = attachedListaSalaHorarioNew;
             disciplina.setListaSalaHorario(listaSalaHorarioNew);
             disciplina = em.merge(disciplina);
+            if (salaOld != null && !salaOld.equals(salaNew)) {
+                salaOld.getListaDisciplina().remove(disciplina);
+                salaOld = em.merge(salaOld);
+            }
+            if (salaNew != null && !salaNew.equals(salaOld)) {
+                salaNew.getListaDisciplina().add(disciplina);
+                salaNew = em.merge(salaNew);
+            }
             if (professorOld != null && !professorOld.equals(professorNew)) {
                 professorOld.getListaDisciplinaProfessor().remove(disciplina);
                 professorOld = em.merge(professorOld);
@@ -129,6 +181,23 @@ public class DisciplinaJpaController implements Serializable {
             if (cursoNew != null && !cursoNew.equals(cursoOld)) {
                 cursoNew.getListaDisciplina().add(disciplina);
                 cursoNew = em.merge(cursoNew);
+            }
+            for (RestricaoDisciplina listaRestricaoDisciplinaOldRestricaoDisciplina : listaRestricaoDisciplinaOld) {
+                if (!listaRestricaoDisciplinaNew.contains(listaRestricaoDisciplinaOldRestricaoDisciplina)) {
+                    listaRestricaoDisciplinaOldRestricaoDisciplina.setDisciplina(null);
+                    listaRestricaoDisciplinaOldRestricaoDisciplina = em.merge(listaRestricaoDisciplinaOldRestricaoDisciplina);
+                }
+            }
+            for (RestricaoDisciplina listaRestricaoDisciplinaNewRestricaoDisciplina : listaRestricaoDisciplinaNew) {
+                if (!listaRestricaoDisciplinaOld.contains(listaRestricaoDisciplinaNewRestricaoDisciplina)) {
+                    Disciplina oldDisciplinaOfListaRestricaoDisciplinaNewRestricaoDisciplina = listaRestricaoDisciplinaNewRestricaoDisciplina.getDisciplina();
+                    listaRestricaoDisciplinaNewRestricaoDisciplina.setDisciplina(disciplina);
+                    listaRestricaoDisciplinaNewRestricaoDisciplina = em.merge(listaRestricaoDisciplinaNewRestricaoDisciplina);
+                    if (oldDisciplinaOfListaRestricaoDisciplinaNewRestricaoDisciplina != null && !oldDisciplinaOfListaRestricaoDisciplinaNewRestricaoDisciplina.equals(disciplina)) {
+                        oldDisciplinaOfListaRestricaoDisciplinaNewRestricaoDisciplina.getListaRestricaoDisciplina().remove(listaRestricaoDisciplinaNewRestricaoDisciplina);
+                        oldDisciplinaOfListaRestricaoDisciplinaNewRestricaoDisciplina = em.merge(oldDisciplinaOfListaRestricaoDisciplinaNewRestricaoDisciplina);
+                    }
+                }
             }
             for (SalaHorario listaSalaHorarioOldSalaHorario : listaSalaHorarioOld) {
                 if (!listaSalaHorarioNew.contains(listaSalaHorarioOldSalaHorario)) {
@@ -176,6 +245,11 @@ public class DisciplinaJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The disciplina with id " + id + " no longer exists.", enfe);
             }
+            Sala sala = disciplina.getSala();
+            if (sala != null) {
+                sala.getListaDisciplina().remove(disciplina);
+                sala = em.merge(sala);
+            }
             Professor professor = disciplina.getProfessor();
             if (professor != null) {
                 professor.getListaDisciplinaProfessor().remove(disciplina);
@@ -185,6 +259,11 @@ public class DisciplinaJpaController implements Serializable {
             if (curso != null) {
                 curso.getListaDisciplina().remove(disciplina);
                 curso = em.merge(curso);
+            }
+            List<RestricaoDisciplina> listaRestricaoDisciplina = disciplina.getListaRestricaoDisciplina();
+            for (RestricaoDisciplina listaRestricaoDisciplinaRestricaoDisciplina : listaRestricaoDisciplina) {
+                listaRestricaoDisciplinaRestricaoDisciplina.setDisciplina(null);
+                listaRestricaoDisciplinaRestricaoDisciplina = em.merge(listaRestricaoDisciplinaRestricaoDisciplina);
             }
             List<SalaHorario> listaSalaHorario = disciplina.getListaSalaHorario();
             for (SalaHorario listaSalaHorarioSalaHorario : listaSalaHorario) {
@@ -232,7 +311,6 @@ public class DisciplinaJpaController implements Serializable {
             em.close();
         }
     }
-    
 
     public int getDisciplinaCount() {
         EntityManager em = getEntityManager();
@@ -296,8 +374,8 @@ public class DisciplinaJpaController implements Serializable {
         }
         return disc;
     }
-    
-     public List<Disciplina> validaDisciplinaNome(String nome) {
+
+    public List<Disciplina> validaDisciplinaNome(String nome) {
         String jpql = "select u from Disciplina u where u.nome =:nome_disciplina";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();

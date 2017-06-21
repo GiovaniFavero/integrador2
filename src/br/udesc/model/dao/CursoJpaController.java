@@ -21,7 +21,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author phzpe
+ * @author 5105011505
  */
 public class CursoJpaController implements Serializable {
 
@@ -215,5 +215,4 @@ public class CursoJpaController implements Serializable {
         }
         return curs;
     }
-
 }

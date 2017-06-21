@@ -6,21 +6,21 @@
 package br.udesc.model.dao;
 
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
+import java.io.Serializable;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import br.udesc.model.entidade.Disciplina;
 import br.udesc.model.entidade.RestricaoDisciplina;
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 /**
  *
- * @author phzpe
+ * @author 5105011505
  */
 public class RestricaoDisciplinaJpaController implements Serializable {
 
@@ -38,7 +38,16 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Disciplina disciplina = restricaoDisciplina.getDisciplina();
+            if (disciplina != null) {
+                disciplina = em.getReference(disciplina.getClass(), disciplina.getId());
+                restricaoDisciplina.setDisciplina(disciplina);
+            }
             em.persist(restricaoDisciplina);
+            if (disciplina != null) {
+                disciplina.getListaRestricaoDisciplina().add(restricaoDisciplina);
+                disciplina = em.merge(disciplina);
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -52,7 +61,22 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            RestricaoDisciplina persistentRestricaoDisciplina = em.find(RestricaoDisciplina.class, restricaoDisciplina.getId());
+            Disciplina disciplinaOld = persistentRestricaoDisciplina.getDisciplina();
+            Disciplina disciplinaNew = restricaoDisciplina.getDisciplina();
+            if (disciplinaNew != null) {
+                disciplinaNew = em.getReference(disciplinaNew.getClass(), disciplinaNew.getId());
+                restricaoDisciplina.setDisciplina(disciplinaNew);
+            }
             restricaoDisciplina = em.merge(restricaoDisciplina);
+            if (disciplinaOld != null && !disciplinaOld.equals(disciplinaNew)) {
+                disciplinaOld.getListaRestricaoDisciplina().remove(restricaoDisciplina);
+                disciplinaOld = em.merge(disciplinaOld);
+            }
+            if (disciplinaNew != null && !disciplinaNew.equals(disciplinaOld)) {
+                disciplinaNew.getListaRestricaoDisciplina().add(restricaoDisciplina);
+                disciplinaNew = em.merge(disciplinaNew);
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -81,6 +105,11 @@ public class RestricaoDisciplinaJpaController implements Serializable {
                 restricaoDisciplina.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The restricaoDisciplina with id " + id + " no longer exists.", enfe);
+            }
+            Disciplina disciplina = restricaoDisciplina.getDisciplina();
+            if (disciplina != null) {
+                disciplina.getListaRestricaoDisciplina().remove(restricaoDisciplina);
+                disciplina = em.merge(disciplina);
             }
             em.remove(restricaoDisciplina);
             em.getTransaction().commit();
@@ -136,18 +165,18 @@ public class RestricaoDisciplinaJpaController implements Serializable {
             em.close();
         }
     }
-    
-      public List<RestricaoDisciplina> buscarRestricoes(long id){
+
+    public List<RestricaoDisciplina> buscarRestricoes(long id) {
         EntityManager em = getEntityManager();
-        try{
+        try {
             Disciplina d = em.find(Disciplina.class, id);
             Query q = em.createQuery("select a from RestricaoDisciplina a where a.disciplina = :d");
             q.setParameter("d", d);
             return (List<RestricaoDisciplina>) q.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
-        
+
     }
-    
+
 }

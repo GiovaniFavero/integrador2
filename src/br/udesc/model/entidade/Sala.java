@@ -6,6 +6,7 @@
 package br.udesc.model.entidade;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -41,15 +42,33 @@ public class Sala implements Serializable {
 
     private boolean tipo;
 
+    @OneToMany(mappedBy = "sala")
+    private List<Disciplina> listaDisciplina;
+
     public Sala() {
         listSalaHorario = new ArrayList<>();
+        listaDisciplina = new ArrayList<>();
     }
 
+    
     public Sala(String numero, int limite, boolean tipo) {
         this.numero = numero;
         this.limite = limite;
         this.tipo = tipo;
         listSalaHorario = new ArrayList<>();
+        listaDisciplina = new ArrayList<>();
+    }
+
+    public void addDisciplina(Disciplina d){
+        listaDisciplina.add(d);
+    }
+    
+    public List<Disciplina> getListaDisciplina() {
+        return listaDisciplina;
+    }
+
+    public void setListaDisciplina(List<Disciplina> listaDisciplina) {
+        this.listaDisciplina = listaDisciplina;
     }
 
     public List<SalaHorario> getListSalaHorario() {

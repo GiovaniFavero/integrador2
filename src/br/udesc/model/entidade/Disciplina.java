@@ -44,9 +44,6 @@ public class Disciplina implements Serializable {
     @Column(name = "fase_disciplina")
     private String fase;
 
-    @Column(name = "tipo_disciplina")
-    private int tipo;
-
     @Column(name = "qtdAlunos_disciplina")
     private int qtdAlunos;
 
@@ -64,22 +61,38 @@ public class Disciplina implements Serializable {
     @JoinColumn(name = "id_professor", nullable = true)
     private Professor professor;
 
+    @ManyToOne
+    @JoinColumn(name = "id_sala", nullable = true)
+    private Sala sala;
+
     public Disciplina() {
         listaRestricaoDisciplina = new ArrayList<>();
         listaSalaHorario = new ArrayList<>();
     }
 
-    public Disciplina(String nome, int creditos, String fase, int tipo, int qtdAlunos, String codigo, Curso curso, Professor professor) {
+    public Disciplina(String nome, String codigo, int creditos, String fase, int qtdAlunos, Curso curso, Professor professor, Sala sala) {
         this.nome = nome;
+        this.codigo = codigo;
         this.creditos = creditos;
         this.fase = fase;
-        this.tipo = tipo;
         this.qtdAlunos = qtdAlunos;
         this.curso = curso;
-        this.codigo = codigo;
         this.professor = professor;
-        listaSalaHorario = new ArrayList<>();
+        this.sala = sala;
         listaRestricaoDisciplina = new ArrayList<>();
+        listaSalaHorario = new ArrayList<>();
+    }
+
+    public void setListaRestricaoDisciplina(List<RestricaoDisciplina> listaRestricaoDisciplina) {
+        this.listaRestricaoDisciplina = listaRestricaoDisciplina;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
 
     public List<RestricaoDisciplina> getListaRestricaoDisciplina() {
@@ -142,14 +155,6 @@ public class Disciplina implements Serializable {
         this.fase = fase;
     }
 
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
-
     public int getQtdAlunos() {
         return qtdAlunos;
     }
@@ -194,7 +199,6 @@ public class Disciplina implements Serializable {
                 + "\nProfessor: " + professor
                 + "\nCreditos: " + creditos
                 + "\nFase:" + fase
-                + "\nPreferência por sala: " + tipo
                 + "\nQuantidade Máxima de Alunos: " + qtdAlunos
                 + "\nLista de Horários: " + listaSalaHorario.size();
     }

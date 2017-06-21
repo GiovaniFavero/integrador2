@@ -6,27 +6,28 @@
 package br.udesc.model.dao;
 
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
-import br.udesc.model.entidade.Sala;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import br.udesc.model.entidade.SalaHorario;
+import br.udesc.model.entidade.Disciplina;
+import br.udesc.model.entidade.Sala;
 import java.util.ArrayList;
 import java.util.List;
+import br.udesc.model.entidade.SalaHorario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
  *
- * @author phzpe
+ * @author 5105011505
  */
 public class SalaJpaController implements Serializable {
 
     public SalaJpaController() {
-       emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
 
@@ -35,6 +36,9 @@ public class SalaJpaController implements Serializable {
     }
 
     public void create(Sala sala) {
+        if (sala.getListaDisciplina() == null) {
+            sala.setListaDisciplina(new ArrayList<Disciplina>());
+        }
         if (sala.getListSalaHorario() == null) {
             sala.setListSalaHorario(new ArrayList<SalaHorario>());
         }
@@ -42,6 +46,12 @@ public class SalaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            List<Disciplina> attachedListaDisciplina = new ArrayList<Disciplina>();
+            for (Disciplina listaDisciplinaDisciplinaToAttach : sala.getListaDisciplina()) {
+                listaDisciplinaDisciplinaToAttach = em.getReference(listaDisciplinaDisciplinaToAttach.getClass(), listaDisciplinaDisciplinaToAttach.getId());
+                attachedListaDisciplina.add(listaDisciplinaDisciplinaToAttach);
+            }
+            sala.setListaDisciplina(attachedListaDisciplina);
             List<SalaHorario> attachedListSalaHorario = new ArrayList<SalaHorario>();
             for (SalaHorario listSalaHorarioSalaHorarioToAttach : sala.getListSalaHorario()) {
                 listSalaHorarioSalaHorarioToAttach = em.getReference(listSalaHorarioSalaHorarioToAttach.getClass(), listSalaHorarioSalaHorarioToAttach.getId());
@@ -49,6 +59,15 @@ public class SalaJpaController implements Serializable {
             }
             sala.setListSalaHorario(attachedListSalaHorario);
             em.persist(sala);
+            for (Disciplina listaDisciplinaDisciplina : sala.getListaDisciplina()) {
+                Sala oldSalaOfListaDisciplinaDisciplina = listaDisciplinaDisciplina.getSala();
+                listaDisciplinaDisciplina.setSala(sala);
+                listaDisciplinaDisciplina = em.merge(listaDisciplinaDisciplina);
+                if (oldSalaOfListaDisciplinaDisciplina != null) {
+                    oldSalaOfListaDisciplinaDisciplina.getListaDisciplina().remove(listaDisciplinaDisciplina);
+                    oldSalaOfListaDisciplinaDisciplina = em.merge(oldSalaOfListaDisciplinaDisciplina);
+                }
+            }
             for (SalaHorario listSalaHorarioSalaHorario : sala.getListSalaHorario()) {
                 Sala oldSalaOfListSalaHorarioSalaHorario = listSalaHorarioSalaHorario.getSala();
                 listSalaHorarioSalaHorario.setSala(sala);
@@ -72,8 +91,17 @@ public class SalaJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Sala persistentSala = em.find(Sala.class, sala.getId());
+            List<Disciplina> listaDisciplinaOld = persistentSala.getListaDisciplina();
+            List<Disciplina> listaDisciplinaNew = sala.getListaDisciplina();
             List<SalaHorario> listSalaHorarioOld = persistentSala.getListSalaHorario();
             List<SalaHorario> listSalaHorarioNew = sala.getListSalaHorario();
+            List<Disciplina> attachedListaDisciplinaNew = new ArrayList<Disciplina>();
+            for (Disciplina listaDisciplinaNewDisciplinaToAttach : listaDisciplinaNew) {
+                listaDisciplinaNewDisciplinaToAttach = em.getReference(listaDisciplinaNewDisciplinaToAttach.getClass(), listaDisciplinaNewDisciplinaToAttach.getId());
+                attachedListaDisciplinaNew.add(listaDisciplinaNewDisciplinaToAttach);
+            }
+            listaDisciplinaNew = attachedListaDisciplinaNew;
+            sala.setListaDisciplina(listaDisciplinaNew);
             List<SalaHorario> attachedListSalaHorarioNew = new ArrayList<SalaHorario>();
             for (SalaHorario listSalaHorarioNewSalaHorarioToAttach : listSalaHorarioNew) {
                 listSalaHorarioNewSalaHorarioToAttach = em.getReference(listSalaHorarioNewSalaHorarioToAttach.getClass(), listSalaHorarioNewSalaHorarioToAttach.getId());
@@ -82,6 +110,23 @@ public class SalaJpaController implements Serializable {
             listSalaHorarioNew = attachedListSalaHorarioNew;
             sala.setListSalaHorario(listSalaHorarioNew);
             sala = em.merge(sala);
+            for (Disciplina listaDisciplinaOldDisciplina : listaDisciplinaOld) {
+                if (!listaDisciplinaNew.contains(listaDisciplinaOldDisciplina)) {
+                    listaDisciplinaOldDisciplina.setSala(null);
+                    listaDisciplinaOldDisciplina = em.merge(listaDisciplinaOldDisciplina);
+                }
+            }
+            for (Disciplina listaDisciplinaNewDisciplina : listaDisciplinaNew) {
+                if (!listaDisciplinaOld.contains(listaDisciplinaNewDisciplina)) {
+                    Sala oldSalaOfListaDisciplinaNewDisciplina = listaDisciplinaNewDisciplina.getSala();
+                    listaDisciplinaNewDisciplina.setSala(sala);
+                    listaDisciplinaNewDisciplina = em.merge(listaDisciplinaNewDisciplina);
+                    if (oldSalaOfListaDisciplinaNewDisciplina != null && !oldSalaOfListaDisciplinaNewDisciplina.equals(sala)) {
+                        oldSalaOfListaDisciplinaNewDisciplina.getListaDisciplina().remove(listaDisciplinaNewDisciplina);
+                        oldSalaOfListaDisciplinaNewDisciplina = em.merge(oldSalaOfListaDisciplinaNewDisciplina);
+                    }
+                }
+            }
             for (SalaHorario listSalaHorarioOldSalaHorario : listSalaHorarioOld) {
                 if (!listSalaHorarioNew.contains(listSalaHorarioOldSalaHorario)) {
                     listSalaHorarioOldSalaHorario.setSala(null);
@@ -127,6 +172,11 @@ public class SalaJpaController implements Serializable {
                 sala.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The sala with id " + id + " no longer exists.", enfe);
+            }
+            List<Disciplina> listaDisciplina = sala.getListaDisciplina();
+            for (Disciplina listaDisciplinaDisciplina : listaDisciplina) {
+                listaDisciplinaDisciplina.setSala(null);
+                listaDisciplinaDisciplina = em.merge(listaDisciplinaDisciplina);
             }
             List<SalaHorario> listSalaHorario = sala.getListSalaHorario();
             for (SalaHorario listSalaHorarioSalaHorario : listSalaHorario) {
@@ -198,8 +248,8 @@ public class SalaJpaController implements Serializable {
         }
         return curs;
     }
-    
-     public List<Sala> listarSala() {
+
+    public List<Sala> listarSala() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -215,5 +265,4 @@ public class SalaJpaController implements Serializable {
             em.close();
         }
     }
-
 }

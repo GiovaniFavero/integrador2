@@ -89,16 +89,17 @@ public class ControladorTelaCadastroSala {
             public void actionPerformed(ActionEvent ae) {
                 if (validarCampos() == true) {
                     SalaJpaController sjc = new SalaJpaController();
-                    if (sjc.validaSala(tcs.fieldNumero.getText()) == null) {
-                        boolean verdade = true;
-                        if (tcs.radioSala.isSelected()) {
-                            verdade = false;
-                        }
-                        int a = Integer.parseInt(tcs.fieldLimite.getText());
-                        String numero = tcs.fieldNumero.getText();
-                        List<Sala> listaSala = sjc.listarSala();
-                        //--------------------se edit = 0 logo criar um novo---------------
-                        if (edit == 0) {
+
+                    boolean verdade = true;
+                    if (tcs.radioSala.isSelected()) {
+                        verdade = false;
+                    }
+                    int a = Integer.parseInt(tcs.fieldLimite.getText());
+                    String numero = tcs.fieldNumero.getText();
+                    List<Sala> listaSala = sjc.listarSala();
+                    //--------------------se edit = 0 logo criar um novo---------------
+                    if (edit == 0) {
+                        if (sjc.validaSala(tcs.fieldNumero.getText()) == null) {
                             sala = new Sala();
                             sala.setNumero(numero);
                             sala.setLimite(a);
@@ -109,26 +110,25 @@ public class ControladorTelaCadastroSala {
                             tcs.fieldLimite.setText("");
                             tcs.fieldNumero.setText("");
                         } else {
-                            //----------------- senão editar um existente -----------------------
-                            sala.setNumero(numero);
-                            sala.setLimite(a);
-                            sala.setTipo(verdade);
-                            try {
-                                sjc.edit(sala);
-                            } catch (Exception ex) {
-                                Logger.getLogger(ControladorTelaCadastroSala.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-
-                            JOptionPane.showMessageDialog(null, "Sala editda com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                            tcs.fieldLimite.setText("");
-                            tcs.fieldNumero.setText("");
-                            ControladorTelaTableSala ctt = new ControladorTelaTableSala();
-                            tcs.setVisible(false);
-                            ctt.executar();
+                            JOptionPane.showMessageDialog(null, "Sala já cadastrada", "Erro", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        //----------------- senão editar um existente -----------------------
+                        sala.setNumero(numero);
+                        sala.setLimite(a);
+                        sala.setTipo(verdade);
+                        try {
+                            sjc.edit(sala);
+                        } catch (Exception ex) {
+                            Logger.getLogger(ControladorTelaCadastroSala.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Sala já cadastrada", "Erro", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Sala editda com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        tcs.fieldLimite.setText("");
+                        tcs.fieldNumero.setText("");
+                        ControladorTelaTableSala ctt = new ControladorTelaTableSala();
+                        tcs.setVisible(false);
+                        ctt.executar();
                     }
 
                 }

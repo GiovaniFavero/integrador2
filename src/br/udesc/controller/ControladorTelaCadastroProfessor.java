@@ -53,10 +53,10 @@ public class ControladorTelaCadastroProfessor {
             public void actionPerformed(ActionEvent ae) {
                 if (validarCampos() == true) {
                     ProfessorJpaController pjc = new ProfessorJpaController();
-                    if (pjc.validaProfessor(tcp.fieldNome.getText()) == null) {
-                        String nome = tcp.fieldNome.getText();
-                        String cpf = tcp.fieldCpf.getText();
-                        if (edit == 0) {
+                    String nome = tcp.fieldNome.getText();
+                    String cpf = tcp.fieldCpf.getText();
+                    if (edit == 0) {
+                        if (pjc.validaProfessor(tcp.fieldNome.getText()) == null) {
                             professor = new Professor();
                             professor.setNome(nome);
                             professor.setCpf(cpf);
@@ -65,23 +65,23 @@ public class ControladorTelaCadastroProfessor {
                             tcp.fieldCpf.setText("");
                             JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         } else {
-                            professor.setNome(nome);
-                            professor.setCpf(cpf);
-                            try {
-                                pjc.edit(professor);
-                            } catch (Exception ex) {
-                                Logger.getLogger(ControladorTelaCadastroProfessor.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            tcp.fieldNome.setText("");
-                            tcp.fieldCpf.setText("");
-                            JOptionPane.showMessageDialog(null, "Professor editado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                            ControladorTelaTableProfessor ctt = new ControladorTelaTableProfessor();
-                            tcp.setVisible(false);
-                            ctt.executar();
+                            JOptionPane.showMessageDialog(null, "Professor já cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
+
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Professor já cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
-
+                        professor.setNome(nome);
+                        professor.setCpf(cpf);
+                        try {
+                            pjc.edit(professor);
+                        } catch (Exception ex) {
+                            Logger.getLogger(ControladorTelaCadastroProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        tcp.fieldNome.setText("");
+                        tcp.fieldCpf.setText("");
+                        JOptionPane.showMessageDialog(null, "Professor editado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        ControladorTelaTableProfessor ctt = new ControladorTelaTableProfessor();
+                        tcp.setVisible(false);
+                        ctt.executar();
                     }
                 }
             }

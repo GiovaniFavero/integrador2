@@ -3,12 +3,15 @@ package br.udesc.controller;
 import br.udesc.model.dao.CursoJpaController;
 import br.udesc.model.dao.DisciplinaJpaController;
 import br.udesc.model.dao.ProfessorJpaController;
+import br.udesc.model.dao.SalaJpaController;
 import br.udesc.model.entidade.Curso;
 import br.udesc.model.entidade.Disciplina;
-import br.udesc.model.entidade.Professor;
+import br.udesc.model.entidade.Sala;
 import br.udesc.view.TelaCadastroDisciplina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,10 +52,6 @@ public class ControladorTelaCadastroDisciplina {
             tcd.fieldFase.requestFocus();
             return false;
         }
-        if ((!(tcd.radioLaboratorio.isSelected())) && (!(tcd.radioSala.isSelected()))) {
-            JOptionPane.showMessageDialog(null, "Favor escolha entre Lab ou Sala", "Erro", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
 
         if (tcd.fieldQuantidadeAlunos.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Favor preencher a quantidade de alunos", "Erro", JOptionPane.WARNING_MESSAGE);
@@ -72,8 +71,29 @@ public class ControladorTelaCadastroDisciplina {
         }
     }
 
+    public void carregaSala() {
+        SalaJpaController sjc = new SalaJpaController();
+        tcd.comboBoxSala.removeAllItems();
+        List<Sala> listaSala = sjc.listarSala();
+        List<Sala> comboBox = new ArrayList<>();
+        if (sjc.getSalaCount() != 0) {
+            for (int i = 0; i < sjc.getSalaCount(); i++) {
+                if (listaSala.get(i).getTipo() == true) {
+                    comboBox.add(listaSala.get(i));
+                }
+            }
+
+            tcd.comboBoxSala.addItem("Sala Normal");
+            for (Sala sala : comboBox) {
+                tcd.comboBoxSala.addItem(sala.getNumero());
+            }
+        }
+
+    }
+
     public void iniciar() {
         carregarCursos();
+        carregaSala();
 
         tcd.botaoSalvar.addActionListener(new ActionListener() {
             @Override
@@ -81,10 +101,14 @@ public class ControladorTelaCadastroDisciplina {
                 DisciplinaJpaController djc = new DisciplinaJpaController();
                 CursoJpaController cjc = new CursoJpaController();
                 ProfessorJpaController pjc = new ProfessorJpaController();
+                SalaJpaController sjc = new SalaJpaController();
 
                 //Localizar o curso
                 String nomeCurso = (String) tcd.comboBoxCurso.getSelectedItem();
                 List<Curso> curso = cjc.validaCurso(nomeCurso);
+
+                String tipoSala = (String) tcd.comboBoxSala.getSelectedItem();
+                List<Sala> sala = sjc.validaSala(tipoSala);
 
                 try {
                     if (validarCampos() == true) {
@@ -92,12 +116,6 @@ public class ControladorTelaCadastroDisciplina {
                         //Converter os campos
                         String nome = tcd.fieldNome.getText();
                         int creditos = Integer.parseInt(tcd.fieldCreditos.getText());
-                        int tipo;
-                        if (tcd.radioSala.isSelected()) {
-                            tipo = 0;
-                        } else {
-                            tipo = 1;
-                        }
 
                         int quantidade = Integer.parseInt(tcd.fieldQuantidadeAlunos.getText());
                         String fase = tcd.fieldFase.getText();
@@ -106,22 +124,28 @@ public class ControladorTelaCadastroDisciplina {
                         //Cria a disciplina
                         if (edit == 0) {
                             if (djc.validaDisciplina(tcd.fieldCodigo.getText()) == null) {
+
                                 disciplina = new Disciplina();
                                 disciplina = new Disciplina();
                                 disciplina.setNome(nome);
                                 disciplina.setCreditos(creditos);
-                                disciplina.setTipo(tipo);
                                 disciplina.setQtdAlunos(quantidade);
                                 disciplina.setFase(fase);
                                 disciplina.setCodigo(codigo);
                                 disciplina.setCurso(curso.get(0));
                                 disciplina.setProfessor(null);
+                                if ((sala != null)) {
+                                    disciplina.setSala(sala.get(0));
+                                }
                                 djc.create(disciplina);
 
                                 curso.get(0).addListaDisciplina(disciplina);
+                                if ((sala != null)) {
+                                    sala.get(0).addDisciplina(disciplina);
+                                    sjc.edit(sala.get(0));
+                                }
+
                                 cjc.edit(curso.get(0));
-                                System.out.println(curso.get(0).getListaDisciplina().size() + "Size arraydisciplina em curso");
-                                System.out.println(disciplina.toString());
                                 JOptionPane.showMessageDialog(null, "Disciplina criado com sucesso");
                                 tcd.fieldFase.setText("");
                                 tcd.fieldNome.setText("");
@@ -135,12 +159,14 @@ public class ControladorTelaCadastroDisciplina {
                             System.out.println(disciplina.getId());
                             disciplina.setNome(nome);
                             disciplina.setCreditos(creditos);
-                            disciplina.setTipo(tipo);
                             disciplina.setQtdAlunos(quantidade);
                             disciplina.setFase(fase);
                             disciplina.setCodigo(codigo);
                             disciplina.setCurso(curso.get(0));
-                            disciplina.setProfessor(null);
+
+                            if ((sala != null)) {
+                                disciplina.setSala(sala.get(0));
+                            }
 
                             try {
                                 djc.edit(disciplina);
