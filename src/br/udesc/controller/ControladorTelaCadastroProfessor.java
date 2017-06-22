@@ -1,7 +1,9 @@
 package br.udesc.controller;
 
 import br.udesc.model.dao.CursoJpaController;
+import br.udesc.model.dao.PessoaHorarioPreferenciaJpaController;
 import br.udesc.model.dao.ProfessorJpaController;
+import br.udesc.model.entidade.PessoaHorarioPreferencia;
 import br.udesc.model.entidade.Professor;
 import br.udesc.view.TelaCadastroProfessor;
 import java.awt.event.ActionEvent;
@@ -61,6 +63,32 @@ public class ControladorTelaCadastroProfessor {
                             professor.setNome(nome);
                             professor.setCpf(cpf);
                             pjc.create(professor);
+
+                            PessoaHorarioPreferenciaJpaController phpjc = new PessoaHorarioPreferenciaJpaController();
+
+
+                            for (int i = 1; i <= 6; i++) {
+                                for (int j = 1; j <= 2; j++) {
+                                    String a = i+""+j;
+                                    PessoaHorarioPreferencia php = new PessoaHorarioPreferencia();
+                                    
+                                    php.setProfessor(professor);
+                                    php.setSequencia(Integer.parseInt(a));
+                                    php.setValor(10);
+                                    phpjc.create(php);
+                                    professor.addListHorario(php);
+
+                                }
+                            }
+                            
+                            
+                            try {
+                                pjc.edit(professor);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            professor.getListaHorario();
                             tcp.fieldNome.setText("");
                             tcp.fieldCpf.setText("");
                             JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);

@@ -52,10 +52,14 @@ public class Professor implements Serializable {
         listaDisciplinaProfessor = new ArrayList<>();
     }
 
-    public void addDisciplina(Disciplina d){
+    public void addListHorario(PessoaHorarioPreferencia php) {
+        listaHorario.add(php);
+    }
+
+    public void addDisciplina(Disciplina d) {
         listaDisciplinaProfessor.add(d);
     }
-    
+
     public List<Disciplina> getListaDisciplinaProfessor() {
         return listaDisciplinaProfessor;
     }
@@ -120,10 +124,10 @@ public class Professor implements Serializable {
     public String toString() {
         return "br.udesc.model.entidade.Professor[ id=" + id + " ]";
     }
-    
-    public int getTotalCreditos(){
+
+    public int getTotalCreditos() {
         int total = 0;
-        for(Disciplina d : this.listaDisciplinaProfessor){
+        for (Disciplina d : this.listaDisciplinaProfessor) {
             total = d.getCreditos();
         }
         return total;
