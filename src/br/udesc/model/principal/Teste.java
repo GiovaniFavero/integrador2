@@ -22,8 +22,20 @@ public class Teste {
 
     public static void main(String[] args) {
 
-//        EntityManager em = emf.createEntityManager();
-//        GerarMaterias gm = new GerarMaterias();
+        GerarMaterias gm = new GerarMaterias();
+        GerarLaboratorios gl = new GerarLaboratorios();
+        GerarProfessor gp = new GerarProfessor();
+
+        SalaJpaController sjc = new SalaJpaController();
+        DisciplinaJpaController djc = new DisciplinaJpaController();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+
+        System.out.println(sjc.listarSala().get(0).getListaDisciplina().get(0).getCodigo());
+ 
+
+
 //        gm.gerarCurso();
 //        gm.gerarPrimeiraFase();
 //        gm.gerarSegundaFase();
@@ -33,19 +45,23 @@ public class Teste {
 //        gm.gerarSextaFase();
 //        gm.gerarSetimaFase();
 //        gm.gerarOitavaFase();
-        GerarGLPK gg = new GerarGLPK();
-        gg.salvar();
-        gg.salvarComLab();
-        gg.funcaoMax();
-        gg.funcaoMaxSala();
+//        gl.gerarLabs();
+//        gp.gerarProfessor();
+//        gp.gerarRestricaoProfessor();
+//        gl.vincularLabs();
 
-//        DisciplinaJpaController djc = new DisciplinaJpaController();
-//        CursoJpaController cjc = new CursoJpaController();
-//        System.out.println(cjc.listarCurso().get(0).getListaDisciplina().size());
-//        for (int i = 0; i < cjc.listarCurso().get(0).getListaDisciplina().size(); i++) {
-//            System.out.println(cjc.listarCurso().get(0).getListaDisciplina().get(i).getNome());
-//        }
-        //Acessa a primeira tela
+        GerarGLPK gg = new GerarGLPK();
+        
+        gg.geraTudo();
+//        gg.salvar();
+//        gg.salvarComLab();
+//        gg.funcaoMax();
+//        gg.funcaoMaxSala();
+//        gg.gerarVariaveisPorDisciplina();
+
+
+
+
         ControladorTelaInicio cti = new ControladorTelaInicio();
         cti.executar();
     }
