@@ -439,4 +439,21 @@ public class DisciplinaJpaController implements Serializable {
         return disc;
     }
 
+    public List<Disciplina> listaDisciplinaProfessor(int iProf){
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT e FROM Disciplina e join e.professor prof WHERE prof.id = :prof"); // Condição proibido
+            query.setParameter("prof", iProf);
+            List<Disciplina> res = query.getResultList();
+            return res;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 }

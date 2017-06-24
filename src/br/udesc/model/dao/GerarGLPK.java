@@ -1,6 +1,8 @@
 package br.udesc.model.dao;
 
 import br.udesc.model.entidade.Disciplina;
+import br.udesc.model.entidade.PessoaHorarioPreferencia;
+import br.udesc.model.entidade.Professor;
 import br.udesc.model.entidade.RestricaoDisciplina;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,6 +33,7 @@ public class GerarGLPK {
             funcaoMaxSala();
             gerarVariaveisPorDisciplina();
             gerarRestricoesObrigatorias();
+            gerarRestricoesHorarioProibido();
         } catch (Exception e) {
 
         }
@@ -319,5 +322,45 @@ public class GerarGLPK {
             print += " + _" + oResDis.getDisciplina().getCodigo() + "_" + oResDis.getHorario() + "_" + oResDis.getDisciplina().getSala().getNumero();
         }
         return print;
+    }
+
+    private void gerarRestricoesHorarioProibido() throws IOException {
+        long inicio = System.currentTimeMillis();
+        String print = "";
+
+        String ini = "\n\n# somatorio de todas as disciplinas e horarios indisponiveis de um professor \n";
+        String inb = "s.t. conflito_horario_professor: ";
+        Files.write(Paths.get("./teste.mod"), (ini + inb).getBytes(), StandardOpenOption.APPEND);
+
+        PessoaHorarioPreferenciaJpaController oPesHorJpa = new PessoaHorarioPreferenciaJpaController();
+        DisciplinaJpaController oDisciplinaJpa = new DisciplinaJpaController();
+        
+        
+        List<Professor> res = oPesHorJpa.listarProfessorComRestricoesProibitivas();
+        
+        List<Object> aHorarios;
+        List<Disciplina> aDisciplinas;
+//        List<PessoaHorarioPreferencia> res = new PessoaHorarioPreferenciaJpaController().listarRestricoesProibitivas();
+        
+        for (Professor oProf : res) {
+            aHorarios = oPesHorJpa.getAllHorarioProibidosProfessor((int)(long)oProf.getId());
+            aDisciplinas = oDisciplinaJpa.listaDisciplinaProfessor((int)(long)oProf.getId());
+            
+            for (int i = 0; i < aHorarios.size(); i++) {
+                for (Disciplina oDis : aDisciplinas) {
+                    
+                    if(!print.equals("")){
+                        print += " + ";
+                    }
+
+                    print += "_" + oDis.getCodigo() + "_" + aHorarios.get(i);
+
+                    if (oDis.getSala() != null) {
+                        print += " + _" + oDis.getCodigo() + "_" + aHorarios.get(i) + "_" + oDis.getSala().getNumero();
+                    }
+                }
+            }
+        }
+        Files.write(Paths.get("./teste.mod"), (print + " = 0\n").getBytes(), StandardOpenOption.APPEND);
     }
 }
