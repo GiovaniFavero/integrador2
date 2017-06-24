@@ -363,6 +363,25 @@ public class DisciplinaJpaController implements Serializable {
             em.close();
         }
     }
+    
+    public List<Disciplina> listarDisciplinaComSala() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT e FROM Disciplina e where e.sala is not null");
+            List<Disciplina> disciplina = query.getResultList();
+            return disciplina;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
+    
 
     public List<Disciplina> validaDisciplina(String disciplina) {
         String jpql = "select u from Disciplina u where u.codigo =:codigo_disciplina";
