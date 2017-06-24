@@ -1,6 +1,7 @@
 package br.udesc.model.dao;
 
 import br.udesc.model.entidade.Disciplina;
+import br.udesc.model.entidade.RestricaoDisciplina;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -24,23 +25,12 @@ public class GerarGLPK {
             fw = new FileWriter(arquivo, true);
             bw = new BufferedWriter(fw);
 
-//            new Thread(() -> {
             salvar();
-//            }).start();
-//            new Thread(() -> {
             salvarComLab();
-//            }).start();
-//            new Thread(() -> {
             funcaoMax();
-//            }).start();
-//            new Thread(() -> {
             funcaoMaxSala();
-//            }).start();
-//            new Thread(() -> {
             gerarVariaveisPorDisciplina();
-//            }).start();
-
-//            Thread.sleep(15000);
+            gerarRestricoesObrigatorias();
         } catch (Exception e) {
 
         }
@@ -52,15 +42,11 @@ public class GerarGLPK {
         try {
             Files.write(Paths.get("./teste.mod"), "# Variáveis".getBytes(), StandardOpenOption.APPEND);
 
-//            bw.write("# Variáveis");
-//            bw.newLine();
             List<Disciplina> dis = djc.listarDisciplina();
             String print = "";
             for (int i = 0; i < dis.size(); i++) {
                 for (int j = 1; j <= 6; j++) {
                     for (int k = 1; k <= 2; k++) {
-//                        bw.write("var _" + djc.listarDisciplina().get(i).getCodigo() + "_" + j + k + ", binary;");
-//                        bw.newLine();
                         print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + ", binary;";
 
                     }
@@ -217,8 +203,31 @@ public class GerarGLPK {
                 }
             }
 
-            
 //            Files.write(Paths.get("./teste.mod"), (print + "\n").getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("gerarVariaveisPorDisciplinaComSala(): " + (System.currentTimeMillis() - inicio) + "ms");
+    }
+
+    public void gerarRestricoesObrigatorias() throws IOException {
+        long inicio = System.currentTimeMillis();
+
+        String ini = "\n\n# horario arbitrario de disciplina\n";
+        String inb = "s.t. horario_arbitrario_disciplina: ";
+        Files.write(Paths.get("./teste.mod"), (ini + inb).getBytes(), StandardOpenOption.APPEND);
+
+        List<RestricaoDisciplina> res = new RestricaoDisciplinaJpaController().listarRestricoesObrigatorias();
+
+        try {
+            String print = "";
+            for (int i = 0; i < res.size(); i++) {
+                print += "_" + res.get(i).getDisciplina().getCodigo() + "_" + res.get(i).getHorario() + " + ";
+                if (res.get(i).getDisciplina().getSala() != null) {
+                    print += "_" + res.get(i).getDisciplina().getCodigo() + "_" + res.get(i).getHorario() +"_"+ res.get(i).getDisciplina().getSala().getNumero() + " + ";
+                }
+            }
+            Files.write(Paths.get("./teste.mod"), (print + " = 1").getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
