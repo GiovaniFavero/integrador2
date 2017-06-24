@@ -68,6 +68,7 @@ public class GerarGLPK {
                 }
             }
             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+            print = null;
         } catch (IOException e) {
         }
         System.out.println("salvar(): " + (System.currentTimeMillis() - inicio) + "ms");
@@ -89,6 +90,7 @@ public class GerarGLPK {
                 }
             }
             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+            print = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,7 +103,7 @@ public class GerarGLPK {
 //
 //            bw.newLine();
 //            bw.write("maximize z: ");
-            Files.write(Paths.get("./teste.mod"), "\nmaximize z: ".getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("./teste.mod"), "\n\nmaximize z: ".getBytes(), StandardOpenOption.APPEND);
             String print = "";
             ProfessorJpaController pjc = new ProfessorJpaController();
             
@@ -124,6 +126,7 @@ public class GerarGLPK {
                 }
             }
             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+            print = null;
             
         } catch (IOException | NumberFormatException e) {
         }
@@ -155,6 +158,7 @@ public class GerarGLPK {
                 }
             }
             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+            print = null;
             
         } catch (IOException | NumberFormatException e) {
         }
@@ -201,6 +205,7 @@ public class GerarGLPK {
                 
             }
             Files.write(Paths.get("./teste.mod"), (print + "\n").getBytes(), StandardOpenOption.APPEND);
+            print = null;
             
         } catch (IOException e) {
         }
@@ -238,6 +243,7 @@ public class GerarGLPK {
                 }
             }
             Files.write(Paths.get("./teste.mod"), (print + "\n").getBytes(), StandardOpenOption.APPEND);
+            print = null;
         } catch (IOException e) {
         }
         System.out.println("gerarVariaveisPorDisciplinaComSala(): " + (System.currentTimeMillis() - inicio) + "ms");
