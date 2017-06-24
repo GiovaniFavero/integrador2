@@ -364,12 +364,46 @@ public class DisciplinaJpaController implements Serializable {
         }
     }
     
+    public List<Disciplina> listarDisciplinaComProfessor() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT e FROM Disciplina e WHERE e.professor is not null");
+            List<Disciplina> disciplina = query.getResultList();
+            return disciplina;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public List<Disciplina> listarDisciplinaComProfessorComSala() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT e FROM Disciplina e WHERE e.professor is not null AND e.sala is not null");
+            List<Disciplina> disciplina = query.getResultList();
+            return disciplina;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
     public List<Disciplina> listarDisciplinaComSala() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
-            Query query = em.createQuery("SELECT e FROM Disciplina e where e.sala is not null");
+            Query query = em.createQuery("SELECT e FROM Disciplina e WHERE e.sala is not null");
             List<Disciplina> disciplina = query.getResultList();
             return disciplina;
         } catch (Exception e) {
