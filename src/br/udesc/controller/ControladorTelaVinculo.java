@@ -176,6 +176,7 @@ public class ControladorTelaVinculo {
                         if (listaDisciplina.get(0).getProfessor() == null) {
                             JOptionPane.showMessageDialog(null, "O professor " + profesor + " foi colocado com a disciplina " + disciplina, "Sucesso", JOptionPane.PLAIN_MESSAGE);
                             listaDisciplina.get(0).setProfessor(listaProfessor.get(0));
+                            listaProfessor.get(0).addDisciplina(listaDisciplina.get(0));
                             pjc.edit(listaProfessor.get(0));
                             djc.edit(listaDisciplina.get(0));
                         } else {
