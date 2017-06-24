@@ -179,4 +179,20 @@ public class RestricaoDisciplinaJpaController implements Serializable {
 
     }
 
+    public List<RestricaoDisciplina> listarRestricoesObrigatorias() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT e FROM RestricaoDisciplina e WHERE e.condicao = 11 "); // Condição Obrigatória
+            List<RestricaoDisciplina> res = query.getResultList();
+            return res;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 }

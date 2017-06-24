@@ -12,7 +12,6 @@ import br.udesc.model.entidade.RestricaoDisciplina;
 import java.util.List;
 
 /**
- *
  * @author luisr
  */
 public class GerarRestricaoDisciplina {
@@ -23,16 +22,14 @@ public class GerarRestricaoDisciplina {
 
     public  void criaRestricao() {
         List<Disciplina> dis = dj.listarDisciplinaComSala();
-        RestricaoDisciplina res;
-        for (int i = 0; i < 10; i++) {
+        RestricaoDisciplina res = null;
+        for (int i = 0; i < 5; i++) {
             for (int j = 1; j < 3; j++) {
                 for (int k = 1; k < 7; k++) {
-                    res = null;
                     res = new RestricaoDisciplina(dis.get(i), Integer.parseInt(k + "" + j), 12);
                     rdj.create(res);
                 }
             }
         }
     }
-
 }

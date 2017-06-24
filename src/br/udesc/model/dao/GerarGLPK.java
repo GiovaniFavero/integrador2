@@ -1,7 +1,7 @@
 package br.udesc.model.dao;
 
 import br.udesc.model.entidade.Disciplina;
-import br.udesc.model.entidade.Professor;
+import br.udesc.model.entidade.RestricaoDisciplina;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +17,6 @@ public class GerarGLPK {
     private File arquivo = new File("./teste.mod");
     private CursoJpaController cjc = new CursoJpaController();
     private DisciplinaJpaController djc = new DisciplinaJpaController();
-    private ProfessorJpaController pjc = new ProfessorJpaController();
     private FileWriter fw;
     private BufferedWriter bw;
 
@@ -31,7 +30,7 @@ public class GerarGLPK {
             funcaoMax();
             funcaoMaxSala();
             gerarVariaveisPorDisciplina();
-//            gerarRestricoesObrigatorias();
+            gerarRestricoesObrigatorias();
         } catch (Exception e) {
 
         }
@@ -211,66 +210,114 @@ public class GerarGLPK {
         System.out.println("gerarVariaveisPorDisciplinaComSala(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
 
-    public void gerarSomatorioDisciplinaProfessor() {
+    public void gerarRestricoesObrigatorias() throws IOException {
         long inicio = System.currentTimeMillis();
+
+        String ini = "\n\n# horario arbitrario de disciplina\n";
+        String inb = "s.t. horario_arbitrario_disciplina: ";
+        Files.write(Paths.get("./teste.mod"), (ini + inb).getBytes(), StandardOpenOption.APPEND);
+
+        List<RestricaoDisciplina> res = new RestricaoDisciplinaJpaController().listarRestricoesObrigatorias();
+        
         try {
-            String print = "";
-            Files.write(Paths.get("./teste.mod"), "\r\n# somatorio_de_todas as disciplinas de um professor por horario <=1 ".getBytes(), StandardOpenOption.APPEND);
-            List<Professor> lista = pjc.listarProfessor();
-            List<Professor> listaProfessor = new ArrayList<>();
-            Professor professor;
-            Disciplina disciplina;
+            String[] aRestricoes;
 
-            for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i).getListaDisciplinaProfessor().size() != 0) {
-                    System.out.println("adicionei");
-                    listaProfessor.add(lista.get(i));
+            aRestricoes = this.montaStringRestricoes(res);
+            
+            for (int i = 0; i < 12; i++) {
+                if(!aRestricoes[i].equals("")){
+                    Files.write(Paths.get("./teste.mod"), (aRestricoes[i] + " = 1\n").getBytes(), StandardOpenOption.APPEND);
                 }
             }
-
-            for (int i = 0; i < listaProfessor.size(); i++) {
-                System.out.println("entrei ali");
-                professor = lista.get(i);
-                System.out.println(professor.getListaDisciplinaProfessor().size());
-                for (int j = 0; j < professor.getListaDisciplinaProfessor().size(); j++) {
-                    System.out.println("entrei aqui");
-                    disciplina = professor.getListaDisciplinaProfessor().get(i);
-                    int x = 1;
-                    int z = 1;
-                    print += disciplina.getCodigo() + "_" + x + z;
-
-                }
-            }
-
-            Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("salvarComLab(): " + (System.currentTimeMillis() - inicio) + "ms");
-
+        System.out.println("gerarVariaveisPorDisciplinaComSala(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
+    
+    private String[] montaStringRestricoes(List<RestricaoDisciplina> res){
+        String restricao11 = "";
+        String restricao12 = "";
+        String restricao21 = "";
+        String restricao22 = "";
+        String restricao31 = "";
+        String restricao32 = "";
+        String restricao41 = "";
+        String restricao42 = "";
+        String restricao51 = "";
+        String restricao52 = "";
+        String restricao61 = "";
+        String restricao62 = "";
 
-//    public void gerarRestricoesObrigatorias() throws IOException {
-//        long inicio = System.currentTimeMillis();
-//
-//        String ini = "\n\n# horario arbitrario de disciplina\n";
-//        String inb = "s.t. horario_arbitrario_disciplina: ";
-//        Files.write(Paths.get("./teste.mod"), (ini + inb).getBytes(), StandardOpenOption.APPEND);
-//
-////        List<RestricaoDisciplina> res = new RestricaoDisciplinaJpaController().listarRestricoesObrigatorias();
-//
-//        try {
-//            String print = "";
-//            for (int i = 0; i < res.size(); i++) {
-//                print += "_" + res.get(i).getDisciplina().getCodigo() + "_" + res.get(i).getHorario() + " + ";
-//                if (res.get(i).getDisciplina().getSala() != null) {
-//                    print += "_" + res.get(i).getDisciplina().getCodigo() + "_" + res.get(i).getHorario() +"_"+ res.get(i).getDisciplina().getSala().getNumero() + " + ";
-//                }
-//            }
-//            Files.write(Paths.get("./teste.mod"), (print + " = 1").getBytes(), StandardOpenOption.APPEND);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("gerarVariaveisPorDisciplinaComSala(): " + (System.currentTimeMillis() - inicio) + "ms");
-//    }
+        for (int i = 0; i < res.size(); i++) {
+            switch(res.get(i).getHorario()){
+                case 11:
+                    restricao11 += this.getStringVariavelRestricao(res.get(i), (!restricao11.equals("")));
+                    break;
+                case 12:
+                    restricao12 += this.getStringVariavelRestricao(res.get(i), (!restricao12.equals("")));
+                    break;
+                case 21:
+                    restricao21 += this.getStringVariavelRestricao(res.get(i), (!restricao21.equals("")));
+                    break;
+                case 22:
+                    restricao22 += this.getStringVariavelRestricao(res.get(i), (!restricao22.equals("")));
+                    break;
+                case 31:
+                    restricao31 += this.getStringVariavelRestricao(res.get(i), (!restricao31.equals("")));
+                    break;
+                case 32:
+                    restricao32 += this.getStringVariavelRestricao(res.get(i), (!restricao32.equals("")));
+                    break;
+                case 41:
+                    restricao41 += this.getStringVariavelRestricao(res.get(i), (!restricao41.equals("")));
+                    break;
+                case 42:
+                    restricao42 += this.getStringVariavelRestricao(res.get(i), (!restricao42.equals("")));
+                    break;
+                case 51:
+                    restricao51 += this.getStringVariavelRestricao(res.get(i), (!restricao51.equals("")));
+                    break;
+                case 52:
+                    restricao52 += this.getStringVariavelRestricao(res.get(i), (!restricao52.equals("")));
+                    break;
+                case 61:
+                    restricao61 += this.getStringVariavelRestricao(res.get(i), (!restricao61.equals("")));
+                    break;
+                case 62:
+                    restricao62 += this.getStringVariavelRestricao(res.get(i), (!restricao62.equals("")));
+                    break;
+            }
+        }
+
+        String[] aRestricoes = new String[12];
+        aRestricoes[0] = restricao11;
+        aRestricoes[1] = restricao12;
+        aRestricoes[2] = restricao21;
+        aRestricoes[3] = restricao22;
+        aRestricoes[4] = restricao31;
+        aRestricoes[5] = restricao32;
+        aRestricoes[6] = restricao41;
+        aRestricoes[7] = restricao42;
+        aRestricoes[8] = restricao51;
+        aRestricoes[9] = restricao52;
+        aRestricoes[10] = restricao61;
+        aRestricoes[11] = restricao62;
+
+        return aRestricoes;
+    }
+    
+    private String getStringVariavelRestricao(RestricaoDisciplina oResDis, boolean bAdicionaMais){
+        String print = "";
+        if(bAdicionaMais){
+            print = " + ";
+        }
+        print += "_" + oResDis.getDisciplina().getCodigo() + "_" + oResDis.getHorario();
+
+        if (oResDis.getDisciplina().getSala() != null) {
+            print += " + _" + oResDis.getDisciplina().getCodigo() + "_" + oResDis.getHorario() + "_" + oResDis.getDisciplina().getSala().getNumero();
+        }
+        return print;
+    }
 }
