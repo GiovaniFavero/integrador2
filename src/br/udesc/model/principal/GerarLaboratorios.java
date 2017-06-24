@@ -19,6 +19,7 @@ public class GerarLaboratorios {
             sala.setTipo(true);
             sala.setLimite(50);
             sjc.create(sala);
+            sala = new Sala();
         }
     }
 

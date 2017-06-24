@@ -178,10 +178,10 @@ public class GerarGLPK {
                         if (j == 6 && k == 2) {
                             if (listaDisciplina.get(x).getSala() != null) {
                                 gerarVariaveisPorDisciplinaComSala(disc);
+                                System.out.println("VORTEI");
                             } else {
                                 int a = (int) Math.ceil(disc.getCreditos() / 2);
                                 String aux = String.valueOf(a);
-
                                 print += "_" + disc.getCodigo() + "_" + j + k + " = " + aux + "\r\n";
                             }
                         } else {
