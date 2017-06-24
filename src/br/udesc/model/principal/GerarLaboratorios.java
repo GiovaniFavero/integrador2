@@ -14,35 +14,12 @@ public class GerarLaboratorios {
     public void gerarLabs() {
         SalaJpaController sjc = new SalaJpaController();
 
-        sala.setNumero("Lab 1");
-        sala.setTipo(true);
-        sala.setLimite(50);
-        sjc.create(sala);
-
-        sala = new Sala();
-        sala.setNumero("Lab 2");
-        sala.setTipo(true);
-        sala.setLimite(50);
-        sjc.create(sala);
-
-        sala = new Sala();
-        sala.setNumero("Lab 3");
-        sala.setTipo(true);
-        sala.setLimite(50);
-        sjc.create(sala);
-
-        sala = new Sala();
-        sala.setNumero("Lab 4");
-        sala.setTipo(true);
-        sala.setLimite(50);
-        sjc.create(sala);
-
-        sala = new Sala();
-        sala.setNumero("Lab 5");
-        sala.setTipo(true);
-        sala.setLimite(50);
-        sjc.create(sala);
-
+        for (int i = 0; i < 5; i++) {
+            sala.setNumero("Lab_" + (i + 1));
+            sala.setTipo(true);
+            sala.setLimite(50);
+            sjc.create(sala);
+        }
     }
 
     public void vincularLabs() {
@@ -55,11 +32,11 @@ public class GerarLaboratorios {
         try {
             djc.edit(d);
             sjc.edit(s);
-            
+
             System.out.println(d.getCodigo() + "A");
-            System.out.println(d.getSala()+ "B");
-            
-            System.out.println(s.getListaDisciplina().size()+"C");
+            System.out.println(d.getSala() + "B");
+
+            System.out.println(s.getListaDisciplina().size() + "C");
 
         } catch (Exception e) {
             e.printStackTrace();
