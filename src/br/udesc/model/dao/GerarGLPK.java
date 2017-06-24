@@ -12,19 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GerarGLPK {
-    
+
     private File arquivo = new File("./teste.mod");
     private CursoJpaController cjc = new CursoJpaController();
     private DisciplinaJpaController djc = new DisciplinaJpaController();
     private FileWriter fw;
     private BufferedWriter bw;
-    
+
     public void geraTudo() {
         try {
             fw = new FileWriter(arquivo, true);
             bw = new BufferedWriter(fw);
-            bw.close();
-            fw.close();
 
 //            new Thread(() -> {
             salvar();
@@ -44,15 +42,16 @@ public class GerarGLPK {
 
 //            Thread.sleep(15000);
         } catch (Exception e) {
-            
+
         }
-        
+
     }
-    
+
     public void salvar() {
         long inicio = System.currentTimeMillis();
         try {
             Files.write(Paths.get("./teste.mod"), "# Variáveis".getBytes(), StandardOpenOption.APPEND);
+
 //            bw.write("# Variáveis");
 //            bw.newLine();
             List<Disciplina> dis = djc.listarDisciplina();
@@ -62,53 +61,51 @@ public class GerarGLPK {
                     for (int k = 1; k <= 2; k++) {
 //                        bw.write("var _" + djc.listarDisciplina().get(i).getCodigo() + "_" + j + k + ", binary;");
 //                        bw.newLine();
-                        print += "\nvar _" + dis.get(i).getCodigo() + "_" + j + k + ", binary;";
-                        
+                        print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + ", binary;";
+
                     }
                 }
             }
             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-            print = null;
         } catch (IOException e) {
         }
         System.out.println("salvar(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
-    
+
     public void salvarComLab() {
         long inicio = System.currentTimeMillis();
         try {
             List<Disciplina> dis = djc.listarDisciplinaComSala();
             String print = "";
-            
+
             for (int i = 0; i < dis.size(); i++) {
                 for (int j = 1; j <= 6; j++) {
                     for (int k = 1; k <= 2; k++) {
 //                            bw.write("var _" + djc.listarDisciplina().get(i).getCodigo() + "_" + j + k + "_" + djc.listarDisciplina().get(i).getSala().getNumero() + ", binary;");
 //                            bw.newLine();
-                        print += "\nvar _" + dis.get(i).getCodigo() + "_" + j + k + "_" + dis.get(i).getSala().getNumero() + ", binary;";
+                        print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + "_" + dis.get(i).getSala().getNumero() + ", binary;";
                     }
                 }
             }
             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-            print = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
         System.out.println("salvarComLab(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
-    
+
     public void funcaoMax() {
         long inicio = System.currentTimeMillis();
         try {
 //
 //            bw.newLine();
 //            bw.write("maximize z: ");
-            Files.write(Paths.get("./teste.mod"), "\n\nmaximize z: ".getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("./teste.mod"), "\r\nmaximize z: ".getBytes(), StandardOpenOption.APPEND);
             String print = "";
             ProfessorJpaController pjc = new ProfessorJpaController();
-            
+
             List<Disciplina> dis = djc.listarDisciplinaComProfessor();
-            
+
             if (pjc.getProfessorCount() != 0) {
                 for (int i = 0; i < dis.size(); i++) {
                     for (int j = 1; j <= 6; j++) {
@@ -126,13 +123,12 @@ public class GerarGLPK {
                 }
             }
             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-            print = null;
-            
+
         } catch (IOException | NumberFormatException e) {
         }
         System.out.println("funcaoMax(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
-    
+
     public void funcaoMaxSala() {
         long inicio = System.currentTimeMillis();
         try {
@@ -158,93 +154,73 @@ public class GerarGLPK {
                 }
             }
             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-            print = null;
-            
+
         } catch (IOException | NumberFormatException e) {
         }
         System.out.println("funcaoMaxSala(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
-    
+
     public void gerarVariaveisPorDisciplina() {
         long inicio = System.currentTimeMillis();
         try {
-            
-            String print = "";
-            Files.write(Paths.get("./teste.mod"), ("\n" + "# somatorio de todas as variaveis da disciplina = carga horaria" + "\n" + "s.t. carga_horaria: ").getBytes(), StandardOpenOption.APPEND);
-//            bw.newLine();
-//            bw.write("# somatorio de todas as variaveis da disciplina = carga horaria");
-//            bw.newLine();
-//            bw.write("s.t. carga_horaria: ");
 
-            djc.listarDisciplina();
+            String print = "";
+            Files.write(Paths.get("./teste.mod"), ("\r\n\r\n" + "# somatorio de todas as variaveis da disciplina = carga horaria" + "\n" + "s.t. carga_horaria: ").getBytes(), StandardOpenOption.APPEND);
+
             Disciplina disc = new Disciplina();
-            List<Disciplina> dis = djc.listarDisciplinaComSala();
-            
-            for (int x = 0; x < dis.size(); x++) {
-                disc = dis.get(x);
+            List<Disciplina> disComSala = djc.listarDisciplinaComSala();
+            List<Disciplina> listaDisciplina = djc.listarDisciplina();
+
+            for (int x = 0; x < listaDisciplina.size(); x++) {
+                disc = listaDisciplina.get(x);
                 for (int j = 1; j <= 6; j++) {
                     for (int k = 1; k <= 2; k++) {
                         if (j == 6 && k == 2) {
-                            if (!dis.isEmpty()) {
-//                                    System.out.println(listaDisciplina.size() + " size");
-//                                    System.out.println("ENTREI");
-//                                gerarVariaveisPorDisciplinaComSala();
+                            if (listaDisciplina.get(x).getSala() != null) {
+                                gerarVariaveisPorDisciplinaComSala(disc);
                             } else {
                                 int a = (int) Math.ceil(disc.getCreditos() / 2);
                                 String aux = String.valueOf(a);
-//                                bw.write("_" + disc.getCodigo() + "_" + j + k + " = " + aux);
-//                                bw.newLine();
-                                print += "_" + disc.getCodigo() + "_" + j + k + " = " + aux + "\n";
+
+                                print += "_" + disc.getCodigo() + "_" + j + k + " = " + aux + "\r\n";
                             }
                         } else {
-//                            bw.write("_" + disc.getCodigo() + "_" + j + k + "+");
                             print += "_" + disc.getCodigo() + "_" + j + k + "+";
                         }
                     }
                 }
-                
             }
             Files.write(Paths.get("./teste.mod"), (print + "\n").getBytes(), StandardOpenOption.APPEND);
-            print = null;
-            
+
         } catch (IOException e) {
+            e.printStackTrace();
         }
         System.out.println("gerarVariaveisPorDisciplina(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
-    
-    public void gerarVariaveisPorDisciplinaComSala() {
+
+    public void gerarVariaveisPorDisciplinaComSala(Disciplina d) {
         long inicio = System.currentTimeMillis();
-        djc.listarDisciplina();
-        Disciplina disc = new Disciplina();
-        List<Disciplina> listaDisciplina = new ArrayList<>();
-        
+
         try {
             String print = "";
-            for (int i = 0; i < djc.listarDisciplinaComSala().size(); i++) {
-                listaDisciplina.add(djc.listarDisciplina().get(i));
-            }
-            for (int i = 0; i < listaDisciplina.size(); i++) {
-                disc = listaDisciplina.get(i);
-                
-                for (int j = 1; j <= 6; j++) {
-                    for (int k = 1; k < 2; k++) {
-                        if (j == 6 && k == 2) {
-                            int a = (int) Math.ceil(disc.getCreditos() / 2);
-                            String aux = String.valueOf(a);
-//                            bw.write("_" + disc.getCodigo() + "_" + j + k + disc.getSala().getNumero() + " = " + aux);
-//                            bw.newLine();
-                            print += "_" + disc.getCodigo() + "_" + j + k + disc.getSala().getNumero() + " = " + aux + "\n";
-                            System.out.println(print);
-                        } else {
-//                            bw.write("_" + disc.getCodigo() + "_" + j + k + disc.getSala().getNumero() + "+");
-                            print += "_" + disc.getCodigo() + "_" + j + k + disc.getSala().getNumero() + "+";
-                        }
+
+            for (int j = 1; j <= 6; j++) {
+                for (int k = 1; k <= 2; k++) {
+                    if (j == 6 && k == 2) {
+                        int a = (int) Math.ceil(d.getCreditos() / 2);
+                        String aux = String.valueOf(a);
+                        print += "_" + d.getCodigo() + "_" + j + k + d.getSala().getNumero() + " = " + aux + "\r\n";
+                        Files.write(Paths.get("./teste.mod"), (print + "\n").getBytes(), StandardOpenOption.APPEND);
+                    } else {
+                        print += "_" + d.getCodigo() + "_" + j + k + d.getSala().getNumero() + "+";
                     }
                 }
             }
-            Files.write(Paths.get("./teste.mod"), (print + "\n").getBytes(), StandardOpenOption.APPEND);
-            print = null;
+
+            
+//            Files.write(Paths.get("./teste.mod"), (print + "\n").getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
+            e.printStackTrace();
         }
         System.out.println("gerarVariaveisPorDisciplinaComSala(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
