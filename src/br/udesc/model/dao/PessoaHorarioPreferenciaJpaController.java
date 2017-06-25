@@ -13,6 +13,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import br.udesc.model.entidade.Professor;
+import br.udesc.model.entidade.RestricaoDisciplina;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -165,5 +166,39 @@ public class PessoaHorarioPreferenciaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<Professor> listarProfessorComRestricoesProibitivas() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT distinct(rest.professor) FROM PessoaHorarioPreferencia rest WHERE rest.valor = 12"); // Condição proibido
+            List<Professor> res = query.getResultList();
+            return res;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public List getAllHorarioProibidosProfessor(int iProf) {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT distinct(rest.sequencia) FROM PessoaHorarioPreferencia rest join rest.professor prof WHERE rest.valor = 12 and prof.id = :prof"); // Condição proibido
+            query.setParameter("prof", iProf);
+            List res = query.getResultList();
+            return res;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 }
