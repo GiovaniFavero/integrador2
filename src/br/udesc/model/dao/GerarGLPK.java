@@ -364,12 +364,10 @@ public class GerarGLPK {
 
         Files.write(Paths.get("./teste.mod"), ("\n\n# somatorio de todas as disciplinas e horarios de laboratorio = ao céu de 50% da carga horária\n\n").getBytes(), StandardOpenOption.APPEND);
 
-        String print = "";
-
         for (Disciplina d : dis) {
+            String print = "";
             for (int j = 1; j <= 6; j++) {
                 for (int k = 1; k <= 2; k++) {
-                    int aaa = 0;
                     if (j == 6 && k == 2) {
                         int a = (int) Math.ceil(d.getCreditos() / 2);
                         String aux = String.valueOf(a);
