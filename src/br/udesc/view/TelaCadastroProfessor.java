@@ -16,7 +16,27 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
      */
     public TelaCadastroProfessor() {
         initComponents();
+        layoutBtms();
     }
+    
+    public void layoutBtms() {
+        botaoInicio.setBorderPainted(false);
+        botaoInicio.setFocusPainted(false);
+        botaoInicio.setContentAreaFilled(false);
+        
+        botaoDisciplina.setBorderPainted(false);
+        botaoDisciplina.setFocusPainted(false);
+        botaoDisciplina.setContentAreaFilled(false);
+        
+        botaoVincular.setBorderPainted(false);
+        botaoVincular.setFocusPainted(false);
+        botaoVincular.setContentAreaFilled(false);
+        
+        botaoSala.setBorderPainted(false);
+        botaoSala.setFocusPainted(false);
+        botaoSala.setContentAreaFilled(false);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,6 +47,14 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        areaTotalPanel = new javax.swing.JPanel();
+        tituloPanel = new javax.swing.JPanel();
+        tituloLabel = new javax.swing.JLabel();
+        menuRapidoPanel = new javax.swing.JPanel();
+        botaoInicio = new javax.swing.JButton();
+        botaoSala = new javax.swing.JButton();
+        botaoDisciplina = new javax.swing.JButton();
+        botaoVincular = new javax.swing.JButton();
         conteudoPanel = new javax.swing.JPanel();
         fieldCpf = new javax.swing.JTextField();
         cpfLabel = new javax.swing.JLabel();
@@ -35,17 +63,80 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         botaoLimpar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         botaoVoltar = new javax.swing.JButton();
-        tituloPanel = new javax.swing.JPanel();
-        tituloLabel = new javax.swing.JLabel();
-        menuRapidoPanel = new javax.swing.JPanel();
-        menuLabel = new javax.swing.JLabel();
-        botaoInicio = new javax.swing.JButton();
-        botaoSala = new javax.swing.JButton();
-        botaoDisciplina = new javax.swing.JButton();
-        botaoVincular = new javax.swing.JButton();
 
         setTitle("Cadastro de Professor");
-        setMinimumSize(new java.awt.Dimension(440, 390));
+        setMaximumSize(new java.awt.Dimension(565, 535));
+        setMinimumSize(new java.awt.Dimension(565, 535));
+        setPreferredSize(new java.awt.Dimension(565, 535));
+
+        areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setPreferredSize(new java.awt.Dimension(553, 500));
+
+        tituloPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tituloPanel.setMaximumSize(new java.awt.Dimension(545, 50));
+        tituloPanel.setMinimumSize(new java.awt.Dimension(545, 50));
+        tituloPanel.setPreferredSize(new java.awt.Dimension(545, 50));
+
+        tituloLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tituloLabel.setText("Cadastro de Professor");
+        tituloPanel.add(tituloLabel);
+
+        areaTotalPanel.add(tituloPanel);
+
+        menuRapidoPanel.setMaximumSize(new java.awt.Dimension(550, 40));
+        menuRapidoPanel.setMinimumSize(new java.awt.Dimension(550, 40));
+        menuRapidoPanel.setPreferredSize(new java.awt.Dimension(550, 40));
+        menuRapidoPanel.setLayout(new java.awt.GridLayout(1, 0));
+
+        botaoInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon (1).png"))); // NOI18N
+        botaoInicio.setText("Início");
+        botaoInicio.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoInicio.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoInicio.setPreferredSize(new java.awt.Dimension(59, 25));
+        botaoInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoInicioActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoInicio);
+
+        botaoSala.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/sala_24.png"))); // NOI18N
+        botaoSala.setText("Sala");
+        botaoSala.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoSala.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoSala.setPreferredSize(new java.awt.Dimension(59, 25));
+        botaoSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalaActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoSala);
+
+        botaoDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/disciplina_24.png"))); // NOI18N
+        botaoDisciplina.setText("Disciplina");
+        botaoDisciplina.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoDisciplina.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoDisciplina.setPreferredSize(new java.awt.Dimension(59, 25));
+        botaoDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDisciplinaActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoDisciplina);
+
+        botaoVincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Vincular.png"))); // NOI18N
+        botaoVincular.setText("Vincular");
+        botaoVincular.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoVincular.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoVincular.setPreferredSize(new java.awt.Dimension(59, 25));
+        menuRapidoPanel.add(botaoVincular);
+
+        areaTotalPanel.add(menuRapidoPanel);
+
+        conteudoPanel.setMaximumSize(new java.awt.Dimension(540, 400));
+        conteudoPanel.setMinimumSize(new java.awt.Dimension(540, 400));
+        conteudoPanel.setPreferredSize(new java.awt.Dimension(540, 400));
 
         fieldCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,7 +144,8 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
             }
         });
 
-        cpfLabel.setText("CPF");
+        cpfLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cpfLabel.setText("CPF:");
 
         fieldNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,161 +153,85 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
             }
         });
 
-        nomeLabel.setText("Nome");
+        nomeLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nomeLabel.setText("Nome:");
 
+        botaoLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon.png"))); // NOI18N
         botaoLimpar.setText("Limpar");
+        botaoLimpar.setMaximumSize(new java.awt.Dimension(110, 25));
+        botaoLimpar.setMinimumSize(new java.awt.Dimension(110, 25));
+        botaoLimpar.setPreferredSize(new java.awt.Dimension(110, 25));
 
+        botaoSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/save.png"))); // NOI18N
         botaoSalvar.setText("Salvar");
+        botaoSalvar.setMaximumSize(new java.awt.Dimension(110, 25));
+        botaoSalvar.setMinimumSize(new java.awt.Dimension(110, 25));
+        botaoSalvar.setPreferredSize(new java.awt.Dimension(110, 25));
 
+        botaoVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/left-arrow.png"))); // NOI18N
         botaoVoltar.setText("Voltar");
+        botaoVoltar.setMaximumSize(new java.awt.Dimension(110, 25));
+        botaoVoltar.setMinimumSize(new java.awt.Dimension(110, 25));
+        botaoVoltar.setPreferredSize(new java.awt.Dimension(110, 25));
 
         javax.swing.GroupLayout conteudoPanelLayout = new javax.swing.GroupLayout(conteudoPanel);
         conteudoPanel.setLayout(conteudoPanelLayout);
         conteudoPanelLayout.setHorizontalGroup(
             conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(conteudoPanelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(conteudoPanelLayout.createSequentialGroup()
-                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nomeLabel)
-                            .addComponent(cpfLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(79, 79, 79)
+                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(conteudoPanelLayout.createSequentialGroup()
-                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addComponent(cpfLabel)
+                                .addGap(23, 23, 23))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conteudoPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(nomeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldCpf)
+                            .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         conteudoPanelLayout.setVerticalGroup(
             conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(conteudoPanelLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(109, 109, 109)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomeLabel)
-                    .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeLabel))
                 .addGap(18, 18, 18)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cpfLabel)
-                    .addComponent(fieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(fieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cpfLabel))
+                .addGap(195, 195, 195)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13))
         );
 
-        tituloLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tituloLabel.setText("Cadastro de Professor");
-
-        javax.swing.GroupLayout tituloPanelLayout = new javax.swing.GroupLayout(tituloPanel);
-        tituloPanel.setLayout(tituloPanelLayout);
-        tituloPanelLayout.setHorizontalGroup(
-            tituloPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tituloPanelLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(tituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        tituloPanelLayout.setVerticalGroup(
-            tituloPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tituloPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tituloLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        menuLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        menuLabel.setText("Menu");
-
-        botaoInicio.setText("Início");
-        botaoInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoInicioActionPerformed(evt);
-            }
-        });
-
-        botaoSala.setText("Sala");
-        botaoSala.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoSalaActionPerformed(evt);
-            }
-        });
-
-        botaoDisciplina.setText("Disciplina");
-        botaoDisciplina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoDisciplinaActionPerformed(evt);
-            }
-        });
-
-        botaoVincular.setText("Vincular");
-
-        javax.swing.GroupLayout menuRapidoPanelLayout = new javax.swing.GroupLayout(menuRapidoPanel);
-        menuRapidoPanel.setLayout(menuRapidoPanelLayout);
-        menuRapidoPanelLayout.setHorizontalGroup(
-            menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuRapidoPanelLayout.createSequentialGroup()
-                .addGroup(menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuRapidoPanelLayout.createSequentialGroup()
-                        .addGroup(menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(menuRapidoPanelLayout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(menuLabel))
-                            .addGroup(menuRapidoPanelLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botaoSala, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botaoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botaoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuRapidoPanelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(botaoVincular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        menuRapidoPanelLayout.setVerticalGroup(
-            menuRapidoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuRapidoPanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(menuLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botaoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botaoSala)
-                .addGap(18, 18, 18)
-                .addComponent(botaoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(botaoVincular)
-                .addContainerGap())
-        );
+        areaTotalPanel.add(conteudoPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tituloPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(conteudoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuRapidoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(areaTotalPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tituloPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(menuRapidoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(conteudoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(70, Short.MAX_VALUE))
+            .addComponent(areaTotalPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -247,6 +263,7 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel areaTotalPanel;
     public javax.swing.JButton botaoDisciplina;
     public javax.swing.JButton botaoInicio;
     public javax.swing.JButton botaoLimpar;
@@ -258,10 +275,9 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
     public javax.swing.JLabel cpfLabel;
     public javax.swing.JTextField fieldCpf;
     public javax.swing.JTextField fieldNome;
-    public javax.swing.JLabel menuLabel;
-    public javax.swing.JPanel menuRapidoPanel;
+    private javax.swing.JPanel menuRapidoPanel;
     public javax.swing.JLabel nomeLabel;
     public javax.swing.JLabel tituloLabel;
-    public javax.swing.JPanel tituloPanel;
+    private javax.swing.JPanel tituloPanel;
     // End of variables declaration//GEN-END:variables
 }

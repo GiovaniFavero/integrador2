@@ -28,8 +28,8 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        labelTitulo = new javax.swing.JLabel();
+        areaTotalPanel = new javax.swing.JPanel();
+        conteudoPanel = new javax.swing.JPanel();
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         cbxSegunda1 = new javax.swing.JComboBox<>();
@@ -62,42 +62,39 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        tituloPanel = new javax.swing.JPanel();
+        labelTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(565, 535));
+        setMinimumSize(new java.awt.Dimension(565, 535));
+        setPreferredSize(new java.awt.Dimension(565, 535));
 
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setPreferredSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setLayout(new java.awt.GridBagLayout());
 
-        labelTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelTitulo.setText("Disciplina");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        jPanel1.add(labelTitulo, gridBagConstraints);
+        conteudoPanel.setMaximumSize(new java.awt.Dimension(540, 400));
+        conteudoPanel.setMinimumSize(new java.awt.Dimension(540, 400));
+        conteudoPanel.setPreferredSize(new java.awt.Dimension(540, 400));
 
+        botaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cancel.png"))); // NOI18N
         botaoCancelar.setText("Cancelar");
+        botaoCancelar.setMaximumSize(new java.awt.Dimension(110, 25));
+        botaoCancelar.setMinimumSize(new java.awt.Dimension(110, 25));
+        botaoCancelar.setPreferredSize(new java.awt.Dimension(110, 25));
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCancelarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 10);
-        jPanel1.add(botaoCancelar, gridBagConstraints);
 
+        botaoSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/save.png"))); // NOI18N
         botaoSalvar.setText("Salvar");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 0);
-        jPanel1.add(botaoSalvar, gridBagConstraints);
+        botaoSalvar.setMaximumSize(new java.awt.Dimension(110, 25));
+        botaoSalvar.setMinimumSize(new java.awt.Dimension(110, 25));
+        botaoSalvar.setPreferredSize(new java.awt.Dimension(110, 25));
 
         cbxSegunda1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSegunda1.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -106,13 +103,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxSegunda1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSegunda1, gridBagConstraints);
 
         cbxSegunda2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSegunda2.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -121,13 +111,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxSegunda2ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSegunda2, gridBagConstraints);
 
         cbxTerca1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxTerca1.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -136,13 +119,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxTerca1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 74;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxTerca1, gridBagConstraints);
 
         cbxTerca2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxTerca2.setName(""); // NOI18N
@@ -152,13 +128,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxTerca2ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 72;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxTerca2, gridBagConstraints);
 
         cbxQuarta1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxQuarta1.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -167,13 +136,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxQuarta1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxQuarta1, gridBagConstraints);
 
         cbxQuarta2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxQuarta2.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -182,13 +144,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxQuarta2ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxQuarta2, gridBagConstraints);
 
         cbxQuinta1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxQuinta1.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -197,13 +152,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxQuinta1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 74;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxQuinta1, gridBagConstraints);
 
         cbxQuinta2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxQuinta2.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -212,13 +160,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxQuinta2ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 74;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxQuinta2, gridBagConstraints);
 
         cbxSexta1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSexta1.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -227,13 +168,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxSexta1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSexta1, gridBagConstraints);
 
         cbxSexta2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSexta2.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -242,13 +176,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxSexta2ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 77;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSexta2, gridBagConstraints);
 
         cbxSabado1.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSabado1.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -257,13 +184,6 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxSabado1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 74;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSabado1, gridBagConstraints);
 
         cbxSabado2.setMinimumSize(new java.awt.Dimension(50, 20));
         cbxSabado2.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -272,163 +192,263 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
                 cbxSabado2ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 74;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 10, 10, 10);
-        jPanel1.add(cbxSabado2, gridBagConstraints);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Segunda-feira");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(jLabel2, gridBagConstraints);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Quarta-feira");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(jLabel3, gridBagConstraints);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Sexta-feira");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Quinta-feira");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Sábado");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Terça-feira");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("1º Período");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("2º Período");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("1º Período");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("2º Período");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("1º Período");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("2º Período");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setText("1º Período");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setText("2º Período");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setText("1º Período");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setText("2º Período");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setText("1º Período");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel19.setText("2º Período");
+
+        javax.swing.GroupLayout conteudoPanelLayout = new javax.swing.GroupLayout(conteudoPanel);
+        conteudoPanel.setLayout(conteudoPanelLayout);
+        conteudoPanelLayout.setHorizontalGroup(
+            conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                                .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(10, 10, 10)
+                                .addComponent(cbxSexta2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(88, 88, 88)
+                                .addComponent(jLabel15)))
+                        .addGap(10, 10, 10)
+                        .addComponent(cbxSabado2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(10, 10, 10)
+                        .addComponent(cbxSegunda1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel10)
+                        .addGap(10, 10, 10)
+                        .addComponent(cbxTerca1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(12, 12, 12)
+                        .addComponent(cbxQuarta1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel12)
+                        .addGap(12, 12, 12)
+                        .addComponent(cbxQuinta1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(10, 10, 10)
+                        .addComponent(cbxSexta1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel18)
+                        .addGap(10, 10, 10)
+                        .addComponent(cbxSabado1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(12, 12, 12)
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel3)
+                                .addGap(215, 215, 215)
+                                .addComponent(jLabel5))
+                            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                                .addComponent(cbxSegunda2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(86, 86, 86)
+                                .addComponent(jLabel19)
+                                .addGap(12, 12, 12)
+                                .addComponent(cbxTerca2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(12, 12, 12)
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel4)
+                                .addGap(222, 222, 222)
+                                .addComponent(jLabel6))
+                            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                                .addComponent(cbxQuarta2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(86, 86, 86)
+                                .addComponent(jLabel17)
+                                .addGap(12, 12, 12)
+                                .addComponent(cbxQuinta2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(63, 63, 63))
+        );
+        conteudoPanelLayout.setVerticalGroup(
+            conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel7))
+                .addGap(10, 10, 10)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbxSegunda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxTerca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel10))))
+                .addGap(18, 18, 18)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel13))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(cbxSegunda2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel19))
+                    .addComponent(cbxTerca2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel16))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(cbxQuarta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel12))
+                    .addComponent(cbxQuinta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel9))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(cbxQuarta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel17))
+                    .addComponent(cbxQuinta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbxSexta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxSabado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel18))))
+                .addGap(18, 18, 18)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbxSexta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxSabado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel15))))
+                .addGap(105, 105, 105)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
+        );
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel1.add(jLabel4, gridBagConstraints);
-
-        jLabel5.setText("Quinta-feira");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel1.add(jLabel5, gridBagConstraints);
-
-        jLabel6.setText("Sábado");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel1.add(jLabel6, gridBagConstraints);
-
-        jLabel7.setText("Terça-feira");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel1.add(jLabel7, gridBagConstraints);
-
-        jLabel8.setText("1º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.ipady = 78;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel8, gridBagConstraints);
+        areaTotalPanel.add(conteudoPanel, gridBagConstraints);
 
-        jLabel9.setText("2º Período");
+        tituloPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tituloPanel.setMaximumSize(new java.awt.Dimension(545, 50));
+        tituloPanel.setMinimumSize(new java.awt.Dimension(545, 50));
+        tituloPanel.setPreferredSize(new java.awt.Dimension(545, 50));
+
+        labelTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitulo.setText("Disciplina");
+        tituloPanel.add(labelTitulo);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel9, gridBagConstraints);
+        areaTotalPanel.add(tituloPanel, gridBagConstraints);
 
-        jLabel10.setText("1º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel10, gridBagConstraints);
-
-        jLabel11.setText("2º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel11, gridBagConstraints);
-
-        jLabel12.setText("1º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel12, gridBagConstraints);
-
-        jLabel13.setText("2º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel13, gridBagConstraints);
-
-        jLabel14.setText("1º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel14, gridBagConstraints);
-
-        jLabel15.setText("2º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel15, gridBagConstraints);
-
-        jLabel16.setText("1º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel16, gridBagConstraints);
-
-        jLabel17.setText("2º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel17, gridBagConstraints);
-
-        jLabel18.setText("1º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel18, gridBagConstraints);
-
-        jLabel19.setText("2º Período");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        jPanel1.add(jLabel19, gridBagConstraints);
-
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(areaTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(areaTotalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -492,6 +512,7 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel areaTotalPanel;
     public javax.swing.JButton botaoCancelar;
     public javax.swing.JButton botaoSalvar;
     public javax.swing.JComboBox<String> cbxQuarta1;
@@ -506,6 +527,7 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> cbxSexta2;
     public javax.swing.JComboBox<String> cbxTerca1;
     public javax.swing.JComboBox<String> cbxTerca2;
+    private javax.swing.JPanel conteudoPanel;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -524,7 +546,7 @@ public class TelaRestricoesDisciplina extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     public javax.swing.JLabel labelTitulo;
+    private javax.swing.JPanel tituloPanel;
     // End of variables declaration//GEN-END:variables
 }

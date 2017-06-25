@@ -46,10 +46,10 @@ public class Teste {
 //        gp.gerarRestricaoProfessor();
 //        gl.vincularLabs();
 //        new Thread(() -> {
-            GerarGLPK gg = new GerarGLPK();
-//
-            gg.geraTudo();
-//        }).start();
+//            GerarGLPK gg = new GerarGLPK();
+////
+//            gg.geraTudo();
+////        }).start();
 //        gg.salvar();
 //        gg.salvarComLab();
 //        gg.funcaoMax();

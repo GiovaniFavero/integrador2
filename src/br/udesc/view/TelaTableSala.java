@@ -26,16 +26,52 @@ public class TelaTableSala extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        areaTotalPanel = new javax.swing.JPanel();
+        tituloPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        tabelaPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaSalas = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        acoesPanel = new javax.swing.JPanel();
         botaoAdicionar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
         boataoExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(565, 535));
+        setMinimumSize(new java.awt.Dimension(565, 535));
+        setPreferredSize(new java.awt.Dimension(565, 535));
+
+        areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setPreferredSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setLayout(new java.awt.GridBagLayout());
+
+        tituloPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tituloPanel.setMaximumSize(new java.awt.Dimension(545, 50));
+        tituloPanel.setMinimumSize(new java.awt.Dimension(545, 50));
+        tituloPanel.setPreferredSize(new java.awt.Dimension(545, 50));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Sala");
+        tituloPanel.add(jLabel1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        areaTotalPanel.add(tituloPanel, gridBagConstraints);
+
+        tabelaPanel.setMaximumSize(new java.awt.Dimension(540, 400));
+        tabelaPanel.setMinimumSize(new java.awt.Dimension(540, 400));
+        tabelaPanel.setPreferredSize(new java.awt.Dimension(540, 400));
+
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(540, 400));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(540, 400));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(540, 400));
 
         tabelaSalas.setAutoCreateRowSorter(true);
         tabelaSalas.setModel(new javax.swing.table.DefaultTableModel(
@@ -49,69 +85,116 @@ public class TelaTableSala extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabelaSalas.setMaximumSize(new java.awt.Dimension(540, 400));
+        tabelaSalas.setMinimumSize(new java.awt.Dimension(540, 400));
+        tabelaSalas.setPreferredSize(new java.awt.Dimension(540, 400));
         jScrollPane1.setViewportView(tabelaSalas);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Sala");
+        javax.swing.GroupLayout tabelaPanelLayout = new javax.swing.GroupLayout(tabelaPanel);
+        tabelaPanel.setLayout(tabelaPanelLayout);
+        tabelaPanelLayout.setHorizontalGroup(
+            tabelaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabelaPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
+        tabelaPanelLayout.setVerticalGroup(
+            tabelaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        areaTotalPanel.add(tabelaPanel, gridBagConstraints);
+
+        acoesPanel.setMaximumSize(new java.awt.Dimension(550, 40));
+        acoesPanel.setMinimumSize(new java.awt.Dimension(550, 40));
+        acoesPanel.setPreferredSize(new java.awt.Dimension(550, 40));
+
+        botaoAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/plus-symbol-in-a-rounded-black-square.png"))); // NOI18N
         botaoAdicionar.setText("Adicionar");
+        botaoAdicionar.setMaximumSize(new java.awt.Dimension(110, 25));
+        botaoAdicionar.setMinimumSize(new java.awt.Dimension(110, 25));
+        botaoAdicionar.setPreferredSize(new java.awt.Dimension(110, 25));
 
+        botaoEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/edit-interface-sign.png"))); // NOI18N
         botaoEditar.setText("Editar");
+        botaoEditar.setMaximumSize(new java.awt.Dimension(110, 25));
+        botaoEditar.setMinimumSize(new java.awt.Dimension(110, 25));
+        botaoEditar.setPreferredSize(new java.awt.Dimension(110, 25));
+        botaoEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditarActionPerformed(evt);
+            }
+        });
 
+        boataoExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/delete.png"))); // NOI18N
         boataoExcluir.setText("Excluir");
+        boataoExcluir.setMaximumSize(new java.awt.Dimension(110, 25));
+        boataoExcluir.setMinimumSize(new java.awt.Dimension(110, 25));
+        boataoExcluir.setPreferredSize(new java.awt.Dimension(110, 25));
+        boataoExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boataoExcluirActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(botaoAdicionar)
-                        .addGap(86, 86, 86)
-                        .addComponent(botaoEditar)
-                        .addGap(78, 78, 78)
-                        .addComponent(boataoExcluir)))
-                .addContainerGap(59, Short.MAX_VALUE))
+        javax.swing.GroupLayout acoesPanelLayout = new javax.swing.GroupLayout(acoesPanel);
+        acoesPanel.setLayout(acoesPanelLayout);
+        acoesPanelLayout.setHorizontalGroup(
+            acoesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(acoesPanelLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(botaoAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(boataoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoAdicionar)
-                    .addComponent(botaoEditar)
-                    .addComponent(boataoExcluir))
-                .addGap(16, 16, 16))
+        acoesPanelLayout.setVerticalGroup(
+            acoesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acoesPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(acoesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boataoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        areaTotalPanel.add(acoesPanel, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(areaTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(areaTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoEditarActionPerformed
+
+    private void boataoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boataoExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boataoExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,12 +202,15 @@ public class TelaTableSala extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel acoesPanel;
+    private javax.swing.JPanel areaTotalPanel;
     public javax.swing.JButton boataoExcluir;
     public javax.swing.JButton botaoAdicionar;
     public javax.swing.JButton botaoEditar;
     public javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     public javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel tabelaPanel;
     public javax.swing.JTable tabelaSalas;
+    private javax.swing.JPanel tituloPanel;
     // End of variables declaration//GEN-END:variables
 }
