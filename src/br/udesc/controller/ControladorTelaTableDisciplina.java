@@ -74,9 +74,9 @@ public class ControladorTelaTableDisciplina {
                 ControladorTelaCadastroDisciplina ctcd = new ControladorTelaCadastroDisciplina();
                 int linha = ttd.tabelaDisciplina.getSelectedRow();
                 pegarLinha(linha);
-                ctcd.executar();
                 ctcd.editar(dis);
                 ttd.dispose();
+                ctcd.executar();
             }
         });
         

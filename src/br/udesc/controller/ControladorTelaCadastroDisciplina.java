@@ -88,13 +88,34 @@ public class ControladorTelaCadastroDisciplina {
                 tcd.comboBoxSala.addItem(sala.getNumero());
             }
         }
+    }
+
+    public void editar(Disciplina d) {
+        disciplina = d;
+        edit = 1;
+        tcd.fieldNome.setText(disciplina.getNome());
+        tcd.fieldCodigo.setText(disciplina.getCodigo());
+        tcd.fieldCreditos.setText(String.valueOf(disciplina.getCreditos()));
+        tcd.fieldFase.setText(disciplina.getFase());
+        tcd.fieldQuantidadeAlunos.setText(String.valueOf(disciplina.getQtdAlunos()));
+
+        int aux = 0;
+        if (edit == 1 && disciplina.getSala() != null) {
+            for (int i = 0; i < tcd.comboBoxSala.getItemCount(); i++) {
+                if (tcd.comboBoxSala.getItemAt(i).equalsIgnoreCase(disciplina.getSala().getNumero())) {
+                    aux = i;
+                    break;
+                }
+
+            }
+            tcd.comboBoxSala.setSelectedIndex(aux);
+        }
 
     }
 
     public void iniciar() {
         carregarCursos();
         carregaSala();
-
         tcd.botaoSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -172,6 +193,12 @@ public class ControladorTelaCadastroDisciplina {
                                 djc.edit(disciplina);
                             } catch (Exception ex) {
                                 Logger.getLogger(ControladorTelaCadastroCurso.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+                            curso.get(0).addListaDisciplina(disciplina);
+                            if ((sala != null)) {
+                                sala.get(0).addDisciplina(disciplina);
+                                sjc.edit(sala.get(0));
                             }
 
                             JOptionPane.showMessageDialog(null, "Disciplina Editado com sucesso");
@@ -263,17 +290,6 @@ public class ControladorTelaCadastroDisciplina {
                 tcd.dispose();
             }
         });
-
-    }
-
-    public void editar(Disciplina d) {
-        disciplina = d;
-        edit = 1;
-        tcd.fieldNome.setText(disciplina.getNome());
-        tcd.fieldCodigo.setText(disciplina.getCodigo());
-        tcd.fieldCreditos.setText(String.valueOf(disciplina.getCreditos()));
-        tcd.fieldFase.setText(disciplina.getFase());
-        tcd.fieldQuantidadeAlunos.setText(String.valueOf(disciplina.getQtdAlunos()));
 
     }
 
