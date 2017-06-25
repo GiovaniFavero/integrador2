@@ -26,7 +26,7 @@ public class GerarGLPK {
             bw = new BufferedWriter(fw);
 
             salvar();
-            salvarComLab();
+//            salvarComLab();
             funcaoMax();
             funcaoMaxSala();
             gerarVariaveisPorDisciplina();
@@ -35,7 +35,7 @@ public class GerarGLPK {
             somatorioHorasLaboratorio();
             geraSolve();
         } catch (Exception e) {
-
+            int aaaa= 0;
         }
 
     }
@@ -50,7 +50,12 @@ public class GerarGLPK {
             for (int i = 0; i < dis.size(); i++) {
                 for (int j = 1; j <= 6; j++) {
                     for (int k = 1; k <= 2; k++) {
-                        print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + ", binary;";
+                        int aaaa = 0;
+                        if (dis.get(i).getSala() == null) {
+                            print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + ", binary;";
+                        } else {
+                            print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + "_" + dis.get(i).getSala().getNumero() + ", binary;";
+                        }
 
                     }
                 }
@@ -61,28 +66,27 @@ public class GerarGLPK {
         System.out.println("salvar(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
 
-    public void salvarComLab() {
-        long inicio = System.currentTimeMillis();
-        try {
-            List<Disciplina> dis = djc.listarDisciplinaComSala();
-            String print = "";
-
-            for (int i = 0; i < dis.size(); i++) {
-                for (int j = 1; j <= 6; j++) {
-                    for (int k = 1; k <= 2; k++) {
-//                            bw.write("var _" + djc.listarDisciplina().get(i).getCodigo() + "_" + j + k + "_" + djc.listarDisciplina().get(i).getSala().getNumero() + ", binary;");
-//                            bw.newLine();
-                        print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + "_" + dis.get(i).getSala().getNumero() + ", binary;";
-                    }
-                }
-            }
-            Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("salvarComLab(): " + (System.currentTimeMillis() - inicio) + "ms");
-    }
-
+//    public void salvarComLab() {
+//        long inicio = System.currentTimeMillis();
+//        try {
+//            List<Disciplina> dis = djc.listarDisciplinaComSala();
+//            String print = "";
+//
+//            for (int i = 0; i < dis.size(); i++) {
+//                for (int j = 1; j <= 6; j++) {
+//                    for (int k = 1; k <= 2; k++) {
+////                            bw.write("var _" + djc.listarDisciplina().get(i).getCodigo() + "_" + j + k + "_" + djc.listarDisciplina().get(i).getSala().getNumero() + ", binary;");
+////                            bw.newLine();
+//                        print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + "_" + dis.get(i).getSala().getNumero() + ", binary;";
+//                    }
+//                }
+//            }
+//            Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("salvarComLab(): " + (System.currentTimeMillis() - inicio) + "ms");
+//    }
     public void funcaoMax() {
         long inicio = System.currentTimeMillis();
         try {
@@ -140,7 +144,6 @@ public class GerarGLPK {
                                     } else {
                                         print += dis.get(i).getProfessor().getListaHorario().get(l).getValor() + " * _" + dis.get(i).getCodigo() + "_" + diaSemana + "_" + dis.get(i).getSala().getNumero();
                                     }
-
                                 } else {
                                     if (dis.get(i).getProfessor().getListaHorario().get(l).getValor() == 12) {
                                         print += 0 + " * _" + dis.get(i).getCodigo() + "_" + diaSemana + "_" + dis.get(i).getSala().getNumero() + " + ";
