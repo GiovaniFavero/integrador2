@@ -32,10 +32,6 @@ public class Teste {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
 
-
- 
-
-
 //        gm.gerarCurso();
 //        gm.gerarPrimeiraFase();
 //        gm.gerarSegundaFase();
@@ -49,18 +45,16 @@ public class Teste {
 //        gp.gerarProfessor();
 //        gp.gerarRestricaoProfessor();
 //        gl.vincularLabs();
+        new Thread(() -> {
+            GerarGLPK gg = new GerarGLPK();
 
-        GerarGLPK gg = new GerarGLPK();
-        
-        gg.geraTudo();
+            gg.geraTudo();
+        }).start();
 //        gg.salvar();
 //        gg.salvarComLab();
 //        gg.funcaoMax();
 //        gg.funcaoMaxSala();
 //        gg.gerarVariaveisPorDisciplina();
-
-
-
 
         ControladorTelaInicio cti = new ControladorTelaInicio();
         cti.executar();
