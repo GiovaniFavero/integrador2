@@ -166,11 +166,10 @@ public class GerarGLPK {
                         if (j == 6 && k == 2) {
                             if (listaDisciplina.get(x).getSala() != null) {
                                 gerarVariaveisPorDisciplinaComSala(disc);
-                            } else {
-                                int a = disc.getCreditos() / 2;
-                                String aux = String.valueOf(a);
-                                print += "_" + disc.getCodigo() + "_" + j + k + " = " + aux + "\n";
                             }
+                            int a = disc.getCreditos() / 2;
+                            String aux = String.valueOf(a);
+                            print += "_" + disc.getCodigo() + "_" + j + k + " = " + aux + "\n";
                         } else {
                             print += "_" + disc.getCodigo() + "_" + j + k + " + ";
                         }
@@ -201,8 +200,7 @@ public class GerarGLPK {
                     }
                 }
             }
-
-//            Files.write(Paths.get("./teste.mod"), (print + "\n").getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("./teste.mod"), (print + "\n").getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
