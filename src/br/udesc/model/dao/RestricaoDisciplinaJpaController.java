@@ -184,7 +184,7 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
-            Query query = em.createQuery("SELECT e FROM RestricaoDisciplina e WHERE e.condicao = 11 "); // Condição Obrigatória
+            Query query = em.createQuery("SELECT e FROM RestricaoDisciplina e WHERE e.condicao = 1 "); // Condição Obrigatória
             List<RestricaoDisciplina> res = query.getResultList();
             return res;
         } catch (Exception e) {

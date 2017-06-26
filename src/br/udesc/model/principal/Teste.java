@@ -45,16 +45,12 @@ public class Teste {
 //        gp.gerarProfessor();
 //        gp.gerarRestricaoProfessor();
 //        gl.vincularLabs();
-//        new Thread(() -> {
-//            GerarGLPK gg = new GerarGLPK();
-////
-//            gg.geraTudo();
-////        }).start();
-//        gg.salvar();
-//        gg.salvarComLab();
-//        gg.funcaoMax();
-//        gg.funcaoMaxSala();
-//        gg.gerarVariaveisPorDisciplina();
+
+            GerarGLPK gg = new GerarGLPK();
+
+            gg.geraTudo();
+
+
 
         ControladorTelaInicio cti = new ControladorTelaInicio();
         cti.executar();

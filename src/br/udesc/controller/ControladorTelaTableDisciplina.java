@@ -53,6 +53,7 @@ public class ControladorTelaTableDisciplina {
         dm.limpar();
         listaDisciplina = djc.listarDisciplina();
         for (Disciplina listaDisciplinas : listaDisciplina) {
+            System.out.println(listaDisciplinas.getCodigo());
             dm.anuncioAdd(listaDisciplinas);
         }
         ttd.tabelaDisciplina.getSelectionModel().addSelectionInterval(0, 0);

@@ -26,17 +26,17 @@ public class GerarGLPK {
         try {
             fw = new FileWriter(arquivo, true);
             bw = new BufferedWriter(fw);
-
-            salvar();
-            funcaoMax();
-            funcaoMaxSala();            
-            gerarVariaveisPorDisciplina();
-            gerarSomatorioDisciplinaProfessor();
-            gerarSomatorioDisciplinaFase();
+//
+//            salvar();
+//            funcaoMax();
+//            funcaoMaxSala();            
+//            gerarVariaveisPorDisciplina();
+//            gerarSomatorioDisciplinaProfessor();
+//            gerarSomatorioDisciplinaFase();
             gerarRestricoesHorarioProibido();
             somatorioHorasLaboratorio();
             gerarRestricoesObrigatorias();
-            geraSolve();
+//            geraSolve();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -360,7 +360,7 @@ public class GerarGLPK {
     public void gerarRestricoesObrigatorias() throws IOException {
         long inicio = System.currentTimeMillis();
 
-        String ini = "\n\n# horario arbitrario de disciplina\n";
+        String ini = "\r\n# horario arbitrario de disciplina\r\n";
         String inb = "s.t. horario_arbitrario_disciplina: ";
         Files.write(Paths.get("./teste.mod"), (ini + inb).getBytes(), StandardOpenOption.APPEND);
 
@@ -373,7 +373,7 @@ public class GerarGLPK {
 
             for (int i = 0; i < 12; i++) {
                 if (!aRestricoes[i].equals("")) {
-                    Files.write(Paths.get("./teste.mod"), (aRestricoes[i] + " = 1\n").getBytes(), StandardOpenOption.APPEND);
+                    Files.write(Paths.get("./teste.mod"), (aRestricoes[i] + " = 1;\r\n").getBytes(), StandardOpenOption.APPEND);
                 }
             }
 
@@ -511,17 +511,17 @@ public class GerarGLPK {
         DisciplinaJpaController djp = new DisciplinaJpaController();
         List<Disciplina> dis = djp.listarDisciplinaComSala();
 
-        Files.write(Paths.get("./teste.mod"), ("\n\n# somatorio de todas as disciplinas e horarios de laboratorio = ao céu de 50% da carga horária\n\n").getBytes(), StandardOpenOption.APPEND);
+        Files.write(Paths.get("./teste.mod"), ("\r\n\r\n# somatorio de todas as disciplinas e horarios de laboratorio = ao céu de 50% da carga horária\r\n").getBytes(), StandardOpenOption.APPEND);
 
         for (Disciplina d : dis) {
             String print = "";
             for (int j = 1; j <= 6; j++) {
                 for (int k = 1; k <= 2; k++) {
                     if (j == 6 && k == 2) {
-                        int a = (int) Math.ceil(d.getCreditos() / 2);
+                        int a = (int) Math.ceil(d.getCreditos() / 4);
                         String aux = String.valueOf(a);
                         print += "_" + d.getCodigo() + "_" + j + k + "_" + d.getSala().getNumero();
-                        print += " = " + aux + "\n";
+                        print += " = " + aux + "\r\n";
                         Files.write(Paths.get("./teste.mod"), (print).getBytes(), StandardOpenOption.APPEND);
                     } else {
                         print += "_" + d.getCodigo() + "_" + j + k + "_" + d.getSala().getNumero() + " + ";
@@ -535,7 +535,7 @@ public class GerarGLPK {
         long inicio = System.currentTimeMillis();
 
         try {
-            Files.write(Paths.get("./teste.mod"), "\nsolve;\ndisplay ".getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("./teste.mod"), "\r\nsolve;\r\ndisplay ".getBytes(), StandardOpenOption.APPEND);
             List<Disciplina> dis = djc.listarDisciplinaComSala();
             String print = "";
 
@@ -556,7 +556,7 @@ public class GerarGLPK {
                 }
             }
             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-            Files.write(Paths.get("./teste.mod"), "\n\nend;".getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("./teste.mod"), "\r\n\nend;".getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
