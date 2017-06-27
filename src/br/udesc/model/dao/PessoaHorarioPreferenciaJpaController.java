@@ -202,6 +202,20 @@ public class PessoaHorarioPreferenciaJpaController implements Serializable {
         }
     }
     
-    
-    
+    public List<PessoaHorarioPreferencia> HorariosPreferenciaSemProfessor() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT p FROM PessoaHorarioPreferencia p WHERE p.professor is null"); // Condição proibido
+            List<PessoaHorarioPreferencia> res = query.getResultList();
+            return res;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 }

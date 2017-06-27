@@ -195,6 +195,23 @@ public class RestricaoDisciplinaJpaController implements Serializable {
             em.close();
         }
     }
+    
+    public List<RestricaoDisciplina> listarRestriçõesSemDisciplina() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT r FROM RestricaoDisciplina r WHERE r.disciplina is null");
+            List<RestricaoDisciplina> res = query.getResultList();
+            return res;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 
     
 }

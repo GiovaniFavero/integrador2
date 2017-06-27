@@ -6,14 +6,17 @@
 package br.udesc.controller;
 
 import br.udesc.controller.tablemodel.ProfessorModel;
+import br.udesc.model.dao.PessoaHorarioPreferenciaJpaController;
 import br.udesc.model.dao.ProfessorJpaController;
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
+import br.udesc.model.entidade.PessoaHorarioPreferencia;
 import br.udesc.model.entidade.Professor;
 import br.udesc.view.TelaCadastroProfessor;
 import br.udesc.view.TelaTabelaProfessor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,6 +53,18 @@ public class ControladorTelaTableProfessor {
             pm.anuncioAdd(listaProfessores);
         }
         ttp.tabelaProfessores.getSelectionModel().addSelectionInterval(0, 0);
+    }
+    public void destruirHorarioPreferencial() {
+        List<PessoaHorarioPreferencia> php = new ArrayList<>();
+        PessoaHorarioPreferenciaJpaController phpjc = new PessoaHorarioPreferenciaJpaController();
+        php = phpjc.HorariosPreferenciaSemProfessor();
+        for (int i = 0; i < php.size(); i++) {
+            try {
+                phpjc.destroy(php.get(i).getId());
+            } catch (NonexistentEntityException ex) {
+                Logger.getLogger(ControladorTelaCadastroProfessor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public void pegarLinha(int linha) {
@@ -92,6 +107,7 @@ public class ControladorTelaTableProfessor {
                     Logger.getLogger(ControladorTelaTableProfessor.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 carregarProfessor();
+                destruirHorarioPreferencial();
             }
         });
         

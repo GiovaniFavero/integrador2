@@ -184,8 +184,12 @@ public class ControladorTelaCadastroDisciplina {
                             disciplina.setFase(fase);
                             disciplina.setCodigo(codigo);
                             disciplina.setCurso(curso.get(0));
-
-                            if ((sala != null)) {
+                            
+                            tipoSala = (String) tcd.comboBoxSala.getSelectedItem();
+                            sala = sjc.validaSala(tipoSala);
+                            if ((tcd.comboBoxSala.getSelectedIndex() == 0)) {
+                                disciplina.setSala(null);
+                            }else{
                                 disciplina.setSala(sala.get(0));
                             }
 

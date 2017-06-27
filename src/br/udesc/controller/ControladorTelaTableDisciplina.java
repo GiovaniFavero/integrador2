@@ -7,11 +7,14 @@ package br.udesc.controller;
 
 import br.udesc.controller.tablemodel.DisciplinaModel;
 import br.udesc.model.dao.DisciplinaJpaController;
+import br.udesc.model.dao.RestricaoDisciplinaJpaController;
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
 import br.udesc.model.entidade.Disciplina;
+import br.udesc.model.entidade.RestricaoDisciplina;
 import br.udesc.view.TelaTableDisciplina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,6 +62,19 @@ public class ControladorTelaTableDisciplina {
         ttd.tabelaDisciplina.getSelectionModel().addSelectionInterval(0, 0);
     }
     
+    public void destruirRestrições(){
+        List<RestricaoDisciplina> rd = new ArrayList<>();
+        RestricaoDisciplinaJpaController rdjc = new RestricaoDisciplinaJpaController();
+        rd = rdjc.listarRestriçõesSemDisciplina();
+        for (int i = 0; i < rd.size(); i++) {
+            try {
+                rdjc.destroy(rd.get(i).getId());
+            } catch (NonexistentEntityException ex) {
+                Logger.getLogger(ControladorTelaTableDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     public void Iniciar(){
         ttd.botaoAdicionar.addActionListener(new ActionListener() {
             @Override
@@ -93,6 +109,7 @@ public class ControladorTelaTableDisciplina {
                     Logger.getLogger(ControladorTelaTableProfessor.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 carregarDisciplina();
+                destruirRestrições();
             }
         });
         
