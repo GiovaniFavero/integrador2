@@ -47,7 +47,7 @@ public class Teste {
 //        gl.vincularLabs();
 
             GerarGLPK gg = new GerarGLPK();
-
+//
             gg.geraTudo();
 
 

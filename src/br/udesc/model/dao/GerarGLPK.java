@@ -21,22 +21,23 @@ public class GerarGLPK {
     private ProfessorJpaController pjc = new ProfessorJpaController();
     private FileWriter fw;
     private BufferedWriter bw;
+    private String solve = "";
 
     public void geraTudo() {
         try {
             fw = new FileWriter(arquivo, true);
             bw = new BufferedWriter(fw);
-//
-//            salvar();
-//            funcaoMax();
-//            funcaoMaxSala();            
-//            gerarVariaveisPorDisciplina();
-//            gerarSomatorioDisciplinaProfessor();
-//            gerarSomatorioDisciplinaFase();
-            gerarRestricoesHorarioProibido();
+
+            salvar();
+            funcaoMax();
+            funcaoMaxSala();
+            gerarVariaveisPorDisciplina();
+            gerarSomatorioDisciplinaProfessor();
+            gerarSomatorioDisciplinaFase();
+            gerarRestricaoDisciplinaHorarioIndisponiveis();
             somatorioHorasLaboratorio();
             gerarRestricoesObrigatorias();
-//            geraSolve();
+            geraSolve();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,6 +48,7 @@ public class GerarGLPK {
     //Criar Variaves
     public void salvar() {
         long inicio = System.currentTimeMillis();
+
         try {
             Files.write(Paths.get("./teste.mod"), "# Variáveis".getBytes(), StandardOpenOption.APPEND);
 
@@ -61,12 +63,32 @@ public class GerarGLPK {
                             for (int l = 1; l <= 2; l++) {
                                 if (l == 2) {
                                     print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + "_" + dis.get(i).getSala().getNumero() + ", binary;";
+                                    if (i == dis.size() - 1 && j == 6 && k == 2) {
+
+                                        solve += "_" + dis.get(i).getCodigo() + "_" + j + k + "_" + dis.get(i).getSala().getNumero() + ";";
+
+                                    } else {
+                                        solve += "_" + dis.get(i).getCodigo() + "_" + j + k + "_" + dis.get(i).getSala().getNumero() + ",";
+                                    }
+
                                 } else {
+
                                     print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + ", binary;";
+                                    if (i == dis.size() - 1 && j == 6 && k == 2) {
+                                        solve += "_" + dis.get(i).getCodigo() + "_" + j + k + ",";
+                                    } else {
+                                        solve += "_" + dis.get(i).getCodigo() + "_" + j + k + ",";
+                                    }
                                 }
                             }
                         } else {
                             print += "\r\nvar _" + dis.get(i).getCodigo() + "_" + j + k + ", binary;";
+                            if (i == dis.size() - 1 && j == 6 && k == 2) {
+                                solve += "_" + dis.get(i).getCodigo() + "_" + j + k + ";";
+                            } else {
+                                solve += "_" + dis.get(i).getCodigo() + "_" + j + k + ",";
+
+                            }
                         }
                     }
                 }
@@ -125,7 +147,7 @@ public class GerarGLPK {
                             if (dis.get(i).getProfessor().getListaHorario().get(l).getSequencia() == aux) {
                                 if (i == dis.size() - 1 && aux == 62) {
 //                                    bw.write(listaDisciplinas.get(i).getProfessor().getListaHorario().get(l).getValor() + "*_" + listaDisciplinas.get(i).getCodigo() + "_" + diaSemana + "_" + listaDisciplinas.get(i).getSala().getNumero());
-                                    print += "\n" + dis.get(i).getProfessor().getListaHorario().get(l).getValor() + "*_" + dis.get(i).getCodigo() + "_" + diaSemana + "_" + dis.get(i).getSala().getNumero();
+                                    print += "\n" + dis.get(i).getProfessor().getListaHorario().get(l).getValor() + "*_" + dis.get(i).getCodigo() + "_" + diaSemana + "_" + dis.get(i).getSala().getNumero() + ";";
                                 } else {
 //                                    bw.write(listaDisciplinas.get(i).getProfessor().getListaHorario().get(l).getValor() + "*_" + listaDisciplinas.get(i).getCodigo() + "_" + diaSemana + "_" + listaDisciplinas.get(i).getSala().getNumero() + "+");
                                     print += "\n" + dis.get(i).getProfessor().getListaHorario().get(l).getValor() + "*_" + dis.get(i).getCodigo() + "_" + diaSemana + "_" + dis.get(i).getSala().getNumero() + "+";
@@ -151,7 +173,7 @@ public class GerarGLPK {
             Disciplina disc = new Disciplina();
             List<Disciplina> disComSala = djc.listarDisciplinaComSala();
             List<Disciplina> listaDisciplina = djc.listarDisciplina();
-
+            int contador = 1;
             for (int i = 0; i < listaDisciplina.size(); i++) {
                 String print = "";
                 disc = listaDisciplina.get(i);
@@ -164,9 +186,16 @@ public class GerarGLPK {
                             for (int l = 1; l <= 2; l++) {
                                 if (l == 2) {
                                     if (j == 6 && k == 2) {
-                                        print += "_" + disc.getCodigo() + "_" + j + k + "_" + disc.getSala().getNumero() + " = " + aux + ";\r\n";
-                                        Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-                                        print = "";
+                                        if (i != listaDisciplina.size() - 1) {
+                                            print += "_" + disc.getCodigo() + "_" + j + k + "_" + disc.getSala().getNumero() + " = " + aux + ";\r\n s.t. carga_horaria" + contador + ":";
+                                            Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                            print = "";
+                                            contador++;
+                                        } else {
+                                            print += "_" + disc.getCodigo() + "_" + j + k + "_" + disc.getSala().getNumero() + " = " + aux + ";\r\n";
+                                            Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                            print = "";
+                                        }
                                     } else {
                                         print += "_" + disc.getCodigo() + "_" + j + k + "_" + disc.getSala().getNumero() + "+";
                                         Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
@@ -187,9 +216,17 @@ public class GerarGLPK {
                             }
                         } else {
                             if (j == 6 && k == 2) {
-                                print += "_" + disc.getCodigo() + "_" + j + k + " = " + aux + ";\r\n";
-                                Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-                                print = "";
+                                if (i != listaDisciplina.size() - 1) {
+                                    print += "_" + disc.getCodigo() + "_" + j + k + " = " + aux + ";\r\n s.t. carga_horaria" + contador + ":";
+                                    Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                    print = "";
+                                    contador++;
+                                } else {
+                                    print += "_" + disc.getCodigo() + "_" + j + k + " = " + aux + ";\r\n";
+                                    Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                    print = "";
+                                    contador++;
+                                }
                             } else {
                                 print += "_" + disc.getCodigo() + "_" + j + k + "+";
                                 Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
@@ -211,25 +248,28 @@ public class GerarGLPK {
         long inicio = System.currentTimeMillis();
         try {
 
-            Files.write(Paths.get("./teste.mod"), "\r\n# somatorio_de_todas as disciplinas de um professor por horario <=1 \r\n".getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("./teste.mod"), "\r\n# somatorio_de_todas as disciplinas de um professor por horario <=1 \r\n s.t. conflito_horario_professor0:".getBytes(), StandardOpenOption.APPEND);
             List<Professor> lista = pjc.listarProfessor();
             List<Professor> listaProfessor = new ArrayList<>();
-            List<Disciplina> listaSala;
+            List<Professor> listaSala = new ArrayList<>();
             Professor professor;
 
             for (int i = 0; i < lista.size(); i++) {
                 if (lista.get(i).getListaDisciplinaProfessor().size() != 0) {
-                } else {
-                    listaProfessor.add(lista.get(i));
+                    listaSala.add(lista.get(i));
                 }
             }
 
+            listaProfessor = lista;
+
+            int contador = 1;
+            int contadorProfessor = 0;
             for (int i = 0; i < listaProfessor.size(); i++) {
+                System.out.println(i + "valor de i");
                 String print = "";
-                String sala = "";
+                System.out.println(i + " i");
                 professor = lista.get(i);
                 Disciplina disciplina = new Disciplina();
-                System.out.println(listaProfessor.size());
 
                 for (int j = 1; j <= 6; j++) {
                     for (int k = 1; k <= 2; k++) {
@@ -241,10 +281,21 @@ public class GerarGLPK {
                                 for (int m = 1; m <= 2; m++) {
                                     if (m == 2) {
                                         if (l == professor.getListaDisciplinaProfessor().size() - 1) {
-                                            print += "_" + disciplina.getCodigo() + "_" + j + k + "_" + disciplina.getSala().getNumero() + "<= 1; \r\n";
-                                            Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                            if (contador / 12 == listaSala.size() && j == 6 && k == 2) {
+                                                print += "_" + disciplina.getCodigo() + "_" + j + k + "_" + disciplina.getSala().getNumero() + "<= 1; \r\n";
+                                                Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
 
-                                            print = "";
+                                                print = "";
+                                                contador++;
+                                                contadorProfessor++;
+                                            } else {
+                                                print += "_" + disciplina.getCodigo() + "_" + j + k + "_" + disciplina.getSala().getNumero() + "<= 1; \r\n" + "s.t. conflito_horario_professor" + contador + ":";
+                                                Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                                print = "";
+                                                contador++;
+                                                contadorProfessor++;
+
+                                            }
                                         } else {
                                             print += "_" + disciplina.getCodigo() + "_" + j + k + "_" + disciplina.getSala().getNumero() + "+";
                                             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
@@ -252,10 +303,8 @@ public class GerarGLPK {
                                         }
                                     } else {
                                         if (l == professor.getListaDisciplinaProfessor().size() - 1) {
-
                                             print += "_" + disciplina.getCodigo() + "_" + j + k + "+";
                                             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-
                                             print = "";
 
                                         } else {
@@ -267,12 +316,20 @@ public class GerarGLPK {
                                 }
                             } else {
                                 if (l == professor.getListaDisciplinaProfessor().size() - 1) {
-
-                                    print += "_" + disciplina.getCodigo() + "_" + j + k + "<= 1; \r\n";
-                                    Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-
-                                    print = "";
-
+                                    if (contadorProfessor / 12 == listaSala.size() && j == 6 && k == 2) {
+                                        System.out.println("ultimo2");
+                                        print += "_" + disciplina.getCodigo() + "_" + j + k + "<= 1; \r\n";
+                                        Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                        print = "";
+                                        contador++;
+                                        contadorProfessor++;
+                                    } else {
+                                        print += "_" + disciplina.getCodigo() + "_" + j + k + "<= 1; \r\n" + "s.t. conflito_horario_professor" + contador + ":";
+                                        Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                        print = "";
+                                        contador++;
+                                        contadorProfessor++;
+                                    }
                                 } else {
                                     print += "_" + disciplina.getCodigo() + "_" + j + k + "+";
                                     Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
@@ -294,12 +351,12 @@ public class GerarGLPK {
     public void gerarSomatorioDisciplinaFase() {
         long inicio = System.currentTimeMillis();
         try {
-            Files.write(Paths.get("./teste.mod"), ("\r\n\r\n" + "# somatorio de todas as disciplinas de uma turma por horario <= 1" + "\r\n" + "s.t. conflito_horario_turma : \r\n").getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("./teste.mod"), ("\r\n\r\n" + "# somatorio de todas as disciplinas de uma turma por horario <= 1" + "\r\n" + "s.t. conflito_horario_turma0:").getBytes(), StandardOpenOption.APPEND);
 
             Disciplina disc = new Disciplina();
             String print = "";
             List<Disciplina> listaDisciplina;
-
+            int contador = 1;
             for (int i = 1; i < 7; i++) {
                 for (int j = 1; j < 3; j++) {
                     for (int k = 1; k <= 8; k++) {
@@ -311,16 +368,23 @@ public class GerarGLPK {
                                 for (int m = 1; m <= 2; m++) {
                                     if (m == 2) {
                                         if (l == listaDisciplina.size() - 1) {
-                                            print += "_" + disc.getCodigo() + "_" + i + j + "_" + disc.getSala().getNumero() + "<= 1 \r\n";
-                                            Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-                                            print = "";
+                                            if (k == 8 && i == 6 && j == 2) {
+                                                print += "_" + disc.getCodigo() + "_" + i + j + "_" + disc.getSala().getNumero() + "<= 1; \r\n";
+                                                Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                                print = "";
+                                                contador++;
+                                            } else {
+                                                print += "_" + disc.getCodigo() + "_" + i + j + "_" + disc.getSala().getNumero() + "<= 1; \r\n" + "s.t. conflito_horario_turma" + contador + ":";
+                                                Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                                print = "";
+                                                contador++;
+                                            }
                                         } else {
                                             print += "_" + disc.getCodigo() + "_" + i + j + "_" + disc.getSala().getNumero() + "+";
                                             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
                                             print = "";
                                         }
                                     } else {
-                                        System.out.println("entrei aqui");
                                         if (l == listaDisciplina.size() - 1) {
                                             print += "_" + disc.getCodigo() + "_" + i + j + "+";
                                             Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
@@ -336,10 +400,17 @@ public class GerarGLPK {
                                 }
                             } else {
                                 if (l == listaDisciplina.size() - 1) {
-                                    print += "_" + disc.getCodigo() + "_" + i + j + "<= 1 \r\n";
-                                    Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
-
-                                    print = "";
+                                    if (k == 8 && j == 2 && i == 6) {
+                                        print += "_" + disc.getCodigo() + "_" + i + j + "<= 1; \r\n";
+                                        Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                        print = "";
+                                        contador++;
+                                    } else {
+                                        print += "_" + disc.getCodigo() + "_" + i + j + "<= 1; \r\n" + "s.t. conflito_horario_turma" + contador + ":";
+                                        Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+                                        print = "";
+                                        contador++;
+                                    }
                                 } else {
                                     print += "_" + disc.getCodigo() + "_" + i + j + "+";
                                     Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
@@ -361,8 +432,10 @@ public class GerarGLPK {
         long inicio = System.currentTimeMillis();
 
         String ini = "\r\n# horario arbitrario de disciplina\r\n";
-        String inb = "s.t. horario_arbitrario_disciplina: ";
-        Files.write(Paths.get("./teste.mod"), (ini + inb).getBytes(), StandardOpenOption.APPEND);
+        String inb = "s.t. horario_arbitrario_disciplina";
+        int contador = 0;
+
+        Files.write(Paths.get("./teste.mod"), (ini).getBytes(), StandardOpenOption.APPEND);
 
         List<RestricaoDisciplina> res = new RestricaoDisciplinaJpaController().listarRestricoesObrigatorias();
 
@@ -373,7 +446,9 @@ public class GerarGLPK {
 
             for (int i = 0; i < 12; i++) {
                 if (!aRestricoes[i].equals("")) {
-                    Files.write(Paths.get("./teste.mod"), (aRestricoes[i] + " = 1;\r\n").getBytes(), StandardOpenOption.APPEND);
+                    inb = "s.t. horario_arbitrario_disciplina" + contador + ":";
+                    Files.write(Paths.get("./teste.mod"), (inb + aRestricoes[i] + " = 1;\r\n").getBytes(), StandardOpenOption.APPEND);
+                    contador++;
                 }
             }
 
@@ -468,11 +543,85 @@ public class GerarGLPK {
         return print;
     }
 
+    public void gerarRestricaoDisciplinaHorarioIndisponiveis() {
+        long inicio = System.currentTimeMillis();
+
+        try {
+            String print = "";
+            String ini = "\r\n# somatorio de todas as disciplinas e horarios indisponiveis de um professor = 0 \r\n";
+            String inb = "";
+            Files.write(Paths.get("./teste.mod"), (ini).getBytes(), StandardOpenOption.APPEND);
+
+            PessoaHorarioPreferenciaJpaController oPesHorJpa = new PessoaHorarioPreferenciaJpaController();
+            DisciplinaJpaController oDisciplinaJpa = new DisciplinaJpaController();
+            RestricaoDisciplinaJpaController rdjc = new RestricaoDisciplinaJpaController();
+            List<Professor> listaProfessor = oPesHorJpa.listarProfessorComRestricoesProibitivas();
+            Professor professor;
+            Disciplina disciplina;
+            int dia = 0;
+            int contador = 1;
+
+            for (int i = 0; i < listaProfessor.size(); i++) {
+
+                professor = listaProfessor.get(i);
+                for (int k = 0; k < professor.getListaHorario().size(); k++) {
+                    if (professor.getListaHorario().get(k).getValor() == 12) {
+                        dia = professor.getListaHorario().get(k).getSequencia();
+                        for (int j = 0; j < professor.getListaDisciplinaProfessor().size(); j++) {
+                            disciplina = professor.getListaDisciplinaProfessor().get(j);
+                            if (disciplina.getSala() != null) {
+                                for (int l = 1; l <= 2; l++) {
+                                    if (l == 2) {
+                                        if (j == professor.getListaDisciplinaProfessor().size() - 1) {
+                                            System.out.println(print + "1");
+                                            inb = "s.t. conflito_horario_professor_indisponivel" + contador + ":";
+                                            print += "_" + disciplina.getCodigo() + "_" + dia + "_" + disciplina.getSala().getNumero() + "= 0;\r\n";
+                                            Files.write(Paths.get("./teste.mod"), (inb + print).getBytes(), StandardOpenOption.APPEND);
+                                            print = "";
+                                            contador++;
+                                        } else {
+                                            System.out.println(print + "2");
+                                            print += "_" + disciplina.getCodigo() + "_" + dia + "_" + disciplina.getSala().getNumero() + "+";
+                                        }
+                                    } else {
+                                        if (j == professor.getListaDisciplinaProfessor().size() - 1) {
+                                            System.out.println(print + "3");
+                                            print += "_" + disciplina.getCodigo() + "_" + dia + "+";
+
+                                        } else {
+                                            System.out.println(print + "4");
+                                            print += "_" + disciplina.getCodigo() + "_" + dia + "+";
+                                        }
+                                    }
+                                }
+                            } else {
+                                if (j == professor.getListaDisciplinaProfessor().size() - 1) {
+                                    System.out.println(print + "5");
+                                    inb = "s.t. conflito_horario_professor_indisponivel" + contador + ":";
+                                    print += "_" + disciplina.getCodigo() + "_" + dia + "= 0;\r\n";
+                                    Files.write(Paths.get("./teste.mod"), (inb + print).getBytes(), StandardOpenOption.APPEND);
+                                    contador++;
+                                    print = "";
+                                } else {
+                                    System.out.println(print + "6");
+                                    print += "_" + disciplina.getCodigo() + "_" + dia + "+";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void gerarRestricoesHorarioProibido() throws IOException {
         long inicio = System.currentTimeMillis();
         String print = "";
 
-        String ini = "\n\n# somatorio de todas as disciplinas e horarios indisponiveis de um professor \n";
+        String ini = "\r\n# somatorio de todas as disciplinas e horarios indisponiveis de um professor \n";
         String inb = "s.t. conflito_horario_professor: ";
         Files.write(Paths.get("./teste.mod"), (ini + inb).getBytes(), StandardOpenOption.APPEND);
 
@@ -513,18 +662,27 @@ public class GerarGLPK {
 
         Files.write(Paths.get("./teste.mod"), ("\r\n\r\n# somatorio de todas as disciplinas e horarios de laboratorio = ao céu de 50% da carga horária\r\n").getBytes(), StandardOpenOption.APPEND);
 
+        String variavel = "s.t. horario_em_laboratorio";
+        int contador = 0;
+
         for (Disciplina d : dis) {
             String print = "";
             for (int j = 1; j <= 6; j++) {
                 for (int k = 1; k <= 2; k++) {
                     if (j == 6 && k == 2) {
-                        int a = (int) Math.ceil(d.getCreditos() / 4);
+
+                        int a = (int) Math.ceil(d.getCreditos() / 4.0);
+
+                        System.out.println("VALOR DO A DEPOIS DA DIVISÃO " + a);
                         String aux = String.valueOf(a);
                         print += "_" + d.getCodigo() + "_" + j + k + "_" + d.getSala().getNumero();
-                        print += " = " + aux + "\r\n";
-                        Files.write(Paths.get("./teste.mod"), (print).getBytes(), StandardOpenOption.APPEND);
+                        print += "= " + aux + ";\r\n";
+                        variavel = "s.t. horario_em_laboratorio" + contador + ":";
+                        Files.write(Paths.get("./teste.mod"), (variavel + print).getBytes(), StandardOpenOption.APPEND);
+                        contador++;
+
                     } else {
-                        print += "_" + d.getCodigo() + "_" + j + k + "_" + d.getSala().getNumero() + " + ";
+                        print += "_" + d.getCodigo() + "_" + j + k + "_" + d.getSala().getNumero() + "+";
                     }
                 }
             }
@@ -536,26 +694,26 @@ public class GerarGLPK {
 
         try {
             Files.write(Paths.get("./teste.mod"), "\r\nsolve;\r\ndisplay ".getBytes(), StandardOpenOption.APPEND);
-            List<Disciplina> dis = djc.listarDisciplinaComSala();
-            String print = "";
-
-            for (int i = 0; i < dis.size(); i++) {
-                for (int j = 1; j <= 6; j++) {
-                    for (int k = 1; k <= 2; k++) {
-                        print += " _" + dis.get(i).getCodigo() + "_" + j + k;
-
-                        if (dis.get(i).getSala() != null) {
-                            print += ", _" + dis.get(i).getCodigo() + "_" + j + k + "_" + dis.get(i).getSala().getNumero();
-                        }
-                        if (i + 1 == dis.size()) {
-                            print += ";";
-                        } else {
-                            print += ",";
-                        }
-                    }
-                }
-            }
-            Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
+//            List<Disciplina> dis = djc.listarDisciplinaComSala();
+//            String print = "";
+//
+//            for (int i = 0; i < dis.size(); i++) {
+//                for (int j = 1; j <= 6; j++) {
+//                    for (int k = 1; k <= 2; k++) {
+//                        print += " _" + dis.get(i).getCodigo() + "_" + j + k;
+//
+//                        if (dis.get(i).getSala() != null) {
+//                            print += ", _" + dis.get(i).getCodigo() + "_" + j + k + "_" + dis.get(i).getSala().getNumero();
+//                        }
+//                        if (i + 1 == dis.size()) {
+//                            print += ";";
+//                        } else {
+//                            print += ",";
+//                        }
+//                    }
+//                }
+//            }
+            Files.write(Paths.get("./teste.mod"), solve.getBytes(), StandardOpenOption.APPEND);
             Files.write(Paths.get("./teste.mod"), "\r\n\nend;".getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
