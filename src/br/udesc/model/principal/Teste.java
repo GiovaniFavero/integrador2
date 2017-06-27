@@ -46,9 +46,9 @@ public class Teste {
 //        gp.gerarRestricaoProfessor();
 //        gl.vincularLabs();
 
-            GerarGLPK gg = new GerarGLPK();
-//
-            gg.geraTudo();
+//            GerarGLPK gg = new GerarGLPK();
+////
+//            gg.geraTudo();
 
 
 
