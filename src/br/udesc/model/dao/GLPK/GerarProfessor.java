@@ -1,4 +1,4 @@
-package br.udesc.model.principal;
+package br.udesc.model.dao.GLPK;
 
 import br.udesc.model.dao.PessoaHorarioPreferenciaJpaController;
 import br.udesc.model.dao.ProfessorJpaController;

@@ -71,6 +71,14 @@ public class ControladorTelaInicio {
                         ctv.executar();
                     }
                 })).start();
+    
+        ti.botaoProfessor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+    
     }
 
     public void executar() {

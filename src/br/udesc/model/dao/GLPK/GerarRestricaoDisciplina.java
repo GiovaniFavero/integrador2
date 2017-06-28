@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.udesc.model.principal;
+package br.udesc.model.dao.GLPK;
 
 import br.udesc.model.dao.DisciplinaJpaController;
 import br.udesc.model.dao.RestricaoDisciplinaJpaController;
