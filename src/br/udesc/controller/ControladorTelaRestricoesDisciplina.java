@@ -23,10 +23,13 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 
-/* Classe resposável por realizar o controle da tela "TelaRestricoesDisciplina.java".
-Este módulo permite o usuário definir uma restrição para cada disciplina. Esta restrição
-se baseia na obrigação de a disciplina ser lecionada em dias específicos da semana. 
-Cada dia da semana é divido em primeiro e segundo horário. */
+/**
+ * Classe resposável por realizar o controle da tela "TelaRestricoesDisciplina.java".
+ * Este módulo permite o usuário definir uma restrição para cada disciplina. Esta restrição
+ * se baseia na obrigação ou na proibição de a disciplina ser lecionada em dias específicos da semana. 
+ * Cada dia da semana é divido em primeiro e segundo horário.
+ * @author Favero
+ */    
 public class ControladorTelaRestricoesDisciplina {
 
     private TelaRestricoesDisciplina trd;
@@ -38,6 +41,10 @@ public class ControladorTelaRestricoesDisciplina {
     private List<RestricaoDisciplina> restricoesNovas;
     private int qtTotalRestricoes;
 
+    /**
+     * Método construtor. Reponsável por executar os métodos necessários para instanciação da classe.
+     * @param id Id da disciplina na qual as restrições se referem.
+     */
     public ControladorTelaRestricoesDisciplina(long id) {
         trd = new TelaRestricoesDisciplina();
         dis = new Disciplina();
@@ -51,6 +58,9 @@ public class ControladorTelaRestricoesDisciplina {
         iniciar();
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
         /* Define as ações que serão realizadas a partir do clique no botão "Salvar" */
         trd.botaoSalvar.addActionListener(new ActionListener() {
@@ -77,8 +87,10 @@ public class ControladorTelaRestricoesDisciplina {
 
     }
 
-    /* Método resposável por adicionar a opção disponível de cada ComboBox de restrição, 
-    que é: "Obrigatório" */
+    /**
+     * Método resposável por adicionar a opções disponíveis de cada ComboBox de restrição, 
+     * que é: "Obrigatório" ou "Proibido". 
+     */
     public void carregaListaCbxRestricoes() {
         /* Carrega-se todos os ComboBox na matriz "restricoes" */
         /* Os índices de cada ComboBox é definido como código para o dia da semana.
@@ -114,7 +126,9 @@ public class ControladorTelaRestricoesDisciplina {
         }
     }
 
-    /* Método responsável por carregar as restrições já existentes para a disciplina na tela. */
+    /**
+     * Método responsável por carregar as restrições já existentes para a disciplina na tela. 
+     */
     public void carregaListaCbxRestricoesDisciplina() {
         for (RestricaoDisciplina p : restricoesAntigas) {
             String seq = String.valueOf(p.getHorario());
@@ -127,12 +141,19 @@ public class ControladorTelaRestricoesDisciplina {
             String horarioAux = String.valueOf(seq.charAt(1));
             int horario = Integer.parseInt(horarioAux);
             /* Define o valor atual para o ComboBox referente ao dia/período em questão */
-            restricoes[dia - 1][horario - 1].setSelectedIndex(p.getCondicao());
+            if(p.getCondicao() == 3){
+                restricoes[dia - 1][horario - 1].setSelectedIndex(p.getCondicao()-1);
+            }else{
+                restricoes[dia - 1][horario - 1].setSelectedIndex(p.getCondicao());
+            }
+            
         }
     }
 
-    /* Método responsável por adicionar as restrições que estão definidas na tela
-    no array "novasRestrições" que será atualizado para a disciplina. */
+    /**
+     * Método responsável por adicionar as restrições que estão definidas na tela
+     * no array "novasRestrições" que será atualizado para a disciplina. 
+     */
     public void salvarRestricoes() {
         RestricaoDisciplina ph;
         restricoesNovas = new ArrayList<RestricaoDisciplina>();
@@ -145,14 +166,6 @@ public class ControladorTelaRestricoesDisciplina {
                     ph.setHorario(Integer.parseInt(seq));
                     /* Obrigatório recebe valor 1 */
                     ph.setCondicao(1);
-                    ph.setDisciplina(this.dis);
-                    restricoesNovas.add(ph);
-                } else if(restricoes[i][j].getSelectedItem().equals("Preferivel")) {
-                    ph = new RestricaoDisciplina();
-                    String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
-                    ph.setHorario(Integer.parseInt(seq));
-                    /* Obrigatório recebe valor 1 */
-                    ph.setCondicao(2);
                     ph.setDisciplina(this.dis);
                     restricoesNovas.add(ph);
                 }else if(restricoes[i][j].getSelectedItem().equals("Proibido")){
@@ -168,7 +181,9 @@ public class ControladorTelaRestricoesDisciplina {
         }
     }
     
-    /* Método responsável por salvar as novas restrições no banco */
+    /**
+     * Método responsável por salvar as novas restrições no banco de dados.
+     */
     public void persistirRestricoes() {
         for (RestricaoDisciplina p : restricoesNovas) {
             try {
@@ -179,7 +194,9 @@ public class ControladorTelaRestricoesDisciplina {
         }
     }
     
-    /* Método responsável por remover do banco as antigas restrições da disciplina */
+    /**
+     * Método responsável por remover do banco de dados as antigas restrições da disciplina.
+     */
     public void removerRestricoesAntigas() {
         for (RestricaoDisciplina p : restricoesAntigas) {
             try {
@@ -190,19 +207,31 @@ public class ControladorTelaRestricoesDisciplina {
         }
     }
 
-    /* Método responsável por inicializar a tela controlada por esta classe. */
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    *
+    */
     public void executar() {
         trd.setVisible(true);
     }
 
-    /* Método responsável por buscar a disciplina com "id" definida no parâmetro do 
-    construtor desta classe, e salvar na variável aqui instanciada. */
+    /**
+     * Método responsável por buscar a disciplina com "id" definida no parâmetro do 
+     * construtor desta classe, e salvar na variável aqui instanciada.
+     *
+     * @param  id  id da disciplina na qual se refere.
+     */
     public void buscaDisciplina(long id) {
         this.dis = djc.findDisciplina(id);
         this.restricoesAntigas = rdjc.buscarRestricoes(id);
     }
 
-    /* Método responsável por carregar o nome da disciplina em questão no cabeçalho da tela. */
+    /*  */
+    
+    /**
+     * Método responsável por carregar o nome da disciplina em questão no cabeçalho da tela.
+     *
+     */
     public void carregaLabel() {
         trd.labelTitulo.setText("Restrições para " + this.dis.getNome());
     }

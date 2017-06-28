@@ -3,7 +3,6 @@ package br.udesc.controller;
 import br.udesc.model.dao.CursoJpaController;
 import br.udesc.model.entidade.Curso;
 import br.udesc.view.TelaCadastroCurso;
-import br.udesc.view.TelaInicio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -11,18 +10,31 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner.DefaultEditor;
 
+
+/**
+ * Classe resposável pelo controle do cadastro/alteração de cursos.
+ * @author PIN2
+ */
 public class ControladorTelaCadastroCurso {
 
     private TelaCadastroCurso tcc;
     private Curso curso;
     private int edit = 0;
 
+    /**
+     * Construtor intanciando a tela do controlador em questão, e instanciando novo curso.
+     */
     public ControladorTelaCadastroCurso() {
         tcc = new TelaCadastroCurso();
         curso = new Curso();
         iniciar();
     }
 
+    /**
+     * Método resposável por validar se o campo "Nome" do curso foi preenchido.
+     * @return Caso o campo "Nome" não estiver preenchido retorna uma mensagem de aviso e também "false",
+     * caso contrário retorna "true".
+     */
     public boolean validarCampos() {
         if (tcc.fieldNome.getText().isEmpty()) {
             tcc.fieldNome.requestFocus();
@@ -32,6 +44,9 @@ public class ControladorTelaCadastroCurso {
         return true;
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
         ((DefaultEditor) tcc.spinnerDuracao.getEditor()).getTextField().setEditable(false);
 
@@ -134,6 +149,11 @@ public class ControladorTelaCadastroCurso {
 
     }
 
+    
+    /**
+     * Método resposável por preencher campos para edição de curso.
+     * @param c Curso em questão a ser editado. 
+     */
     public void editar(Curso c) {
         curso = c;
         edit = 1;
@@ -141,6 +161,11 @@ public class ControladorTelaCadastroCurso {
         tcc.spinnerDuracao.setValue(curso.getDuracao());
     }
 
+    
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    *
+    */
     public void executar() {
         tcc.setVisible(true);
     }

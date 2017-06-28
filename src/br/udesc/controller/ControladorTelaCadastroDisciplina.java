@@ -11,24 +11,36 @@ import br.udesc.view.TelaCadastroDisciplina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+/**
+ * Classe resposável pelo controle do cadastro/alteração de disciplinas.
+ * @author PIN2
+ */
 public class ControladorTelaCadastroDisciplina {
 
     private TelaCadastroDisciplina tcd;
     private Disciplina disciplina;
     private int edit = 0;
 
+    /**
+     * Construtor intanciando a tela do controlador em questão, e instanciando nova disciplina.
+     */
     public ControladorTelaCadastroDisciplina() {
         tcd = new TelaCadastroDisciplina();
         disciplina = new Disciplina();
         iniciar();
     }
 
+    
+    /**
+     * Método resposável por validar se os campos foram preenchidos.
+     * @return Caso os campos não estiverem preenchidos retorna uma mensagem de aviso e também "false",
+     * caso contrário retorna "true".
+     */
     public boolean validarCampos() {
         CursoJpaController cjc = new CursoJpaController();
         int a = cjc.getCursoCount();
@@ -62,6 +74,10 @@ public class ControladorTelaCadastroDisciplina {
         return true;
     }
 
+    
+    /**
+     * Método responsável por carregar os cursos disponíveis.
+     */
     public void carregarCursos() {
         CursoJpaController cjc = new CursoJpaController();
         tcd.comboBoxCurso.removeAllItems();
@@ -71,6 +87,9 @@ public class ControladorTelaCadastroDisciplina {
         }
     }
 
+    /**
+     * Método responsável por carregar as salas disponíveis.
+     */
     public void carregaSala() {
         SalaJpaController sjc = new SalaJpaController();
         tcd.comboBoxSala.removeAllItems();
@@ -90,6 +109,10 @@ public class ControladorTelaCadastroDisciplina {
         }
     }
 
+    /**
+     * Método responsável por preencher campos para edição de disciplina.
+     * @param d Disciplina a ser editada
+     */
     public void editar(Disciplina d) {
         disciplina = d;
         edit = 1;
@@ -113,6 +136,10 @@ public class ControladorTelaCadastroDisciplina {
 
     }
 
+    
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
         carregarCursos();
         carregaSala();
@@ -297,6 +324,11 @@ public class ControladorTelaCadastroDisciplina {
 
     }
 
+    
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    *
+    */
     public void executar() {
         tcd.setVisible(true);
     }

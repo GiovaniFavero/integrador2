@@ -23,10 +23,12 @@ import javax.swing.JSpinner;
  * @author Usuario
  */
 
-/* Classe resposável por realizar o controle da tela "TelaRestricoesProfessor.java".
-Este módulo permite o usuário definir restrições para cada professor. Estas restrições 
-se baseiam na preferencia, na obrigação ou na proibição de o professor lecionar em dias 
-específicos da semana. Cada dia da semana é divido em primeiro e segundo horário. */
+/**
+ * Classe resposável por realizar o controle da tela "TelaRestricoesProfessor.java".
+ * Este módulo permite o usuário definir restrições para cada professor. Estas restrições 
+ * se baseiam na preferencia, na obrigação ou na proibição de o professor lecionar em dias 
+ * específicos da semana. Cada dia da semana é divido em primeiro e segundo horário. 
+ */
 public class ControladorTelaRestricoesProfessor {
 
     private TelaRestricoesProfessor tr;
@@ -37,7 +39,10 @@ public class ControladorTelaRestricoesProfessor {
     private List<PessoaHorarioPreferencia> restricoesAntigas;
     private List<PessoaHorarioPreferencia> restricoesNovas;
     
-
+    /**
+     * Método construtor. Reponsável por executar os métodos necessários para instanciação da classe.
+     * @param id Id do professor na qual as restrições se referem.
+     */
     public ControladorTelaRestricoesProfessor(long id) {
         tr = new TelaRestricoesProfessor();
         pro = new Professor();
@@ -51,6 +56,10 @@ public class ControladorTelaRestricoesProfessor {
         iniciar();
     }
 
+    
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
         /* Define as ações que serão realizadas a partir do clique no botão "Salvar" */
         tr.botaoSalvar.addActionListener(new ActionListener() {
@@ -80,8 +89,10 @@ public class ControladorTelaRestricoesProfessor {
         
     }
 
-    /* Método resposável por as opções disponíveis de cada ComboBox de restrição, 
-    que são elas: "Obrigatório" e "Preferencial" */
+    /**
+     * Método resposável por as opções disponíveis de cada ComboBox de restrição, 
+     * que são elas: "Obrigatório" e "Preferencial" 
+     */
     public void carregaListaCbxRestricoes() {
         /* Carrega-se todos os ComboBox na matriz "restricoes" */
         /* Os índices de cada ComboBox é definido como código para o dia da semana.
@@ -110,8 +121,6 @@ public class ControladorTelaRestricoesProfessor {
         restricoes[5][1] = tr.cbxSabado2;
         for (int i = 0; i < restricoes.length; i++) {
             for (int j = 0; j < 2; j++) {
-                restricoes[i][j].addItem(" ");
-                restricoes[i][j].addItem("Obrigatório");
                 restricoes[i][j].addItem("Proibido");
                 restricoes[i][j].addItem("Preferencial (1)");
                 restricoes[i][j].addItem("Preferencial (2)");
@@ -127,7 +136,9 @@ public class ControladorTelaRestricoesProfessor {
         }
     }
 
-    /* Método responsável por carregar as restrições já existentes para o professor na tela. */
+    /**
+     * Método responsável por carregar as restrições já existentes para o professor na tela. 
+     */
     public void carregaListaCbxRestricoesProfessor() {
         for (PessoaHorarioPreferencia p : restricoesAntigas) {
             String seq = String.valueOf(p.getSequencia());
@@ -151,8 +162,10 @@ public class ControladorTelaRestricoesProfessor {
         }
     }
 
-    /* Método responsável por adicionar as restrições que estão definidas na tela
-    no array "novasRestrições" que será atualizado para o professor. */
+    /**
+     * Método responsável por adicionar as restrições que estão definidas na tela
+     * no array "novasRestrições" que será atualizado para o professor. 
+     */
     public void salvarRestricoes() {
         PessoaHorarioPreferencia ph;
         restricoesNovas = new ArrayList<PessoaHorarioPreferencia>();
@@ -188,7 +201,9 @@ public class ControladorTelaRestricoesProfessor {
         }
     }
     
-    /* Método responsável por remover do banco as antigas restrições do professor */
+    /**
+     * Método responsável por remover do banco as antigas restrições do professor 
+     */
     public void removerRestricoesAntigas() {
         for (PessoaHorarioPreferencia p : restricoesAntigas) {
             try {
@@ -199,7 +214,9 @@ public class ControladorTelaRestricoesProfessor {
         }
     }
     
-    /* Método responsável por salvar as novas restrições no banco */
+    /**
+     * Método responsável por salvar as novas restrições no banco 
+     */
     public void persistirRestricoes() {
         for (PessoaHorarioPreferencia p : restricoesNovas) {
             try {
@@ -209,26 +226,29 @@ public class ControladorTelaRestricoesProfessor {
             }
         }
     }
-
-    /* Método responsável por buscar o professor com "id" definida no parâmetro do 
-    construtor desta classe, e salvar na variável aqui instanciada. */
+    
+    /**
+     * Método responsável por buscar o professor com "id" definida no parâmetro do 
+     * construtor desta classe, e salvar na variável aqui instanciada.
+     *
+     * @param id Id do professor a qual as restrições se referem.
+     */
     public void buscaProfessor(long id) {
         this.pro = psc.findProfessor(id);
     }
 
-    /* Método responsável por carregar o nome do professor em questão no cabeçalho da tela. */
+       /**
+     * Método responsável por carregar o nome do professor em questão no cabeçalho da tela.
+     *
+     */
     public void carregaLabel() {
         tr.labelTitulo.setText("Restrições para " + this.pro.getNome());
     }
     
-    
-    public void disableEnableSpinner(JSpinner s, boolean value){
-        JSpinner.DefaultEditor editor = ( JSpinner.DefaultEditor ) s.getEditor();
-        editor.getTextField().setEnabled(value);
-        editor.getTextField().setEditable(value);
-    }
-    
-    /* Método responsável por inicializar a tela controlada por esta classe. */
+   /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    *
+    */
     public void executar() {
         tr.setVisible(true);
     }
