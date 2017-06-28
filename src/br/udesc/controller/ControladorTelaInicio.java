@@ -18,54 +18,59 @@ public class ControladorTelaInicio {
     public void iniciar() {
 
         //Para acessar a tela de cadastro de Curso
-        ti.botaoCurso.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                ControladorTelaTableCurso cttc = new ControladorTelaTableCurso();
-                cttc.executar();
-            }
-        });
+        new Thread(()
+                -> ti.botaoCurso.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        ControladorTelaTableCurso cttc = new ControladorTelaTableCurso();
+                        cttc.executar();
+                    }
+                })).start();
 
         //Para acessar a tela de cadastro de disciplina
-        ti.botaoDisciplina.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                CursoJpaController cjc = new CursoJpaController();
-                if (cjc.getCursoCount() != 0) {
-                    ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
-                    cttd.executar();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
-                }
+        new Thread(()
+                -> ti.botaoDisciplina.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        CursoJpaController cjc = new CursoJpaController();
+                        if (cjc.getCursoCount() != 0) {
+                            ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
+                            cttd.executar();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
+                        }
 
-            }
-        });
+                    }
+                })).start();
 
         //Para acessar a tela de cadastro de professores
-        ti.botaoProfessor.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                ControladorTelaTableProfessor cttp = new ControladorTelaTableProfessor();
-                cttp.executar();
-            }
-        });
+        new Thread(()
+                -> ti.botaoProfessor.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        ControladorTelaTableProfessor cttp = new ControladorTelaTableProfessor();
+                        cttp.executar();
+                    }
+                })).start();
 
         //Para acessar a tela de cadastro de Sala
-        ti.botaoSala.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                ControladorTelaTableSala cts = new ControladorTelaTableSala();
-                cts.executar();
-            }
-        });
+        new Thread(()
+                -> ti.botaoSala.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        ControladorTelaTableSala cts = new ControladorTelaTableSala();
+                        cts.executar();
+                    }
+                })).start();
 
-        ti.botaoVincular.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ControladorTelaVinculo ctv = new ControladorTelaVinculo();
-                ctv.executar();
-            }
-        });
+        new Thread(()
+                -> ti.botaoVincular.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        ControladorTelaVinculo ctv = new ControladorTelaVinculo();
+                        ctv.executar();
+                    }
+                })).start();
     }
 
     public void executar() {
