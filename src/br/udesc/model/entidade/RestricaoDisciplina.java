@@ -34,6 +34,8 @@ public class RestricaoDisciplina implements Serializable {
     @Column
     private int condicao;
 
+ 
+    
     public Disciplina getDisciplina() {
         return disciplina;
     }

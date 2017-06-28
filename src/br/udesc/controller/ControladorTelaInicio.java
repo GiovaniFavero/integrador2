@@ -1,9 +1,13 @@
 package br.udesc.controller;
 
 import br.udesc.model.dao.CursoJpaController;
+import br.udesc.model.dao.GLPK.GerarGLPK;
+import br.udesc.model.dao.GLPK.GerarSolucaoGLPK;
+import br.udesc.model.dao.GLPK.PreencherTudo;
 import br.udesc.view.TelaInicio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ControladorTelaInicio {
@@ -71,14 +75,25 @@ public class ControladorTelaInicio {
                         ctv.executar();
                     }
                 })).start();
-    
-        ti.botaoProfessor.addActionListener(new ActionListener() {
+
+        ti.botaoProblema.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+                GerarGLPK glpk = new GerarGLPK();
+                glpk.geraTudo();
+                GerarSolucaoGLPK gsglpk = new GerarSolucaoGLPK();
+                gsglpk.x();
             }
         });
-    
+
+        ti.botaoDb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                PreencherTudo pt = new PreencherTudo();
+                pt.gerarTudo();
+            }
+        });
+
     }
 
     public void executar() {

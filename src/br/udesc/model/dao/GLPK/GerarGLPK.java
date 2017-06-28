@@ -1,5 +1,10 @@
-package br.udesc.model.dao;
+package br.udesc.model.dao.GLPK;
 
+import br.udesc.model.dao.CursoJpaController;
+import br.udesc.model.dao.DisciplinaJpaController;
+import br.udesc.model.dao.PessoaHorarioPreferenciaJpaController;
+import br.udesc.model.dao.ProfessorJpaController;
+import br.udesc.model.dao.RestricaoDisciplinaJpaController;
 import br.udesc.model.entidade.Disciplina;
 import br.udesc.model.entidade.Professor;
 import br.udesc.model.entidade.RestricaoDisciplina;
@@ -25,7 +30,7 @@ public class GerarGLPK {
 
     public void geraTudo() {
         try {
-            fw = new FileWriter(arquivo, true);
+            fw = new FileWriter(arquivo, false);
             bw = new BufferedWriter(fw);
 
             salvar();
@@ -462,10 +467,6 @@ public class GerarGLPK {
         }
         System.out.println("gerarVariaveisPorDisciplinaComSala(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
-
-//    public void gerarRestricoesObrigatoriasDisciplina() {
-//
-//    }
 
     private String[] montaStringRestricoes(List<RestricaoDisciplina> res) {
         String restricao11 = "";

@@ -11,25 +11,47 @@ import br.udesc.model.entidade.Disciplina;
 import br.udesc.model.entidade.RestricaoDisciplina;
 import java.util.List;
 
-/**
- * @author luisr
- */
 public class GerarRestricaoDisciplina {
 
     private RestricaoDisciplina rd = new RestricaoDisciplina();
     private RestricaoDisciplinaJpaController rdj = new RestricaoDisciplinaJpaController();
     private DisciplinaJpaController dj = new DisciplinaJpaController();
 
-    public  void criaRestricao() {
-        List<Disciplina> dis = dj.listarDisciplinaComSala();
-        RestricaoDisciplina res = null;
-        for (int i = 0; i < 5; i++) {
-            for (int j = 1; j < 3; j++) {
-                for (int k = 1; k < 7; k++) {
-                    res = new RestricaoDisciplina(dis.get(i), Integer.parseInt(k + "" + j), 12);
+    public void criaRestricao() {
+        List<Disciplina> dis = dj.listarDisciplinaPorFase("1");
+        RestricaoDisciplina res = new RestricaoDisciplina();
+        Disciplina d = new Disciplina();
+        try {
+            for (int i = 0; i < dis.size(); i++) {
+                d = dis.get(i);
+                for (int j = 1; j <= 2; j++) {
+                    res = new RestricaoDisciplina();
+                    res.setDisciplina(d);
+                    res.setHorario(60 + j);
+                    res.setCondicao(3);
                     rdj.create(res);
+                    d.addListaRestricao(res);
+                    dj.edit(d);
                 }
             }
+
+            dis = dj.listarDisciplinaPorFase("2");
+            for (int i = 0; i < dis.size(); i++) {
+                d = dis.get(i);
+                for (int j = 1; j <= 2; j++) {
+                    res = new RestricaoDisciplina();
+                    res.setDisciplina(d);
+                    res.setHorario(60 + j);
+                    res.setCondicao(3);
+                    rdj.create(res);
+                    d.addListaRestricao(res);
+                    dj.edit(d);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 }

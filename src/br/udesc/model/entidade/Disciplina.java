@@ -83,6 +83,10 @@ public class Disciplina implements Serializable {
         listaSalaHorario = new ArrayList<>();
     }
 
+    public void addListaRestricao(RestricaoDisciplina rd){
+        listaRestricaoDisciplina.add(rd);
+    }
+    
     public void setListaRestricaoDisciplina(List<RestricaoDisciplina> listaRestricaoDisciplina) {
         this.listaRestricaoDisciplina = listaRestricaoDisciplina;
     }

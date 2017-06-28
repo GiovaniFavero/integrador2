@@ -1,10 +1,8 @@
 package br.udesc.model.dao.GLPK;
 
 import br.udesc.controller.ControladorTelaInicio;
-import br.udesc.model.dao.ControladorGLPK;
 import br.udesc.model.dao.CursoJpaController;
 import br.udesc.model.dao.DisciplinaJpaController;
-import br.udesc.model.dao.GerarGLPK;
 import br.udesc.model.dao.ProfessorJpaController;
 import br.udesc.model.dao.SalaJpaController;
 import br.udesc.model.entidade.Curso;
@@ -45,11 +43,9 @@ public class Teste {
 //        gl.gerarLabs();
 //        gp.gerarProfessor();
 //        gp.gerarRestricaoProfessor();
-//         gl.vincularLabs();
-
-//            GerarGLPK gg = new GerarGLPK();
-////
-//            gg.geraTudo();
+//        gl.vincularLabs();
+//        GerarGLPK gg = new GerarGLPK();
+//        gg.geraTudo();
 
 
 
