@@ -76,42 +76,44 @@ public class GerarSolucaoGLPK {
             /*
              Pego o left[1] que sempre será o nome/código_disciplina (peguei isso na intuicao, pq as variaveis nao ajudam (_2_41)??)
              */
-            listaDis = djc.validaDisciplina(left[1]);
+            if (!parts[1].equals(" 0")) {
+                listaDis = djc.validaDisciplina(left[1]);
 
-            if (!listaDis.isEmpty()) {
-                /*
-             se a lista estiver vazia/nula quer dizer que não tem. passa pro próximo item.
-             Se tiver algo (o nome vai ter que ser único), atribuo o objeto da lista ao "dis", seto a preferencia do left[2] e seto a disciplina no SalaHorario
-                 */
-                dis = listaDis.get(0);
-                sh.setPreferencia(Integer.parseInt(left[2]));
-                sh.setDisciplina(dis);
-                /*
-                Tento acessar o left[3] (caso tenha lab), se der caca, é pq nao tem lab, e consequentemente será nulo.
-                 */
-                try {
+                if (!listaDis.isEmpty()) {
                     /*
-                    se tiver lab, valido (nao sei se é necessário, talvez nao). vejo se a lista ta vazia, se nao estiver, pego o objeto 0 da lista.
+                    se a lista estiver vazia/nula quer dizer que não tem. passa pro próximo item.
+                    Se tiver algo (o nome vai ter que ser único), atribuo o objeto da lista ao "dis", seto a preferencia do left[2] e seto a disciplina no SalaHorario
                      */
-                    listaSala = sjc.validaSala(left[3]);
-                    if (!listaSala.isEmpty()) {
+                    sh = new SalaHorario();
+                    dis = listaDis.get(0);
+                    sh.setPreferencia(Integer.parseInt(left[2]));
+                    sh.setDisciplina(dis);
+                    /*
+                        Tento acessar o left[3] (caso tenha lab), se der caca, é pq nao tem lab, e consequentemente será nulo.
+                     */
+                    try {
                         /*
-                        e seto a sala na SalaHorario
+                        se tiver lab, valido (nao sei se é necessário, talvez nao). vejo se a lista ta vazia, se nao estiver, pego o objeto 0 da lista.
                          */
-                        sh.setSala(listaSala.get(0));
+                        listaSala = sjc.validaSala(left[3]);
+                        if (!listaSala.isEmpty()) {
+                            /*
+                            e seto a sala na SalaHorario
+                             */
+                            sh.setSala(listaSala.get(0));
+                        }
+                    } catch (Exception e) {
+                        /*
+                        Caso nao tenha sala, será nulo
+                         */
+                        sh.setSala(null);
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                     /*
-                    Caso nao tenha sala, será nulo
+                    Crio o SalaHorario e zero a variavel, pra evitar problemas.
                      */
-                    sh.setSala(null);
+                    shjc.create(sh);
+                    sh = null;
                 }
-                /*
-                Crio o SalaHorario e zero a variavel, pra evitar problemas.
-                 */
-                shjc.create(sh);
-                sh = null;
             }
 
             for (String l : left) {
