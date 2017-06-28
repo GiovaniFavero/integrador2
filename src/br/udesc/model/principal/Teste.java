@@ -32,19 +32,20 @@ public class Teste {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
 
-        gm.gerarCurso();
-        gm.gerarPrimeiraFase();
-        gm.gerarSegundaFase();
-        gm.gerarTerceiraFase();
-        gm.gerarQuartaFase();
-        gm.gerarQuintaFase();
-        gm.gerarSextaFase();
-        gm.gerarSetimaFase();
-        gm.gerarOitavaFase();
-        gl.gerarLabs();
-        gp.gerarProfessor();
-        gp.gerarRestricaoProfessor();
-       gl.vincularLabs();
+//        gm.gerarCurso();
+//        gm.gerarPrimeiraFase();
+//        gm.gerarSegundaFase();
+//        gp.gerarProfessorPrimeiraSegundaFase();
+//        gm.gerarTerceiraFase();
+//        gm.gerarQuartaFase();
+//        gm.gerarQuintaFase();
+//        gm.gerarSextaFase();
+//        gm.gerarSetimaFase();
+//        gm.gerarOitavaFase();
+//        gl.gerarLabs();
+//        gp.gerarProfessor();
+//        gp.gerarRestricaoProfessor();
+//         gl.vincularLabs();
 
 //            GerarGLPK gg = new GerarGLPK();
 ////

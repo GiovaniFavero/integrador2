@@ -16,8 +16,50 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
      */
     public TelaTableDisciplina() {
         initComponents();
+        layoutMenu();
     }
 
+    public void layoutMenu(){
+        botaoAdicionar.setBorderPainted(false);
+        botaoAdicionar.setFocusPainted(false);
+        botaoAdicionar.setContentAreaFilled(false);
+
+        botaoEditar1.setBorderPainted(false);
+        botaoEditar1.setFocusPainted(false);
+        botaoEditar1.setContentAreaFilled(false);
+
+        boataoExcluir.setBorderPainted(false);
+        boataoExcluir.setFocusPainted(false);
+        boataoExcluir.setContentAreaFilled(false);
+
+        botaoRestricoes.setBorderPainted(false);
+        botaoRestricoes.setFocusPainted(false);
+        botaoRestricoes.setContentAreaFilled(false);
+
+        botaoRestricoes.setBorderPainted(false);
+        botaoRestricoes.setFocusPainted(false);
+        botaoRestricoes.setContentAreaFilled(false);
+
+        botaoInicio.setBorderPainted(false);
+        botaoInicio.setFocusPainted(false);
+        botaoInicio.setContentAreaFilled(false);
+
+        botaoSala.setBorderPainted(false);
+        botaoSala.setFocusPainted(false);
+        botaoSala.setContentAreaFilled(false);
+
+        botaoProfessor.setBorderPainted(false);
+        botaoProfessor.setFocusPainted(false);
+        botaoProfessor.setContentAreaFilled(false);
+
+        botaoCurso.setBorderPainted(false);
+        botaoCurso.setFocusPainted(false);
+        botaoCurso.setContentAreaFilled(false);
+
+        botaoVincular.setBorderPainted(false);
+        botaoVincular.setFocusPainted(false);
+        botaoVincular.setContentAreaFilled(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,15 +81,21 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
         botaoRestricoes = new javax.swing.JButton();
         botaoEditar1 = new javax.swing.JButton();
         botaoAdicionar = new javax.swing.JButton();
+        menuRapidoPanel = new javax.swing.JPanel();
+        botaoInicio = new javax.swing.JButton();
+        botaoSala = new javax.swing.JButton();
+        botaoProfessor = new javax.swing.JButton();
+        botaoCurso = new javax.swing.JButton();
+        botaoVincular = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(565, 535));
-        setMinimumSize(new java.awt.Dimension(565, 535));
-        setPreferredSize(new java.awt.Dimension(565, 535));
+        setMaximumSize(new java.awt.Dimension(565, 610));
+        setMinimumSize(new java.awt.Dimension(565, 610));
+        setPreferredSize(new java.awt.Dimension(565, 610));
 
-        areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 500));
-        areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 500));
-        areaTotalPanel.setPreferredSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 555));
+        areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 555));
+        areaTotalPanel.setPreferredSize(new java.awt.Dimension(553, 555));
         areaTotalPanel.setLayout(new java.awt.GridBagLayout());
 
         tituloPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -142,7 +190,7 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
                     .addComponent(botaoEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoRestricoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boataoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout tabelaPanelLayout = new javax.swing.GroupLayout(tabelaPanel);
@@ -165,10 +213,66 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.ipady = 51;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         areaTotalPanel.add(tabelaPanel, gridBagConstraints);
+
+        menuRapidoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Menu de Ações", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        menuRapidoPanel.setMaximumSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setMinimumSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setPreferredSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setLayout(new java.awt.GridLayout(1, 0));
+
+        botaoInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon (1).png"))); // NOI18N
+        botaoInicio.setText("Início");
+        botaoInicio.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoInicio.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoInicio.setPreferredSize(new java.awt.Dimension(59, 25));
+        botaoInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoInicioActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoInicio);
+
+        botaoSala.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/sala_24.png"))); // NOI18N
+        botaoSala.setText("Sala");
+        botaoSala.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoSala.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoSala.setPreferredSize(new java.awt.Dimension(59, 25));
+        botaoSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalaActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoSala);
+
+        botaoProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/professor_24.png"))); // NOI18N
+        botaoProfessor.setText("Prof");
+        menuRapidoPanel.add(botaoProfessor);
+
+        botaoCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Curso24.png"))); // NOI18N
+        botaoCurso.setText("Curso");
+        botaoCurso.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botaoCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCursoActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoCurso);
+
+        botaoVincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Vincular.png"))); // NOI18N
+        botaoVincular.setText("Vincular");
+        botaoVincular.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoVincular.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoVincular.setPreferredSize(new java.awt.Dimension(59, 25));
+        menuRapidoPanel.add(botaoVincular);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        areaTotalPanel.add(menuRapidoPanel, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,12 +282,30 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(areaTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(areaTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 25, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoInicioActionPerformed
+
+    private void botaoCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoCursoActionPerformed
+
+    private void botaoSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoSalaActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -191,10 +313,16 @@ public class TelaTableDisciplina extends javax.swing.JFrame {
     private javax.swing.JPanel areaTotalPanel;
     public javax.swing.JButton boataoExcluir;
     public javax.swing.JButton botaoAdicionar;
+    public javax.swing.JButton botaoCurso;
     public javax.swing.JButton botaoEditar1;
+    public javax.swing.JButton botaoInicio;
+    public javax.swing.JButton botaoProfessor;
     public javax.swing.JButton botaoRestricoes;
+    public javax.swing.JButton botaoSala;
+    public javax.swing.JButton botaoVincular;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel menuRapidoPanel;
     public javax.swing.JTable tabelaDisciplina;
     private javax.swing.JPanel tabelaPanel;
     private javax.swing.JPanel tituloPanel;

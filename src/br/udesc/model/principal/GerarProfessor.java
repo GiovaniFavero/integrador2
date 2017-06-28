@@ -122,11 +122,6 @@ public class GerarProfessor {
         pjc.create(professor);
 
         professor = new Professor();
-        professor.setNome("Célio Antônio Sardagna");
-        professor.setCpf("cpf");
-        pjc.create(professor);
-
-        professor = new Professor();
         professor.setNome("Fernando Scheeffer");
         professor.setCpf("cpf");
         pjc.create(professor);
@@ -169,6 +164,55 @@ public class GerarProfessor {
                 }
             }
         }
+    }
+
+    public void gerarProfessorPrimeiraSegundaFase() {
+
+        professor.setNome("Adermar Perfoll Junior");
+        professor.setCpf("cpf");
+        pjc.create(professor);
+
+        professor = new Professor();
+        professor.setNome("Célio Antônio Sardagna");
+        professor.setCpf("cpf");
+        pjc.create(professor);
+
+        professor = new Professor();
+        professor.setNome("Carlos Fernando Cruz");
+        professor.setCpf("cpf");
+        pjc.create(professor);
+
+        professor = new Professor();
+        professor.setNome("Paulo Roberto Farah");
+        professor.setCpf("cpf");
+        pjc.create(professor);
+
+        professor = new Professor();
+        professor.setNome("Paolo Moser");
+        professor.setCpf("cpf");
+        pjc.create(professor);
+
+        professor = new Professor();
+        professor.setNome("Tiago Luiz Schmitz");
+        professor.setCpf("cpf");
+        pjc.create(professor);
+
+        professor = new Professor();
+        professor.setNome("Marcelo de Souza");
+        professor.setCpf("cpf");
+        pjc.create(professor);
+
+        professor = new Professor();
+        professor.setNome("Giovani Festa Paludo");
+        professor.setCpf("cpf");
+        pjc.create(professor);
+
+        professor = new Professor();
+        professor.setNome("Márcio José Mantau");
+        professor.setCpf("cpf");
+        pjc.create(professor);
+
+        gerarRestricaoProfessor();
     }
 
 }

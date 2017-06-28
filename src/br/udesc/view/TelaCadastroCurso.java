@@ -11,7 +11,6 @@ package br.udesc.view;
  */
 public class TelaCadastroCurso extends javax.swing.JFrame {
 
-   
     public TelaCadastroCurso() {
         initComponents();
         layoutBtms();
@@ -21,21 +20,24 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
         botaoInicio.setBorderPainted(false);
         botaoInicio.setFocusPainted(false);
         botaoInicio.setContentAreaFilled(false);
-        
+
         botaoDisciplina.setBorderPainted(false);
         botaoDisciplina.setFocusPainted(false);
         botaoDisciplina.setContentAreaFilled(false);
-        
+
         botaoProfessor.setBorderPainted(false);
         botaoProfessor.setFocusPainted(false);
         botaoProfessor.setContentAreaFilled(false);
-        
+
         botaoSala.setBorderPainted(false);
         botaoSala.setFocusPainted(false);
         botaoSala.setContentAreaFilled(false);
+
+        botaoVincular.setBorderPainted(false);
+        botaoVincular.setFocusPainted(false);
+        botaoVincular.setContentAreaFilled(false);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -47,6 +49,7 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
         botaoSala = new javax.swing.JButton();
         botaoProfessor = new javax.swing.JButton();
         botaoDisciplina = new javax.swing.JButton();
+        botaoVincular = new javax.swing.JButton();
         conteudoPanel = new javax.swing.JPanel();
         fieldNome = new javax.swing.JTextField();
         nomeLabel = new javax.swing.JLabel();
@@ -59,18 +62,17 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
         tituloLabel = new javax.swing.JLabel();
 
         setTitle("Cadastro de Curso");
-        setMaximumSize(new java.awt.Dimension(565, 535));
-        setMinimumSize(new java.awt.Dimension(565, 535));
-        setPreferredSize(new java.awt.Dimension(565, 535));
+        setMinimumSize(new java.awt.Dimension(565, 580));
 
         areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 500));
         areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 500));
         areaTotalPanel.setPreferredSize(new java.awt.Dimension(553, 500));
         areaTotalPanel.setLayout(new java.awt.GridBagLayout());
 
-        menuRapidoPanel.setMaximumSize(new java.awt.Dimension(550, 40));
-        menuRapidoPanel.setMinimumSize(new java.awt.Dimension(550, 40));
-        menuRapidoPanel.setPreferredSize(new java.awt.Dimension(550, 40));
+        menuRapidoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Menu de Ações", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        menuRapidoPanel.setMaximumSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setMinimumSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setPreferredSize(new java.awt.Dimension(550, 60));
         menuRapidoPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         botaoInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon (1).png"))); // NOI18N
@@ -94,11 +96,11 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
         menuRapidoPanel.add(botaoSala);
 
         botaoProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/professor_24.png"))); // NOI18N
-        botaoProfessor.setText("Professor");
+        botaoProfessor.setText("Prof");
         menuRapidoPanel.add(botaoProfessor);
 
         botaoDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/disciplina_24.png"))); // NOI18N
-        botaoDisciplina.setText("Disciplina");
+        botaoDisciplina.setText("Disc");
         botaoDisciplina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoDisciplinaActionPerformed(evt);
@@ -106,12 +108,15 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
         });
         menuRapidoPanel.add(botaoDisciplina);
 
+        botaoVincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Vincular.png"))); // NOI18N
+        botaoVincular.setText("Vincular");
+        menuRapidoPanel.add(botaoVincular);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         areaTotalPanel.add(menuRapidoPanel, gridBagConstraints);
 
-        conteudoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         conteudoPanel.setMaximumSize(new java.awt.Dimension(540, 400));
         conteudoPanel.setMinimumSize(new java.awt.Dimension(540, 400));
         conteudoPanel.setPreferredSize(new java.awt.Dimension(540, 400));
@@ -161,8 +166,8 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
                             .addComponent(nomeLabel))
                         .addGap(23, 23, 23)
                         .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spinnerDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldNome)))
+                            .addComponent(fieldNome)
+                            .addComponent(spinnerDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(conteudoPanelLayout.createSequentialGroup()
                         .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
@@ -175,14 +180,14 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
             conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(conteudoPanelLayout.createSequentialGroup()
                 .addGap(109, 109, 109)
-                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nomeLabel))
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nomeLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fieldNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spinnerDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(duracaoLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(spinnerDuracao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(duracaoLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,6 +242,10 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoDisciplinaActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel areaTotalPanel;
     public javax.swing.JButton botaoDisciplina;
@@ -245,6 +254,7 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
     public javax.swing.JButton botaoProfessor;
     public javax.swing.JButton botaoSala;
     public javax.swing.JButton botaoSalvar;
+    public javax.swing.JButton botaoVincular;
     public javax.swing.JButton botaoVoltar;
     public javax.swing.JPanel conteudoPanel;
     public javax.swing.JLabel duracaoLabel;

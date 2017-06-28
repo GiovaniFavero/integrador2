@@ -16,6 +16,37 @@ public class TelaTableSala extends javax.swing.JFrame {
      */
     public TelaTableSala() {
         initComponents();
+        layoutMenu();
+    }
+
+    public void layoutMenu() {
+        botaoAdicionar.setBorderPainted(false);
+        botaoAdicionar.setFocusPainted(false);
+        botaoAdicionar.setContentAreaFilled(false);
+
+        botaoEditar.setBorderPainted(false);
+        botaoEditar.setFocusPainted(false);
+        botaoEditar.setContentAreaFilled(false);
+
+        botaoInicio.setBorderPainted(false);
+        botaoInicio.setFocusPainted(false);
+        botaoInicio.setContentAreaFilled(false);
+
+        botaoDisciplina.setBorderPainted(false);
+        botaoDisciplina.setFocusPainted(false);
+        botaoDisciplina.setContentAreaFilled(false);
+
+        botaoProfessor.setBorderPainted(false);
+        botaoProfessor.setFocusPainted(false);
+        botaoProfessor.setContentAreaFilled(false);
+
+        botaoCurso.setBorderPainted(false);
+        botaoCurso.setFocusPainted(false);
+        botaoCurso.setContentAreaFilled(false);
+
+        botaoVincular.setBorderPainted(false);
+        botaoVincular.setFocusPainted(false);
+        botaoVincular.setContentAreaFilled(false);
     }
 
     /**
@@ -38,15 +69,21 @@ public class TelaTableSala extends javax.swing.JFrame {
         botaoAdicionar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
         boataoExcluir = new javax.swing.JButton();
+        menuRapidoPanel = new javax.swing.JPanel();
+        botaoInicio = new javax.swing.JButton();
+        botaoProfessor = new javax.swing.JButton();
+        botaoDisciplina = new javax.swing.JButton();
+        botaoCurso = new javax.swing.JButton();
+        botaoVincular = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(565, 535));
-        setMinimumSize(new java.awt.Dimension(565, 535));
-        setPreferredSize(new java.awt.Dimension(565, 535));
+        setMaximumSize(new java.awt.Dimension(565, 610));
+        setMinimumSize(new java.awt.Dimension(565, 610));
+        setPreferredSize(new java.awt.Dimension(565, 610));
 
-        areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 500));
-        areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 500));
-        areaTotalPanel.setPreferredSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 555));
+        areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 555));
+        areaTotalPanel.setPreferredSize(new java.awt.Dimension(553, 555));
         areaTotalPanel.setLayout(new java.awt.GridBagLayout());
 
         tituloPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -105,7 +142,7 @@ public class TelaTableSala extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         areaTotalPanel.add(tabelaPanel, gridBagConstraints);
@@ -168,10 +205,66 @@ public class TelaTableSala extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         areaTotalPanel.add(acoesPanel, gridBagConstraints);
+
+        menuRapidoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Menu de Ações", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        menuRapidoPanel.setMaximumSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setMinimumSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setPreferredSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setLayout(new java.awt.GridLayout(1, 0));
+
+        botaoInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon (1).png"))); // NOI18N
+        botaoInicio.setText("Início");
+        botaoInicio.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoInicio.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoInicio.setPreferredSize(new java.awt.Dimension(59, 25));
+        botaoInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoInicioActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoInicio);
+
+        botaoProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/professor_24.png"))); // NOI18N
+        botaoProfessor.setText("Prof");
+        menuRapidoPanel.add(botaoProfessor);
+
+        botaoDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/disciplina_24.png"))); // NOI18N
+        botaoDisciplina.setText("Disc");
+        botaoDisciplina.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoDisciplina.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoDisciplina.setPreferredSize(new java.awt.Dimension(59, 25));
+        botaoDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDisciplinaActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoDisciplina);
+
+        botaoCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Curso24.png"))); // NOI18N
+        botaoCurso.setText("Curso");
+        botaoCurso.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botaoCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCursoActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoCurso);
+
+        botaoVincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Vincular.png"))); // NOI18N
+        botaoVincular.setText("Vincular");
+        botaoVincular.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoVincular.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoVincular.setPreferredSize(new java.awt.Dimension(59, 25));
+        menuRapidoPanel.add(botaoVincular);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        areaTotalPanel.add(menuRapidoPanel, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,7 +274,9 @@ public class TelaTableSala extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(areaTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(areaTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,15 +291,36 @@ public class TelaTableSala extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boataoExcluirActionPerformed
 
+    private void botaoInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoInicioActionPerformed
+
+    private void botaoDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDisciplinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoDisciplinaActionPerformed
+
+    private void botaoCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoCursoActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel acoesPanel;
     private javax.swing.JPanel areaTotalPanel;
     public javax.swing.JButton boataoExcluir;
     public javax.swing.JButton botaoAdicionar;
+    public javax.swing.JButton botaoCurso;
+    public javax.swing.JButton botaoDisciplina;
     public javax.swing.JButton botaoEditar;
+    public javax.swing.JButton botaoInicio;
+    public javax.swing.JButton botaoProfessor;
+    public javax.swing.JButton botaoVincular;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel menuRapidoPanel;
     private javax.swing.JPanel tabelaPanel;
     public javax.swing.JTable tabelaSalas;
     private javax.swing.JPanel tituloPanel;

@@ -51,6 +51,14 @@ public class TelaInicio extends javax.swing.JFrame {
         botaoHorario.setBorderPainted(false);
         botaoHorario.setFocusPainted(false);
         botaoHorario.setContentAreaFilled(false);
+        
+        botaoRelatorio.setBorderPainted(false);
+        botaoRelatorio.setFocusPainted(false);
+        botaoRelatorio.setContentAreaFilled(false);
+        
+        botaoDb.setBorderPainted(false);
+        botaoDb.setFocusPainted(false);
+        botaoDb.setContentAreaFilled(false);
     }
 
     /**
@@ -76,19 +84,20 @@ public class TelaInicio extends javax.swing.JFrame {
         botaoSala = new javax.swing.JButton();
         botaoVincular = new javax.swing.JButton();
         botaoHorario = new javax.swing.JButton();
+        botaoDb = new javax.swing.JButton();
         btmD = new javax.swing.JPanel();
         botaoDisciplina = new javax.swing.JButton();
         botaoCurso = new javax.swing.JButton();
         botaoProblema = new javax.swing.JButton();
+        botaoRelatorio = new javax.swing.JButton();
         botaoSair = new javax.swing.JButton();
         tituloPanel = new javax.swing.JPanel();
         tituloLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Início");
-        setMaximumSize(new java.awt.Dimension(565, 535));
-        setMinimumSize(new java.awt.Dimension(565, 535));
-        setPreferredSize(new java.awt.Dimension(565, 535));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(565, 580));
 
         areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 500));
         areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 500));
@@ -172,10 +181,10 @@ public class TelaInicio extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         areaBtm.add(espacoD, gridBagConstraints);
 
-        btmE.setMaximumSize(new java.awt.Dimension(150, 225));
-        btmE.setMinimumSize(new java.awt.Dimension(150, 225));
-        btmE.setPreferredSize(new java.awt.Dimension(150, 225));
-        btmE.setLayout(new java.awt.GridLayout(4, 1));
+        btmE.setMaximumSize(new java.awt.Dimension(165, 225));
+        btmE.setMinimumSize(new java.awt.Dimension(165, 225));
+        btmE.setPreferredSize(new java.awt.Dimension(165, 225));
+        btmE.setLayout(new java.awt.GridLayout(5, 1));
 
         botaoProfessor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botaoProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/professor_24.png"))); // NOI18N
@@ -200,7 +209,7 @@ public class TelaInicio extends javax.swing.JFrame {
         btmE.add(botaoSala);
 
         botaoVincular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botaoVincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Vincular.png"))); // NOI18N
+        botaoVincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Vincular24.png"))); // NOI18N
         botaoVincular.setText("Vincular");
         botaoVincular.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         botaoVincular.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +220,7 @@ public class TelaInicio extends javax.swing.JFrame {
         btmE.add(botaoVincular);
 
         botaoHorario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botaoHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Tabela.png"))); // NOI18N
+        botaoHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Tabela24.png"))); // NOI18N
         botaoHorario.setText("Gerar Horários");
         botaoHorario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         botaoHorario.addActionListener(new java.awt.event.ActionListener() {
@@ -221,15 +230,26 @@ public class TelaInicio extends javax.swing.JFrame {
         });
         btmE.add(botaoHorario);
 
+        botaoDb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        botaoDb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/database.png"))); // NOI18N
+        botaoDb.setText("Preencher Banco");
+        botaoDb.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botaoDb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDbActionPerformed(evt);
+            }
+        });
+        btmE.add(botaoDb);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         areaBtm.add(btmE, gridBagConstraints);
 
-        btmD.setMaximumSize(new java.awt.Dimension(150, 225));
-        btmD.setMinimumSize(new java.awt.Dimension(150, 225));
-        btmD.setPreferredSize(new java.awt.Dimension(150, 225));
-        btmD.setLayout(new java.awt.GridLayout(4, 1));
+        btmD.setMaximumSize(new java.awt.Dimension(165, 225));
+        btmD.setMinimumSize(new java.awt.Dimension(165, 225));
+        btmD.setPreferredSize(new java.awt.Dimension(165, 225));
+        btmD.setLayout(new java.awt.GridLayout(5, 1));
 
         botaoDisciplina.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botaoDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/disciplina_24.png"))); // NOI18N
@@ -243,7 +263,7 @@ public class TelaInicio extends javax.swing.JFrame {
         btmD.add(botaoDisciplina);
 
         botaoCurso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botaoCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Curso.png"))); // NOI18N
+        botaoCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Curso24.png"))); // NOI18N
         botaoCurso.setText("Curso");
         botaoCurso.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         botaoCurso.addActionListener(new java.awt.event.ActionListener() {
@@ -254,7 +274,7 @@ public class TelaInicio extends javax.swing.JFrame {
         btmD.add(botaoCurso);
 
         botaoProblema.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botaoProblema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Problema.png"))); // NOI18N
+        botaoProblema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Problema24.png"))); // NOI18N
         botaoProblema.setText("Gerar Problema");
         botaoProblema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,6 +282,17 @@ public class TelaInicio extends javax.swing.JFrame {
             }
         });
         btmD.add(botaoProblema);
+
+        botaoRelatorio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        botaoRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newspaper.png"))); // NOI18N
+        botaoRelatorio.setText("Gerar Relatórios");
+        botaoRelatorio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botaoRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRelatorioActionPerformed(evt);
+            }
+        });
+        btmD.add(botaoRelatorio);
 
         botaoSair.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botaoSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/sair.png"))); // NOI18N
@@ -345,23 +376,36 @@ public class TelaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoHorarioActionPerformed
 
     private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
-    
+        System.exit(0);
     }//GEN-LAST:event_botaoSairActionPerformed
 
     private void botaoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProfessorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoProfessorActionPerformed
 
+    private void botaoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRelatorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoRelatorioActionPerformed
+
+    private void botaoDbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoDbActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel areaBtm;
     private javax.swing.JPanel areaLabelConteudo;
     private javax.swing.JPanel areaTotalPanel;
     public javax.swing.JButton botaoCurso;
+    public javax.swing.JButton botaoDb;
     public javax.swing.JButton botaoDisciplina;
     public javax.swing.JButton botaoHorario;
     public javax.swing.JButton botaoProblema;
     public javax.swing.JButton botaoProfessor;
+    public javax.swing.JButton botaoRelatorio;
     public javax.swing.JButton botaoSair;
     public javax.swing.JButton botaoSala;
     public javax.swing.JButton botaoVincular;

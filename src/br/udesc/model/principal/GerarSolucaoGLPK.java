@@ -17,7 +17,7 @@ public class GerarSolucaoGLPK {
         Process p;
         try {
             p = Runtime.getRuntime().exec(command);
-            p.waitFor();
+//            p.waitFor();
             BufferedReader reader
                     = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line = "";

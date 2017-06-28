@@ -35,6 +35,25 @@ public class TelaCadastroSala extends javax.swing.JFrame {
         botaoProfessor.setFocusPainted(false);
         botaoProfessor.setContentAreaFilled(false);
         
+        botaoCurso.setBorderPainted(false);
+        botaoCurso.setFocusPainted(false);
+        botaoCurso.setContentAreaFilled(false);
+        
+        botaoVincular.setBorderPainted(false);
+        botaoVincular.setFocusPainted(false);
+        botaoVincular.setContentAreaFilled(false);
+        
+        botaoSalvar.setBorderPainted(false);
+        botaoSalvar.setFocusPainted(false);
+        botaoSalvar.setContentAreaFilled(false);
+        
+        botaoLimpar.setBorderPainted(false);
+        botaoLimpar.setFocusPainted(false);
+        botaoLimpar.setContentAreaFilled(false);
+        
+        botaoVoltar.setBorderPainted(false);
+        botaoVoltar.setFocusPainted(false);
+        botaoVoltar.setContentAreaFilled(false);
       }
 
     /**
@@ -51,10 +70,6 @@ public class TelaCadastroSala extends javax.swing.JFrame {
         areaTotalPanel = new javax.swing.JPanel();
         tituloPanel = new javax.swing.JPanel();
         tituloLabel = new javax.swing.JLabel();
-        menuRapidoPanel = new javax.swing.JPanel();
-        botaoInicio = new javax.swing.JButton();
-        botaoProfessor = new javax.swing.JButton();
-        botaoDisciplina = new javax.swing.JButton();
         conteudoPanel = new javax.swing.JPanel();
         fieldLimite = new javax.swing.JTextField();
         limiteLabel = new javax.swing.JLabel();
@@ -66,15 +81,21 @@ public class TelaCadastroSala extends javax.swing.JFrame {
         botaoVoltar = new javax.swing.JButton();
         botaoLimpar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
+        menuRapidoPanel = new javax.swing.JPanel();
+        botaoInicio = new javax.swing.JButton();
+        botaoProfessor = new javax.swing.JButton();
+        botaoDisciplina = new javax.swing.JButton();
+        botaoCurso = new javax.swing.JButton();
+        botaoVincular = new javax.swing.JButton();
 
         setTitle("Cadastro de Sala");
-        setMaximumSize(new java.awt.Dimension(565, 535));
-        setMinimumSize(new java.awt.Dimension(565, 535));
-        setPreferredSize(new java.awt.Dimension(565, 535));
+        setMaximumSize(new java.awt.Dimension(565, 610));
+        setMinimumSize(new java.awt.Dimension(565, 610));
+        setPreferredSize(new java.awt.Dimension(565, 610));
 
-        areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 500));
-        areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 500));
-        areaTotalPanel.setPreferredSize(new java.awt.Dimension(553, 500));
+        areaTotalPanel.setMaximumSize(new java.awt.Dimension(553, 555));
+        areaTotalPanel.setMinimumSize(new java.awt.Dimension(553, 555));
+        areaTotalPanel.setPreferredSize(new java.awt.Dimension(553, 555));
         areaTotalPanel.setLayout(new java.awt.GridBagLayout());
 
         tituloPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -92,47 +113,6 @@ public class TelaCadastroSala extends javax.swing.JFrame {
         gridBagConstraints.ipady = -11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         areaTotalPanel.add(tituloPanel, gridBagConstraints);
-
-        menuRapidoPanel.setMaximumSize(new java.awt.Dimension(550, 40));
-        menuRapidoPanel.setMinimumSize(new java.awt.Dimension(550, 40));
-        menuRapidoPanel.setPreferredSize(new java.awt.Dimension(550, 40));
-        menuRapidoPanel.setLayout(new java.awt.GridLayout(1, 0));
-
-        botaoInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon (1).png"))); // NOI18N
-        botaoInicio.setText("Início");
-        botaoInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoInicioActionPerformed(evt);
-            }
-        });
-        menuRapidoPanel.add(botaoInicio);
-
-        botaoProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/professor_24.png"))); // NOI18N
-        botaoProfessor.setText("Professor");
-        botaoProfessor.setMaximumSize(new java.awt.Dimension(85, 33));
-        botaoProfessor.setMinimumSize(new java.awt.Dimension(85, 33));
-        botaoProfessor.setPreferredSize(new java.awt.Dimension(85, 33));
-        menuRapidoPanel.add(botaoProfessor);
-
-        botaoDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/disciplina_24.png"))); // NOI18N
-        botaoDisciplina.setText("Disciplina");
-        botaoDisciplina.setMaximumSize(new java.awt.Dimension(85, 33));
-        botaoDisciplina.setMinimumSize(new java.awt.Dimension(85, 33));
-        botaoDisciplina.setPreferredSize(new java.awt.Dimension(85, 33));
-        botaoDisciplina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoDisciplinaActionPerformed(evt);
-            }
-        });
-        menuRapidoPanel.add(botaoDisciplina);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipady = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        areaTotalPanel.add(menuRapidoPanel, gridBagConstraints);
 
         conteudoPanel.setMaximumSize(new java.awt.Dimension(540, 400));
         conteudoPanel.setMinimumSize(new java.awt.Dimension(540, 400));
@@ -187,47 +167,49 @@ public class TelaCadastroSala extends javax.swing.JFrame {
         conteudoPanelLayout.setHorizontalGroup(
             conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(conteudoPanelLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(conteudoPanelLayout.createSequentialGroup()
-                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(tipoLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(conteudoPanelLayout.createSequentialGroup()
-                                .addComponent(radioSala)
-                                .addGap(18, 18, 18)
-                                .addComponent(radioLaboratorio)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(fieldNumero)
-                            .addComponent(fieldLimite)))
-                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(79, 79, 79)
                         .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
                         .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(limiteLabel))
-                .addGap(79, 79, 79))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(limiteLabel)
+                            .addComponent(tipoLabel))
+                        .addGap(24, 24, 24)
+                        .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(fieldNumero, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldLimite, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(conteudoPanelLayout.createSequentialGroup()
+                                .addComponent(radioSala)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioLaboratorio)))))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         conteudoPanelLayout.setVerticalGroup(
             conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, conteudoPanelLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(fieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(122, 122, 122)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(21, 21, 21)
+                        .addComponent(limiteLabel))
+                    .addGroup(conteudoPanelLayout.createSequentialGroup()
+                        .addComponent(fieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(fieldLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(limiteLabel))
-                .addGap(18, 18, 18)
-                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(tipoLabel)
                     .addComponent(radioSala)
                     .addComponent(radioLaboratorio))
-                .addGap(150, 150, 150)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addGroup(conteudoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,10 +220,65 @@ public class TelaCadastroSala extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         areaTotalPanel.add(conteudoPanel, gridBagConstraints);
+
+        menuRapidoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Menu de Ações", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        menuRapidoPanel.setMaximumSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setMinimumSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setPreferredSize(new java.awt.Dimension(550, 60));
+        menuRapidoPanel.setLayout(new java.awt.GridLayout(1, 0));
+
+        botaoInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon (1).png"))); // NOI18N
+        botaoInicio.setText("Início");
+        botaoInicio.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoInicio.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoInicio.setPreferredSize(new java.awt.Dimension(59, 25));
+        botaoInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoInicioActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoInicio);
+
+        botaoProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/professor_24.png"))); // NOI18N
+        botaoProfessor.setText("Prof");
+        menuRapidoPanel.add(botaoProfessor);
+
+        botaoDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/disciplina_24.png"))); // NOI18N
+        botaoDisciplina.setText("Disc");
+        botaoDisciplina.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoDisciplina.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoDisciplina.setPreferredSize(new java.awt.Dimension(59, 25));
+        botaoDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDisciplinaActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoDisciplina);
+
+        botaoCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Curso24.png"))); // NOI18N
+        botaoCurso.setText("Curso");
+        botaoCurso.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botaoCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCursoActionPerformed(evt);
+            }
+        });
+        menuRapidoPanel.add(botaoCurso);
+
+        botaoVincular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Vincular.png"))); // NOI18N
+        botaoVincular.setText("Vincular");
+        botaoVincular.setMaximumSize(new java.awt.Dimension(59, 25));
+        botaoVincular.setMinimumSize(new java.awt.Dimension(59, 25));
+        botaoVincular.setPreferredSize(new java.awt.Dimension(59, 25));
+        menuRapidoPanel.add(botaoVincular);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        areaTotalPanel.add(menuRapidoPanel, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -252,8 +289,8 @@ public class TelaCadastroSala extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(areaTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13))
+                .addComponent(areaTotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 50, Short.MAX_VALUE))
         );
 
         pack();
@@ -264,17 +301,21 @@ public class TelaCadastroSala extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldLimiteActionPerformed
 
-    private void botaoInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicioActionPerformed
-
-    }//GEN-LAST:event_botaoInicioActionPerformed
-
-    private void botaoDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDisciplinaActionPerformed
-     
-    }//GEN-LAST:event_botaoDisciplinaActionPerformed
-
     private void radioLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioLaboratorioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioLaboratorioActionPerformed
+
+    private void botaoInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoInicioActionPerformed
+
+    private void botaoDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDisciplinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoDisciplinaActionPerformed
+
+    private void botaoCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoCursoActionPerformed
 
     private void fazerUmBotao(){
         buttonGroup2.add(radioSala);
@@ -283,11 +324,13 @@ public class TelaCadastroSala extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel areaTotalPanel;
+    public javax.swing.JButton botaoCurso;
     public javax.swing.JButton botaoDisciplina;
     public javax.swing.JButton botaoInicio;
     public javax.swing.JButton botaoLimpar;
     public javax.swing.JButton botaoProfessor;
     public javax.swing.JButton botaoSalvar;
+    public javax.swing.JButton botaoVincular;
     public javax.swing.JButton botaoVoltar;
     public javax.swing.ButtonGroup buttonGroup2;
     public javax.swing.JPanel conteudoPanel;
@@ -295,7 +338,7 @@ public class TelaCadastroSala extends javax.swing.JFrame {
     public javax.swing.JTextField fieldNumero;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel limiteLabel;
-    public javax.swing.JPanel menuRapidoPanel;
+    private javax.swing.JPanel menuRapidoPanel;
     public javax.swing.JRadioButton radioLaboratorio;
     public javax.swing.JRadioButton radioSala;
     public javax.swing.JLabel tipoLabel;
