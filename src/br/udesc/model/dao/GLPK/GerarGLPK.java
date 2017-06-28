@@ -36,11 +36,13 @@ public class GerarGLPK {
             salvar();
             funcaoMax();
             funcaoMaxSala();
+            somatorioCeuLab();
             gerarVariaveisPorDisciplina();
             gerarSomatorioDisciplinaProfessor();
             gerarSomatorioDisciplinaFase();
             gerarRestricaoDisciplinaHorarioIndisponiveis();
-            somatorioCeuLab();
+            gerarRestricoesDisciplinaIndisponivel();
+            
             gerarRestricoesObrigatorias();
             geraSolve();
 
@@ -275,7 +277,6 @@ public class GerarGLPK {
                 System.out.println(i + " i");
                 professor = lista.get(i);
                 Disciplina disciplina = new Disciplina();
-                
 
                 for (int j = 1; j <= 6; j++) {
                     for (int k = 1; k <= 2; k++) {
@@ -410,7 +411,7 @@ public class GerarGLPK {
                                 }
                             } else {
                                 if (l == listaDisciplina.size() - 1) {
-                                    if (k == 1 && j == 2 && i == 6) {
+                                    if (k == 2 && j == 2 && i == 6) {
                                         print += "_" + disc.getCodigo() + "_" + i + j + "<= 1; \r\n";
                                         Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
                                         print = "";
@@ -551,6 +552,95 @@ public class GerarGLPK {
             print += " + _" + oResDis.getDisciplina().getCodigo() + "_" + oResDis.getHorario() + "_" + oResDis.getDisciplina().getSala().getNumero();
         }
         return print;
+    }
+
+    public void gerarRestricoesDisciplinaIndisponivel() {
+        long inicio = System.currentTimeMillis();
+        try {
+            String print = "";
+            String ini = "\r\n# somatorio de todas as disciplinas e horarios indisponiveis delas = 0 \r\n";
+            String variavel = "s.t. conflito_horario_proibido:";
+            Files.write(Paths.get("./teste.mod"), (ini + variavel).getBytes(), StandardOpenOption.APPEND);
+
+            DisciplinaJpaController djc = new DisciplinaJpaController();
+            int contador = 0;
+
+            Disciplina d = new Disciplina();
+            List<Disciplina> listaDisciplinas = djc.listarDisciplina();
+            for (int i = 0; i < listaDisciplinas.size(); i++) {
+                d = listaDisciplinas.get(i);
+                for (int j = 0; j < d.getListaRestricaoDisciplina().size(); j++) {
+                    if (d.getSala() != null) {
+                        for (int k = 1; k <= 2; k++) {
+                            if (k == 2) {
+                                if (j == d.getListaRestricaoDisciplina().size() - 1) {
+                                    if (i == listaDisciplinas.size() - 1) {
+                                        print = "_" + d.getCodigo() +"_"+ d.getListaRestricaoDisciplina().get(j).getHorario() + "_" + d.getSala().getNumero() + "= 0;\r\n";
+                                        variavel = "s.t. conflito_horario_proibido" + contador + ":";
+                                        Files.write(Paths.get("./teste.mod"), (print).getBytes(), StandardOpenOption.APPEND);
+                                        contador++;
+                                        print = "";
+                                        variavel = "";
+                                    } else {
+                                        print = "_" + d.getCodigo() + "_" + d.getListaRestricaoDisciplina().get(j).getHorario() + "_" + d.getSala().getNumero() + "= 0;\r\n";
+                                        variavel = "s.t. conflito_horario_proibido" + contador + ":";
+                                        Files.write(Paths.get("./teste.mod"), (print + variavel).getBytes(), StandardOpenOption.APPEND);
+                                        contador++;
+                                        print = "";
+                                        variavel = "";
+                                    }
+                                } else {
+                                    print = "_" + d.getCodigo() +"_"+ d.getListaRestricaoDisciplina().get(j).getHorario() + "_" + d.getSala().getNumero() + "+";
+
+                                    Files.write(Paths.get("./teste.mod"), (print).getBytes(), StandardOpenOption.APPEND);
+                                    contador++;
+                                    print = "";
+
+                                }
+                            } else {
+                                if (j == d.getListaRestricaoDisciplina().size() - 1) {
+
+                                    print = "_" + d.getCodigo() +"_"+ d.getListaRestricaoDisciplina().get(j).getHorario() + "+";
+                                    Files.write(Paths.get("./teste.mod"), (print).getBytes(), StandardOpenOption.APPEND);
+                                    contador++;
+                                    print = "";
+
+                                } else {
+                                    print = "_" + d.getCodigo() +"_"+ d.getListaRestricaoDisciplina().get(j).getHorario() + "+";
+                                    Files.write(Paths.get("./teste.mod"), (print).getBytes(), StandardOpenOption.APPEND);
+                                    contador++;
+                                    print = "";
+
+                                }
+                            }
+                        }
+                    } else {
+                        if (j == d.getListaRestricaoDisciplina().size() - 1) {
+                            if (i == listaDisciplinas.size() - 1) {
+                                print = "_" + d.getCodigo() +"_"+ d.getListaRestricaoDisciplina().get(j).getHorario() + "= 0;\r\n";
+                                variavel = "s.t. conflito_horario_proibido" + contador + ":";
+                                Files.write(Paths.get("./teste.mod"), (print).getBytes(), StandardOpenOption.APPEND);
+                                contador++;
+                                print = "";
+                            } else {
+                                print = "_" + d.getCodigo() +"_"+ d.getListaRestricaoDisciplina().get(j).getHorario() + "= 0;\r\n";
+                                variavel = "s.t. conflito_horario_proibido" + contador + ":";
+                                Files.write(Paths.get("./teste.mod"), (print + variavel).getBytes(), StandardOpenOption.APPEND);
+                                contador++;
+                                print = "";
+                            }
+                        } else {
+                            print = "_" + d.getCodigo() +"_"+ d.getListaRestricaoDisciplina().get(j).getHorario() + "+";
+                            Files.write(Paths.get("./teste.mod"), (print).getBytes(), StandardOpenOption.APPEND);
+                            print = "";
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void gerarRestricaoDisciplinaHorarioIndisponiveis() {
@@ -708,7 +798,7 @@ public class GerarGLPK {
         String st = "";
         int contador = 0;
         try {
-            Files.write(Paths.get("./teste.mod"), ("# somatorio de todas as disciplinas e horarios de laboratorio = ao céu de 50porcento da carga horária").getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("./teste.mod"), ("# somatorio de todas as disciplinas e horarios de laboratorio = ao céu de 50porcento da carga horária\r\n").getBytes(), StandardOpenOption.APPEND);
             for (int i = 0; i < dis.size(); i++) {
                 d = dis.get(i);
                 for (int j = 1; j < 7; j++) {

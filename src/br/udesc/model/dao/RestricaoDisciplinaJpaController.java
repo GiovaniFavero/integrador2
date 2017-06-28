@@ -195,7 +195,24 @@ public class RestricaoDisciplinaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<RestricaoDisciplina> listarRestricoesProibidas() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT e FROM RestricaoDisciplina e WHERE e.condicao = 3 "); // Condição Obrigatória
+            List<RestricaoDisciplina> res = query.getResultList();
+            return res;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
     public List<RestricaoDisciplina> listarRestriçõesSemDisciplina() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -213,5 +230,4 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         }
     }
 
-    
 }

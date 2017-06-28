@@ -19,16 +19,16 @@ import javax.persistence.Persistence;
 public class Teste {
 
     public static void main(String[] args) {
-
-        GerarMaterias gm = new GerarMaterias();
-        GerarLaboratorios gl = new GerarLaboratorios();
-        GerarProfessor gp = new GerarProfessor();
-
-        SalaJpaController sjc = new SalaJpaController();
-        DisciplinaJpaController djc = new DisciplinaJpaController();
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
-        EntityManager em = emf.createEntityManager();
+//
+//        GerarMaterias gm = new GerarMaterias();
+//        GerarLaboratorios gl = new GerarLaboratorios();
+//        GerarProfessor gp = new GerarProfessor();
+//
+//        SalaJpaController sjc = new SalaJpaController();
+//        DisciplinaJpaController djc = new DisciplinaJpaController();
+//
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+//        EntityManager em = emf.createEntityManager();
 
 //        gm.gerarCurso();
 //        gm.gerarPrimeiraFase();
@@ -44,12 +44,12 @@ public class Teste {
 //        gp.gerarProfessor();
 //        gp.gerarRestricaoProfessor();
 //        gl.vincularLabs();
-//        GerarGLPK gg = new GerarGLPK();
-//        gg.geraTudo();
+        GerarGLPK gg = new GerarGLPK();
+        gg.geraTudo();
 
 
-
-        ControladorTelaInicio cti = new ControladorTelaInicio();
-        cti.executar();
+//
+//        ControladorTelaInicio cti = new ControladorTelaInicio();
+//        cti.executar();
     }
 }

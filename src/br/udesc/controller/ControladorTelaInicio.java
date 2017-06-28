@@ -1,6 +1,7 @@
 package br.udesc.controller;
 
 import br.udesc.model.dao.CursoJpaController;
+import br.udesc.model.dao.DisciplinaJpaController;
 import br.udesc.model.dao.GLPK.GerarGLPK;
 import br.udesc.model.dao.GLPK.GerarSolucaoGLPK;
 import br.udesc.model.dao.GLPK.PreencherTudo;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 public class ControladorTelaInicio {
 
     private TelaInicio ti;
+    private DisciplinaJpaController djc = new DisciplinaJpaController();
 
     public ControladorTelaInicio() {
         ti = new TelaInicio();
@@ -79,21 +81,26 @@ public class ControladorTelaInicio {
         ti.botaoProblema.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                JOptionPane.showMessageDialog(null, "Executando o GLPK");
                 GerarGLPK glpk = new GerarGLPK();
                 glpk.geraTudo();
-                GerarSolucaoGLPK gsglpk = new GerarSolucaoGLPK();
-                gsglpk.x();
+                if (djc.listarDisciplinaComProfessor().size() != 0) {
+                    GerarSolucaoGLPK gsglpk = new GerarSolucaoGLPK();
+                    gsglpk.x();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Não existem professores vinculados à disciplinas", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
-        ti.botaoDb.addActionListener(new ActionListener() {
+        ti.botaoDb.addActionListener(
+                new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 PreencherTudo pt = new PreencherTudo();
                 pt.gerarTudo();
             }
         });
-
     }
 
     public void executar() {

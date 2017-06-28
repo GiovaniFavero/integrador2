@@ -19,9 +19,9 @@ public class PreencherTudo {
             gm.gerarSegundaFase();
             gp.gerarProfessorPrimeiraSegundaFase();
             gd.criaRestricao();
-            JOptionPane.showMessageDialog(null, "Banco Gerado");
+            JOptionPane.showMessageDialog(null, "Banco Gerado", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Banco Já Criado Previamente");
+            JOptionPane.showMessageDialog(null, "Banco Já Criado Previamente", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
     }
