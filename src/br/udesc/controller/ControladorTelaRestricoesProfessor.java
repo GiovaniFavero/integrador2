@@ -22,12 +22,12 @@ import javax.swing.JSpinner;
  *
  * @author Usuario
  */
-
 /**
- * Classe resposável por realizar o controle da tela "TelaRestricoesProfessor.java".
- * Este módulo permite o usuário definir restrições para cada professor. Estas restrições 
- * se baseiam na preferencia, na obrigação ou na proibição de o professor lecionar em dias 
- * específicos da semana. Cada dia da semana é divido em primeiro e segundo horário. 
+ * Classe resposável por realizar o controle da tela
+ * "TelaRestricoesProfessor.java". Este módulo permite o usuário definir
+ * restrições para cada professor. Estas restrições se baseiam na preferencia,
+ * na obrigação ou na proibição de o professor lecionar em dias específicos da
+ * semana. Cada dia da semana é divido em primeiro e segundo horário.
  */
 public class ControladorTelaRestricoesProfessor {
 
@@ -38,9 +38,11 @@ public class ControladorTelaRestricoesProfessor {
     private JComboBox[][] restricoes;
     private List<PessoaHorarioPreferencia> restricoesAntigas;
     private List<PessoaHorarioPreferencia> restricoesNovas;
-    
+
     /**
-     * Método construtor. Reponsável por executar os métodos necessários para instanciação da classe.
+     * Método construtor. Reponsável por executar os métodos necessários para
+     * instanciação da classe.
+     *
      * @param id Id do professor na qual as restrições se referem.
      */
     public ControladorTelaRestricoesProfessor(long id) {
@@ -56,7 +58,6 @@ public class ControladorTelaRestricoesProfessor {
         iniciar();
     }
 
-    
     /**
      * Método que inicia os componentes do JFrame (Botões etc).
      */
@@ -74,7 +75,7 @@ public class ControladorTelaRestricoesProfessor {
                 persistirRestricoes();
                 JOptionPane.showMessageDialog(null, "Restrições salvas com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 tr.dispose();
-                
+
             }
         });
         /* Define as ações que serão realizadas a partir do clique no botão "Cancelar" */
@@ -85,17 +86,16 @@ public class ControladorTelaRestricoesProfessor {
                 tr.dispose();
             }
         });
-        
-        
+
     }
 
     /**
-     * Método resposável por as opções disponíveis de cada ComboBox de restrição, 
-     * que são elas: "Obrigatório" e "Preferencial" 
+     * Método resposável por as opções disponíveis de cada ComboBox de
+     * restrição, que são elas: "Obrigatório" e "Preferencial"
      */
     public void carregaListaCbxRestricoes() {
         /* Carrega-se todos os ComboBox na matriz "restricoes" */
-        /* Os índices de cada ComboBox é definido como código para o dia da semana.
+ /* Os índices de cada ComboBox é definido como código para o dia da semana.
         No momento de salvar será somado 1 a cada código para iniciar com 1.
         Segunda-feira: 1
         Terça-feira: 2
@@ -137,7 +137,8 @@ public class ControladorTelaRestricoesProfessor {
     }
 
     /**
-     * Método responsável por carregar as restrições já existentes para o professor na tela. 
+     * Método responsável por carregar as restrições já existentes para o
+     * professor na tela.
      */
     public void carregaListaCbxRestricoesProfessor() {
         for (PessoaHorarioPreferencia p : restricoesAntigas) {
@@ -151,20 +152,20 @@ public class ControladorTelaRestricoesProfessor {
             String horarioAux = String.valueOf(seq.charAt(1));
             int horario = Integer.parseInt(horarioAux);
             /* Define o valor atual para o ComboBox referente ao dia/período em questão */
-            if(p.getValor() <= 10){
-                restricoes[dia - 1][horario - 1].setSelectedIndex(p.getValor()+2);
-            }else if(p.getValor() == 11){
-                restricoes[dia - 1][horario - 1].setSelectedIndex(1);
-            }else{
-                restricoes[dia - 1][horario - 1].setSelectedIndex(2);
+            if (p.getValor() <= 10) {
+                restricoes[dia - 1][horario - 1].setSelectedIndex(p.getValor());
+            } else if (p.getValor() == 12) {
+                restricoes[dia - 1][horario - 1].setSelectedIndex(0);
+//            }else{
+//                restricoes[dia - 1][horario - 1].setSelectedIndex(2);
             }
-            
+
         }
     }
 
     /**
-     * Método responsável por adicionar as restrições que estão definidas na tela
-     * no array "novasRestrições" que será atualizado para o professor. 
+     * Método responsável por adicionar as restrições que estão definidas na
+     * tela no array "novasRestrições" que será atualizado para o professor.
      */
     public void salvarRestricoes() {
         PessoaHorarioPreferencia ph;
@@ -172,15 +173,7 @@ public class ControladorTelaRestricoesProfessor {
         /* Percorre-se a matriz verificando qual foi o valor definido pelo usuário */
         for (int i = 0; i < restricoes.length; i++) {
             for (int j = 0; j < 2; j++) {
-                if (restricoes[i][j].getSelectedItem().equals("Obrigatório")) {
-                    ph = new PessoaHorarioPreferencia();
-                    String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
-                    ph.setSequencia(Integer.parseInt(seq));
-                    /* Obrigatório recebe valor 1 */
-                    ph.setValor(11);
-                    ph.setProfessor(this.pro);
-                    restricoesNovas.add(ph);
-                } else if (restricoes[i][j].getSelectedItem().equals("Proibido")) {
+                if (restricoes[i][j].getSelectedItem().equals("Proibido")) {
                     ph = new PessoaHorarioPreferencia();
                     String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
                     ph.setSequencia(Integer.parseInt(seq));
@@ -192,7 +185,7 @@ public class ControladorTelaRestricoesProfessor {
                     ph = new PessoaHorarioPreferencia();
                     String seq = String.valueOf(i + 1) + String.valueOf(j + 1);
                     ph.setSequencia(Integer.parseInt(seq));
-                    String temp = String.valueOf((restricoes[i][j]).getSelectedIndex() - 2);
+                    String temp = String.valueOf((restricoes[i][j]).getSelectedIndex());
                     ph.setValor(Integer.parseInt(temp));
                     ph.setProfessor(this.pro);
                     restricoesNovas.add(ph);
@@ -200,9 +193,10 @@ public class ControladorTelaRestricoesProfessor {
             }
         }
     }
-    
+
     /**
-     * Método responsável por remover do banco as antigas restrições do professor 
+     * Método responsável por remover do banco as antigas restrições do
+     * professor
      */
     public void removerRestricoesAntigas() {
         for (PessoaHorarioPreferencia p : restricoesAntigas) {
@@ -213,9 +207,9 @@ public class ControladorTelaRestricoesProfessor {
             }
         }
     }
-    
+
     /**
-     * Método responsável por salvar as novas restrições no banco 
+     * Método responsável por salvar as novas restrições no banco
      */
     public void persistirRestricoes() {
         for (PessoaHorarioPreferencia p : restricoesNovas) {
@@ -226,10 +220,10 @@ public class ControladorTelaRestricoesProfessor {
             }
         }
     }
-    
+
     /**
-     * Método responsável por buscar o professor com "id" definida no parâmetro do 
-     * construtor desta classe, e salvar na variável aqui instanciada.
+     * Método responsável por buscar o professor com "id" definida no parâmetro
+     * do construtor desta classe, e salvar na variável aqui instanciada.
      *
      * @param id Id do professor a qual as restrições se referem.
      */
@@ -237,18 +231,19 @@ public class ControladorTelaRestricoesProfessor {
         this.pro = psc.findProfessor(id);
     }
 
-       /**
-     * Método responsável por carregar o nome do professor em questão no cabeçalho da tela.
+    /**
+     * Método responsável por carregar o nome do professor em questão no
+     * cabeçalho da tela.
      *
      */
     public void carregaLabel() {
         tr.labelTitulo.setText("Restrições para " + this.pro.getNome());
     }
-    
-   /**
-    * Método responsável por inicializar a tela controlada por esta classe.
-    *
-    */
+
+    /**
+     * Método responsável por inicializar a tela controlada por esta classe.
+     *
+     */
     public void executar() {
         tr.setVisible(true);
     }

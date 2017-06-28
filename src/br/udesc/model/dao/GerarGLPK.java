@@ -270,6 +270,7 @@ public class GerarGLPK {
                 System.out.println(i + " i");
                 professor = lista.get(i);
                 Disciplina disciplina = new Disciplina();
+                
 
                 for (int j = 1; j <= 6; j++) {
                     for (int k = 1; k <= 2; k++) {
@@ -316,7 +317,7 @@ public class GerarGLPK {
                                 }
                             } else {
                                 if (l == professor.getListaDisciplinaProfessor().size() - 1) {
-                                    if (contadorProfessor / 12 == listaSala.size() && j == 6 && k == 2) {
+                                    if (contador / 12 == listaSala.size() && j == 6 && k == 2) {
                                         System.out.println("ultimo2");
                                         print += "_" + disciplina.getCodigo() + "_" + j + k + "<= 1; \r\n";
                                         Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
@@ -324,6 +325,8 @@ public class GerarGLPK {
                                         contador++;
                                         contadorProfessor++;
                                     } else {
+                                        System.out.println(contador + "contador");
+                                        System.out.println(contadorProfessor + "contador professor");
                                         print += "_" + disciplina.getCodigo() + "_" + j + k + "<= 1; \r\n" + "s.t. conflito_horario_professor" + contador + ":";
                                         Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
                                         print = "";
@@ -357,13 +360,11 @@ public class GerarGLPK {
             String print = "";
             List<Disciplina> listaDisciplina;
             int fase = cjc.listarCurso().get(0).getDuracao();
-            
-            
-            
+
             int contador = 1;
             for (int i = 1; i < 7; i++) {
                 for (int j = 1; j < 3; j++) {
-                    for (int k = 1; k <= fase; k++) {
+                    for (int k = 1; k <= 2; k++) {
                         String a = String.valueOf(k);
                         listaDisciplina = djc.listarDisciplinaPorFase(a);
                         for (int l = 0; l < listaDisciplina.size(); l++) {
@@ -372,7 +373,7 @@ public class GerarGLPK {
                                 for (int m = 1; m <= 2; m++) {
                                     if (m == 2) {
                                         if (l == listaDisciplina.size() - 1) {
-                                            if (k == 1 && i == 6 && j == 2) {
+                                            if (k == 2 && i == 6 && j == 2) {
                                                 print += "_" + disc.getCodigo() + "_" + i + j + "_" + disc.getSala().getNumero() + "<= 1; \r\n";
                                                 Files.write(Paths.get("./teste.mod"), print.getBytes(), StandardOpenOption.APPEND);
                                                 print = "";
@@ -451,7 +452,7 @@ public class GerarGLPK {
             for (int i = 0; i < 12; i++) {
                 if (!aRestricoes[i].equals("")) {
                     inb = "s.t. horario_arbitrario_disciplina" + contador + ":";
-                    Files.write(Paths.get("./teste.mod"), (inb + aRestricoes[i] + " = 1;\r\n").getBytes(), StandardOpenOption.APPEND);
+                    Files.write(Paths.get("./teste.mod"), (inb + aRestricoes[i] + " = 1;").getBytes(), StandardOpenOption.APPEND);
                     contador++;
                 }
             }
@@ -461,6 +462,10 @@ public class GerarGLPK {
         }
         System.out.println("gerarVariaveisPorDisciplinaComSala(): " + (System.currentTimeMillis() - inicio) + "ms");
     }
+
+//    public void gerarRestricoesObrigatoriasDisciplina() {
+//
+//    }
 
     private String[] montaStringRestricoes(List<RestricaoDisciplina> res) {
         String restricao11 = "";
