@@ -49,7 +49,9 @@ public class ControladorTelaCadastroSala {
         tcs.botaoInicio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                tcs.setVisible(false);
+                ControladorTelaInicio cti = new ControladorTelaInicio();
+                cti.executar();
+                tcs.dispose();;
             }
         });
 
@@ -140,6 +142,24 @@ public class ControladorTelaCadastroSala {
             public void actionPerformed(ActionEvent e) {
                 ControladorTelaTableSala ctt = new ControladorTelaTableSala();
                 ctt.executar();
+                tcs.dispose();
+            }
+        });
+        
+         tcs.botaoCurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaTableCurso cttc = new ControladorTelaTableCurso();
+                cttc.executar();
+                tcs.dispose();
+            }
+        });
+         
+         tcs.botaoVincular.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaVinculo ctv = new ControladorTelaVinculo();
+                ctv.executar();
                 tcs.dispose();
             }
         });

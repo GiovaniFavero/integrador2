@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -107,6 +108,61 @@ public class ControladorTelaTableCurso {
                 destruirDisciplinasSemCurso();
             }
         });
+        
+        ttc.botaoInicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaInicio cti = new ControladorTelaInicio();
+                cti.executar();
+                ttc.dispose();
+            }
+        });
+
+        ttc.botaoProfessor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaTableProfessor cttp = new ControladorTelaTableProfessor();
+                cttp.executar();
+                ttc.setVisible(false);
+            }
+        });
+
+        ttc.botaoSala.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaTableSala cts = new ControladorTelaTableSala();
+                cts.executar();
+                ttc.setVisible(false);
+            }
+        });
+
+        ttc.botaoDisciplina.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+                CursoJpaController cjc = new CursoJpaController();
+                if (cjc.getCursoCount() != 0) {
+                    ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
+                    cttd.executar();
+                    ttc.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+            }
+        });
+        
+         ttc.botaoVincular.addActionListener(
+                new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e
+            ) {
+                ControladorTelaVinculo ctv = new ControladorTelaVinculo();
+                ctv.executar();
+                ttc.setVisible(false);
+            }
+        }
+        );
     }
 
     public void executar() {

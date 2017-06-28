@@ -223,7 +223,9 @@ public class ControladorTelaVinculo {
         tv.botaoInicio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                tv.setVisible(false);
+                ControladorTelaInicio cti = new ControladorTelaInicio();
+                cti.executar();
+                tv.dispose();
             }
         });
 
@@ -233,6 +235,15 @@ public class ControladorTelaVinculo {
                 ControladorTelaCadastroSala ctcs = new ControladorTelaCadastroSala();
                 tv.setVisible(false);
                 ctcs.executar();
+            }
+        });
+        
+        tv.botaoCurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaTableCurso cttv = new ControladorTelaTableCurso();
+                cttv.executar();
+                tv.dispose();
             }
         });
 

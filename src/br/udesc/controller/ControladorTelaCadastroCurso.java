@@ -53,7 +53,9 @@ public class ControladorTelaCadastroCurso {
         tcc.botaoInicio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                tcc.setVisible(false);
+                ControladorTelaInicio cti = new ControladorTelaInicio();
+                cti.executar();
+                tcc.dispose();
             }
         });
 

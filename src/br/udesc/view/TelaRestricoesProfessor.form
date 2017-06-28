@@ -67,7 +67,7 @@
                       <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="jLabel2" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="cbxSegunda1" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -88,17 +88,17 @@
                       <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" pref="21" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="jLabel6" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbxTerca1" alignment="2" pref="136" max="32767" attributes="0"/>
+                      <Component id="cbxTerca1" alignment="2" pref="153" max="32767" attributes="0"/>
                       <Component id="cbxTerca2" alignment="2" max="32767" attributes="0"/>
                       <Component id="cbxQuinta1" alignment="2" max="32767" attributes="0"/>
                       <Component id="cbxQuinta2" alignment="2" max="32767" attributes="0"/>
-                      <Component id="cbxSabado1" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="cbxSabado2" alignment="2" max="32767" attributes="0"/>
+                      <Component id="cbxSabado1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

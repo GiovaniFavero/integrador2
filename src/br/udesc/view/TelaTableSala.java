@@ -47,6 +47,10 @@ public class TelaTableSala extends javax.swing.JFrame {
         botaoVincular.setBorderPainted(false);
         botaoVincular.setFocusPainted(false);
         botaoVincular.setContentAreaFilled(false);
+        
+        boataoExcluir.setBorderPainted(false);
+        boataoExcluir.setFocusPainted(false);
+        boataoExcluir.setContentAreaFilled(false);
     }
 
     /**

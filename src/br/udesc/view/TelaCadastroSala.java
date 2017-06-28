@@ -54,6 +54,7 @@ public class TelaCadastroSala extends javax.swing.JFrame {
         botaoVoltar.setBorderPainted(false);
         botaoVoltar.setFocusPainted(false);
         botaoVoltar.setContentAreaFilled(false);
+        
       }
 
     /**

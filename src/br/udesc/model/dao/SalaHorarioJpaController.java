@@ -195,4 +195,19 @@ public class SalaHorarioJpaController implements Serializable {
         }
     }
     
+    
+     public void limparTabela() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("Delete FROM SalaHorario");
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }finally {
+            em.close();
+        }
+    }
+    
 }

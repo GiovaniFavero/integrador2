@@ -123,6 +123,62 @@ public class ControladorTelaTableProfessor {
                 
             }
         });
+        
+        ttp.botaoInicio.addActionListener(
+                new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaInicio cti = new ControladorTelaInicio();
+                cti.executar();
+                ttp.dispose();
+            }
+        }
+        );
+
+        ttp.botaoSala.addActionListener(
+                new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae
+            ) {
+                ControladorTelaTableSala cts = new ControladorTelaTableSala();
+                cts.executar();
+                ttp.setVisible(false);
+            }
+        }
+        );
+
+        ttp.botaoDisciplina.addActionListener(
+                new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae
+            ) {
+                ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
+                cttd.executar();
+                ttp.setVisible(false);
+            }
+        }
+        );
+
+        ttp.botaoVincular.addActionListener(
+                new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e
+            ) {
+                ControladorTelaVinculo ctv = new ControladorTelaVinculo();
+                ctv.executar();
+                ttp.setVisible(false);
+            }
+        }
+        );
+        
+        ttp.botaoCurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaTableCurso cttc = new ControladorTelaTableCurso();
+                cttc.executar();
+                ttp.dispose();
+            }
+        });
     }
 
     public void executar() {

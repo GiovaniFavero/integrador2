@@ -272,7 +272,9 @@ public class ControladorTelaCadastroDisciplina {
             @Override
             public void actionPerformed(ActionEvent ae
             ) {
-                tcd.setVisible(false);
+                ControladorTelaInicio cti = new ControladorTelaInicio();
+                cti.executar();
+                tcd.dispose();
             }
         }
         );
@@ -318,6 +320,15 @@ public class ControladorTelaCadastroDisciplina {
             public void actionPerformed(ActionEvent e) {
                 ControladorTelaTableDisciplina ctt = new ControladorTelaTableDisciplina();
                 ctt.executar();
+                tcd.dispose();
+            }
+        });
+        
+        tcd.botaoCurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaTableCurso cttc = new ControladorTelaTableCurso();
+                cttc.executar();
                 tcd.dispose();
             }
         });

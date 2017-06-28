@@ -213,6 +213,8 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         }
     }
 
+   
+
     public List<RestricaoDisciplina> listarRestriçõesSemDisciplina() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();

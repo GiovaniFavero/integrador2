@@ -5,6 +5,7 @@
  */
 package br.udesc.controller;
 
+import br.udesc.model.dao.CursoJpaController;
 import br.udesc.model.dao.DisciplinaJpaController;
 import br.udesc.model.dao.RestricaoDisciplinaJpaController;
 import br.udesc.model.entidade.Disciplina;
@@ -82,6 +83,67 @@ public class ControladorTelaRestricoesDisciplina {
             public void actionPerformed(ActionEvent ae) {
                 /* Fecha-se a tela atual */
                 trd.dispose();
+            }
+        });
+        
+        trd.botaoInicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaInicio cti = new ControladorTelaInicio();
+                cti.executar();
+                trd.dispose();
+            }
+        });
+
+        trd.botaoProfessor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaTableProfessor cttp = new ControladorTelaTableProfessor();
+                cttp.executar();
+                trd.setVisible(false);
+            }
+        });
+
+        trd.botaoSala.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaTableSala cts = new ControladorTelaTableSala();
+                cts.executar();
+                trd.setVisible(false);
+            }
+        });
+
+        trd.botaoDisciplina.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+                CursoJpaController cjc = new CursoJpaController();
+                if (cjc.getCursoCount() != 0) {
+                    ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
+                    cttd.executar();
+                    trd.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+            }
+        });
+        
+        trd.botaoCurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaTableCurso cttc = new ControladorTelaTableCurso();
+                cttc.executar();
+                trd.setVisible(false);
+            }
+        });
+        
+        trd.botaoVincular.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaVinculo ctr = new ControladorTelaVinculo();
+                ctr.executar();
+                trd.setVisible(false);
             }
         });
 

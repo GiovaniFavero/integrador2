@@ -132,7 +132,9 @@ public class ControladorTelaCadastroProfessor {
         tcp.botaoInicio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                tcp.setVisible(false);
+                ControladorTelaInicio cti = new ControladorTelaInicio();
+                cti.executar();
+                tcp.dispose();
             }
         });
 
@@ -159,6 +161,15 @@ public class ControladorTelaCadastroProfessor {
             public void actionPerformed(ActionEvent e) {
                 ControladorTelaTableProfessor ctt = new ControladorTelaTableProfessor();
                 ctt.executar();
+                tcp.dispose();
+            }
+        });
+        
+        tcp.botaoCurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaTableCurso cttc = new ControladorTelaTableCurso();
+                cttc.executar();
                 tcp.dispose();
             }
         });

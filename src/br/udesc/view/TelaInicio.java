@@ -40,18 +40,10 @@ public class TelaInicio extends javax.swing.JFrame {
         botaoProblema.setFocusPainted(false);
         botaoProblema.setContentAreaFilled(false);
         
-        botaoSair.setBorderPainted(false);
-        botaoSair.setFocusPainted(false);
-        botaoSair.setContentAreaFilled(false);
-        
         botaoVincular.setBorderPainted(false);
         botaoVincular.setFocusPainted(false);
         botaoVincular.setContentAreaFilled(false);
-        
-        botaoHorario.setBorderPainted(false);
-        botaoHorario.setFocusPainted(false);
-        botaoHorario.setContentAreaFilled(false);
-        
+
         botaoRelatorio.setBorderPainted(false);
         botaoRelatorio.setFocusPainted(false);
         botaoRelatorio.setContentAreaFilled(false);
@@ -83,14 +75,12 @@ public class TelaInicio extends javax.swing.JFrame {
         botaoProfessor = new javax.swing.JButton();
         botaoSala = new javax.swing.JButton();
         botaoVincular = new javax.swing.JButton();
-        botaoHorario = new javax.swing.JButton();
         botaoDb = new javax.swing.JButton();
         btmD = new javax.swing.JPanel();
         botaoDisciplina = new javax.swing.JButton();
         botaoCurso = new javax.swing.JButton();
         botaoProblema = new javax.swing.JButton();
         botaoRelatorio = new javax.swing.JButton();
-        botaoSair = new javax.swing.JButton();
         tituloPanel = new javax.swing.JPanel();
         tituloLabel3 = new javax.swing.JLabel();
 
@@ -219,17 +209,6 @@ public class TelaInicio extends javax.swing.JFrame {
         });
         btmE.add(botaoVincular);
 
-        botaoHorario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botaoHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Tabela24.png"))); // NOI18N
-        botaoHorario.setText("Gerar Horários");
-        botaoHorario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        botaoHorario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoHorarioActionPerformed(evt);
-            }
-        });
-        btmE.add(botaoHorario);
-
         botaoDb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botaoDb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/database.png"))); // NOI18N
         botaoDb.setText("Preencher Banco");
@@ -293,17 +272,6 @@ public class TelaInicio extends javax.swing.JFrame {
             }
         });
         btmD.add(botaoRelatorio);
-
-        botaoSair.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botaoSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/sair.png"))); // NOI18N
-        botaoSair.setText("Sair");
-        botaoSair.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        botaoSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoSairActionPerformed(evt);
-            }
-        });
-        btmD.add(botaoSair);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -371,14 +339,6 @@ public class TelaInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoProblemaActionPerformed
 
-    private void botaoHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHorarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoHorarioActionPerformed
-
-    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_botaoSairActionPerformed
-
     private void botaoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProfessorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoProfessorActionPerformed
@@ -402,11 +362,9 @@ public class TelaInicio extends javax.swing.JFrame {
     public javax.swing.JButton botaoCurso;
     public javax.swing.JButton botaoDb;
     public javax.swing.JButton botaoDisciplina;
-    public javax.swing.JButton botaoHorario;
     public javax.swing.JButton botaoProblema;
     public javax.swing.JButton botaoProfessor;
     public javax.swing.JButton botaoRelatorio;
-    public javax.swing.JButton botaoSair;
     public javax.swing.JButton botaoSala;
     public javax.swing.JButton botaoVincular;
     private javax.swing.JPanel btmD;

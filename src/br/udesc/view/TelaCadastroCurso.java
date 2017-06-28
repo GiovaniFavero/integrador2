@@ -33,6 +33,18 @@ public class TelaCadastroCurso extends javax.swing.JFrame {
         botaoSala.setFocusPainted(false);
         botaoSala.setContentAreaFilled(false);
 
+        botaoLimpar.setBorderPainted(false);
+        botaoLimpar.setFocusPainted(false);
+        botaoLimpar.setContentAreaFilled(false);
+        
+        botaoSalvar.setBorderPainted(false);
+        botaoSalvar.setFocusPainted(false);
+        botaoSalvar.setContentAreaFilled(false);
+        
+        botaoVoltar.setBorderPainted(false);
+        botaoVoltar.setFocusPainted(false);
+        botaoVoltar.setContentAreaFilled(false);
+        
         botaoVincular.setBorderPainted(false);
         botaoVincular.setFocusPainted(false);
         botaoVincular.setContentAreaFilled(false);

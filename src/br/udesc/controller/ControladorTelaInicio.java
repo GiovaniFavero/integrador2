@@ -5,16 +5,17 @@ import br.udesc.model.dao.DisciplinaJpaController;
 import br.udesc.model.dao.GLPK.GerarGLPK;
 import br.udesc.model.dao.GLPK.GerarSolucaoGLPK;
 import br.udesc.model.dao.GLPK.PreencherTudo;
+import br.udesc.model.dao.SalaHorarioJpaController;
 import br.udesc.view.TelaInicio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ControladorTelaInicio {
 
     private TelaInicio ti;
     private DisciplinaJpaController djc = new DisciplinaJpaController();
+    private SalaHorarioJpaController sjc = new SalaHorarioJpaController();
 
     public ControladorTelaInicio() {
         ti = new TelaInicio();
@@ -30,6 +31,7 @@ public class ControladorTelaInicio {
                     public void actionPerformed(ActionEvent ae) {
                         ControladorTelaTableCurso cttc = new ControladorTelaTableCurso();
                         cttc.executar();
+                        ti.dispose();
                     }
                 })).start();
 
@@ -42,6 +44,7 @@ public class ControladorTelaInicio {
                         if (cjc.getCursoCount() != 0) {
                             ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
                             cttd.executar();
+                            ti.dispose();
                         } else {
                             JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
                         }
@@ -56,6 +59,7 @@ public class ControladorTelaInicio {
                     public void actionPerformed(ActionEvent ae) {
                         ControladorTelaTableProfessor cttp = new ControladorTelaTableProfessor();
                         cttp.executar();
+                        ti.dispose();
                     }
                 })).start();
 
@@ -66,6 +70,7 @@ public class ControladorTelaInicio {
                     public void actionPerformed(ActionEvent ae) {
                         ControladorTelaTableSala cts = new ControladorTelaTableSala();
                         cts.executar();
+                        ti.dispose();
                     }
                 })).start();
 
@@ -75,6 +80,7 @@ public class ControladorTelaInicio {
                     public void actionPerformed(ActionEvent e) {
                         ControladorTelaVinculo ctv = new ControladorTelaVinculo();
                         ctv.executar();
+                        ti.dispose();
                     }
                 })).start();
 
@@ -85,6 +91,7 @@ public class ControladorTelaInicio {
                 GerarGLPK glpk = new GerarGLPK();
                 glpk.geraTudo();
                 if (djc.listarDisciplinaComProfessor().size() != 0) {
+                    sjc.limparTabela();
                     GerarSolucaoGLPK gsglpk = new GerarSolucaoGLPK();
                     gsglpk.x();
                 } else {
@@ -93,14 +100,23 @@ public class ControladorTelaInicio {
             }
         });
 
-        ti.botaoDb.addActionListener(
-                new ActionListener() {
+        ti.botaoDb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 PreencherTudo pt = new PreencherTudo();
                 pt.gerarTudo();
             }
         });
+
+        ti.botaoRelatorio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ControladorTelaGerarRelatorio ctgr = new ControladorTelaGerarRelatorio();
+                ctgr.executar();
+                ti.dispose();
+            }
+        });
+
     }
 
     public void executar() {
