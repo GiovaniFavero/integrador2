@@ -90,11 +90,12 @@ public class ControladorTelaTableVinculo {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 ControladorTelaVinculo ctv = new ControladorTelaVinculo();
+                ctv.executar();
                 int linha = ttv.tabelaVinculacao.getSelectedRow();
                 pegarLinha(linha);
                 ctv.editar(dis);
                 ttv.dispose();
-                ctv.executar();
+                
             }
         });
 
@@ -140,13 +141,13 @@ public class ControladorTelaTableVinculo {
         }
         );
 
-        ttv.botaoVincular.addActionListener(
+        ttv.botaoDisciplina.addActionListener(
                 new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e
             ) {
-                ControladorTelaVinculo ctv = new ControladorTelaVinculo();
-                ctv.executar();
+                ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
+                cttd.executar();
                 ttv.setVisible(false);
             }
         }

@@ -48,20 +48,32 @@ public class ControladorTelaVinculo {
     public void editar(Disciplina d) {
         disciplina = d;
         edit = 1;
+        String fase = "";
 
-        int aux = 0;
-        if (edit == 1 && disciplina.getFase() != null) {
-            for (int i = 0; i < tv.comboBoxFase.getItemCount(); i++) {
-                
-                if (tv.comboBoxFase.getItemAt(i).equalsIgnoreCase(disciplina.getFase())) {
-                    
-                    tv.comboBoxFase.setSelectedIndex(i);
+        int aux = Integer.parseInt(d.getFase());
+        aux = aux - 1;
+
+
+        if (edit == 1) {
+            for (int i = 0; i < tv.comboBoxCurso.getItemCount(); i++) {
+                if (tv.comboBoxCurso.getItemAt(i).equalsIgnoreCase(disciplina.getCurso().getNome())) {
+                    tv.comboBoxCurso.setSelectedIndex(i);
                     break;
                 }
             }
         }
-        if (edit == 1) {
 
+        for (int i = 0; i < tv.comboBoxFase.getItemCount(); i++) {
+            if (tv.comboBoxFase.getItemAt(i).equalsIgnoreCase(disciplina.getFase())) {
+                tv.comboBoxFase.setSelectedIndex(i);
+                fase = String.valueOf(tv.comboBoxFase.getSelectedItem());
+                break;
+            }
+        }
+        if (edit == 1) {
+            DisciplinaJpaController djc = new DisciplinaJpaController();
+            List<Disciplina> dis = djc.listarDisciplinaPorFase(fase);
+            carregarDisciplina(dis);
             for (int i = 0; i < tv.comboBoxDisciplina.getItemCount(); i++) {
                 if (tv.comboBoxDisciplina.getItemAt(i).equalsIgnoreCase(disciplina.getNome())) {
                     System.out.println(i);
@@ -75,14 +87,6 @@ public class ControladorTelaVinculo {
             for (int i = 0; i < tv.comboBoxProfessor.getItemCount(); i++) {
                 if (tv.comboBoxProfessor.getItemAt(i).equalsIgnoreCase(disciplina.getProfessor().getNome())) {
                     tv.comboBoxProfessor.setSelectedIndex(i);
-                    break;
-                }
-            }
-        }
-        if (edit == 1) {
-            for (int i = 0; i < tv.comboBoxCurso.getItemCount(); i++) {
-                if (tv.comboBoxCurso.getItemAt(i).equalsIgnoreCase(disciplina.getCurso().getNome())) {
-                    tv.comboBoxCurso.setSelectedIndex(i);
                     break;
                 }
             }
@@ -118,7 +122,6 @@ public class ControladorTelaVinculo {
                 tv.comboBoxFase.addItem(String.valueOf(aux.get(i)));
             }
         }
-
     }
 
     public void validarComponenteFase(boolean validar) {

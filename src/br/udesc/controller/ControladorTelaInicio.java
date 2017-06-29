@@ -78,9 +78,13 @@ public class ControladorTelaInicio {
                 -> ti.botaoVincular.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        ControladorTelaTableVinculo ctv = new ControladorTelaTableVinculo();
-                        ctv.executar();
-                        ti.dispose();
+                        if (djc.getDisciplinaCount() != 0) {
+                            ControladorTelaTableVinculo ctv = new ControladorTelaTableVinculo();
+                            ctv.executar();
+                            ti.dispose();
+                        } else{
+                            JOptionPane.showMessageDialog(null, "Antes cadastre uma disciplina", "Aviso", JOptionPane.WARNING_MESSAGE);
+                        }
                     }
                 })).start();
 
