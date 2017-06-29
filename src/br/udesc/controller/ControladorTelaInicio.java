@@ -78,7 +78,7 @@ public class ControladorTelaInicio {
                 -> ti.botaoVincular.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        ControladorTelaVinculo ctv = new ControladorTelaVinculo();
+                        ControladorTelaTableVinculo ctv = new ControladorTelaTableVinculo();
                         ctv.executar();
                         ti.dispose();
                     }

@@ -12,6 +12,7 @@ public class PreencherTudo {
     private GerarRestricaoDisciplina gd = new GerarRestricaoDisciplina();
     private CursoJpaController cjc = new CursoJpaController();
 
+
     public void gerarTudo() {
         if (cjc.getCursoCount() == 0) {
             gm.gerarCurso();

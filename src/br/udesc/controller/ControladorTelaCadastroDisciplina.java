@@ -204,7 +204,6 @@ public class ControladorTelaCadastroDisciplina {
                                 JOptionPane.showMessageDialog(null, "Matéria já existente", "Erro", JOptionPane.WARNING_MESSAGE);
                             }
                         } else {
-                            System.out.println(disciplina.getId());
                             disciplina.setNome(nome);
                             disciplina.setCreditos(creditos);
                             disciplina.setQtdAlunos(quantidade);

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 
 /**
  *
@@ -39,6 +38,7 @@ public class ControladorTelaRestricoesProfessor {
     private JComboBox[][] restricoes;
     private List<PessoaHorarioPreferencia> restricoesAntigas;
     private List<PessoaHorarioPreferencia> restricoesNovas;
+    private ControladorTelaInicio cti;
 
     /**
      * Método construtor. Reponsável por executar os métodos necessários para
@@ -51,6 +51,7 @@ public class ControladorTelaRestricoesProfessor {
         pro = new Professor();
         psc = new ProfessorJpaController();
         phj = new PessoaHorarioPreferenciaJpaController();
+        cti = new ControladorTelaInicio();
         this.buscaProfessor(id);
         restricoesAntigas = pro.getListaHorario();
         carregaListaCbxRestricoes();
@@ -75,6 +76,8 @@ public class ControladorTelaRestricoesProfessor {
                 /* Insere-se no banco as novas restrições para este professor */
                 persistirRestricoes();
                 JOptionPane.showMessageDialog(null, "Restrições salvas com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                cti.executar();
                 tr.dispose();
 
             }
@@ -84,10 +87,11 @@ public class ControladorTelaRestricoesProfessor {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 /* Fecha-se a tela atual */
+                cti.executar();
                 tr.dispose();
             }
         });
-        
+
         tr.botaoInicio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -130,7 +134,7 @@ public class ControladorTelaRestricoesProfessor {
 
             }
         });
-        
+
         tr.botaoCurso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -139,7 +143,7 @@ public class ControladorTelaRestricoesProfessor {
                 tr.setVisible(false);
             }
         });
-        
+
         tr.botaoVincular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {

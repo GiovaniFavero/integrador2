@@ -15,29 +15,26 @@ import javax.swing.JOptionPane;
 
 public class GerarSolucaoGLPK {
 
-    public void executar(){
-        
+    public void executar() {
+
     }
-    
-    
-    public String abrirFile(){
-        String linha = "";
-        JOptionPane.showMessageDialog(null, "Selecione o arquivo GLPSOL na pasta Resources");
-        JFileChooser larq = new JFileChooser();
-        int op = larq.showOpenDialog(null);
-        File arqId;
-        
-        if (op == JFileChooser.APPROVE_OPTION) {
-            arqId = larq.getSelectedFile();
-            linha = (arqId.getPath());
-            
-        }
-        linha += " --math teste.mod";
-        System.out.println(linha);
-        return linha;
-    }
-    
-    
+//
+//    public String abrirFile() {
+//        String linha = "";
+//        JOptionPane.showMessageDialog(null, "Selecione o arquivo GLPSOL na pasta Resources");
+//        JFileChooser larq = new JFileChooser();
+//        int op = larq.showOpenDialog(null);
+//        File arqId;
+//
+//        if (op == JFileChooser.APPROVE_OPTION) {
+//            arqId = larq.getSelectedFile();
+//            linha = (arqId.getPath());
+//
+//        }
+//        linha += " --math teste.mod";
+//        return linha;
+//    }
+
     private String executeCommand(String command) {
         StringBuffer output = new StringBuffer();
         Process p;
@@ -50,24 +47,30 @@ public class GerarSolucaoGLPK {
             while ((line = reader.readLine()) != null) {
                 output.append(line + "\n");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return output.toString();
 
     }
 
     public void x() {
-        String output = executeCommand(abrirFile());
+        System.out.println("entrei");
+        String output = executeCommand(".\\resources\\glpk_w32\\glpsol --math teste.mod");
+        System.out.println("passei");
         if (output.contains("INTEGER OPTIMAL SOLUTION FOUND")) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Solução Encontrada!");
+            System.out.println("achou");
+            javax.swing.JOptionPane.showMessageDialog(null, "Solucao encontrada");
         } else if (output.contains("PROBLEM HAS NO PRIMAL FEASIBLE SOLUTION")) {
-            
+            System.out.println("não achou");
             javax.swing.JOptionPane.showMessageDialog(null, "Nao existe solucao para esse conjunto de restricoes");
         } else {
+            System.out.println("else");
             System.out.println(output);
         }
-        
+        System.out.println("olá");
         System.out.println(output);
         output = output.split("Display statement at line")[1];
         output = output.substring(output.indexOf("\n") + 1, output.indexOf("Model has been successfully processed") - 1);
@@ -98,7 +101,6 @@ public class GerarSolucaoGLPK {
              */
             if (!parts[1].equals(" 0")) {
                 listaDis = djc.validaDisciplina(left[1]);
-
                 if (!listaDis.isEmpty()) {
                     /*
                     se a lista estiver vazia/nula quer dizer que não tem. passa pro próximo item.
@@ -142,14 +144,6 @@ public class GerarSolucaoGLPK {
 
             System.out.println(parts[1]);
         }
-        System.out.println(
-                "sai");
+        System.out.println("sai");
     }
-
-    
-      
-
-     
- 
-
 }

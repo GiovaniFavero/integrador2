@@ -17,9 +17,12 @@ import javax.swing.JOptionPane;
 public class ControladorTelaVinculo {
 
     private TelaVinculo tv;
+    private Disciplina disciplina;
+    private int edit = 0;
 
     public ControladorTelaVinculo() {
         tv = new TelaVinculo();
+        disciplina = new Disciplina();
         iniciar();
         validarComponenteFase(true);
         validarComponenteDisciplina(true);
@@ -42,12 +45,56 @@ public class ControladorTelaVinculo {
 
     }
 
+    public void editar(Disciplina d) {
+        disciplina = d;
+        edit = 1;
+
+        int aux = 0;
+        if (edit == 1 && disciplina.getFase() != null) {
+            for (int i = 0; i < tv.comboBoxFase.getItemCount(); i++) {
+                
+                if (tv.comboBoxFase.getItemAt(i).equalsIgnoreCase(disciplina.getFase())) {
+                    
+                    tv.comboBoxFase.setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
+        if (edit == 1) {
+
+            for (int i = 0; i < tv.comboBoxDisciplina.getItemCount(); i++) {
+                if (tv.comboBoxDisciplina.getItemAt(i).equalsIgnoreCase(disciplina.getNome())) {
+                    System.out.println(i);
+                    System.out.println(disciplina.getNome());
+                    tv.comboBoxDisciplina.setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
+        if (edit == 1 && disciplina.getProfessor() != null) {
+            for (int i = 0; i < tv.comboBoxProfessor.getItemCount(); i++) {
+                if (tv.comboBoxProfessor.getItemAt(i).equalsIgnoreCase(disciplina.getProfessor().getNome())) {
+                    tv.comboBoxProfessor.setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
+        if (edit == 1) {
+            for (int i = 0; i < tv.comboBoxCurso.getItemCount(); i++) {
+                if (tv.comboBoxCurso.getItemAt(i).equalsIgnoreCase(disciplina.getCurso().getNome())) {
+                    tv.comboBoxCurso.setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
+
+    }
+
     public void carregarFase(List<Disciplina> list) {
         DisciplinaJpaController djc = new DisciplinaJpaController();
         tv.comboBoxFase.removeAllItems();
         List<Disciplina> listaDisciplina = list;
         ArrayList<Integer> aux = new ArrayList<>();
-        System.out.println(listaDisciplina.size());
         if (djc.getDisciplinaCount() == 1 && aux.size() == 0) {
             tv.comboBoxFase.addItem(listaDisciplina.get(0).getFase());
         } else {
@@ -153,7 +200,50 @@ public class ControladorTelaVinculo {
         tv.botaoSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (tv.comboBoxDisciplina.getItemCount() != 0 && tv.comboBoxProfessor.getItemCount() != 0) {
+                if (edit == 0) {
+                    if (tv.comboBoxDisciplina.getItemCount() != 0 && tv.comboBoxProfessor.getItemCount() != 0) {
+                        ProfessorJpaController pjc = new ProfessorJpaController();
+                        List<Professor> listaProfessor;
+
+                        DisciplinaJpaController djc = new DisciplinaJpaController();
+                        List<Disciplina> listaDisciplina;
+
+                        CursoJpaController cjc = new CursoJpaController();
+                        List<Curso> listaCurso;
+
+                        String curso = (String) tv.comboBoxCurso.getSelectedItem();
+                        listaCurso = cjc.validaCurso(curso);
+
+                        String disciplina = (String) tv.comboBoxDisciplina.getSelectedItem();
+                        listaDisciplina = djc.validaDisciplinaNome(disciplina);
+
+                        String profesor = (String) tv.comboBoxProfessor.getSelectedItem();
+                        listaProfessor = pjc.validaProfessor(profesor);
+
+                        try {
+                            if (listaDisciplina.get(0).getProfessor() == null) {
+                                JOptionPane.showMessageDialog(null, "O professor " + profesor + " foi colocado com a disciplina " + disciplina, "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                                listaDisciplina.get(0).setProfessor(listaProfessor.get(0));
+                                listaProfessor.get(0).addDisciplina(listaDisciplina.get(0));
+                                pjc.edit(listaProfessor.get(0));
+                                djc.edit(listaDisciplina.get(0));
+                            } else {
+                                if (listaDisciplina.get(0).getProfessor().getNome().equalsIgnoreCase(listaProfessor.get(0).getNome())) {
+                                    JOptionPane.showMessageDialog(null, "O professor " + profesor + " já estava veinculado com a disciplina: " + disciplina, "Professor já cadastrado", JOptionPane.WARNING_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Você só pode cadastrar um professor por disciplina", "Erro", JOptionPane.ERROR_MESSAGE);
+                                }
+
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Primeiro crie dados antes de tentar veincular eles", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+
                     ProfessorJpaController pjc = new ProfessorJpaController();
                     List<Professor> listaProfessor;
 
@@ -190,9 +280,6 @@ public class ControladorTelaVinculo {
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Primeiro crie dados antes de tentar veincular eles", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -202,8 +289,8 @@ public class ControladorTelaVinculo {
             public void actionPerformed(ActionEvent e) {
                 CursoJpaController cjc = new CursoJpaController();
                 if (cjc.getCursoCount() != 0) {
-                    ControladorTelaCadastroDisciplina ctcd = new ControladorTelaCadastroDisciplina();
-                    ctcd.executar();
+                    ControladorTelaTableDisciplina cttd = new ControladorTelaTableDisciplina();
+                    cttd.executar();
                     tv.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Antes cadastre um curso", "Cadastre um curso", JOptionPane.INFORMATION_MESSAGE);
@@ -214,8 +301,8 @@ public class ControladorTelaVinculo {
         tv.botaoProfessor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroProfessor ctcp = new ControladorTelaCadastroProfessor();
-                ctcp.executar();
+                ControladorTelaTableProfessor cttp = new ControladorTelaTableProfessor();
+                cttp.executar();
                 tv.setVisible(false);
             }
         });
@@ -232,21 +319,20 @@ public class ControladorTelaVinculo {
         tv.botaoSala.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                ControladorTelaCadastroSala ctcs = new ControladorTelaCadastroSala();
+                ControladorTelaTableSala ctts = new ControladorTelaTableSala();
+                ctts.executar();
                 tv.setVisible(false);
-                ctcs.executar();
-            }
-        });
-        
-        tv.botaoCurso.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ControladorTelaTableCurso cttv = new ControladorTelaTableCurso();
-                cttv.executar();
-                tv.dispose();
             }
         });
 
+        tv.botaoCurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ControladorTelaTableCurso cttc = new ControladorTelaTableCurso();
+                cttc.executar();
+                tv.dispose();
+            }
+        });
     }
 
     public void executar() {
