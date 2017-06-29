@@ -23,7 +23,7 @@ public class ControladorTelaGerarRelatorio {
     }
 
     public void iniciar() {
-        tgr.botaoConflitoCreditos.addActionListener(new ActionListener() {
+        tgr.botaoDisciplinaOrfao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 ConnectionFactory.getConnection();
@@ -41,12 +41,12 @@ public class ControladorTelaGerarRelatorio {
                 JasperViewer view = new JasperViewer(jasperprint, false);
             }
         });
-        tgr.botaoConHorarioProibido.addActionListener(new ActionListener() {
+        tgr.botaoConflitoCreditos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 ConnectionFactory.getConnection();
 
-                String src = ".\\src\\br\\udesc\\model\\dao\\relatorios\\ConflitoHorariosProibidos.jasper";
+                String src = ".\\src\\br\\udesc\\model\\dao\\relatorios\\DisciplinaOrfao.jasper";
 
                 JasperPrint jasperprint = null;
 
@@ -60,12 +60,12 @@ public class ControladorTelaGerarRelatorio {
             }
         });
 
-        tgr.botaoDisciplinaOrfao.addActionListener(new ActionListener() {
+        tgr.botaoConHorarioProibido.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 ConnectionFactory.getConnection();
 
-                String src = ".\\src\\br\\udesc\\model\\dao\\relatorios\\DisciplinaOrfao.jasper";
+                String src = ".\\src\\br\\udesc\\model\\dao\\relatorios\\ConflitoHorariosProibidos.jasper";
 
                 JasperPrint jasperprint = null;
 

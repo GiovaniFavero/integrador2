@@ -22,13 +22,13 @@ public class TelaGerarRelatorios extends javax.swing.JFrame {
         botaoConflitoCreditos.setFocusPainted(false);
         botaoConflitoCreditos.setContentAreaFilled(false);
         
-        botaoConHorarioProibido.setBorderPainted(false);
-        botaoConHorarioProibido.setFocusPainted(false);
-        botaoConHorarioProibido.setContentAreaFilled(false);
-        
         botaoDisciplinaOrfao.setBorderPainted(false);
         botaoDisciplinaOrfao.setFocusPainted(false);
         botaoDisciplinaOrfao.setContentAreaFilled(false);
+        
+        botaoConHorarioProibido.setBorderPainted(false);
+        botaoConHorarioProibido.setFocusPainted(false);
+        botaoConHorarioProibido.setContentAreaFilled(false);
         
         botaoPorFase.setBorderPainted(false);
         botaoPorFase.setFocusPainted(false);
@@ -84,10 +84,10 @@ public class TelaGerarRelatorios extends javax.swing.JFrame {
         espacoD = new javax.swing.JPanel();
         btmE = new javax.swing.JPanel();
         botaoConflitoCreditos = new javax.swing.JButton();
-        botaoDisciplinaOrfao = new javax.swing.JButton();
+        botaoConHorarioProibido = new javax.swing.JButton();
         botaoPorProfessor = new javax.swing.JButton();
         btmD = new javax.swing.JPanel();
-        botaoConHorarioProibido = new javax.swing.JButton();
+        botaoDisciplinaOrfao = new javax.swing.JButton();
         botaoPorFase = new javax.swing.JButton();
         botaoPorLaboratorio = new javax.swing.JButton();
         menuRapidoPanel = new javax.swing.JPanel();
@@ -99,9 +99,7 @@ public class TelaGerarRelatorios extends javax.swing.JFrame {
         botaoVincular = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(565, 610));
         setMinimumSize(new java.awt.Dimension(565, 610));
-        setPreferredSize(new java.awt.Dimension(565, 610));
 
         areaTotal.setMaximumSize(new java.awt.Dimension(553, 555));
         areaTotal.setMinimumSize(new java.awt.Dimension(553, 555));
@@ -214,16 +212,16 @@ public class TelaGerarRelatorios extends javax.swing.JFrame {
         });
         btmE.add(botaoConflitoCreditos);
 
-        botaoDisciplinaOrfao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botaoDisciplinaOrfao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newspaper.png"))); // NOI18N
-        botaoDisciplinaOrfao.setText("Disciplina Orfão");
-        botaoDisciplinaOrfao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        botaoDisciplinaOrfao.addActionListener(new java.awt.event.ActionListener() {
+        botaoConHorarioProibido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        botaoConHorarioProibido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newspaper.png"))); // NOI18N
+        botaoConHorarioProibido.setText("Conflito Hr. Proibido");
+        botaoConHorarioProibido.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botaoConHorarioProibido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoDisciplinaOrfaoActionPerformed(evt);
+                botaoConHorarioProibidoActionPerformed(evt);
             }
         });
-        btmE.add(botaoDisciplinaOrfao);
+        btmE.add(botaoConHorarioProibido);
 
         botaoPorProfessor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botaoPorProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newspaper.png"))); // NOI18N
@@ -246,16 +244,16 @@ public class TelaGerarRelatorios extends javax.swing.JFrame {
         btmD.setPreferredSize(new java.awt.Dimension(190, 225));
         btmD.setLayout(new java.awt.GridLayout(4, 1));
 
-        botaoConHorarioProibido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        botaoConHorarioProibido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newspaper.png"))); // NOI18N
-        botaoConHorarioProibido.setText("Conflito Hr. Proibido ");
-        botaoConHorarioProibido.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        botaoConHorarioProibido.addActionListener(new java.awt.event.ActionListener() {
+        botaoDisciplinaOrfao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        botaoDisciplinaOrfao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newspaper.png"))); // NOI18N
+        botaoDisciplinaOrfao.setText("Disciplina Orfão");
+        botaoDisciplinaOrfao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botaoDisciplinaOrfao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoConHorarioProibidoActionPerformed(evt);
+                botaoDisciplinaOrfaoActionPerformed(evt);
             }
         });
-        btmD.add(botaoConHorarioProibido);
+        btmD.add(botaoDisciplinaOrfao);
 
         botaoPorFase.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botaoPorFase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/newspaper.png"))); // NOI18N
@@ -303,7 +301,7 @@ public class TelaGerarRelatorios extends javax.swing.JFrame {
         menuRapidoPanel.setMaximumSize(new java.awt.Dimension(550, 60));
         menuRapidoPanel.setMinimumSize(new java.awt.Dimension(550, 60));
         menuRapidoPanel.setPreferredSize(new java.awt.Dimension(550, 60));
-        menuRapidoPanel.setLayout(new java.awt.GridLayout());
+        menuRapidoPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         botaoInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon (1).png"))); // NOI18N
         botaoInicio.setText("Início");
@@ -377,7 +375,7 @@ public class TelaGerarRelatorios extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(areaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 76, Short.MAX_VALUE))
+                .addGap(0, 106, Short.MAX_VALUE))
         );
 
         pack();
@@ -388,21 +386,21 @@ public class TelaGerarRelatorios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoConflitoCreditosActionPerformed
 
-    private void botaoDisciplinaOrfaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDisciplinaOrfaoActionPerformed
+    private void botaoConHorarioProibidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConHorarioProibidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botaoDisciplinaOrfaoActionPerformed
+    }//GEN-LAST:event_botaoConHorarioProibidoActionPerformed
 
     private void botaoPorLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPorLaboratorioActionPerformed
-        System.exit(0);
+        
     }//GEN-LAST:event_botaoPorLaboratorioActionPerformed
 
     private void botaoPorFaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPorFaseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoPorFaseActionPerformed
 
-    private void botaoConHorarioProibidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConHorarioProibidoActionPerformed
+    private void botaoDisciplinaOrfaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDisciplinaOrfaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botaoConHorarioProibidoActionPerformed
+    }//GEN-LAST:event_botaoDisciplinaOrfaoActionPerformed
 
     private void botaoPorProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPorProfessorActionPerformed
         // TODO add your handling code here:
