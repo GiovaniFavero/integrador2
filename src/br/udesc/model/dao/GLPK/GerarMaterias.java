@@ -177,7 +177,7 @@ public class GerarMaterias {
         djc.create(red);
         curso.addListaDisciplina(red);
 
-        Disciplina pin2 = new Disciplina("Projeto Integrador", "55pinII", 4, "5", 40, curso, null, null);
+        Disciplina pin2 = new Disciplina("Projeto Integrador II", "55pinII", 4, "5", 40, curso, null, null);
         djc.create(pin2);
         curso.addListaDisciplina(pin2);
 
@@ -210,7 +210,7 @@ public class GerarMaterias {
         djc.create(tes);
         curso.addListaDisciplina(tes);
 
-        Disciplina pin3 = new Disciplina("Projeto Integrador 3", "65pinIII", 4, "6", 40, curso, null, null);
+        Disciplina pin3 = new Disciplina("Projeto Integrador III", "65pinIII", 4, "6", 40, curso, null, null);
         djc.create(pin3);
         curso.addListaDisciplina(pin3);
 

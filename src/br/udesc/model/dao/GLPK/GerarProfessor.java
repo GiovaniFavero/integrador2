@@ -12,7 +12,7 @@ public class GerarProfessor {
 
     public void gerarProfessor() {
 
-        professor.setNome("Adermar Perfoll Junior");
+        professor.setNome("Ademar Perfoll Junior");
         professor.setCpf("cpf");
         pjc.create(professor);
 
@@ -168,7 +168,7 @@ public class GerarProfessor {
 
     public void gerarProfessorPrimeiraSegundaFase() {
 
-        professor.setNome("Adermar Perfoll Junior");
+        professor.setNome("Ademar Perfoll Junior");
         professor.setCpf("cpf");
         pjc.create(professor);
 

@@ -48,7 +48,6 @@ public class ControladorTelaTableVinculo {
         vm.limpar();
         listaVinculo = djc.listarDisciplina();
         for (Disciplina listaDisciplinas : listaVinculo) {
-            System.out.println(listaDisciplinas.getCodigo());
             vm.anuncioAdd(listaDisciplinas);
         }
         ttv.tabelaVinculacao.getSelectionModel().addSelectionInterval(0, 0);
@@ -70,7 +69,7 @@ public class ControladorTelaTableVinculo {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        } else{
+        } else {
             JOptionPane.showMessageDialog(null, "Erro, Disciplina sem professor", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         carregarVinculo();
@@ -81,6 +80,9 @@ public class ControladorTelaTableVinculo {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 ControladorTelaVinculo ctv = new ControladorTelaVinculo();
+                int linha = ttv.tabelaVinculacao.getSelectedRow();
+                pegarLinha(linha);
+                ctv.carregarSelecionado(dis);
                 ctv.executar();
                 ttv.dispose();
             }
@@ -95,7 +97,7 @@ public class ControladorTelaTableVinculo {
                 pegarLinha(linha);
                 ctv.editar(dis);
                 ttv.dispose();
-                
+
             }
         });
 
@@ -108,8 +110,7 @@ public class ControladorTelaTableVinculo {
         ttv.botaoInicio.addActionListener(
                 new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent ae
-            ) {
+            public void actionPerformed(ActionEvent ae) {
                 ControladorTelaInicio cti = new ControladorTelaInicio();
                 cti.executar();
                 ttv.dispose();

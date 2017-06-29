@@ -45,14 +45,46 @@ public class ControladorTelaVinculo {
 
     }
 
+    public void carregarSelecionado(Disciplina d) {
+        String fase = "";
+        disciplina = d;
+        
+        for (int i = 0; i < tv.comboBoxCurso.getItemCount(); i++) {
+            if (tv.comboBoxCurso.getItemAt(i).equalsIgnoreCase(disciplina.getCurso().getNome())) {
+                tv.comboBoxCurso.setSelectedIndex(i);
+                break;
+            }
+        }
+        for (int i = 0; i < tv.comboBoxFase.getItemCount(); i++) {
+            if (tv.comboBoxFase.getItemAt(i).equalsIgnoreCase(disciplina.getFase())) {
+                
+                tv.comboBoxFase.setSelectedIndex(i);
+                System.out.println("asdas");
+                fase = String.valueOf(tv.comboBoxFase.getSelectedItem());
+                break;
+            }
+        }
+        System.out.println(fase + "fase");
+
+        DisciplinaJpaController djc = new DisciplinaJpaController();
+        List<Disciplina> dis = djc.listarDisciplinaPorFase(fase);
+        carregarDisciplina(dis);
+        for (int i = 0; i < tv.comboBoxDisciplina.getItemCount(); i++) {
+            if (tv.comboBoxDisciplina.getItemAt(i).equalsIgnoreCase(disciplina.getNome())) {
+                System.out.println("marcelo para de olhar a tela");
+                System.out.println(i);
+                System.out.println(disciplina.getNome());
+                tv.comboBoxDisciplina.setSelectedIndex(i);
+                break;
+            }
+        }
+
+    }
+
     public void editar(Disciplina d) {
         disciplina = d;
         edit = 1;
         String fase = "";
-
-        int aux = Integer.parseInt(d.getFase());
-        aux = aux - 1;
-
 
         if (edit == 1) {
             for (int i = 0; i < tv.comboBoxCurso.getItemCount(); i++) {
