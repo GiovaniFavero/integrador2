@@ -3,6 +3,10 @@ package br.udesc.model.dao.exceptions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe de declaração de Exceção.
+ * @author PIN2
+ */
 public class IllegalOrphanException extends Exception {
     private List<String> messages;
     public IllegalOrphanException(List<String> messages) {

@@ -35,6 +35,11 @@ public class GerarSolucaoGLPK {
 //        return linha;
 //    }
 
+    /**
+     * Executar Comando
+     * @param command comando
+     * @return String comando
+     */
     private String executeCommand(String command) {
         StringBuffer output = new StringBuffer();
         Process p;
@@ -56,6 +61,9 @@ public class GerarSolucaoGLPK {
 
     }
 
+    /**
+     * Método x.
+     */
     public void x() {
         System.out.println("entrei");
         String output = executeCommand(".\\resources\\glpk_w32\\glpsol --math teste.mod");

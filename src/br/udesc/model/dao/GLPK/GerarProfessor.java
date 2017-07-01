@@ -5,11 +5,18 @@ import br.udesc.model.dao.ProfessorJpaController;
 import br.udesc.model.entidade.PessoaHorarioPreferencia;
 import br.udesc.model.entidade.Professor;
 
+/**
+ * Classe responsável por gerar professor.
+ * @author PIN2
+ */
 public class GerarProfessor {
 
     private Professor professor = new Professor();
     private ProfessorJpaController pjc = new ProfessorJpaController();
 
+    /**
+     * Gerar Professor.
+     */
     public void gerarProfessor() {
 
         professor.setNome("Ademar Perfoll Junior");
@@ -137,6 +144,9 @@ public class GerarProfessor {
         pjc.create(professor);
     }
 
+    /**
+     * Gerar restrição professor.
+     */
     public void gerarRestricaoProfessor() {
         PessoaHorarioPreferencia php = new PessoaHorarioPreferencia();
         PessoaHorarioPreferenciaJpaController phpjc = new PessoaHorarioPreferenciaJpaController();
@@ -166,6 +176,9 @@ public class GerarProfessor {
         }
     }
 
+    /**
+     * Gerar professor primeira fase.
+     */
     public void gerarProfessorPrimeiraSegundaFase() {
 
         professor.setNome("Ademar Perfoll Junior");

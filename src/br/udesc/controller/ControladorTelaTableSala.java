@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.controller;
 
 import br.udesc.controller.tablemodel.SalaModel;
@@ -18,8 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author 5105011523
+ * Classe resposável pelo controle do módulo que exibe a tabela de salas.
+ * @author PIN2
  */
 public class ControladorTelaTableSala {
 
@@ -29,6 +24,9 @@ public class ControladorTelaTableSala {
     private List<Sala> listaSala;
     private SalaJpaController slc;
 
+    /**
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     */
     public ControladorTelaTableSala() {
         tts = new TelaTableSala();
         sa = new Sala();
@@ -40,6 +38,9 @@ public class ControladorTelaTableSala {
         iniciar();
     }
 
+    /**
+     * Método responsável por carregar salas existentes na tabela.
+     */
     public void carregarSala() {
         sm.limpar();
         listaSala = slc.listarSala();
@@ -49,6 +50,10 @@ public class ControladorTelaTableSala {
         tts.tabelaSalas.getSelectionModel().addSelectionInterval(0, 0);
     }
 
+    /**
+     * Método responsável por guardar a sala selecionada na variável do "sa" do tipo Sala.
+     * @param linha Linha selecionada da table.
+     */
     public void pegarLinha(int linha) {
         sa.setId((long) tts.tabelaSalas.getValueAt(linha, 0));
         sa.setNumero((String) tts.tabelaSalas.getValueAt(linha, 1));
@@ -61,6 +66,9 @@ public class ControladorTelaTableSala {
         }
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
         tts.botaoAdicionar.addActionListener(new ActionListener() {
             @Override
@@ -156,6 +164,9 @@ public class ControladorTelaTableSala {
         });
     }
 
+   /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    */
     public void executar() {
         tts.setVisible(true);
     }

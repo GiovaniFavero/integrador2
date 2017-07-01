@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.controller;
 
 import br.udesc.controller.tablemodel.DisciplinaModel;
@@ -21,8 +16,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author 5105011523
+ * Classe resposável pelo controle do módulo que exibe a tabela de disciplinas.
+ * @author PIN2
  */
 public class ControladorTelaTableDisciplina {
     private TelaTableDisciplina ttd;
@@ -31,17 +26,24 @@ public class ControladorTelaTableDisciplina {
     private List<Disciplina> listaDisciplina;
     private DisciplinaJpaController djc;
 
+    /**
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     */
     public ControladorTelaTableDisciplina() {
-    ttd = new TelaTableDisciplina();
-    dis = new Disciplina();
-    dm = new DisciplinaModel();
-    djc = new DisciplinaJpaController();
-    ttd.tabelaDisciplina.setModel(dm);
-    
-    carregarDisciplina();
-    Iniciar();
+        ttd = new TelaTableDisciplina();
+        dis = new Disciplina();
+        dm = new DisciplinaModel();
+        djc = new DisciplinaJpaController();
+        ttd.tabelaDisciplina.setModel(dm);
+
+        carregarDisciplina();
+        Iniciar();
     }
-    
+  
+    /**
+     * Método responsável por guardar a disciplina selecionada na variável do "dis" do tipo Disciplina.
+     * @param linha Linha selecionada da table.
+     */
     public void pegarLinha(int linha) {
         dis = djc.findDisciplina((long) ttd.tabelaDisciplina.getValueAt(linha, 0));
 //        dis.setId((long) ttd.tabelaDisciplina.getValueAt(linha, 0));
@@ -52,6 +54,9 @@ public class ControladorTelaTableDisciplina {
         
     }
     
+    /**
+     * Método responsável por carregar disciplinas existentes na tabela.
+     */
     public void carregarDisciplina(){
         dm.limpar();
         listaDisciplina = djc.listarDisciplina();
@@ -61,6 +66,9 @@ public class ControladorTelaTableDisciplina {
         ttd.tabelaDisciplina.getSelectionModel().addSelectionInterval(0, 0);
     }
     
+    /**
+     * Ao remover uma disciplina, todas as restrições desta disciplina são removidas através deste método.
+     */
     public void destruirRestrições(){
         List<RestricaoDisciplina> rd = new ArrayList<>();
         RestricaoDisciplinaJpaController rdjc = new RestricaoDisciplinaJpaController();
@@ -74,6 +82,9 @@ public class ControladorTelaTableDisciplina {
         }
     }
     
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void Iniciar(){
         ttd.botaoAdicionar.addActionListener(new ActionListener() {
             @Override
@@ -181,6 +192,9 @@ public class ControladorTelaTableDisciplina {
         });
     }
     
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    */
     public void executar(){
         ttd.setVisible(true);
     }

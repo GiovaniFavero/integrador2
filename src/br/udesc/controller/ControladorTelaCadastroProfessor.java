@@ -12,18 +12,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+/**
+ * Classe resposável pelo controle do cadastro/alteração de professores.
+ * @author PIN2
+ */
 public class ControladorTelaCadastroProfessor {
 
     private TelaCadastroProfessor tcp;
     private Professor professor;
     private int edit = 0;
 
+    /**
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     */
     public ControladorTelaCadastroProfessor() {
         professor = new Professor();
         tcp = new TelaCadastroProfessor();
         iniciar();
     }
 
+    /**
+     * Método resposável por validar se os campos obrigatórios foram preenchidos.
+     * @return Caso os campos obrigatórios não estiverem preenchidos retorna uma mensagem de aviso e também "false",
+     * caso contrário retorna "true".
+     */
     public boolean validarCampos() {
         if (tcp.fieldNome.getText().isEmpty()) {
             tcp.fieldNome.requestFocus();
@@ -39,9 +51,11 @@ public class ControladorTelaCadastroProfessor {
         return true;
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
 
-        //Botões salvar e limpar
         tcp.botaoLimpar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -176,6 +190,10 @@ public class ControladorTelaCadastroProfessor {
 
     }
 
+    /**
+     * Método resposável por preencher campos para edição de Professor.
+     * @param p Professor em questão a ser editado. 
+     */
     public void editar(Professor p) {
         professor = p;
         edit = 1;
@@ -183,6 +201,10 @@ public class ControladorTelaCadastroProfessor {
         tcp.fieldCpf.setText(professor.getCpf());
     }
 
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    *
+    */
     public void executar() {
         tcp.setVisible(true);
     }

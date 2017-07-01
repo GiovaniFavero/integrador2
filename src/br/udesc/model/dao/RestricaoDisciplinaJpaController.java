@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.model.dao;
 
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
@@ -19,20 +14,31 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
- * @author 5105011505
+ * Classe responsável pelas operações de persistencia do objeto RestricaoDisciplina.
+ * @author PIN2
  */
 public class RestricaoDisciplinaJpaController implements Serializable {
 
+    /**
+     * Construtor guardando a unidade de persistência em uma variável local.
+     */
     public RestricaoDisciplinaJpaController() {
         emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
 
+    /**
+     * Método para adquirir uma EntityManager;
+     * @return EntityManager
+     */
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    /**
+     * Método responsável por salvar RestricaoDisciplina no banco de dados.
+     * @param restricaoDisciplina RestricaoDisciplina a ser salva no banco de dados.
+     */
     public void create(RestricaoDisciplina restricaoDisciplina) {
         EntityManager em = null;
         try {
@@ -56,6 +62,11 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por alterar RestricaoDisciplina no banco de dados.
+     * @param restricaoDisciplina Restrição a ser alterada.
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void edit(RestricaoDisciplina restricaoDisciplina) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -94,6 +105,11 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por excluir RestricaoDisciplina no banco de dados.
+     * @param id Id da RestricaoDisciplina a ser excluída. 
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -144,6 +160,11 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por retornar RestricaoDisciplina solicitada através da Id.
+     * @param id Id da RestricaoDisciplina solicitada.
+     * @return RestricaoDisciplina
+     */
     public RestricaoDisciplina findRestricaoDisciplina(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -153,6 +174,10 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método que retorna quantidade de RestricoesDisciplina no banco de dados.
+     * @return quantidadeDeRestricoesDisciplina
+     */
     public int getRestricaoDisciplinaCount() {
         EntityManager em = getEntityManager();
         try {
@@ -166,6 +191,11 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por retornar RestricaoDisciplina por Disciplina
+     * @param id Id da disciplina
+     * @return Lista de RestricoesDisciplina
+     */
     public List<RestricaoDisciplina> buscarRestricoes(long id) {
         EntityManager em = getEntityManager();
         try {
@@ -179,6 +209,10 @@ public class RestricaoDisciplinaJpaController implements Serializable {
 
     }
 
+    /**
+     * Método responsável por retornar lista de RestricaoDisciplina com configuração "Obrigatória"
+     * @return Lista de RestricoesDisciplina
+     */
     public List<RestricaoDisciplina> listarRestricoesObrigatorias() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -196,6 +230,10 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por retornar lista de RestricaoDisciplina com configuração "Proibidas"
+     * @return Lista de RestricoesDisciplina
+     */
     public List<RestricaoDisciplina> listarRestricoesProibidas() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -213,8 +251,10 @@ public class RestricaoDisciplinaJpaController implements Serializable {
         }
     }
 
-   
-
+   /**
+    * Método responsável por retornar lista de RestricaoDisciplina que não possuem Disciplina.
+    * @return Lista de RestricoesDisciplina
+    */
     public List<RestricaoDisciplina> listarRestriçõesSemDisciplina() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();

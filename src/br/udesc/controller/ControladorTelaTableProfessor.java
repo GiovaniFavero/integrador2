@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.controller;
 
 import br.udesc.controller.tablemodel.ProfessorModel;
@@ -24,8 +19,8 @@ import javax.swing.JOptionPane;
 import javax.swing.event.AncestorListener;
 
 /**
- *
- * @author Usuario
+ * Classe resposável pelo controle do módulo que exibe a tabela de professores.
+ * @author PIN2
  */
 public class ControladorTelaTableProfessor {
 
@@ -35,17 +30,22 @@ public class ControladorTelaTableProfessor {
     private List<Professor> listaProfessor;
     private ProfessorJpaController psc;
 
+    /**
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     */
     public ControladorTelaTableProfessor() {
         ttp = new TelaTabelaProfessor();
         pro = new Professor();
         pm = new ProfessorModel();
         psc = new ProfessorJpaController();
         ttp.tabelaProfessores.setModel(pm);
-
         carregarProfessor();
         iniciar();
     }
 
+    /**
+     * Método responsável por carregar professores existentes na tabela.
+     */
     public void carregarProfessor() {
         pm.limpar();
         listaProfessor = psc.listarProfessor();
@@ -54,6 +54,10 @@ public class ControladorTelaTableProfessor {
         }
         ttp.tabelaProfessores.getSelectionModel().addSelectionInterval(0, 0);
     }
+    
+    /**
+     * Ao remover um professor, todas as restrições deste professor são removidas através deste método.
+     */
     public void destruirHorarioPreferencial() {
         List<PessoaHorarioPreferencia> php = new ArrayList<>();
         PessoaHorarioPreferenciaJpaController phpjc = new PessoaHorarioPreferenciaJpaController();
@@ -67,12 +71,19 @@ public class ControladorTelaTableProfessor {
         }
     }
 
+    /**
+     * Método responsável por guardar o professor selecionado na variável "pro" do tipo Professor.
+     * @param linha Linha selecionada da table.
+     */
     public void pegarLinha(int linha) {
         pro.setId((long) ttp.tabelaProfessores.getValueAt(linha, 0));
         pro.setNome((String) ttp.tabelaProfessores.getValueAt(linha, 1));
         pro.setCpf((String) ttp.tabelaProfessores.getValueAt(linha, 2));
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
         ttp.botaoAdicionar.addActionListener(new ActionListener() {
             @Override
@@ -181,6 +192,9 @@ public class ControladorTelaTableProfessor {
         });
     }
 
+   /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    */
     public void executar() {
         ttp.setVisible(true);
     }

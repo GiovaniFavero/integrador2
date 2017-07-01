@@ -11,17 +11,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
+/**
+ * Classe resposável pelo controle do módulo inicial do sistema.
+ * @author PIN2
+ */
 public class ControladorTelaInicio {
 
     private TelaInicio ti;
     private DisciplinaJpaController djc = new DisciplinaJpaController();
     private SalaHorarioJpaController sjc = new SalaHorarioJpaController();
 
+    /**
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     */
     public ControladorTelaInicio() {
         ti = new TelaInicio();
         iniciar();
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
 
         //Para acessar a tela de cadastro de Curso
@@ -123,6 +133,9 @@ public class ControladorTelaInicio {
 
     }
 
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    */
     public void executar() {
         ti.setVisible(true);
     }

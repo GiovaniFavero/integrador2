@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.controller.tablemodel;
 
 import br.udesc.model.entidade.Disciplina;
@@ -10,8 +5,9 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
- * @author 5105011523
+ * Classe resposável modelar a table de Disciplina.
+ * Implementando todos os métodos da Interface nativa AbstractTableModel.
+ * @author PIN2
  */
 public class DisciplinaModel extends AbstractTableModel{
     private ArrayList<Disciplina> linhas = null;
@@ -56,7 +52,6 @@ public class DisciplinaModel extends AbstractTableModel{
         }
         return null;
     }
-
     public void limpar() {
         linhas.clear();
         fireTableDataChanged();

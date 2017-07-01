@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.model.dao;
 
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
@@ -20,20 +15,31 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
- * @author 5105011505
+ * Classe responsável pelas operações de persistencia do objeto Curso.
+ * @author PIN2
  */
 public class CursoJpaController implements Serializable {
 
+    /**
+     * Construtor guardando a unidade de persistência em uma variável local.
+     */
     public CursoJpaController() {
         emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
 
+    /**
+     * Método para adquirir uma EntityManager;
+     * @return EntityManager
+     */
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    /**
+     * Método responsável por inserir Curso no banco de dados.
+     * @param curso Curso a ser criado.
+     */
     public void create(Curso curso) {
         if (curso.getListaDisciplina() == null) {
             curso.setListaDisciplina(new ArrayList<Disciplina>());
@@ -66,6 +72,11 @@ public class CursoJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por alterar Curso no banco de dados.
+     * @param curso Curso a ser editado.
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void edit(Curso curso) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -116,6 +127,11 @@ public class CursoJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por excluir Curso no banco de dados.
+     * @param id Id do curso a ser excluído. 
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -166,6 +182,11 @@ public class CursoJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por retornar curso solicitado através da Id.
+     * @param id Id do curso solicitado.
+     * @return Curso
+     */
     public Curso findCurso(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -175,6 +196,10 @@ public class CursoJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método que retorna quantidade de cursos no banco de dados.
+     * @return quantidadeCursos
+     */
     public int getCursoCount() {
         EntityManager em = getEntityManager();
         try {
@@ -188,6 +213,10 @@ public class CursoJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método para buscar todos os cursos no banco de dados.
+     * @return Cursos. Lista de cursos disponíveis.
+     */
     public static List<Curso> listarCurso() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -205,6 +234,11 @@ public class CursoJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por retornar cursos com o nome definido no parâmetro. 
+     * @param curso Curso na qual é solicitado por nome.
+     * @return Cursos Lista de cursos
+     */
     public List<Curso> validaCurso(String curso) {
         String jpql = "select u from Curso u where u.nome =:nome_curso";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");

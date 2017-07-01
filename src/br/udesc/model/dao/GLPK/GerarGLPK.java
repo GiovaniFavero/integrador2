@@ -18,6 +18,10 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe responsável por gerar arquivo de restrições utilizado pelo GLPK.
+ * @author PIN2
+ */
 public class GerarGLPK {
 
     private File arquivo = new File("./teste.mod");
@@ -28,6 +32,9 @@ public class GerarGLPK {
     private BufferedWriter bw;
     private String solve = "";
 
+    /**
+     * Método responsável por centralizar a chamada de todos os métodos utilizados para a geração do arquivo.
+     */
     public void geraTudo() {
         try {
             fw = new FileWriter(arquivo, false);
@@ -52,7 +59,9 @@ public class GerarGLPK {
 
     }
 
-    //Criar Variaves
+    /**
+     * Método responsável por criar as variáveis que serão utilizadas durante a execução do GPLK.
+     */
     public void salvar() {
 
 
@@ -106,6 +115,9 @@ public class GerarGLPK {
 
     }
 
+    /**
+     * Método responsável por criar a função de maximazação das variáveis.
+     */
     public void funcaoMax() {
 
         try {
@@ -138,6 +150,9 @@ public class GerarGLPK {
 
     }
 
+    /**
+     * Método responsável por maximizar as variáveis com sala.
+     */
     public void funcaoMaxSala() {
 
         try {
@@ -167,6 +182,9 @@ public class GerarGLPK {
 
     }
 
+    /**
+     * Método responsável por gerar as variáveis por Disciplina.
+     */
     public void gerarVariaveisPorDisciplina() {
         long inicio = System.currentTimeMillis();
         try {
@@ -246,6 +264,9 @@ public class GerarGLPK {
         }
     }
 
+    /**
+     * Método responsável por gerar somatório disciplinas por professor.
+     */
     public void gerarSomatorioDisciplinaProfessor() {
         try {
 
@@ -345,6 +366,9 @@ public class GerarGLPK {
         }
     }
 
+    /**
+     * Método responsável por gerar somatório disciplinas por fase.
+     */
     public void gerarSomatorioDisciplinaFase() {
         long inicio = System.currentTimeMillis();
         try {
@@ -424,6 +448,10 @@ public class GerarGLPK {
         }
     }
 
+    /**
+     * Método responsável por gerar restrições obrigatórias.
+     * @throws IOException Não encontrado(a).
+     */
     public void gerarRestricoesObrigatorias() throws IOException {
 
         String ini = "\r\n# horario arbitrario de disciplina\r\n";
@@ -452,6 +480,9 @@ public class GerarGLPK {
         }
     }
 
+    /**
+     * Método responsável por montar String para arquivo.
+     */
     private String[] montaStringRestricoes(List<RestricaoDisciplina> res) {
         String restricao11 = "";
         String restricao12 = "";
@@ -524,6 +555,12 @@ public class GerarGLPK {
         return aRestricoes;
     }
 
+    /**
+     * Método responsável por adquirir String de variaveis por restrição.
+     * @param oResDis Restrição Disciplina
+     * @param bAdicionaMais booleano
+     * @return String
+     */
     private String getStringVariavelRestricao(RestricaoDisciplina oResDis, boolean bAdicionaMais) {
         String print = "";
         if (bAdicionaMais) {
@@ -537,6 +574,9 @@ public class GerarGLPK {
         return print;
     }
 
+    /**
+     * Método responsável por gerar Restrições Disciplina indisponíveis.
+     */
     public void gerarRestricoesDisciplinaIndisponivel() {
         long inicio = System.currentTimeMillis();
         try {
@@ -626,6 +666,9 @@ public class GerarGLPK {
         }
     }
 
+    /**
+     * Método responsável por gerar Restrições Disciplina indisponíveis.
+     */
     public void gerarRestricaoDisciplinaHorarioIndisponiveis() {
         long inicio = System.currentTimeMillis();
 
@@ -694,6 +737,10 @@ public class GerarGLPK {
         }
     }
 
+    /**
+     * Método responsável por gerar restrições de horários proibidos.
+     * @throws IOException 
+     */
     private void gerarRestricoesHorarioProibido() throws IOException {
         long inicio = System.currentTimeMillis();
         String print = "";
@@ -733,6 +780,10 @@ public class GerarGLPK {
         Files.write(Paths.get("./teste.mod"), (print + " = 0\n").getBytes(), StandardOpenOption.APPEND);
     }
 
+    /**
+     * Método responsável por gerar somatório de horas por Laboratório.
+     * @throws IOException Não encontrado.
+     */
     private void somatorioHorasLaboratorio() throws IOException {
         DisciplinaJpaController djp = new DisciplinaJpaController();
         List<Disciplina> dis = djp.listarDisciplinaComSala();
@@ -765,6 +816,10 @@ public class GerarGLPK {
         }
     }
 
+    /**
+     * Método responsável definir se a matéria necessitar de laboratório, no mínimo a metade do 
+     * somatório das aulas precisa ser em laboratório.
+     */
     public void somatorioCeuLab() {
         DisciplinaJpaController djp = new DisciplinaJpaController();
         List<Disciplina> dis = djp.listarDisciplinaComSala();
@@ -798,6 +853,9 @@ public class GerarGLPK {
 
     }
 
+    /**
+     * Método responsável por gerar "solve" (GLPK).
+     */
     public void geraSolve() {
         long inicio = System.currentTimeMillis();
 

@@ -5,12 +5,19 @@ import br.udesc.model.dao.SalaJpaController;
 import br.udesc.model.entidade.Disciplina;
 import br.udesc.model.entidade.Sala;
 
+/**
+ * Classe responsável por gerar Laboratórios.
+ * @author PIN2
+ */
 public class GerarLaboratorios {
 
     private Sala sala = new Sala();
     private SalaJpaController sjc = new SalaJpaController();
     private DisciplinaJpaController djc = new DisciplinaJpaController();
 
+    /**
+     * Gerar labs.
+     */
     public void gerarLabs() {
         SalaJpaController sjc = new SalaJpaController();
 
@@ -23,6 +30,9 @@ public class GerarLaboratorios {
         }
     }
 
+    /**
+     * Vincular Labs.
+     */
     public void vincularLabs() {
         Disciplina d = djc.listarDisciplina().get(0);
         Sala s = sjc.listarSala().get(0);

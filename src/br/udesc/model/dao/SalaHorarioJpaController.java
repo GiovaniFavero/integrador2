@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.model.dao;
 
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
@@ -20,20 +15,31 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
- * @author 5105011505
+ * Classe resposável pelas operações de persistencia do objeto SalaHorario.
+ * @author PIN2
  */
 public class SalaHorarioJpaController implements Serializable {
 
+    /**
+     * Construtor guardando a unidade de persistência em uma variável local.
+     */
     public SalaHorarioJpaController() {
         emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
 
+    /**
+     * Método para adquirir uma EntityManager;
+     * @return EntityManager
+     */
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    /**
+     * Método responsável por salvar SalaHorario no banco de dados.
+     * @param salaHorario SalaHorario a ser salva no banco de dados.
+     */
     public void create(SalaHorario salaHorario) {
         EntityManager em = null;
         try {
@@ -66,6 +72,11 @@ public class SalaHorarioJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por alterar SalaHorario no banco de dados.
+     * @param salaHorario SalaHorario a ser alterada.
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void edit(SalaHorario salaHorario) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -118,6 +129,11 @@ public class SalaHorarioJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por excluir SalaDisciplina no banco de dados.
+     * @param id Id da SalaDisciplina a ser excluído. 
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -173,6 +189,11 @@ public class SalaHorarioJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por retornar SalaHorario solicitada através da Id.
+     * @param id Id da SalaHorario solicitado.
+     * @return SalaHorario
+     */
     public SalaHorario findSalaHorario(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -182,6 +203,10 @@ public class SalaHorarioJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método que retorna quantidade de SalaDisciplina no banco de dados.
+     * @return quantidadeDeSalaDisciplina
+     */
     public int getSalaHorarioCount() {
         EntityManager em = getEntityManager();
         try {
@@ -195,6 +220,9 @@ public class SalaHorarioJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por excluir todos os registros do objeto SalaHorario do banco de dados.
+     */
     public void limparTabela() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();

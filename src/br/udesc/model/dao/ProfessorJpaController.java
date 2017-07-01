@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.model.dao;
 
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
@@ -21,20 +16,31 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
- * @author 5105011505
+ * Classe resposável pelas operações de persistencia do objeto Professor.
+ * @author PIN2
  */
 public class ProfessorJpaController implements Serializable {
 
+    /**
+     * Construtor guardando a unidade de persistência em uma variável local.
+     */
     public ProfessorJpaController() {
         emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
 
+    /**
+     * Método para adquirir uma EntityManager;
+     * @return EntityManager
+     */
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    /**
+     * Método responsável por salvar Professor no banco de dados.
+     * @param professor Professor a ser salva no banco de dados.
+     */
     public void create(Professor professor) {
         if (professor.getListaDisciplinaProfessor() == null) {
             professor.setListaDisciplinaProfessor(new ArrayList<Disciplina>());
@@ -85,6 +91,11 @@ public class ProfessorJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por alterar Professor no banco de dados.
+     * @param professor Professor a ser editado.
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void edit(Professor professor) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -161,6 +172,11 @@ public class ProfessorJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por excluir Professor no banco de dados.
+     * @param id Id do Professor a ser excluído. 
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -216,6 +232,11 @@ public class ProfessorJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por retornar professor solicitada através da Id.
+     * @param id Id do professor solicitado.
+     * @return Professor
+     */
     public Professor findProfessor(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -225,6 +246,10 @@ public class ProfessorJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método que retorna quantidade de professores no banco de dados.
+     * @return quantidadeDeProfessores
+     */
     public int getProfessorCount() {
         EntityManager em = getEntityManager();
         try {
@@ -238,6 +263,10 @@ public class ProfessorJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por buscar todos os professores no banco de dados.
+     * @return Lista de Professor
+     */
     public List<Professor> listarProfessor() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -255,6 +284,11 @@ public class ProfessorJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por buscar Professor por nome no banco de dados.
+     * @param professor Nome do professor
+     * @return Lista de Professor
+     */
     public List<Professor> validaProfessor(String professor) {
         String jpql = "select u from Professor u where u.nome =:nome_professor";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");

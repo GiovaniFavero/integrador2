@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.controller;
 
 import br.udesc.controller.tablemodel.VinculoModel;
@@ -19,8 +14,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author 5105011523
+ * Classe resposável pelo controle do modulo que exibe a tabela com os Vínculos já realizados.
+ * @author PIN2
  */
 public class ControladorTelaTableVinculo {
 
@@ -30,6 +25,9 @@ public class ControladorTelaTableVinculo {
     private List<Disciplina> listaVinculo;
     private DisciplinaJpaController djc;
 
+    /**
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     */
     public ControladorTelaTableVinculo() {
         ttv = new TelaTableVinculo();
         dis = new Disciplina();
@@ -40,10 +38,17 @@ public class ControladorTelaTableVinculo {
         carregarVinculo();
     }
 
+    /**
+     * Método responsável por guardar a disciplina do vínculo selecionado na variável do "dis" do tipo Disciplina.
+     * @param linha Linha da tabela.
+     */
     public void pegarLinha(int linha) {
         dis = djc.findDisciplina((long) ttv.tabelaVinculacao.getValueAt(linha, 0));
     }
 
+    /**
+     * Método responsável por carregar vínculos existentes para a disciplina.
+     */
     public void carregarVinculo() {
         vm.limpar();
         listaVinculo = djc.listarDisciplina();
@@ -53,6 +58,9 @@ public class ControladorTelaTableVinculo {
         ttv.tabelaVinculacao.getSelectionModel().addSelectionInterval(0, 0);
     }
 
+    /**
+     * Método responsável por eliminar vínculo.
+     */
     public void tirarVinculo() {
         pegarLinha(ttv.tabelaVinculacao.getSelectedRow());
         ProfessorJpaController pjc = new ProfessorJpaController();
@@ -75,6 +83,9 @@ public class ControladorTelaTableVinculo {
         carregarVinculo();
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
         ttv.botaoAdicionar.addActionListener(new ActionListener() {
             @Override
@@ -164,6 +175,9 @@ public class ControladorTelaTableVinculo {
         });
     }
 
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    */
     public void executar() {
         ttv.setVisible(true);
     }

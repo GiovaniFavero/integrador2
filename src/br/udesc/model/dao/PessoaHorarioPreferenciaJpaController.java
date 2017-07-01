@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.model.dao;
 
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
@@ -20,20 +15,31 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
- * @author 5105011505
+ * Classe responsável pelas operações de persistencia do objeto PessoaHorarioPreferencia.
+ * @author PIN2
  */
 public class PessoaHorarioPreferenciaJpaController implements Serializable {
 
+    /**
+     * Construtor guardando a unidade de persistência em uma variável local.
+     */
     public PessoaHorarioPreferenciaJpaController() {
         emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
 
+    /**
+     * Método para adquirir uma EntityManager;
+     * @return EntityManager
+     */
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    /**
+     * Método responsável por salvar PessoaHorarioPreferencia no banco de dados.
+     * @param pessoaHorarioPreferencia Objeto a ser salvo no banco de dados.
+     */
     public void create(PessoaHorarioPreferencia pessoaHorarioPreferencia) {
         EntityManager em = null;
         try {
@@ -57,6 +63,11 @@ public class PessoaHorarioPreferenciaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por alterar PessoaHorarioPreferencia no banco de dados.
+     * @param pessoaHorarioPreferencia Restrição a ser alterada.
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void edit(PessoaHorarioPreferencia pessoaHorarioPreferencia) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -95,6 +106,11 @@ public class PessoaHorarioPreferenciaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por excluir PessoaHorarioPreferencia no banco de dados.
+     * @param id Id da PessoaHorarioPreferencia a ser excluído. 
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -145,6 +161,11 @@ public class PessoaHorarioPreferenciaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por retornar PessoaHorarioPreferencia solicitada através da Id.
+     * @param id Id da PessoaHorarioPreferencia solicitado.
+     * @return PessoaHorarioPreferencia
+     */
     public PessoaHorarioPreferencia findPessoaHorarioPreferencia(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -154,6 +175,10 @@ public class PessoaHorarioPreferenciaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método que retorna quantidade de PessoaHorarioPreferencia no banco de dados.
+     * @return pessoaHorarioPreferencia
+     */
     public int getPessoaHorarioPreferenciaCount() {
         EntityManager em = getEntityManager();
         try {
@@ -167,6 +192,10 @@ public class PessoaHorarioPreferenciaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por listar professores com restrições "Proibitivas".
+     * @return Lista de PessoaHorarioPreferencia
+     */
     public List<Professor> listarProfessorComRestricoesProibitivas() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -184,6 +213,11 @@ public class PessoaHorarioPreferenciaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por listar restrições pribidas de Professor.
+     * @param iProf professor
+     * @return Lista de PessoaHorarioPreferencia
+     */
     public List getAllHorarioProibidosProfessor(int iProf) {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -202,6 +236,10 @@ public class PessoaHorarioPreferenciaJpaController implements Serializable {
         }
     }
     
+    /**
+     * Método responsável por listar restrições sem professor.
+     * @return Lista de PessoaHorarioPreferencia
+     */
     public List<PessoaHorarioPreferencia> HorariosPreferenciaSemProfessor() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();

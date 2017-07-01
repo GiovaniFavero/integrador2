@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+/**
+ * Entidade SalaHorario que se refere ao vínculo entre salas e horários.
+ * @author PIN2
+ */
 @Entity
 @SequenceGenerator(name = "sala_horario_id", initialValue = 1, allocationSize = 1)
 public class SalaHorario implements Serializable {

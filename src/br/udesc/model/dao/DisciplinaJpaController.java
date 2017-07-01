@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.model.dao;
 
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
@@ -24,20 +19,31 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
- * @author 5105011505
+ * Classe responsável pelas operações de persistencia do objeto Disciplina.
+ * @author PIN2
  */
 public class DisciplinaJpaController implements Serializable {
 
+    /**
+     * Construtor guardando a unidade de persistência em uma variável local.
+     */
     public DisciplinaJpaController() {
         emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
 
+    /**
+     * Método para adquirir uma EntityManager;
+     * @return EntityManager
+     */
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    /**
+     * Método responsável por salvar Disciplina no banco de dados.
+     * @param disciplina Disciplina a ser salva.
+     */
     public void create(Disciplina disciplina) {
         if (disciplina.getListaRestricaoDisciplina() == null) {
             disciplina.setListaRestricaoDisciplina(new ArrayList<RestricaoDisciplina>());
@@ -115,6 +121,11 @@ public class DisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por alterar Disciplina no banco de dados.
+     * @param disciplina Disciplina a ser alterada.
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void edit(Disciplina disciplina) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -233,6 +244,11 @@ public class DisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por excluir Disciplina no banco de dados.
+     * @param id Id da disciplina a ser excluído. 
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -303,6 +319,11 @@ public class DisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por retornar disciplina solicitada através da Id.
+     * @param id Id da disciplina solicitado.
+     * @return Disciplina
+     */
     public Disciplina findDisciplina(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -312,6 +333,10 @@ public class DisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método que retorna quantidade de disciplinas no banco de dados.
+     * @return quantidadeDisciplinas
+     */
     public int getDisciplinaCount() {
         EntityManager em = getEntityManager();
         try {
@@ -325,6 +350,11 @@ public class DisciplinaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por buscar disciplinas por fase no banco de dados.
+     * @param fase Fase da disciplina
+     * @return Lista de Disciplinas
+     */
     public List<Disciplina> listarDisciplinaPorFase(String fase) {
         String jpql = "select u from Disciplina u where u.fase =:fase_disciplina";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
@@ -336,6 +366,11 @@ public class DisciplinaJpaController implements Serializable {
         return resultado;
     }
 
+    /**
+     * Método responsável por buscar disciplinas por curso no banco de dados.
+     * @param curso Curso da disciplina
+     * @return Lista de Disciplinas
+     */
     public List<Disciplina> listarDisciplinaPorCurso(Long curso) {
         String jpql = "select u from Disciplina u where u.curso =:id_curso";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
@@ -347,6 +382,10 @@ public class DisciplinaJpaController implements Serializable {
         return resultado;
     }
 
+    /**
+     * Método responsável por buscar todas disciplinas no banco de dados.
+     * @return Lista de Disciplinas
+     */
     public List<Disciplina> listarDisciplina() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -364,6 +403,10 @@ public class DisciplinaJpaController implements Serializable {
         }
     }
     
+    /**
+     * Método responsável por buscar disciplinas que possuem professor definido no banco de dados.
+     * @return Lista de Disciplinas
+     */
     public List<Disciplina> listarDisciplinaComProfessor() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -381,6 +424,10 @@ public class DisciplinaJpaController implements Serializable {
         }
     }
     
+    /**
+     * Método responsável por buscar disciplinas que possuem professor e sala definidos no banco de dados.
+     * @return Lista de Disciplinas
+     */
     public List<Disciplina> listarDisciplinaComProfessorComSala() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -398,6 +445,10 @@ public class DisciplinaJpaController implements Serializable {
         }
     }
     
+    /**
+     * Método responsável por buscar disciplinas que possuem sala definido no banco de dados.
+     * @return Lista de Disciplinas
+     */
     public List<Disciplina> listarDisciplinaComSala() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -414,6 +465,11 @@ public class DisciplinaJpaController implements Serializable {
             em.close();
         }
     }
+    
+    /**
+     * Método responsável por buscar disciplinas que não possuem curso definido no banco de dados.
+     * @return Lista de Disciplinas
+     */
     public List<Disciplina> listarDisciplinaSemCurso() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();
@@ -431,8 +487,11 @@ public class DisciplinaJpaController implements Serializable {
         }
     }
     
-    
-
+    /**
+     * Método responsável por buscar disciplinas por codigo no banco de dados.
+     * @param disciplina Codigo Disciplina
+     * @return Lista de Disciplinas
+     */
     public List<Disciplina> validaDisciplina(String disciplina) {
         String jpql = "select u from Disciplina u where u.codigo =:codigo_disciplina";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
@@ -444,6 +503,11 @@ public class DisciplinaJpaController implements Serializable {
         return disc;
     }
 
+    /**
+     * Método responsável por buscar disciplinas por nome no banco de dados.
+     * @return Lista de Disciplinas
+     * @param nome Nome Disciplina
+     */
     public List<Disciplina> validaDisciplinaNome(String nome) {
         String jpql = "select u from Disciplina u where u.nome =:nome_disciplina";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
@@ -455,6 +519,11 @@ public class DisciplinaJpaController implements Serializable {
         return disc;
     }
 
+    /**
+     * Método responsável por buscar disciplinas por professor no banco de dados.
+     * @param iProf Professor
+     * @return Lista de Disciplinas
+     */
     public List<Disciplina> listaDisciplinaProfessor(int iProf){
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();

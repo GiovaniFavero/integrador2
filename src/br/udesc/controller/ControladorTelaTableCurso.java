@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.controller;
 
 import br.udesc.controller.tablemodel.CursoModel;
@@ -21,8 +16,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Usuario
+ * Classe resposável pelo controle módulo que exibe uma tabela com os cursos existentes.
+ * @author PIN2
  */
 public class ControladorTelaTableCurso {
 
@@ -32,6 +27,9 @@ public class ControladorTelaTableCurso {
     private List<Curso> listaCurso;
     private CursoJpaController cjc;
 
+    /**
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     */
     public ControladorTelaTableCurso() {
         ttc = new TelaTableCurso();
         cur = new Curso();
@@ -43,6 +41,9 @@ public class ControladorTelaTableCurso {
         iniciar();
     }
 
+    /**
+     * Método responsável por carregar cursos existentes na tabela.
+     */
     public void carregarCurso() {
         cm.limpar();
         listaCurso = cjc.listarCurso();
@@ -52,6 +53,9 @@ public class ControladorTelaTableCurso {
         ttc.tabelaCurso.getSelectionModel().addSelectionInterval(0, 0);
     }
 
+    /**
+     * Ao remover um curso, todas as disciplinas deste curso são removidas através deste método.
+     */
     public void destruirDisciplinasSemCurso() {
         List<Disciplina> d = new ArrayList<>();
         DisciplinaJpaController djc = new DisciplinaJpaController();
@@ -65,12 +69,19 @@ public class ControladorTelaTableCurso {
         }
     }
 
+    /**
+     * Método responsável por guardar o curso selecionado na variável do "cur" do tipo Curso.
+     * @param linha Linha selecionada da table.
+     */
     public void pegarLinha(int linha) {
         cur.setId((long) ttc.tabelaCurso.getValueAt(linha, 0));
         cur.setNome((String) ttc.tabelaCurso.getValueAt(linha, 1));
         cur.setDuracao((int) ttc.tabelaCurso.getValueAt(linha, 2));
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
         ttc.botaoAdicionar.addActionListener(new ActionListener() {
             @Override
@@ -165,6 +176,9 @@ public class ControladorTelaTableCurso {
         );
     }
 
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    */
     public void executar() {
         ttc.setVisible(true);
     }

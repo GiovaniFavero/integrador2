@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.model.dao;
 
 import br.udesc.model.dao.exceptions.NonexistentEntityException;
@@ -21,20 +16,31 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
- * @author 5105011505
+ * Classe resposável pelas operações de persistencia do objeto Sala.
+ * @author PIN2
  */
 public class SalaJpaController implements Serializable {
 
+    /**
+     * Construtor guardando a unidade de persistência em uma variável local.
+     */
     public SalaJpaController() {
         emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
     }
     private EntityManagerFactory emf;
 
+    /**
+     * Método para adquirir uma EntityManager;
+     * @return EntityManager
+     */
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    /**
+     * Método responsável por salvar Sala no banco de dados.
+     * @param sala Sala a ser salva no banco de dados.
+     */
     public void create(Sala sala) {
         if (sala.getListaDisciplina() == null) {
             sala.setListaDisciplina(new ArrayList<Disciplina>());
@@ -85,6 +91,11 @@ public class SalaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por alterar Sala no banco de dados.
+     * @param sala Sala a ser editada.
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void edit(Sala sala) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -161,6 +172,11 @@ public class SalaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por excluir Sala no banco de dados.
+     * @param id Id da Sala a ser excluída. 
+     * @throws NonexistentEntityException Não encontrado(a).
+     */
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -216,6 +232,11 @@ public class SalaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por retornar Sala solicitada através da Id.
+     * @param id Id da Sala solicitado.
+     * @return Sala
+     */
     public Sala findSala(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -225,6 +246,10 @@ public class SalaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método que retorna quantidade de Sala no banco de dados.
+     * @return quantidadeDeSala
+     */
     public int getSalaCount() {
         EntityManager em = getEntityManager();
         try {
@@ -238,6 +263,11 @@ public class SalaJpaController implements Serializable {
         }
     }
 
+    /**
+     * Método responsável por buscar todos as salas por nome no banco de dados.
+     * @param sala Numero da Sala
+     * @return Lista de Sala
+     */
     public List<Sala> validaSala(String sala) {
         String jpql = "select u from Sala u where u.numero =:numero_sala";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
@@ -249,6 +279,10 @@ public class SalaJpaController implements Serializable {
         return curs;
     }
 
+    /**
+     * Método responsável por buscar todos as salas no banco de dados.
+     * @return Lista de Sala
+     */
     public List<Sala> listarSala() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoIntegradorPU");
         EntityManager em = emf.createEntityManager();

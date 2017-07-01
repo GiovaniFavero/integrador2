@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.controller;
 
 import br.udesc.model.dao.CursoJpaController;
@@ -20,17 +15,12 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Usuario
- */
-/**
  * Classe resposável por realizar o controle da tela
- * "TelaRestricoesDisciplina.java". Este módulo permite o usuário definir uma
- * restrição para cada disciplina. Esta restrição se baseia na obrigação ou na
+ * "TelaRestricoesDisciplina.java". Este módulo permite o usuário definir restrições 
+ * para cada disciplina. Estas restrições se baseiam na obrigação ou na
  * proibição de a disciplina ser lecionada em dias específicos da semana. Cada
  * dia da semana é divido em primeiro e segundo horário.
- *
- * @author Favero
+ * @author PIN2
  */
 public class ControladorTelaRestricoesDisciplina {
 
@@ -45,9 +35,7 @@ public class ControladorTelaRestricoesDisciplina {
     private ControladorTelaInicio cti;
 
     /**
-     * Método construtor. Reponsável por executar os métodos necessários para
-     * instanciação da classe.
-     *
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
      * @param id Id da disciplina na qual as restrições se referem.
      */
     public ControladorTelaRestricoesDisciplina(long id) {
@@ -57,7 +45,6 @@ public class ControladorTelaRestricoesDisciplina {
         djc = new DisciplinaJpaController();
         rdjc = new RestricaoDisciplinaJpaController();
         this.buscaDisciplina(id);
-        //restricoesAntigas = dis.getListaRestricaoDisciplina();
         carregaListaCbxRestricoes();
         carregaListaCbxRestricoesDisciplina();
         carregaLabel();
@@ -159,20 +146,23 @@ public class ControladorTelaRestricoesDisciplina {
     /**
      * Método resposável por adicionar a opções disponíveis de cada ComboBox de
      * restrição, que é: "Obrigatório" ou "Proibido".
+     * Existe uma matriz de ComboBox na qual a posição "x" da matriz se refere
+     * ao dia da semana, e a posição "y" ao período do dia na qual a restrição
+     * será aplicada conforme abaixo:
+     * Dias da semana:
+     * Segunda-feira: 1
+     * Terça-feira: 2
+     * Quarta-feira: 3
+     * Quinta-feira: 4
+     * Sexta-feira: 5
+     * Sábado: 6 
+     * Períodos:
+     * 1º Período: 1
+     * 2º Período: 2
+     * 
+     * Exemplo: Terça-feira no primeiro horário recebe o valor "21".
      */
     public void carregaListaCbxRestricoes() {
-        /* Carrega-se todos os ComboBox na matriz "restricoes" */
- /* Os índices de cada ComboBox é definido como código para o dia da semana.
-        No momento de salvar será somado 1 a cada código para iniciar com 1.
-        Segunda-feira: 1
-        Terça-feira: 2
-        Quarta-feira: 3
-        Quinta-feira: 4
-        Sexta-feira: 5
-        Sábado: 6 
-        ---------------
-        1º Período: 1
-        2º Período: 2 */
         restricoes = new JComboBox[6][2];
         restricoes[0][0] = trd.cbxSegunda1;
         restricoes[0][1] = trd.cbxSegunda2;
@@ -197,7 +187,7 @@ public class ControladorTelaRestricoesDisciplina {
 
     /**
      * Método responsável por carregar as restrições já existentes para a
-     * disciplina na tela.
+     * disciplina nos ComboBox's.
      */
     public void carregaListaCbxRestricoesDisciplina() {
         for (RestricaoDisciplina p : restricoesAntigas) {
@@ -222,7 +212,7 @@ public class ControladorTelaRestricoesDisciplina {
 
     /**
      * Método responsável por adicionar as restrições que estão definidas na
-     * tela no array "novasRestrições" que será atualizado para a disciplina.
+     * tela para o array "novasRestrições" que serão atualizadas para a disciplina.
      */
     public void salvarRestricoes() {
         RestricaoDisciplina ph;
@@ -280,7 +270,6 @@ public class ControladorTelaRestricoesDisciplina {
 
     /**
      * Método responsável por inicializar a tela controlada por esta classe.
-     *
      */
     public void executar() {
         trd.setVisible(true);
@@ -288,20 +277,17 @@ public class ControladorTelaRestricoesDisciplina {
 
     /**
      * Método responsável por buscar a disciplina com "id" definida no parâmetro
-     * do construtor desta classe, e salvar na variável aqui instanciada.
-     *
-     * @param id id da disciplina na qual se refere.
+     * e salvar na variável aqui instanciada.
+     * @param id Id da disciplina na qual se refere.
      */
     public void buscaDisciplina(long id) {
         this.dis = djc.findDisciplina(id);
         this.restricoesAntigas = rdjc.buscarRestricoes(id);
     }
 
-    /*  */
     /**
      * Método responsável por carregar o nome da disciplina em questão no
      * cabeçalho da tela.
-     *
      */
     public void carregaLabel() {
         trd.labelTitulo.setText("Restrições para " + this.dis.getNome());

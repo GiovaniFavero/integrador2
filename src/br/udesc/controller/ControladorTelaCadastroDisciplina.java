@@ -27,7 +27,7 @@ public class ControladorTelaCadastroDisciplina {
     private int edit = 0;
 
     /**
-     * Construtor intanciando a tela do controlador em questão, e instanciando nova disciplina.
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
      */
     public ControladorTelaCadastroDisciplina() {
         tcd = new TelaCadastroDisciplina();
@@ -37,8 +37,8 @@ public class ControladorTelaCadastroDisciplina {
 
     
     /**
-     * Método resposável por validar se os campos foram preenchidos.
-     * @return Caso os campos não estiverem preenchidos retorna uma mensagem de aviso e também "false",
+     * Método resposável por validar se os campos obrigatórios foram preenchidos.
+     * @return Caso os campos obrigatórios não estiverem preenchidos retorna uma mensagem de aviso e também "false",
      * caso contrário retorna "true".
      */
     public boolean validarCampos() {
@@ -76,7 +76,7 @@ public class ControladorTelaCadastroDisciplina {
 
     
     /**
-     * Método responsável por carregar os cursos disponíveis.
+     * Método responsável por carregar os cursos disponíveis no ComboBox.
      */
     public void carregarCursos() {
         CursoJpaController cjc = new CursoJpaController();
@@ -88,7 +88,7 @@ public class ControladorTelaCadastroDisciplina {
     }
 
     /**
-     * Método responsável por carregar as salas disponíveis.
+     * Método responsável por carregar as salas disponíveis no ComboBox.
      */
     public void carregaSala() {
         SalaJpaController sjc = new SalaJpaController();
@@ -110,8 +110,8 @@ public class ControladorTelaCadastroDisciplina {
     }
 
     /**
-     * Método responsável por preencher campos para edição de disciplina.
-     * @param d Disciplina a ser editada
+     * Método resposável por preencher campos para edição de disciplina.
+     * @param d Disciplina em questão a ser editada. 
      */
     public void editar(Disciplina d) {
         disciplina = d;
@@ -337,7 +337,6 @@ public class ControladorTelaCadastroDisciplina {
     
     /**
     * Método responsável por inicializar a tela controlada por esta classe.
-    *
     */
     public void executar() {
         tcd.setVisible(true);

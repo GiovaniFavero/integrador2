@@ -11,18 +11,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+/**
+ * Classe resposável pelo controle do cadastro/alteração de salas.
+ * @author PIN2
+ */
 public class ControladorTelaCadastroSala {
 
     private TelaCadastroSala tcs;
     private int edit = 0;
     private Sala sala;
 
+    /**
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     */
     public ControladorTelaCadastroSala() {
         tcs = new TelaCadastroSala();
         sala = new Sala();
         iniciar();
     }
 
+    /**
+     * Método resposável por validar se os campos obrigatórios foram preenchidos.
+     * @return Caso os campos obrigatórios não estiverem preenchidos retorna uma mensagem de aviso e também "false",
+     * caso contrário retorna "true".
+     */
     public boolean validarCampos() {
 
         if (tcs.fieldNumero.getText().isEmpty()) {
@@ -44,6 +56,9 @@ public class ControladorTelaCadastroSala {
         return true;
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
 
         tcs.botaoInicio.addActionListener(new ActionListener() {
@@ -166,6 +181,10 @@ public class ControladorTelaCadastroSala {
 
     }
 
+    /**
+     * Método resposável por preencher campos para edição de sala.
+     * @param s Sala em questão a ser editada. 
+     */
     public void editar(Sala s) {
         sala = s;
         edit = 1;
@@ -173,6 +192,9 @@ public class ControladorTelaCadastroSala {
         tcs.fieldLimite.setText(String.valueOf(s.getLimite()));
     }
 
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    */
     public void executar() {
         tcs.setVisible(true);
     }

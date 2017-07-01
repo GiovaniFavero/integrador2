@@ -11,17 +11,27 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
+/**
+ * Classe resposável pelo controle do módulo de geração de relatórios.
+ * @author PIN2
+ */
 public class ControladorTelaGerarRelatorio {
 
     private TelaGerarRelatorios tgr;
     private ConnectionFactory cf;
 
+    /**
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     */
     public ControladorTelaGerarRelatorio() {
         cf = new ConnectionFactory();
         tgr = new TelaGerarRelatorios();
         iniciar();
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
         tgr.botaoDisciplinaOrfao.addActionListener(new ActionListener() {
             @Override
@@ -200,10 +210,11 @@ public class ControladorTelaGerarRelatorio {
                 tgr.setVisible(false);
             }
         });
-
-
     }
 
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    */
     public void executar() {
         tgr.setVisible(true);
     }

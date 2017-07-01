@@ -307,9 +307,7 @@ public class TelaTableSala extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoCursoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel acoesPanel;

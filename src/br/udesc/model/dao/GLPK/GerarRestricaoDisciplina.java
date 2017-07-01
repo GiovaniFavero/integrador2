@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.model.dao.GLPK;
 
 import br.udesc.model.dao.DisciplinaJpaController;
@@ -14,12 +9,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 
+/**
+ * Classe responsável por gerar restrições de Disciplina para GLPK.
+ * @author PIN2
+ */
 public class GerarRestricaoDisciplina {
 
     private RestricaoDisciplina rd = new RestricaoDisciplina();
     private RestricaoDisciplinaJpaController rdj = new RestricaoDisciplinaJpaController();
     private DisciplinaJpaController dj = new DisciplinaJpaController();
 
+    /**
+     * Método responsável por gerar restrição até segunda Fase.
+     */
     public void criaRestricaoAteSegundaFase() {
         List<Disciplina> dis = dj.listarDisciplinaPorFase("1");
         RestricaoDisciplina res = new RestricaoDisciplina();
@@ -57,6 +59,9 @@ public class GerarRestricaoDisciplina {
         }
     }
 
+    /**
+     * Método responsável por criar restrição geral.
+     */
     public void criarRestricaoGeral() {
         RestricaoDisciplina res = new RestricaoDisciplina();
         Disciplina d = new Disciplina();

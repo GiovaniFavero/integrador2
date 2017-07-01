@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+/**
+ * Entidade Curso
+ * @author PIN2
+ */
 @Entity
 @SequenceGenerator(name = "curso_id", initialValue = 1, allocationSize = 1)
 public class Curso implements Serializable {

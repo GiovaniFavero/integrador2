@@ -14,12 +14,19 @@ import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 
+/**
+ * Classe resposável pelo controle do módulo que vincula Curso, Sala, Professor e Disciplina.
+ * @author PIN2
+ */
 public class ControladorTelaVinculo {
 
     private TelaVinculo tv;
     private Disciplina disciplina;
     private int edit = 0;
 
+    /**
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     */
     public ControladorTelaVinculo() {
         tv = new TelaVinculo();
         disciplina = new Disciplina();
@@ -28,6 +35,9 @@ public class ControladorTelaVinculo {
         validarComponenteDisciplina(true);
     }
 
+    /**
+     * Método responsável por carregar cursos disponíveis no ComboBox.
+     */
     public void carregarCurso() {
         CursoJpaController cjc = new CursoJpaController();
         tv.comboBoxCurso.removeAllItems();
@@ -45,6 +55,10 @@ public class ControladorTelaVinculo {
 
     }
 
+    /**
+     * Método responsável por carregar vínculo selecionado.
+     * @param d Disciplina
+     */
     public void carregarSelecionado(Disciplina d) {
         String fase = "";
         disciplina = d;
@@ -81,6 +95,10 @@ public class ControladorTelaVinculo {
 
     }
 
+    /**
+     * Método responsável pela edição de Vínculo
+     * @param d Disciplina
+     */
     public void editar(Disciplina d) {
         disciplina = d;
         edit = 1;
@@ -126,6 +144,10 @@ public class ControladorTelaVinculo {
 
     }
 
+    /**
+     * Método responsável por carregar as fases do curso.
+     * @param list Lista de Disciplinas.
+     */
     public void carregarFase(List<Disciplina> list) {
         DisciplinaJpaController djc = new DisciplinaJpaController();
         tv.comboBoxFase.removeAllItems();
@@ -156,14 +178,26 @@ public class ControladorTelaVinculo {
         }
     }
 
+    /**
+     * Método responsável por habilitar/desabilitar ComboBox de Fase.
+     * @param validar Boolean.
+     */
     public void validarComponenteFase(boolean validar) {
         tv.comboBoxFase.setEnabled(validar);
     }
 
+    /**
+     * Método responsável por habilitar/desabilitar ComboBox de Disciplina.
+     * @param validar Boolean.
+     */
     public void validarComponenteDisciplina(boolean validar) {
         tv.comboBoxDisciplina.setEnabled(validar);
     }
 
+    /**
+     * Método responsável por carregar Lista de disciplinas no ComboBox.
+     * @param list Lista de Disciplinas.
+     */
     public void carregarDisciplina(List<Disciplina> list) {
         DisciplinaJpaController djc = new DisciplinaJpaController();
         tv.comboBoxDisciplina.removeAllItems();
@@ -174,6 +208,9 @@ public class ControladorTelaVinculo {
 
     }
 
+    /**
+     * Método responsável por carregar professores dispiníveis no ComboBox.
+     */
     public void carregarProfessor() {
         ProfessorJpaController pjc = new ProfessorJpaController();
         tv.comboBoxProfessor.removeAllItems();
@@ -183,12 +220,18 @@ public class ControladorTelaVinculo {
         }
     }
 
+    /**
+     * Método responsável por limpar todos os ComboBox.
+     */
     public void limpar() {
         tv.comboBoxFase.removeAllItems();
         tv.comboBoxDisciplina.removeAllItems();
         tv.comboBoxProfessor.removeAllItems();
     }
 
+    /**
+     * Método que inicia os componentes do JFrame (Botões etc).
+     */
     public void iniciar() {
 
         limpar();
@@ -370,6 +413,9 @@ public class ControladorTelaVinculo {
         });
     }
 
+    /**
+    * Método responsável por inicializar a tela controlada por esta classe.
+    */
     public void executar() {
         tv.setVisible(true);
     }

@@ -3,6 +3,10 @@ package br.udesc.model.dao.GLPK;
 import br.udesc.model.dao.CursoJpaController;
 import javax.swing.JOptionPane;
 
+/**
+ * Classe reponsável pelo preenchimento.
+ * @author PIN2
+ */
 public class PreencherTudo {
 
     private GerarLaboratorios gl = new GerarLaboratorios();
@@ -12,6 +16,9 @@ public class PreencherTudo {
     private GerarRestricaoDisciplina gd = new GerarRestricaoDisciplina();
     private CursoJpaController cjc = new CursoJpaController();
 
+    /**
+     * Classe gerarTudo.
+     */
     public void gerarTudo() {
         if (cjc.getCursoCount() == 0) {
             gm.gerarCurso();

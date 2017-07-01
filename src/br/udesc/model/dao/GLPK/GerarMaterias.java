@@ -7,6 +7,10 @@ import br.udesc.model.entidade.Curso;
 import br.udesc.model.entidade.Disciplina;
 import br.udesc.model.entidade.Sala;
 
+/**
+ * Classe responsável por geração de matérias.
+ * @author Favero
+ */
 public class GerarMaterias {
 
     private Curso curso = new Curso();
@@ -18,12 +22,18 @@ public class GerarMaterias {
     private Sala sala = new Sala();
     private SalaJpaController sjc = new SalaJpaController();
 
+    /**
+     * Gerar curso.
+     */
     public void gerarCurso() {
         curso.setDuracao(8);
         curso.setNome("ESO");
         cjc.create(curso);
     }
 
+    /**
+     * Gerar primeira fase.
+     */
     public void gerarPrimeiraFase() {
         Disciplina arq = new Disciplina("Arquitetura de Computadores", "15arc", 4, "1", 40, curso, null, null);
         djc.create(arq);
@@ -56,6 +66,9 @@ public class GerarMaterias {
         }
     }
 
+    /**
+     * Gerar segunda fase.
+     */
     public void gerarSegundaFase() {
         Disciplina alg = new Disciplina("Álgebra Linear", "25alg", 4, "2", 40, curso, null, null);
         djc.create(alg);
@@ -92,6 +105,9 @@ public class GerarMaterias {
         }
     }
 
+    /**
+     * Gerar terceira fase.
+     */
     public void gerarTerceiraFase() {
         Disciplina cdi = new Disciplina("Cálculo Diferencial e Integral", "35cdi", 6, "3", 40, curso, null, null);
         djc.create(cdi);
@@ -124,6 +140,9 @@ public class GerarMaterias {
         }
     }
 
+    /**
+     * Gerar quarta fase.
+     */
     public void gerarQuartaFase() {
         Disciplina prj = new Disciplina("Desenho e Projeto de Software", "45prj", 4, "4", 40, curso, null, null);
         djc.create(prj);
@@ -156,6 +175,9 @@ public class GerarMaterias {
         }
     }
 
+    /**
+     * Gerar quinta fase.
+     */
     public void gerarQuintaFase() {
         Disciplina dsw = new Disciplina("Desenvolvimento de Sistemas para Web", "55dsw", 6, "5", 40, curso, null, null);
         djc.create(dsw);
@@ -189,6 +211,9 @@ public class GerarMaterias {
 
     }
 
+    /**
+     * Gerar sexta fase.
+     */
     public void gerarSextaFase() {
         Disciplina dsd = new Disciplina("Desinvolvimento de Sistemas para Web", "65dsd", 6, "6", 40, curso, null, null);
         djc.create(dsd);
@@ -222,6 +247,9 @@ public class GerarMaterias {
 
     }
 
+    /**
+     * Gerar sétima fase.
+     */
     public void gerarSetimaFase() {
         Disciplina ars = new Disciplina("Arquitetura de Software", "75ars", 2, "7", 40, curso, null, null);
         djc.create(ars);
@@ -259,6 +287,9 @@ public class GerarMaterias {
 
     }
 
+    /**
+     * Gerar oitava fase.
+     */
     public void gerarOitavaFase() {
         Disciplina optIII = new Disciplina("Disciplina optativa III", "85optIII", 4, "8", 40, curso, null, null);
         djc.create(optIII);

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.model.entidade;
 
 import java.io.Serializable;
@@ -16,8 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
- *
- * @author 5105011505
+ * Entidade PessoaHorarioPreferencia que se refere as restrições dos professores.
+ * @author PIN2
  */
 @Entity
 @SequenceGenerator(name = "pes_hor_pre_id", initialValue = 1, allocationSize = 1)

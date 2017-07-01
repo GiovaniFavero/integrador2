@@ -8,8 +8,8 @@ package br.udesc.model.principal;
 import br.udesc.controller.ControladorTelaInicio;
 
 /**
- *
- * @author 5105011505
+ * Classe responsável por iniciar o programa.
+ * @author PIN2
  */
 public class Principal {
 

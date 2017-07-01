@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.controller.tablemodel;
 
 import br.udesc.model.entidade.Curso;
@@ -10,8 +5,9 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
- * @author Usuario
+ * Classe resposável modelar a table de Curso.
+ * Implementando todos os métodos da Interface nativa AbstractTableModel.
+ * @author PIN2
  */
 public class CursoModel extends AbstractTableModel{
     private ArrayList<Curso> linhas = null;
@@ -34,7 +30,6 @@ public class CursoModel extends AbstractTableModel{
     public int getRowCount() {
         return linhas.size();
     }
-
     @Override
     public int getColumnCount() {
         return colunas.length;

@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+/**
+ * Entidade RestricaoDisciplina que se refere as restrições das disciplinas.
+ * @author PIN2
+ */
 @Entity
 @SequenceGenerator(name = "restricao_disciplina_id", initialValue = 1, allocationSize = 1)
 public class RestricaoDisciplina implements Serializable {

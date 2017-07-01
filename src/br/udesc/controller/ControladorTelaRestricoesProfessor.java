@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.controller;
 
 import br.udesc.model.dao.CursoJpaController;
@@ -19,15 +14,12 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Usuario
- */
-/**
  * Classe resposável por realizar o controle da tela
  * "TelaRestricoesProfessor.java". Este módulo permite o usuário definir
  * restrições para cada professor. Estas restrições se baseiam na preferencia,
- * na obrigação ou na proibição de o professor lecionar em dias específicos da
+ * ou na proibição de o professor lecionar em dias específicos da
  * semana. Cada dia da semana é divido em primeiro e segundo horário.
+ * @author PIN2
  */
 public class ControladorTelaRestricoesProfessor {
 
@@ -41,10 +33,8 @@ public class ControladorTelaRestricoesProfessor {
     private ControladorTelaInicio cti;
 
     /**
-     * Método construtor. Reponsável por executar os métodos necessários para
-     * instanciação da classe.
-     *
-     * @param id Id do professor na qual as restrições se referem.
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
+     * @param id Id do Professor na qual as restrições se referem.
      */
     public ControladorTelaRestricoesProfessor(long id) {
         tr = new TelaRestricoesProfessor();
@@ -86,7 +76,6 @@ public class ControladorTelaRestricoesProfessor {
         tr.botaoCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                /* Fecha-se a tela atual */
                 cti.executar();
                 tr.dispose();
             }
@@ -156,22 +145,25 @@ public class ControladorTelaRestricoesProfessor {
     }
 
     /**
-     * Método resposável por as opções disponíveis de cada ComboBox de
-     * restrição, que são elas: "Obrigatório" e "Preferencial"
+     * Método resposável por adicionar a opções disponíveis de cada ComboBox de
+     * restrição, que é: "Proibido" ou "Preferencial" tendo um peso de 1 a 10.
+     * Existe uma matriz de ComboBox na qual a posição "x" da matriz se refere
+     * ao dia da semana, e a posição "y" ao período do dia na qual a restrição
+     * será aplicada conforme abaixo:
+     * Dias da semana:
+     * Segunda-feira: 1
+     * Terça-feira: 2
+     * Quarta-feira: 3
+     * Quinta-feira: 4
+     * Sexta-feira: 5
+     * Sábado: 6 
+     * Períodos:
+     * 1º Período: 1
+     * 2º Período: 2
+     * 
+     * Exemplo: Terça-feira no primeiro horário recebe o valor "21".
      */
     public void carregaListaCbxRestricoes() {
-        /* Carrega-se todos os ComboBox na matriz "restricoes" */
- /* Os índices de cada ComboBox é definido como código para o dia da semana.
-        No momento de salvar será somado 1 a cada código para iniciar com 1.
-        Segunda-feira: 1
-        Terça-feira: 2
-        Quarta-feira: 3
-        Quinta-feira: 4
-        Sexta-feira: 5
-        Sábado: 6 
-        ---------------
-        1º Período: 1
-        2º Período: 2 */
         restricoes = new JComboBox[6][2];
         restricoes[0][0] = tr.cbxSegunda1;
         restricoes[0][1] = tr.cbxSegunda2;
@@ -204,7 +196,7 @@ public class ControladorTelaRestricoesProfessor {
 
     /**
      * Método responsável por carregar as restrições já existentes para o
-     * professor na tela.
+     * professor nos ComboBox's.
      */
     public void carregaListaCbxRestricoesProfessor() {
         for (PessoaHorarioPreferencia p : restricoesAntigas) {
@@ -231,7 +223,7 @@ public class ControladorTelaRestricoesProfessor {
 
     /**
      * Método responsável por adicionar as restrições que estão definidas na
-     * tela no array "novasRestrições" que será atualizado para o professor.
+     * tela para o array "novasRestrições" que serão atualizadas para o professor.
      */
     public void salvarRestricoes() {
         PessoaHorarioPreferencia ph;
@@ -261,8 +253,8 @@ public class ControladorTelaRestricoesProfessor {
     }
 
     /**
-     * Método responsável por remover do banco as antigas restrições do
-     * professor
+     * Método responsável por remover do banco de dados as antigas restrições do
+     * professor.
      */
     public void removerRestricoesAntigas() {
         for (PessoaHorarioPreferencia p : restricoesAntigas) {
@@ -275,7 +267,7 @@ public class ControladorTelaRestricoesProfessor {
     }
 
     /**
-     * Método responsável por salvar as novas restrições no banco
+     * Método responsável por salvar as novas restrições no banco de dados.
      */
     public void persistirRestricoes() {
         for (PessoaHorarioPreferencia p : restricoesNovas) {
@@ -288,19 +280,17 @@ public class ControladorTelaRestricoesProfessor {
     }
 
     /**
-     * Método responsável por buscar o professor com "id" definida no parâmetro
-     * do construtor desta classe, e salvar na variável aqui instanciada.
-     *
-     * @param id Id do professor a qual as restrições se referem.
+     * Método responsável por buscar o Professor com "id" definida no parâmetro
+     * e salvar na variável aqui instanciada.
+     * @param id Id do Professor na qual se refere.
      */
     public void buscaProfessor(long id) {
         this.pro = psc.findProfessor(id);
     }
 
     /**
-     * Método responsável por carregar o nome do professor em questão no
+     * Método responsável por carregar o nome do Professor em questão no
      * cabeçalho da tela.
-     *
      */
     public void carregaLabel() {
         tr.labelTitulo.setText("Restrições para " + this.pro.getNome());
@@ -308,7 +298,6 @@ public class ControladorTelaRestricoesProfessor {
 
     /**
      * Método responsável por inicializar a tela controlada por esta classe.
-     *
      */
     public void executar() {
         tr.setVisible(true);

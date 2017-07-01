@@ -22,7 +22,7 @@ public class ControladorTelaCadastroCurso {
     private int edit = 0;
 
     /**
-     * Construtor intanciando a tela do controlador em questão, e instanciando novo curso.
+     * Construtor intanciando os objetos necessários e iniciando os componentes da Tela.
      */
     public ControladorTelaCadastroCurso() {
         tcc = new TelaCadastroCurso();
@@ -31,8 +31,8 @@ public class ControladorTelaCadastroCurso {
     }
 
     /**
-     * Método resposável por validar se o campo "Nome" do curso foi preenchido.
-     * @return Caso o campo "Nome" não estiver preenchido retorna uma mensagem de aviso e também "false",
+     * Método resposável por validar se os campos obrigatórios foram preenchidos.
+     * @return Caso os campos obrigatórios não estiverem preenchidos retorna uma mensagem de aviso e também "false",
      * caso contrário retorna "true".
      */
     public boolean validarCampos() {
